@@ -1,0 +1,41 @@
+{
+  "numTotalTestSuites": 2,
+  "numPassedTestSuites": 2,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 1,
+  "numPassedTests": 0,
+  "numFailedTests": 1,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "startTime": 1669811063696,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "HelloWorld"
+          ],
+          "fullName": " HelloWorld renders properly",
+          "status": "failed",
+          "title": "renders properly",
+          "duration": 18,
+          "failureMessages": [
+            "expected 'Hello asd You’ve successfully created…' to include 'Hello Vitest'"
+          ],
+          "location": {
+            "line": 9,
+            "column": 27
+          }
+        }
+      ],
+      "startTime": 1669811064761,
+      "endTime": 1669811064779,
+      "status": "failed",
+      "message": "",
+      "name": "/home/e18m/code/varnish/vs-foam-interns/src/components/HelloWorld/HelloWorld.spec.ts"
+    }
+  ]
+}

@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
-    "test:unit": "vitest --environment jsdom --root src/",
+    "test:unit": "vitest --environment jsdom --root src/ --outputFile ../unit-test-results.json --reporter=json",
     "test:e2e": "start-server-and-test preview :4173 'cypress run --e2e'",
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' :4173 'cypress open --e2e'",
     "build-only": "vite build",
@@ -15,13 +15,14 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@storybook/addon-a11y": "^6.5.13",
+    "storybook_vitest_addon": "^0.0.8",
     "vue": "^3.2.41",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@rushstack/eslint-patch": "^1.1.4",
+    "@storybook/addon-a11y": "^6.5.13",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-interactions": "^6.5.13",
@@ -47,6 +48,7 @@
     "prettier": "^2.7.1",
     "sass": "^1.56.1",
     "start-server-and-test": "^1.14.0",
+    "storybook-dark-mode": "^1.1.2",
     "typescript": "~4.7.4",
     "vite": "^3.1.8",
     "vitest": "^0.24.3",
