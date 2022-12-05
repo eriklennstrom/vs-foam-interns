@@ -15,7 +15,6 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "storybook_vitest_addon": "^0.0.8",
     "vue": "^3.2.41",
     "vue-router": "^4.1.5"
   },
@@ -29,7 +28,7 @@
     "@storybook/addon-links": "^6.5.13",
     "@storybook/builder-vite": "^0.2.5",
     "@storybook/testing-library": "^0.0.13",
-    "@storybook/vue3": "^6.5.13",
+    "@storybook/vue3": "^6.5.14",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^16.11.68",
     "@vitejs/plugin-vue": "^3.1.2",

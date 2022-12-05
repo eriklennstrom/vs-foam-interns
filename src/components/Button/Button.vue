@@ -2,8 +2,11 @@
   <button type="button" :class="classes" @click="onClick" :style="style">{{ label }}</button>
 </template>
 
-<script>
-import './button.css';
+<style lang="scss" scoped>
+@import './Button.scss'
+</style>
+
+<script lang="ts">
 import { reactive, computed } from 'vue';
 
 export default {

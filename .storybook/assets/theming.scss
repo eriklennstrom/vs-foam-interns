@@ -1,0 +1,84 @@
+body.dark .docs-story {
+  background-color: var(--surface) !important;
+}
+body.dark .sbdocs-wrapper {
+  background-color: var(--light) !important;
+}
+/* body.dark h2, body.dark div{
+  border-color: var(--border-color);
+} */
+body.dark .docs-story > div:last-child {
+  background-color: var(--overlay-2);
+}
+
+body {
+  overflow: scroll !important;
+}
+body::-webkit-scrollbar-track, body::-webkit-scrollbar {
+  background-color: unset !important;
+}
+
+/* Color swatches */
+.css-2qy8by {
+  padding-right: 8px;
+}
+
+/* Docs page */
+
+body.dark .sbdocs-wrapper .css-1fqqvvq, body.dark .css-tm6i3o.css-tm6i3o tbody tr:not(:first-child), body.dark .css-tmvzag {
+  border-color: var(--border-color);
+}
+body.dark .sbdocs-wrapper .css-1fqqvvq, body.dark .sbdocs-wrapper .css-tm6i3o.css-tm6i3o tbody td {
+  background-color: var(--surface);
+}
+body.dark .sbdocs-wrapper .css-qyimxq, body.dark .sbdocs-wrapper .css-11nj37o, body.dark .css-11nj37o~td {
+  background-color: var(--overlay-2) !important;
+}
+body.dark .sbdocs-wrapper .docblock-argstable span {
+  color: var(--onsurface-strong);
+}
+body.dark .sbdocs-wrapper .css-3ltsna, body.dark .sbdocs-wrapper .css-16muzfc code, body.dark .sbdocs-wrapper .css-ks2jcn, body.dark .sbdocs-wrapper .css-1h8u63y, body.dark .sbdocs-wrapper .css-ks2jcn,
+body.dark .sbdocs-wrapper .css-141ccx4, body.dark .sbdocs-wrapper .css-1aszhj9, body.dark .sbdocs-wrapper .css-18i8gz1, body.dark .sbdocs-wrapper .css-1o58ns1, body.dark .css-1bwv4zc  {
+  background-color: var(--overlay-1);
+  color: var(--onsurface-medium);
+  border-color: var(--border-color);
+}
+
+/* Color palette Docs */
+body.dark {
+  .docblock-colorpalette{
+    .css-syxe49{
+      // Table head
+      color: var(--onsurface-medium);
+    }
+    .css-1cic1f4{
+      // Heading
+      color: var(--onsurface-strong);
+    }
+    .css-1nkxwxu{
+      // Subtitle
+      color: var(--onsurface-medium);
+    }
+    .css-1xrb7qh{
+      // Text under swatch
+      color: var(--onsurface-low);
+    }
+    .css-wk618k{
+      // Swatchbox
+      background-image: unset!important;
+      background-color: var(--surface);
+    }
+  }
+  .sbdocs-wrapper {
+    .css-idch3x {
+      // H2 heading
+      border-color: var(--border-color);
+    }
+    .css-1p8ieni code {
+      //Small codesnippets ``
+      background-color: var(--overlay-2);
+      color: var(--onsurface-medium);
+      border-color: var(--border-color);
+    }
+  }
+}
