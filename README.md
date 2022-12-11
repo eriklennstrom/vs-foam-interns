@@ -1,7 +1,5 @@
 # vs-foam-interns
 
-This template should help get you started developing with Vue 3 in Vite.
-
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
@@ -44,25 +42,41 @@ npm run build
 ```sh
 npm run test:unit
 ```
+## Workflow
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+First off: We never push directly to main.
 
-```sh
-npm run test:e2e:dev
+When we start working on a new component, we create a new branch for it. The naming of the branch should follow this structure ```[your-first-name]-[component-name]-[issue-number (if there is any)].```
+When you feel the component is ready, make a PR to main and set your other colleague as a reviewer. You should always review eachothers code and understand what it does. If there is something you don't get the graps of in the code or if you have an idea of how to make the code better, less redundant or easier to understand comment it on the PR. When merging use "squash and merge".
+## Repo Structure
+```
+├── public - Static assets for initiating of app
+├── src - Basefolder for App
+│   ├── assets - Static assets (Fonts, images, logos, icons)
+│   ├── components
+│   │   ├── [component] - Includes vue component, story, test, scss (specific for that component)
+│   ├── constants - Common constants (names, function, maps)
+│   ├── directives - Custom Vue directives
+│   ├── layouts - Page layouts, and layout components (templates)
+│   ├── lib -
+│   ├── rest-api-service - Axios instances of every endpoint
+│   ├── router - Routes for the vue-router
+│   ├── store - Internal store for state-handling
+│   ├── styles - Commons scss files
+│   ├── types - Typescript definitions
+│   ├── views - All vue-things related to a specific view
+├── tests
+│   ├── e2e - End to end test with Nightwatch
+│   └── unit - Unit tests with Jest
+│       ├── __mocks__ - Mockdata, functions, and interceptors (msw)
 ```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+### Browser support
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+We support the latest 2 versions of the modern browsers. Browsers that we support are:
+- Google Chrome
+- Firefox
+- Safari
+- Internet Explorer Edge
 
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+We do not support IE11 as that is marked deprecated by Microsoft.

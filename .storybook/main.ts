@@ -1,6 +1,8 @@
-const { mergeConfig } = require('vite');
+const { loadConfigFromFile, mergeConfig } = require("vite");
+import type { StorybookViteConfig } from '@storybook/builder-vite';
+import * as path from 'path';
 
-module.exports = {
+const config: StorybookViteConfig = {
   stories: [
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
@@ -12,38 +14,28 @@ module.exports = {
     "@storybook/addon-a11y",
     "storybook-dark-mode"
   ],
-  staticDirs: ["./public", "./assets"],
   framework: "@storybook/vue3",
   core: {
     builder: "@storybook/builder-vite"
   },
-  typescript: {
-    check: false,
-    checkOptions: {},
-  },
-  viteFinal: async (config) => {
+  async viteFinal(config) {
+    // Add your configuration here
+    const { config: userConfig } = await loadConfigFromFile(
+      path.resolve(__dirname, "../vite.config.ts")
+    );
     return mergeConfig(config, {
-      // Use the same "resolve" configuration as your app
-      resolve: (await import('../vite.config.ts')).default.resolve,
-      // Add dependencies to pre-optimization
+      ...userConfig,
+      // manually specify plugins to avoid conflict
+      plugins: [],
       optimizeDeps: {
         include: ['storybook-dark-mode'],
       },
-    });
+    })
   },
   features: {
     storyStoreV7: true,
     postcss: false
   },
-  previewHead: (head) => (`
-  ${head}
-  <style>
-    body {
-      background-color: #fff !important;
-    }
-    body.dark {
-      background-color: #161C26 !important;
-    }
-  </style>
-`)
 }
+
+export default config

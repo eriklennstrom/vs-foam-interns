@@ -1,15 +1,8 @@
 import MyButton from './Button.vue';
-import vitestResults from "../../unit-test-results.json";
 // More on default export: https://storybook.js.org/docs/vue/writing-stories/introduction#default-export
 export default {
   title: 'Example/Button',
   component: MyButton,
-  parameters: {
-    vitest: {
-      testFile: 'HelloWorld.spec.ts',
-      testResults: vitestResults
-    }
-  },
   // More on argTypes: https://storybook.js.org/docs/vue/api/argtypes
   argTypes: {
     backgroundColor: { control: 'color' },
