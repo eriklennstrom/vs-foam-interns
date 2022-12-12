@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <i class="bi" :class="{[props.iconType]: true}" :style="{ color: props.color}"></i>
+    <i class="bi" :class="{[props.iconType]: true}" :style="{ color: props.color ? props.color : '#000'}"></i>
 </template>
 
 <style>
