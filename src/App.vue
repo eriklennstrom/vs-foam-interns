@@ -4,8 +4,12 @@ import Icons from './components/icons/Icons.vue'
 </script>
 
 <template>
-  <h1>Home <Icons iconType="fa-warning" color="blue" :iconSize="14" /></h1>
-
+  <h1>Home <Icons iconType="fa-warning" color="blue"/></h1>
+  <button>button <Icons iconType="fa-warning" color="blue"/></button>
+  <h3>Home <Icons iconType="fa-warning" color="blue"/></h3>
+  <div>
+    <Icons iconType="fa-warning" color="blue"/>
+  </div>
 </template>
 
 <style scoped>

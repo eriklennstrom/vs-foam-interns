@@ -13,5 +13,5 @@ props.iconSize ? size.value = props.iconSize + 'px' : null
 </script>
 
 <template>
-    <font-awesome-icon :icon="props.iconType" :style="{ color: props.color ? props.color : '#000', height: size }" />
+    <font-awesome-icon :icon="props.iconType" :style="{ color: props.color ? props.color : '#000', fontSize: size }" />
 </template>
