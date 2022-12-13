@@ -1,9 +1,19 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+
+import Icons from '../components/icons/Icons.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <h1>Home <Icons iconType="bi-alarm" color="blue" /></h1>
+  <button>
+    Button
+    <Icons iconType="bi-alarm" color="green" />
+  </button>
+  <Icons iconType="bi-alarm" color="red" />
 </template>
+
+<style scoped lang="scss">
+  button {
+    padding: 1em 2em;
+  }
+</style>
