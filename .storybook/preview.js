@@ -3,7 +3,7 @@ import './assets/fonts.css'
 
 import { themes } from '@storybook/theming';
 import logo from './varnish-software-logo-dark-text.svg'
-import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

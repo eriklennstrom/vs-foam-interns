@@ -18,5 +18,9 @@ describe('Icons', () => {
     // Pass test
     expect(getComputedStyle(wrapper.element).color).toBe('black')
     })  
+
+
+
+    
 })
    
