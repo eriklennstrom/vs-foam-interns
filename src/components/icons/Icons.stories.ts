@@ -16,7 +16,7 @@ export default {
     },
     iconType: {
       control: { type: 'select' },
-      options: ['fa-user-secret', 'fa-coffee'],
+      options: ['fa-user-secret', 'fa-warning', 'fa-arrow-down', 'fa-arrow-alt-circle-down'],
     }
   },
 } as Meta<typeof MyIcon>
@@ -31,4 +31,4 @@ const Template:  StoryFn<typeof MyIcon> = (args: any) => ({
 
 
 export const Primary = Template.bind({})
-Primary.args = { iconType: 'fa-coffee', color: 'red', chosenSize: '10px'}
+Primary.args = { iconType: 'fa-warning', color: 'red', chosenSize: ''}
