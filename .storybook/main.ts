@@ -1,9 +1,7 @@
 const { loadConfigFromFile, mergeConfig } = require("vite");
 import type { StorybookViteConfig } from '@storybook/builder-vite';
 import * as path from 'path';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown} from  '@fortawesome/free-solid-svg-icons';
-library.add( faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown)
+
 const config: StorybookViteConfig = {
   stories: [
     "../src/**/*.stories.mdx",

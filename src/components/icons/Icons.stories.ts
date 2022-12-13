@@ -7,7 +7,7 @@ export default {
   argTypes: {
     color: {
       control: { type: 'select' },
-      options: ['red', 'blue', 'green', 'white', 'black'],
+      options: ['red', 'blue', 'green', 'yelolw', 'black'],
     },
     iconSize: {
       
@@ -31,4 +31,4 @@ const Template:  StoryFn<typeof MyIcon> = (args: any) => ({
 
 
 export const Primary = Template.bind({})
-Primary.args = { iconType: 'fa-warning', color: 'red', iconSize: ''}
+Primary.args = { iconType: 'fa-warning', color: 'red', iconSize: 12}
