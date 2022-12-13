@@ -9,10 +9,10 @@ export default {
       control: { type: 'select' },
       options: ['red', 'blue', 'green', 'white', 'black'],
     },
-    chosenSize: {
+    iconSize: {
       
       control: { type: 'select' },
-      options: ['10px', '12px', '14px', '16px', '18px', ''],
+      options: [10, 12, 14, 16, 18, null],
     },
     iconType: {
       control: { type: 'select' },
@@ -31,4 +31,4 @@ const Template:  StoryFn<typeof MyIcon> = (args: any) => ({
 
 
 export const Primary = Template.bind({})
-Primary.args = { iconType: 'fa-warning', color: 'red', chosenSize: ''}
+Primary.args = { iconType: 'fa-warning', color: 'red', iconSize: ''}
