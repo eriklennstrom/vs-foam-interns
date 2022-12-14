@@ -1,4 +1,13 @@
 %extend badge-small {
-    padding:8px;
+    display:flex;
+    &:has(svg) {
+        padding-left: 0;
+        svg {
+          padding: 0 8px;
+        }
+      }
+    padding:16px;
     border-radius: 13px;
+    background-color: #003349;
 }
+
