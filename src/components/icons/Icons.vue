@@ -13,5 +13,20 @@ props.iconSize ? size.value = props.iconSize + 'px' : null
 </script>
 
 <template>
-    <font-awesome-icon :icon="props.iconType" :style="{ color: props.color ? props.color : '#000', fontSize: size }" />
+    <font-awesome-icon :icon="props.iconType" :class="props.color ? props.color : 'default-icon'" :style="{ fontSize: size }" />
 </template>
+
+<style lang="scss" scoped>
+ @use '../styles/colors.scss';
+
+ @each $name, $color in colors.$icon-colors {
+  .#{$name} {
+    color: $color;
+  }
+}
+
+.default-icon {
+    color: black;
+}
+
+</style>

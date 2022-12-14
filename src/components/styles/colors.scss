@@ -12,37 +12,46 @@ $Success: #55c284;
 
 //bg colors
 $bg-colors: (
-  primary-100: #e6ebed,
-  primary-300: #668592,
-  primary-400: #003349,
-  primary-700: #002737,
-  primary-900: #000507,
-  secondary-100: #f8f9fa,
-  secondary-300: #ebeff1,
-  secondary-400: #e6ebed,
-  secondary-700: #cfd4d5,
-  secondary-900: #a1a5a6,
-  danger-100: #ea868f,
-  danger-300: #e35d6a,
-  danger-500: #dc3545,
-  danger-700: #b02a37,
-  danger-900: #64141b,
-  warning: #faa05a,
-  success: #55c284,
-
+  $Primary: #003349;
+  $Secondary: #e6ebed;
+  $Danger: #dc3545;
+  $Warning: #faa05a;
+  $Success: #55c284;
 );
+
+
+// primary-100: #e6ebed,
+// primary-300: #668592,
+// primary-400: #003349,
+// primary-700: #002737,
+// primary-900: #000507,
+// secondary-100: #f8f9fa,
+// secondary-300: #ebeff1,
+// secondary-400: #e6ebed,
+// secondary-700: #cfd4d5,
+// secondary-900: #a1a5a6,
+// danger-100: #ea868f,
+// danger-300: #e35d6a,
+// danger-500: #dc3545,
+// danger-700: #b02a37,
+// danger-900: #64141b,
+// warning: #faa05a,
+// success: #55c284
 
 //text colors
 // <--- WIP --->
 $text-colors: (
-  Text-Strong-dark: #212121,
-  Text-Medium-dark: #595959,
-  Text-Light-dark: #afafaf,
-  Text-Strong-light: #fafbfb,
-  Text-Medium-light: #c0cdd2,
-  Text-Light-light: #3e6f84,
-  Text-Disabled: #8799a1,
-  Text-Active: #4dd1bb,
-  Text-Rest: #00b0d4,
-)
+  strong-dark: #212121,
+  medium-dark: #595959,
+  light-dark: #afafaf,
+  strong-light: #fafbfb,
+  medium-light: #c0cdd2,
+  light-light: #3e6f84,
+  disabled: #8799a1,
+  active: #4dd1bb,
+  rest: #00b0d4,
+);
+
+// Icon colors
+$icon-colors : join($bg-colors, $text-colors, auto)
 
