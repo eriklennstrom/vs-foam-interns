@@ -63,10 +63,12 @@ const Icon = computed(() => {
     }
   }
   .badge-#{$name}.badge-outline {
+    color: $bg;
     border: 1px solid $bg;
     background-color: color.adjust($bg, $alpha: -0.9);
     &:has(svg) {
       svg {
+        color: inherit;
         padding: 0 8px;
       }
     }

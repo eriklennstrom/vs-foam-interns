@@ -14,7 +14,7 @@ describe('Icons', () => {
   })  
 
   it('renders color', () => {
-    const wrapper = mount(Icons, { propsData: { iconType:'fa-warning', color:'black' } })
+    const wrapper = mount(Icons, { propsData: { iconType:'fa-warning', color:'success' } })
     expect(getComputedStyle(wrapper.element).color).toBe('black')
   })    
 

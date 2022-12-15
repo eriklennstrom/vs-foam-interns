@@ -7,7 +7,7 @@ export default {
   argTypes: {
     color: {
       control: { type: 'select' },
-      options: ['red', 'blue', 'green', 'yelolw', 'black'],
+      options: ['success', 'danger', 'secondary', 'yelolw', 'primary'],
     },
     iconSize: {
       
