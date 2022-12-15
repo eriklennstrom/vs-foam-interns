@@ -20,10 +20,10 @@ import Badge from './components/badge/Badge.vue'
     <Badge type="success" outline text="Hello Varnish" />
   </section>
   <section>
-    <Icons iconType="fa-warning"/>
+    <Icons iconType="arrow-down"/>
    
-    <Icons iconType="fa-warning" color="success"/>
-    <Icons iconType="fa-warning" color="primary"/>
+    <Icons iconType="warning" color="success"/>
+    <Icons iconType="user-secret" color="primary"/>
   </section>
 
 </template>

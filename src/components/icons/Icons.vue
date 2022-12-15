@@ -19,11 +19,20 @@ const IconLoad = computed(() => {
   }
 })
 
+const iconName = computed(() => {
+  if(props.iconType) {
+    const icon = 'fa-'+props.iconType
+    return icon
+  } else {
+    return ''
+  }
+})
+
 
 </script>
 
 <template>
-    <font-awesome-icon :icon="props.iconType" :class="props.color ? props.color : 'default-icon'" :style="{ fontSize: size }" />
+    <font-awesome-icon :icon="iconName" :class="props.color ? props.color : 'default-icon'" :style="{ fontSize: size }" />
 </template>
 
 <style lang="scss" scoped>
