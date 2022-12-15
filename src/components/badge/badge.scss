@@ -12,16 +12,15 @@
     padding: 8px 16px;
     background-color: $bg;
     border-radius: 28px;
-    p {
-      
-      font-size: 12px;
-    }
+    font-size: 12px;
+    
     &:has(svg) {
-      display:flex;
-      padding-left: 0;
-      svg {
-        color: inherit;
-        padding: 0 8px;
+        display:flex;
+        align-items: center;
+        padding-left: 0;
+        svg {
+            color: inherit;
+            padding: 0 8px;
       }
     }
   }
