@@ -5,8 +5,8 @@ import Badge from './components/badge/Badge.vue'
 </script>
 
 <template>
+  <Badge type="secondary" text="Hello Varnish" icon="warning" />
   <section>
-    <Badge type="secondary" text="Hello Varnish" icon="warning" />
     <Badge type="danger" text="Hello Varnish" outline icon="warning" />
     <Badge type="primary" text="Hello Varnish" icon="arrow-down" />
     <Badge type="warning" text="Hello Varnish" outline icon="arrow-down" />

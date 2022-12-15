@@ -1,32 +1,3 @@
-<script setup lang="ts">
-import { computed } from '@vue/reactivity';
-import { defineAsyncComponent, ref } from 'vue';
-
-const props = defineProps({
-    type: {type: String, required: true },
-    outline: { type: Boolean },
-    text: {type: String, required: true },
-    icon: {type: String}
-})
-
-const badgeClass = ref('badge-'+props.type)
-
-const Icon = computed(() => {
-  if(props.icon) {
-    const Icon = defineAsyncComponent(() => import('../icons/Icons.vue'))
-    return Icon
-  }
-})
-</script>
-
-<template>
-    <div :class="[badgeClass, props.outline ? 'badge-outline' : null]"> 
-      <Icon v-if="props.icon" :iconType="props.icon" />
-      {{props.text}}
-    </div>
-</template>
-
-<style lang="scss" scoped>
 @use 'sass:color';
 @use '../styles/colors.scss';
 
@@ -85,4 +56,3 @@ const Icon = computed(() => {
     }
   }
 }
-</style>

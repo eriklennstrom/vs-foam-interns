@@ -36,16 +36,6 @@ const iconName = computed(() => {
 </template>
 
 <style lang="scss" scoped>
- @use '../styles/colors.scss';
-
- @each $name, $color in colors.$icon-colors {
-  .#{$name} {
-    color: $color;
-  }
-}
-
-.default-icon {
-    color: black;
-}
+  @import './icons.scss';
 
 </style>
