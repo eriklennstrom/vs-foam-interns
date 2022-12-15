@@ -5,12 +5,11 @@ import Badge from './components/badge/Badge.vue'
 </script>
 
 <template>
-  <ButtonVue text="yepp" type="success" icon="warning"/>
+  <Badge type="secondary" text="Hello Varnish" icon="warning" />
   <section>
-    <Badge type="secondary" text="Hello Varnish" icon="warning" />
     <Badge type="danger" text="Hello Varnish" outline icon="warning" />
-    <Badge type="primary" text="Hello Varnish" icon="warning" />
-    <Badge type="warning" text="Hello Varnish" outline icon="warning" />
+    <Badge type="primary" text="Hello Varnish" icon="arrow-down" />
+    <Badge type="warning" text="Hello Varnish" outline icon="arrow-down" />
     <Badge type="success" text="Hello Varnish" icon="warning" />
   </section>
   <section>
@@ -21,10 +20,10 @@ import Badge from './components/badge/Badge.vue'
     <Badge type="success" outline text="Hello Varnish" />
   </section>
   <section>
-    <Icons iconType="fa-warning"/>
+    <Icons iconType="circle-down"/>
    
-    <Icons iconType="fa-warning" color="success"/>
-    <Icons iconType="fa-warning" color="primary"/>
+    <Icons iconType="warning" color="success"/>
+    <Icons iconType="user-secret" color="primary"/>
   </section>
 
 </template>
