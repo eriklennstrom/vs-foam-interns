@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-// import Icons from '../components/icons/Icons.vue';
+import { computed } from '@vue/reactivity';
+import { defineAsyncComponent, ref } from 'vue';
 
 const props = defineProps({
     type: {type: String, required: true },
@@ -8,35 +8,34 @@ const props = defineProps({
     text: {type: String, required: true },
     icon: {type: String}
 })
+
 const badgeClass = ref('badge-'+props.type)
 
-let Icons: any
-async function load() {
-  Icons  = await import('../icons/Icons.vue');
-    // let Icons = await import('../components/icons/Icons.vue');
+const iconName = computed(() => {
+  if(props.icon) {
+    const icon = 'fa-'+props.icon
+    return icon
   }
-  load()
-// onMounted(() => {
-let iconName: string;
-  props.icon ? 
-  iconName = 'fa-'+props.icon
-    : null
-    // const Icons = () => import('../components/icons/Icons.vue')
-//   import('../components/icons/Icons.vue').then(Icon) => {
+})
 
-
+const Icon = computed(() => {
+  if(props.icon) {
+    const Icon = defineAsyncComponent(() => import('../icons/Icons.vue'))
+    return Icon
+  }
+})
 </script>
 
 <template>
     <div :class="[badgeClass, props.outline ? 'badge-outline' : null]"> 
-      <Icons v-if="props.icon" :iconType="iconName" />
+      <Icon v-if="props.icon" :iconType="iconName" />
       {{props.text}}
     </div>
 </template>
 
 <style lang="scss" scoped>
 @use 'sass:color';
-@use '../components/styles/colors.scss';
+@use '../styles/colors.scss';
 
 @each $name, $bg in colors.$bg-colors {
   .badge-#{$name} {
@@ -54,7 +53,6 @@ let iconName: string;
     }
     &:has(svg) {
       display:flex;
-      // align-items: center;
       padding-left: 0;
       svg {
 
@@ -79,7 +77,6 @@ let iconName: string;
     color: $color;
     &:has(svg) {
       display:flex;
-      // align-items: center;
       padding-left: 0;
       svg {
         color: $color;

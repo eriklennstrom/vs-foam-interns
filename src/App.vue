@@ -1,12 +1,12 @@
 <script setup lang="ts">
 
 import Icons from './components/icons/Icons.vue'
-import Badge from './badge/Badge.vue'
+import Badge from './components/badge/Badge.vue'
 </script>
 
 <template>
   <section>
-    <Badge type="danger" text="Hello Varnish"  icon="warning" />
+    <Badge type="danger" text="Hello Varnish" icon="warning" />
   </section>
   <!-- <section>
     <div class="badge-success badge-strong-light" ><Icons iconType="fa-warning"/>Badge</div>
