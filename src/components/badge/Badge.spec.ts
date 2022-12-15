@@ -25,5 +25,6 @@ describe('Badge', () => {
   it('renders correct color', () => {
     const wrapper = mount(Badge, { propsData: { type:'primary', text: 'Varnish' } })
     expect(getComputedStyle(wrapper.element).color == '#003349')
-  })  
+  })
+
 })

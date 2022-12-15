@@ -63,7 +63,11 @@ const Icon = computed(() => {
     }
   }
   .badge-#{$name}.badge-outline {
-    color: $bg;
+    @if (str-index($name, 'secondary')) {
+      color: map-get(colors.$text-colors, light-light);
+    } @else {
+      color: $bg;
+    }
     border: 1px solid $bg;
     background-color: color.adjust($bg, $alpha: -0.9);
     &:has(svg) {
