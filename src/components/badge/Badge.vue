@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from '@vue/reactivity';
+import type { Refs } from '@storybook/api';
+import { computed, type Ref } from '@vue/reactivity';
 import { defineAsyncComponent, ref } from 'vue';
 
 const props = defineProps({
@@ -8,8 +9,14 @@ const props = defineProps({
     text: {type: String, required: true },
     icon: {type: String}
 })
+const selectionArray: string[] = ['primary', 'secondary', 'danger', 'warning', 'success']
+const type:Ref = ref<string>(props.type)
 
-const badgeClass = ref('badge-'+props.type)
+if(!selectionArray.includes(type.value)){
+type.value = "secondary"
+}
+
+const badgeClass = ref('badge-'+type.value)
 
 const Icon = computed(() => {
   if(props.icon) {
