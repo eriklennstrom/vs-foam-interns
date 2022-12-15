@@ -16,7 +16,7 @@ export default {
     },
     iconType: {
       control: { type: 'select' },
-      options: ['fa-user-secret', 'fa-warning', 'fa-arrow-down', 'fa-arrow-alt-circle-down'],
+      options: ['user-secret', 'warning', 'arrow-down', 'circle-down'],
     }
   },
 } as Meta<typeof MyIcon>
