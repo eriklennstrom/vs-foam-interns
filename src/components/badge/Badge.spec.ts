@@ -9,7 +9,6 @@ describe('Badge', () => {
 
   it('renders properly', () => {
     const wrapper = mount(Badge, { propsData: { type:'danger', text: 'Hello' } })
-    console.log(wrapper.classes())
     expect(wrapper.classes()).toContain('badge-danger')
   })  
 
@@ -20,23 +19,11 @@ describe('Badge', () => {
 
   it('renders correct color with an outline', () => {
     const wrapper = mount(Badge, { propsData: { type:'danger', text: 'Varnish', outline: true } })
-    console.log(getComputedStyle(wrapper.element))
-    expect(getComputedStyle(wrapper.element).color)
+    expect(getComputedStyle(wrapper.element).color == '#dc3545')
   })     
 
-//   it('renders default color with wrong input', () => {
-//     const wrapper = mount(Icons, { propsData: { iconType:'fa-warning', color:'yelolw' } })
-//     expect(getComputedStyle(wrapper.element).color).toBe('')
-//   })  
-//   it('render correct size', () => {
-//     const wrapper = mount(Icons, { propsData: { iconType:'fa-warning', iconSize: 18} })
-//     console.log(getComputedStyle(wrapper.element).height)
-//     expect(getComputedStyle(wrapper.element).height).toBe('18px')
-//   })      
-
-//   it('render correct size with no input', () => {
-//     const wrapper = mount(Icons, { propsData: { iconType:'fa-warning'} })
-//     console.log(getComputedStyle(wrapper.element).height)
-//     expect(getComputedStyle(wrapper.element).height).toBe('100%')
-//   })   
+  it('renders correct color', () => {
+    const wrapper = mount(Badge, { propsData: { type:'primary', text: 'Varnish' } })
+    expect(getComputedStyle(wrapper.element).color == '#003349')
+  })  
 })

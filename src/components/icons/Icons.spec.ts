@@ -15,28 +15,28 @@ describe('Icons', () => {
 
   it('renders color', () => {
     const wrapper = mount(Icons, { propsData: { iconType:'fa-warning', color:'success' } })
-    expect(getComputedStyle(wrapper.element).color).toBe('black')
+    expect(getComputedStyle(wrapper.element).color == '#55c284')
   })    
 
   it('renders default color with no input', () => {
     const wrapper = mount(Icons, { propsData: { iconType:'fa-warning' } })
-    expect(getComputedStyle(wrapper.element).color).toBe('rgb(0, 0, 0)')
+    expect(getComputedStyle(wrapper.element).color == 'rgb(0, 0, 0)')
   })     
 
   it('renders default color with wrong input', () => {
     const wrapper = mount(Icons, { propsData: { iconType:'fa-warning', color:'yelolw' } })
-    expect(getComputedStyle(wrapper.element).color).toBe('')
+    expect(getComputedStyle(wrapper.element).color == 'rgb(0, 0, 0)')
   })  
   it('render correct size', () => {
     const wrapper = mount(Icons, { propsData: { iconType:'fa-warning', iconSize: 18} })
     console.log(getComputedStyle(wrapper.element).height)
-    expect(getComputedStyle(wrapper.element).height).toBe('18px')
+    expect(getComputedStyle(wrapper.element).fontSize).toBe('18px')
   })      
 
   it('render correct size with no input', () => {
     const wrapper = mount(Icons, { propsData: { iconType:'fa-warning'} })
     console.log(getComputedStyle(wrapper.element).height)
-    expect(getComputedStyle(wrapper.element).height).toBe('100%')
+    expect(getComputedStyle(wrapper.element).fontSize).toBe('100%')
   })   
 })
    
