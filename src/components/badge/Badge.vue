@@ -15,7 +15,7 @@ const iconName = computed(() => {
   if(props.icon) {
     const icon = 'fa-'+props.icon
     return icon
-  }
+  }else return ""
 })
 
 const Icon = computed(() => {

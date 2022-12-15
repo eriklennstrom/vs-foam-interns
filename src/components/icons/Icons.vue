@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
+import { defineAsyncComponent, ref, type Ref } from 'vue';
+import { computed } from '@vue/reactivity';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const props = defineProps({
@@ -10,6 +11,15 @@ const props = defineProps({
 
 let size: Ref = ref<string>('100%')
 props.iconSize ? size.value = props.iconSize + 'px' : null
+
+const IconLoad = computed(() => {
+  if(props.iconType) {
+    const Icon = defineAsyncComponent(() => import('../icons/Icons.vue'))
+    return Icon
+  }
+})
+
+
 </script>
 
 <template>
