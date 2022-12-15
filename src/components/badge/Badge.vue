@@ -11,15 +11,6 @@ const props = defineProps({
 
 const badgeClass = ref('badge-'+props.type)
 
-const iconName = computed(() => {
-  if(props.icon) {
-    const icon = 'fa-'+props.icon
-    return icon
-  } else {
-    return ''
-  }
-})
-
 const Icon = computed(() => {
   if(props.icon) {
     const Icon = defineAsyncComponent(() => import('../icons/Icons.vue'))
@@ -30,7 +21,7 @@ const Icon = computed(() => {
 
 <template>
     <div :class="[badgeClass, props.outline ? 'badge-outline' : null]"> 
-      <Icon v-if="props.icon" :iconType="iconName" />
+      <Icon v-if="props.icon" :iconType="props.icon" />
       {{props.text}}
     </div>
 </template>
