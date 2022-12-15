@@ -15,7 +15,9 @@ const iconName = computed(() => {
   if(props.icon) {
     const icon = 'fa-'+props.icon
     return icon
-  }else return ""
+  } else {
+    return ''
+  }
 })
 
 const Icon = computed(() => {
@@ -39,11 +41,11 @@ const Icon = computed(() => {
 
 @each $name, $bg in colors.$bg-colors {
   .badge-#{$name} {
-    // @if  (str-index($name, 'secondary')) {
-    //   color: colors.$strong-dark;
-    // } @else {
-    //   color: colors.$strong-light;
-    // }
+    @if (str-index($name, 'secondary')) {
+      color: map-get(colors.$text-colors, strong-dark);
+    } @else {
+      color: map-get(colors.$text-colors, strong-light);
+    }
     padding: 8px 16px;
     background-color: $bg;
     border-radius: 28px;
@@ -55,16 +57,18 @@ const Icon = computed(() => {
       display:flex;
       padding-left: 0;
       svg {
-
+        color: inherit;
         padding: 0 8px;
       }
     }
   }
   .badge-#{$name}.badge-outline {
+    color: $bg;
     border: 1px solid $bg;
     background-color: color.adjust($bg, $alpha: -0.9);
     &:has(svg) {
       svg {
+        color: inherit;
         padding: 0 8px;
       }
     }
