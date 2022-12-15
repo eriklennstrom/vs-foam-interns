@@ -1,55 +1,88 @@
+<script setup lang="ts">
+import { computed } from '@vue/reactivity';
+import { defineAsyncComponent, ref } from 'vue';
+
+const props = defineProps({
+    type: {type: String, required: true },
+    outline: { type: Boolean },
+    text: {type: String, required: true },
+    icon: {type: String}
+})
+
+const buttonClass = ref('button-'+props.type)
+
+const iconName = computed(() => {
+  if(props.icon) {
+    const icon = 'fa-'+props.icon
+    return icon
+  }else return ""
+})
+
+const Icon = computed(() => {
+  if(props.icon) {
+    const Icon = defineAsyncComponent(() => import('../icons/Icons.vue'))
+    return Icon
+  }
+})
+</script>
+
 <template>
-  <button type="button" :class="classes" @click="onClick" :style="style">{{ label }}</button>
+    <div :class="[buttonClass, props.outline ? 'button-outline' : null]"> 
+      <Icon v-if="props.icon" :iconType="iconName" />
+      {{props.text}}
+    </div>
 </template>
 
 <style lang="scss" scoped>
-@import './Button.scss'
-</style>
+@use 'sass:color';
+@use '../styles/colors.scss';
 
-<script lang="ts">
-import { reactive, computed } from 'vue';
+@each $name, $bg in colors.$bg-colors {
+  .button-#{$name} {
+    // @if  (str-index($name, 'secondary')) {
+    //   color: colors.$strong-dark;
+    // } @else {
+    //   color: colors.$strong-light;
+    // }
+    padding: 8px 16px;
+    background-color: $bg;
+    border-radius: 10px;
+    p {
+      
+      font-size: 12px;
+    }
+    &:has(svg) {
+      display:flex;
+      padding-left: 0;
+      svg {
 
-export default {
-  name: 'my-button',
-
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    primary: {
-      type: Boolean,
-      default: false,
-    },
-    size: {
-      type: String,
-      validator: function (value) {
-        return ['small', 'medium', 'large'].indexOf(value) !== -1;
-      },
-    },
-    backgroundColor: {
-      type: String,
-    },
-  },
-
-  emits: ['click'],
-
-  setup(props, { emit }) {
-    props = reactive(props);
-    return {
-      classes: computed(() => ({
-        'storybook-button': true,
-        'storybook-button--primary': props.primary,
-        'storybook-button--secondary': !props.primary,
-        [`storybook-button--${props.size || 'medium'}`]: true,
-      })),
-      style: computed(() => ({
-        backgroundColor: props.backgroundColor,
-      })),
-      onClick() {
-        emit('click');
+        padding: 0 8px;
       }
     }
-  },
-};
-</script>
+  }
+  .button-#{$name}.button-outline {
+    border: 1px solid $bg;
+    background-color: color.adjust($bg, $alpha: -0.9);
+    &:has(svg) {
+      svg {
+        padding: 0 8px;
+      }
+    }
+  }
+}
+
+@each $text, $color in colors.$text-colors {
+  
+  .button-#{$text} {
+    color: $color;
+    &:has(svg) {
+      display:flex;
+      padding-left: 0;
+      svg {
+        color: $color;
+        padding: 0 8px;
+      }
+    }
+  }
+}
+</style>
