@@ -5,6 +5,7 @@ import Badge from './components/badge/Badge.vue'
 </script>
 
 <template>
+  <ButtonVue text="yepp" type="success" icon="warning"/>
   <section>
     <Badge type="secondary" text="Hello Varnish" icon="warning" />
     <Badge type="danger" text="Hello Varnish" outline icon="warning" />
@@ -31,11 +32,11 @@ import Badge from './components/badge/Badge.vue'
 <style scoped lang="scss">
 section {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 4em;
 }
-
 
 
 

@@ -38,12 +38,13 @@ const Icon = computed(() => {
 @use '../styles/colors.scss';
 
 @each $name, $bg in colors.$bg-colors {
+ 
   .button-#{$name} {
-    // @if  (str-index($name, 'secondary')) {
-    //   color: colors.$strong-dark;
-    // } @else {
-    //   color: colors.$strong-light;
-    // }
+    @if (str-index($name, 'secondary')) {
+      color: map-get(colors.$text-colors, strong-dark);
+    } @else {
+      color: map-get(colors.$text-colors, strong-light);
+    }
     padding: 8px 16px;
     background-color: $bg;
     border-radius: 10px;
@@ -52,10 +53,11 @@ const Icon = computed(() => {
       font-size: 12px;
     }
     &:has(svg) {
+      
       display:flex;
       padding-left: 0;
       svg {
-
+        color: inherit;
         padding: 0 8px;
       }
     }
@@ -65,6 +67,7 @@ const Icon = computed(() => {
     background-color: color.adjust($bg, $alpha: -0.9);
     &:has(svg) {
       svg {
+        
         padding: 0 8px;
       }
     }
