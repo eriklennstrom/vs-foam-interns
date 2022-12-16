@@ -3,5 +3,6 @@
 @each $name, $color in colors.$icon-colors {
  .#{$name} {
    color: $color;
+   font-size: 800px !important;
  }
 }
