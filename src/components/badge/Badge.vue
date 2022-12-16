@@ -1,38 +1,41 @@
 <script setup lang="ts">
-import type { Refs } from '@storybook/api';
-import { computed, type Ref } from '@vue/reactivity';
-import { defineAsyncComponent, ref } from 'vue';
+import { computed, type Ref } from "@vue/reactivity";
+import { defineAsyncComponent, ref } from "vue";
+import {badgeMixin} from "./jsMixins"
 
 const props = defineProps({
-    type: {type: String, required: true },
-    outline: { type: Boolean },
-    text: {type: String, required: true },
-    icon: {type: String}
-})
-const selectionArray: string[] = ['primary', 'secondary', 'danger', 'warning', 'success']
-const type:Ref = ref<string>(props.type)
+  variant: { type: String, default: "secondary" },
+  outline: { type: Boolean, default: false },
+  text: { type: String, default: "Badge" },
+  icon: { type: String },
+});
 
-if(!selectionArray.includes(type.value)){
-type.value = "secondary"
-}
+const type: Ref = ref<string>(props.variant);
 
-const badgeClass = ref('badge-'+type.value)
+const variantCheck = {
+  ...badgeMixin
+};
+
+variantCheck.verifyVariant(props.variant)? "" : type.value = "secondary"
+
+
+const badgeClass = ref("badge-" + type.value);
 
 const Icon = computed(() => {
-  if(props.icon) {
-    const Icon = defineAsyncComponent(() => import('../icons/Icons.vue'))
-    return Icon
+  if (props.icon) {
+    const Icon = defineAsyncComponent(() => import("../icons/Icons.vue"));
+    return Icon;
   }
-})
+});
 </script>
 
 <template>
-    <div :class="[badgeClass, props.outline ? 'badge-outline' : null]"> 
-      <Icon v-if="props.icon" :iconType="props.icon" />
-      {{props.text}}
-    </div>
+  <div :class="[badgeClass, props.outline ? 'badge-outline' : null]">
+    <Icon v-if="props.icon" :iconType="props.icon" />
+    {{ props.text }}
+  </div>
 </template>
 
 <style lang="scss" scoped>
-  @import './badge.scss'
+@import "./badge.scss";
 </style>

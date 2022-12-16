@@ -5,19 +5,18 @@ import Badge from './components/badge/Badge.vue'
 </script>
 
 <template>
-  <Badge type="secondary" text="Hello Varnish" icon="warning" />
   <section>
-    <Badge type="dangejyhgr" text="Hello Varnish" outline icon="warning" />
-    <Badge type="primary" text="Hello Varnish" icon="arrow-down" />
-    <Badge type="warning" text="Hello Varnish" outline icon="arrow-down" />
-    <Badge type="success" text="Hello Varnish" icon="warning" />
+    <Badge variant="dangejyhgr" text="Hello Varnish" outline icon="warning" />
+    <Badge variant="primary" text="Hello Varnish" icon="arrow-down" />
+    <Badge variant="warning" text="Hello Varnish" outline icon="arrow-down" />
+    <Badge variant="success" text="Hello Varnish" icon="warning" />
   </section>
   <section>
-    <Badge type="secondary" outline text="Hello Varnish" />
-    <Badge type="danger" text="Hello Varnish" />
-    <Badge type="primary" outline text="Hello Varnish" />
-    <Badge type="warning" text="Hello Varnish" />
-    <Badge type="success" outline text="Hello Varnish" />
+    <Badge variant="secondary" outline text="Hello Varnish" />
+    <Badge variant="danger" text="Hello Varnish" />
+    <Badge variant="primary" outline text="Hello Varnish" />
+    <Badge variant="warning" text="Hello Varnish" />
+    <Badge variant="success" outline text="Hello Varnish" />
   </section>
   <section>
     <Icons iconType="circle-down"/>
