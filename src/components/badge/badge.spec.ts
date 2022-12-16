@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Badge from './Badge.vue'
-import Icons from '../icons/Icons.vue'
+import Badge from './badge.vue'
+import Icons from '../icons/icons.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown} from  '@fortawesome/free-solid-svg-icons';
 library.add( faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown)
@@ -18,14 +18,18 @@ describe('Badge', () => {
     expect(wrapper.vm.text).toBe('Varnish')
   })    
 
-  it('renders correct color with an outline', () => {
+  it('renders correct with outline prop', () => {
     const wrapper = mount(Badge, { propsData: { type:'danger', text: 'Varnish', outline: true } })
-    expect(getComputedStyle(wrapper.element).color == '#dc3545')
+    const div = wrapper.find('div');
+    const computedStyle = window.getComputedStyle(div.element);
+    const borderWidth = computedStyle.getPropertyValue('border-width');
+    expect(borderWidth).toBe('1px');
   })     
 
   it('renders correct color', () => {
     const wrapper = mount(Badge, { propsData: { type:'primary', text: 'Varnish' } })
-    expect(getComputedStyle(wrapper.element).color == '#003349')
+    // console.log(getComputedStyle(wrapper.element).color == '#003349')
+    expect(getComputedStyle(wrapper.element).fontSize).toBe('18px')
   })
 
   it('render icon properly', () => {

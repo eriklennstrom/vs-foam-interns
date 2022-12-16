@@ -17,19 +17,20 @@ badgeMixin.verifyVariant(props.variant)? "" : type.value = "secondary"
 
 const badgeClass = ref("badge-" + type.value);
 
-const Icon = computed(() => {
-  if (props.icon) {
-    const Icon = defineAsyncComponent(() => import("../icons/Icons.vue"));
-    return Icon;
+// dynamic component import
+const AsyncIcon = computed(() => {
+  if(props.icon) {
+    const Icon = defineAsyncComponent(() => import('../icons/icons.vue'))
+    return Icon
   }
 });
 </script>
 
 <template>
-  <div :class="[badgeClass, props.outline ? 'badge-outline' : null]">
-    <Icon v-if="props.icon" :iconType="props.icon" />
-    {{ props.text }}
-  </div>
+    <div :class="[badgeClass, props.outline ? 'badge-outline' : null]"> 
+      <AsyncIcon v-if="props.icon" :iconType="props.icon" />
+      {{props.text}}
+    </div>
 </template>
 
 <style lang="scss" scoped>

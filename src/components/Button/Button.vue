@@ -20,7 +20,7 @@ const iconName = computed(() => {
 
 const Icon = computed(() => {
   if(props.icon) {
-    const Icon = defineAsyncComponent(() => import('../icons/Icons.vue'))
+    const Icon = defineAsyncComponent(() => import('../icons/icons.vue'))
     return Icon
   }
 })

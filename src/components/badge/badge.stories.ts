@@ -1,4 +1,4 @@
-import MyBadge from './Badge.vue';
+import MyBadge from './badge.vue';
 import type { Meta, StoryFn } from '@storybook/vue3'
 
 export default {

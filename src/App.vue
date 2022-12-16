@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ButtonVue from './components/Button/Button.vue';
-import Icons from './components/icons/Icons.vue'
-import Badge from './components/badge/Badge.vue'
+import Icons from './components/icons/icons.vue'
+import Badge from './components/badge/badge.vue'
 </script>
 
 <template>
@@ -23,6 +23,7 @@ import Badge from './components/badge/Badge.vue'
    
     <Icons iconType="warning" color="success"/>
     <Icons iconType="user-secret" color="primary"/>
+    <Icons />
   </section>
 
 </template>
