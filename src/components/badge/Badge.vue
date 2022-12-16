@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, type Ref } from "@vue/reactivity";
 import { defineAsyncComponent, ref } from "vue";
-import {badgeMixin} from "./jsMixins"
+import {badgeMixin} from "../mixins/jsMixins"
 
 const props = defineProps({
   variant: { type: String, default: "secondary" },
@@ -12,11 +12,7 @@ const props = defineProps({
 
 const type: Ref = ref<string>(props.variant);
 
-const variantCheck = {
-  ...badgeMixin
-};
-
-variantCheck.verifyVariant(props.variant)? "" : type.value = "secondary"
+badgeMixin.verifyVariant(props.variant)? "" : type.value = "secondary"
 
 
 const badgeClass = ref("badge-" + type.value);
