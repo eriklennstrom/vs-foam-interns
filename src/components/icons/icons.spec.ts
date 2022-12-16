@@ -9,7 +9,7 @@ describe('Icons', () => {
 
   it('renders properly', () => {
     const wrapper = mount(Icons, { propsData: { variant:'warning' } })
-    console.log(wrapper.classes())
+    // console.log(wrapper.classes())
     expect(wrapper.classes()).toContain('fa-warning')
   })  
 
@@ -29,13 +29,13 @@ describe('Icons', () => {
   })  
   it('render correct size', () => {
     const wrapper = mount(Icons, { propsData: { variant:'warning', size: 18} })
-    console.log(getComputedStyle(wrapper.element).height)
+    // console.log(getComputedStyle(wrapper.element).height)
     expect(getComputedStyle(wrapper.element).fontSize).toBe('18px')
   })      
 
   it('render correct size with no input', () => {
     const wrapper = mount(Icons, { propsData: { variant:'warning'} })
-    console.log(getComputedStyle(wrapper.element).height)
+    // console.log(getComputedStyle(wrapper.element).height)
     expect(getComputedStyle(wrapper.element).fontSize).toBe('100%')
   })   
 })
