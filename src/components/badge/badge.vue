@@ -28,7 +28,7 @@ const AsyncIcon = computed(() => {
 
 <template>
     <div :class="[badgeClass, props.outline ? 'badge-outline' : null]"> 
-      <Icon v-if="props.icon" :iconType="props.icon" />
+      <AsyncIcon v-if="props.icon" :variant="props.icon" />
       {{props.text}}
     </div>
 </template>

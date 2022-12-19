@@ -1,11 +1,11 @@
-import MyBadge from './badge.vue';
+import FoamBadge from './badge.vue';
 import type { Meta, StoryFn } from '@storybook/vue3'
 
 export default {
   title: 'Badge',
-  component: MyBadge,
+  component: FoamBadge,
   argTypes: {
-    type: {
+    variant: {
       control: { type: 'select' },
       options: ['primary', 'secondary', 'danger', 'warning', 'success'],
     },
@@ -18,16 +18,16 @@ export default {
       options: [true, false]
     }
   },
-} as Meta<typeof MyBadge>
+} as Meta<typeof FoamBadge>
 
-const Template:  StoryFn<typeof MyBadge> = (args: any) => ({
-  components: { MyBadge },
+const Template:  StoryFn<typeof FoamBadge> = (args: any) => ({
+  components: { FoamBadge },
   setup() {
     return { args };
   },
-  template: '<my-badge v-bind="args" />',
+  template: '<foam-badge v-bind="args" />',
 });
 
 
 export const Primary = Template.bind({})
-Primary.args = { type: 'danger', icon: 'warning', text: 'Badge Text'}
+Primary.args = { variant: 'danger', icon: 'warning', text: 'Badge Text'}
