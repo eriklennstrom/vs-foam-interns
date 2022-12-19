@@ -9,17 +9,17 @@ library.add( faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown)
 describe('Badge', () => {
 
   it('renders properly', () => {
-    const wrapper = mount(Badge, { propsData: { type:'danger', text: 'Hello' } })
+    const wrapper = mount(Badge, { propsData: { variant:'danger', text: 'Hello' } })
     expect(wrapper.classes()).toContain('badge-danger')
   })  
 
   it('renders text correctly', () => {
-    const wrapper = mount(Badge, { propsData: { type:'danger', text: 'Varnish' } })
+    const wrapper = mount(Badge, { propsData: { variant:'danger', text: 'Varnish' } })
     expect(wrapper.vm.text).toBe('Varnish')
   })    
 
   it('renders correct with outline prop', () => {
-    const wrapper = mount(Badge, { propsData: { type:'danger', text: 'Varnish', outline: true } })
+    const wrapper = mount(Badge, { propsData: { variant:'danger', text: 'Varnish', outline: true } })
     const div = wrapper.find('div');
     const computedStyle = window.getComputedStyle(div.element);
     const borderWidth = computedStyle.getPropertyValue('border-width');
@@ -27,13 +27,13 @@ describe('Badge', () => {
   })     
 
   it('renders correct color', () => {
-    const wrapper = mount(Badge, { propsData: { type:'primary', text: 'Varnish' } })
+    const wrapper = mount(Badge, { propsData: { variant:'primary', text: 'Varnish' } })
     // console.log(getComputedStyle(wrapper.element).color == '#003349')
     expect(getComputedStyle(wrapper.element).fontSize).toBe('18px')
   })
 
   it('render icon properly', () => {
-    const wrapper = mount(Badge, { propsData: { type:'primary', text: 'Varnish', icon: 'warning' } })
+    const wrapper = mount(Badge, { propsData: { variant:'primary', text: 'Varnish', icon: 'warning' } })
     expect(wrapper.findComponent(Icons))
   })
 
