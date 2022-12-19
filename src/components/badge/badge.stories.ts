@@ -7,7 +7,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: "Badge component",
+        component: "Badges highlight metadata of objects, the kind of information that always needs some context and isn’t useful on its own. For example, they can be used to indicate an issue’s status, a member’s role, or if a branch is protected.",        
       },
     },
   },
@@ -42,45 +42,50 @@ const Template: StoryFn<typeof FoamBadge> = (args: any) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {};
 
-
-
-Default.parameters = {
-  backgrounds: {
-    values: [
-      { name: 'red', value: '#f00' },
-      { name: 'green', value: '#0f0' },
-      { name: 'blue', value: '#00f' },
-    ],
+export const Variants: StoryFn<typeof FoamBadge> = (args: any, {argTypes}) => ({
+  components: { FoamBadge },  
+  setup() {
+    console.log(argTypes)
+    console.log(args)
+    return { args, argTypes };
   },
-};
-
-export const Variants: StoryFn<typeof FoamBadge> = () => ({
-  components: { FoamBadge },
   template: `
-    <div style="display: flex; gap: 1em">
-      <foam-badge variant="primary" text="Primary" />
-      <foam-badge variant="secondary" text="Secondary" />
-      <foam-badge variant="warning" text="Warning" />
-      <foam-badge variant="success" text="Success"/>
-      <foam-badge variant="danger" text="Danger" />
-    </div>
-    `
+  <div style="display: flex; gap: 1em">
+    <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" v-bind="args" />
+  </div>
+`,
 })
 
-export const Outline: StoryFn<typeof FoamBadge> = (args: any) => ({
+Variants.argTypes = {
+  variant: {
+    table: {
+      disable: true
+    }
+  },
+  icon: {
+    table: {
+      disable: true
+    }
+  },
+  outline: {
+    table: {
+      disable: true
+    }
+  },
+  text: {
+    description: "Property for text content inside the badge",
+  },
+}
+
+export const Outline: StoryFn<typeof FoamBadge> = (args: any, {argTypes}) => ({
   components: { FoamBadge },
   setup() {
-    return { args };
+    return { args, argTypes };
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-badge variant="primary" v-bind="args" />
-      <foam-badge variant="secondary" v-bind="args" />
-      <foam-badge variant="warning" v-bind="args" />
-      <foam-badge variant="success" v-bind="args" />
-      <foam-badge variant="danger" v-bind="args" />
+      <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :variant="variant" :text="variant" v-bind="args" />
     </div>
   `,
 });
