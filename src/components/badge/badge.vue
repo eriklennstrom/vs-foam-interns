@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, type Ref } from "@vue/reactivity";
 import { defineAsyncComponent, ref } from "vue";
-import {badgeMixin} from "../mixins/jsMixins"
+import { badgeMixin } from "../mixins/jsMixins"
 
 const props = defineProps({
   variant: { type: String, default: "secondary" },
