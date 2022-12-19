@@ -44,26 +44,30 @@ const Template: StoryFn<typeof FoamBadge> = (args: any) => ({
 export const Default = Template.bind({});
 Default.args = {};
 
-const Primary = Template.bind({});
-Primary.args = { variant: "primary", icon: "warning", text: "Primary badge" };
 
-const Secondary = Template.bind({});
-Secondary.args = {
-  variant: "secondary",
-  icon: "warning",
-  text: "Secondary badge",
+
+Default.parameters = {
+  backgrounds: {
+    values: [
+      { name: 'red', value: '#f00' },
+      { name: 'green', value: '#0f0' },
+      { name: 'blue', value: '#00f' },
+    ],
+  },
 };
-
 
 export const Variants: StoryFn<typeof FoamBadge> = () => ({
   components: { FoamBadge },
   template: `
+    <div style="display: flex; gap: 1em">
       <foam-badge variant="primary" text="Primary" />
       <foam-badge variant="secondary" text="Secondary" />
       <foam-badge variant="warning" text="Warning" />
       <foam-badge variant="success" text="Success"/>
-      <foam-badge variant="danger" text="Danger" />`,
-});
+      <foam-badge variant="danger" text="Danger" />
+    </div>
+    `
+})
 
 export const Outline: StoryFn<typeof FoamBadge> = (args: any) => ({
   components: { FoamBadge },
@@ -71,11 +75,13 @@ export const Outline: StoryFn<typeof FoamBadge> = (args: any) => ({
     return { args };
   },
   template: `
-    <foam-badge variant="primary" v-bind="args" />
-    <foam-badge variant="secondary" v-bind="args" />
-    <foam-badge variant="warning" v-bind="args" />
-    <foam-badge variant="success" v-bind="args" />
-    <foam-badge variant="danger" v-bind="args" />
+    <div style="display: flex; gap: 1em">
+      <foam-badge variant="primary" v-bind="args" />
+      <foam-badge variant="secondary" v-bind="args" />
+      <foam-badge variant="warning" v-bind="args" />
+      <foam-badge variant="success" v-bind="args" />
+      <foam-badge variant="danger" v-bind="args" />
+    </div>
   `,
 });
 
@@ -107,8 +113,10 @@ export const Icons: StoryFn<typeof FoamBadge> = (args: any) => ({
     return { args };
   },
   template: `
-    <foam-badge variant="primary" v-bind="args" />
-    <foam-badge variant="primary" outline v-bind="args" />
+    <div style="display: flex; gap: 1em">
+      <foam-badge variant="primary" v-bind="args" />
+      <foam-badge variant="primary" outline v-bind="args" />
+    </div>
   `,
 });
 
@@ -130,9 +138,3 @@ Icons.argTypes = {
     description: "Property for text content inside the badge",
   },
 }
-
-export const hahahahvuesuger: StoryFn<typeof FoamBadge> = () => ({
-  components: { FoamBadge },
-  template: `
-      <foam-badge variant="[primary, secondary, danger]" text="Primary" />`,
-});
