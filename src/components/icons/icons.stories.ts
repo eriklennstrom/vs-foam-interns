@@ -1,18 +1,17 @@
-import MyIcon from "./icons.vue";
+import FoamIcon from "./icons.vue";
 import type { Meta, StoryFn } from "@storybook/vue3";
+import iconDocs from '../../storybook/docs/icon.md?raw';
 
 export default {
-  title: "Icons",
-  component: MyIcon,
+  title: "components/Icons",
+  component: FoamIcon,
   parameters: {
     docs: {
       description: {
-        component:
-          "<h1>Icon component<h1/> <p>Asorted icons for use to indicate warning</p>",
+        component: iconDocs,
       },
     },
   },
-
   argTypes: {
     color: {
       control: { type: "select" },
@@ -27,18 +26,28 @@ export default {
       options: ["user-secret", "warning", "arrow-down", "circle-down"],
     },
   },
-} as Meta<typeof MyIcon>;
+} as Meta<typeof FoamIcon>;
 
-export const Variants: StoryFn<typeof MyIcon> = (args: any, { argTypes }) => ({
-  components: { MyIcon },
+const Template: StoryFn<typeof FoamIcon> = (args: any) => ({
+  components: { FoamIcon },
+  setup() {
+    return { args };
+  },
+  template: '<foam-icon v-bind="args" />',
+});
+
+export const Default = Template.bind({});
+Default.args = { };
+
+
+export const Variants: StoryFn<typeof FoamIcon> = (args: any, { argTypes }) => ({
+  components: { FoamIcon },
   setup() {
     return { args, argTypes };
   },
-  template: `
-  <div style="display: flex; gap: 1em">
-    <my-icon v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" v-bind="args" />
-  </div>
-`,
+  template: `<div style="display: flex; gap: 1em">
+  <foam-icon v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" v-bind="args" />
+  </div>`,
 });
 
 Variants.argTypes = {
@@ -47,20 +56,15 @@ Variants.argTypes = {
       disable: true,
     },
   },
-  icon: {
+  color: {
+    table: {
+      disable: true,
+    },
+  },
+  size: {
+    defaultValue: 16,
     table: {
       disable: true,
     },
   },
 };
-
-const Template: StoryFn<typeof MyIcon> = (args: any) => ({
-  components: { MyIcon },
-  setup() {
-    return { args };
-  },
-  template: '<my-icon v-bind="args" />',
-});
-
-export const Primary = Template.bind({});
-Primary.args = { variant: "warning", color: "red", size: 12 };
