@@ -21,7 +21,7 @@ import Badge from './components/badge/badge.vue'
   <section>
     <Icons variant="circle-down"/>
    
-    <Icons variant="warning" color="red"/>
+    <Icons variant="warning" color="success"/>
     <Icons variant="user-secret" color="red"/>
     <Icons />
   </section>

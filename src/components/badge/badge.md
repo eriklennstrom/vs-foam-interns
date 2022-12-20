@@ -29,6 +29,8 @@ Icons that are included are  -
 `warning`, `circle-down`, `user-secret`, `arrow-down`, `arrow-alt-circle-down`
 
 If the icon property does not have the correct spelling and / or an icon that is not included, it will default to the `warning` icon.
+
+
 ```html
 <!-- good -->
 <foam-badge variant="danger" text="Warning" icon="warning" />

@@ -3,17 +3,21 @@ import { computed, type Ref } from "@vue/reactivity";
 import { defineAsyncComponent, ref } from "vue";
 import { badgeMixin } from "../mixins/jsMixins"
 
-const props = defineProps({
-  variant: { type: String, default: "secondary" },
-  outline: { type: Boolean, default: false },
-  text: { type: String, default: "Badge" },
-  icon: { type: String },
+type BadgeProps = {
+  variant: string;
+  outline?: boolean;
+  text?: string;
+  icon?: string
+}
+const props = withDefaults(defineProps<BadgeProps>(), {
+  variant: "secondary",
+  outline: false ,
+  text: "Badge",
 });
 
 const type: Ref = ref<string>(props.variant);
 
-badgeMixin.verifyVariant(props.variant)? "" : type.value = "secondary"
-
+badgeMixin.verifyVariant(props.variant)? "" : (console.error('Variant value is incorrect or not included. Value set to default "secondary"'), type.value = "secondary")
 
 const badgeClass = ref("badge-" + type.value);
 
