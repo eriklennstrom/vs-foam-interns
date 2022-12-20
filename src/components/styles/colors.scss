@@ -8,8 +8,6 @@ $Danger: #dc3545;
 $Warning: #faa05a;
 $Success: #55c284;
 
-
-
 //bg colors
 $bg-colors: (
   primary: #003349,
@@ -18,7 +16,6 @@ $bg-colors: (
   warning: #faa05a,
   success: #55c284,
 );
-
 
 // primary-100: #e6ebed,
 // primary-300: #668592,
@@ -53,5 +50,4 @@ $text-colors: (
 );
 
 // Icon colors
-$icon-colors : join($bg-colors, $text-colors, auto)
-
+$icon-colors: join($bg-colors, $text-colors, auto);

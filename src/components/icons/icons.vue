@@ -10,15 +10,22 @@ const props = defineProps({
 });
 
 let size: Ref = ref<string>("100%");
-let iconColor: Ref = ref<string>(props.color)
-let iconName: Ref = ref<string>(props.variant)
+let iconColor: Ref = ref<string>(props.color);
+let iconName: Ref = ref<string>(props.variant);
 props.size ? (size.value = props.size + "px") : null;
 
 onBeforeMount(() => {
-  iconMixin.verifyColor(props.color) ? null : (console.error('Incorrect color value. Value set to default "primary"'), iconColor.value = "primary")
-  iconMixin.verifyVariant(iconName.value) ? iconName.value = 'fa-' + iconName.value : (console.error('Icon value is incorrect or not included. Value set to default "warning"'), iconName.value = "fa-warning")
-})
-
+  iconMixin.verifyColor(props.color)
+    ? null
+    : (console.error('Incorrect color value. Value set to default "primary"'),
+      (iconColor.value = "primary"));
+  iconMixin.verifyVariant(iconName.value)
+    ? (iconName.value = "fa-" + iconName.value)
+    : (console.error(
+        'Icon value is incorrect or not included. Value set to default "warning"'
+      ),
+      (iconName.value = "fa-warning"));
+});
 </script>
 
 <template>

@@ -1,9 +1,9 @@
-@use 'sass:color';
-@use '../styles/colors.scss';
+@use "sass:color";
+@use "../styles/colors.scss";
 
 @each $name, $bg in colors.$bg-colors {
   .badge-#{$name} {
-    @if (str-index($name, 'secondary')) {
+    @if (str-index($name, "secondary")) {
       color: map-get(colors.$text-colors, strong-dark);
     } @else {
       color: map-get(colors.$text-colors, strong-light);
@@ -13,19 +13,19 @@
     background-color: $bg;
     border-radius: 28px;
     font-size: 12px;
-    
+
     &:has(svg) {
-        display:flex;
-        align-items: center;
-        padding-left: 0;
-        svg {
-            color: inherit;
-            padding: 0 8px;
+      display: flex;
+      align-items: center;
+      padding-left: 0;
+      svg {
+        color: inherit;
+        padding: 0 8px;
       }
     }
   }
   .badge-#{$name}.badge-outline {
-    @if (str-index($name, 'secondary')) {
+    @if (str-index($name, "secondary")) {
       color: map-get(colors.$text-colors, light-light);
     } @else {
       color: $bg;
@@ -42,11 +42,10 @@
 }
 
 @each $text, $color in colors.$text-colors {
-  
   .badge-#{$text} {
     color: $color;
     &:has(svg) {
-      display:flex;
+      display: flex;
       padding-left: 0;
       svg {
         color: $color;

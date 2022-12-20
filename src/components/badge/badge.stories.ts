@@ -1,15 +1,15 @@
 import FoamBadge from "./badge.vue";
 import type { Meta, StoryFn } from "@storybook/vue3";
-import readme from './badge.md?raw'
+import readme from "./badge.md?raw";
 
 export default {
   title: "Components/Badge",
   component: FoamBadge,
   parameters: {
     docs: {
-      description : {
-        component : readme
-      }
+      description: {
+        component: readme,
+      },
     },
   },
   argTypes: {
@@ -31,7 +31,7 @@ export default {
     text: {
       description: "Property for text content inside the badge",
     },
-  }, 
+  },
 } as Meta<typeof FoamBadge>;
 
 const Template: StoryFn<typeof FoamBadge> = (args: any) => ({
@@ -44,8 +44,11 @@ const Template: StoryFn<typeof FoamBadge> = (args: any) => ({
 
 export const Default = Template.bind({});
 
-export const Variants: StoryFn<typeof FoamBadge> = (args: any, {argTypes}) => ({
-  components: { FoamBadge },  
+export const Variants: StoryFn<typeof FoamBadge> = (
+  args: any,
+  { argTypes }
+) => ({
+  components: { FoamBadge },
   setup() {
     return { args, argTypes };
   },
@@ -54,30 +57,33 @@ export const Variants: StoryFn<typeof FoamBadge> = (args: any, {argTypes}) => ({
     <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" v-bind="args" />
   </div>
 `,
-})
+});
 
 Variants.argTypes = {
   variant: {
     table: {
-      disable: true
-    }
+      disable: true,
+    },
   },
   icon: {
     table: {
-      disable: true
-    }
+      disable: true,
+    },
   },
   outline: {
     table: {
-      disable: true
-    }
+      disable: true,
+    },
   },
   text: {
     description: "Property for text content inside the badge",
   },
-}
+};
 
-export const Outline: StoryFn<typeof FoamBadge> = (args: any, {argTypes}) => ({
+export const Outline: StoryFn<typeof FoamBadge> = (
+  args: any,
+  { argTypes }
+) => ({
   components: { FoamBadge },
   setup() {
     return { args, argTypes };
@@ -92,24 +98,24 @@ export const Outline: StoryFn<typeof FoamBadge> = (args: any, {argTypes}) => ({
 Outline.argTypes = {
   variant: {
     table: {
-      disable: true
-    }
+      disable: true,
+    },
   },
   icon: {
     table: {
-      disable: true
-    }
+      disable: true,
+    },
   },
   outline: {
     defaultValue: true,
     table: {
-      disable: true
-    }
+      disable: true,
+    },
   },
   text: {
     description: "Property for text content inside the badge",
   },
-}
+};
 
 export const Icons: StoryFn<typeof FoamBadge> = (args: any) => ({
   components: { FoamBadge },
@@ -127,18 +133,18 @@ export const Icons: StoryFn<typeof FoamBadge> = (args: any) => ({
 Icons.argTypes = {
   variant: {
     table: {
-      disable: true
-    }
+      disable: true,
+    },
   },
-  icon: { 
-    defaultValue: 'warning',
+  icon: {
+    defaultValue: "warning",
   },
   outline: {
     table: {
-      disable: true
-    }
+      disable: true,
+    },
   },
   text: {
     description: "Property for text content inside the badge",
   },
-}
+};

@@ -23,13 +23,13 @@ Variants available : `primary`, `secondary`, `danger`, `warning`, `success`
 Error variant does not exist - will give the default badge.
 
 ## Icons
-The icons property adds an icon to the badge. 
-Icons that are included are  - 
+
+The icons property adds an icon to the badge.
+Icons that are included are -
 
 `warning`, `circle-down`, `user-secret`, `arrow-down`, `arrow-alt-circle-down`
 
 If the icon property does not have the correct spelling and / or an icon that is not included, it will default to the `warning` icon.
-
 
 ```html
 <!-- good -->
@@ -40,13 +40,13 @@ If the icon property does not have the correct spelling and / or an icon that is
 <!-- bad -->
 <foam-badge variant="danger" text="Warning" icon="warning-icon" />
 ```
+
 > Note: The icons being used in this component are imported from Font Awesome.
 
-## Outline 
+## Outline
 
 To add an outline to the badge, you need to add `outline` to the component as a property.
 
 ```html
-
 <foam-badge variant="success" text="Complete" outline />
 ```

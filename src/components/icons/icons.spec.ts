@@ -49,8 +49,10 @@ describe("Icons", () => {
   });
 
   it("render default color with incorrect input", () => {
-    const wrapper = mount(Icons, { propsData: { variant: "warning", color: 'red' } });
-    console.log(wrapper.classes())
+    const wrapper = mount(Icons, {
+      propsData: { variant: "warning", color: "red" },
+    });
+    console.log(wrapper.classes());
     expect(wrapper.classes()).toContain("primary");
   });
 });
