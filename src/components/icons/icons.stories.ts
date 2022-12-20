@@ -2,7 +2,7 @@ import MyIcon from './icons.vue';
 import type { Meta, StoryFn } from '@storybook/vue3'
 
 export default {
-  title: 'Icons',
+  title: 'Components/Icons',
   component: MyIcon,
   parameters: {
     docs: {
