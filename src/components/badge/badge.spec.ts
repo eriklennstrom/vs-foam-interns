@@ -20,12 +20,16 @@ describe('Badge', () => {
 
   it('renders correct with outline prop', () => {
     const wrapper = mount(Badge, { propsData: { variant:'danger', text: 'Varnish', outline: true } })
-    expect(wrapper.classes()).toContain('badge-outline');
+    const div = wrapper.find('div');
+    const computedStyle = window.getComputedStyle(div.element);
+    const borderWidth = computedStyle.getPropertyValue('border-width');
+    expect(borderWidth).toBe('1px');
   })     
 
   it('renders correct color', () => {
     const wrapper = mount(Badge, { propsData: { variant:'primary', text: 'Varnish' } })
-    expect(wrapper.classes()).toContain('badge-primary');
+    // console.log(getComputedStyle(wrapper.element).color == '#003349')
+    expect(getComputedStyle(wrapper.element).fontSize).toBe('18px')
   })
 
   it('render icon properly', () => {

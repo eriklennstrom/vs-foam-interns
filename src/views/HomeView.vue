@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Icons from '../components/icons/Icons.vue'
+import Icons from '../components/icons/icons.vue'
 </script>
 
 <template>

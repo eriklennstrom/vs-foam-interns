@@ -1,4 +1,4 @@
-import MyIcon from './Icons.vue';
+import MyIcon from './icons.vue';
 import type { Meta, StoryFn } from '@storybook/vue3'
 
 export default {
@@ -31,4 +31,4 @@ const Template:  StoryFn<typeof MyIcon> = (args: any) => ({
 
 
 export const Primary = Template.bind({})
-Primary.args = { variant: 'fa-warning', color: 'red', size: 12}
+Primary.args = { variant: 'warning', color: 'red', size: 12}
