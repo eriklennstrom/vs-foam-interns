@@ -1,15 +1,15 @@
 import FoamBadge from "./badge.vue";
 import type { Meta, StoryFn } from "@storybook/vue3";
-import readme from './badge.md'
+import readme from './badge.md?raw'
 
 export default {
   title: "Components/Badge",
   component: FoamBadge,
   parameters: {
     docs: {
-      description: {
-        component: readme        
-      },
+      description : {
+        component : readme
+      }
     },
   },
   argTypes: {
