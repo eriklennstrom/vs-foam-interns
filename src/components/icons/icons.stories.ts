@@ -15,11 +15,11 @@ export default {
   argTypes: {
     color: {
       control: { type: 'select' },
-      options: ['success', 'danger', 'secondary', 'primary', 'null']
+      options: ['success', 'danger', 'secondary', 'primary']
     },
     size: {
       control: { type: 'select' },
-      options: [10, 12, 14, 16, 18, null]
+      options: [10, 12, 14, 16, 18]
     },
     variant: {
       control: { type: 'select' },
@@ -37,7 +37,7 @@ const Template: StoryFn<typeof FoamIcon> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = { variant: 'warning', color: 'primary', size: null };
 
 export const Variants: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   components: { FoamIcon },
@@ -46,7 +46,7 @@ export const Variants: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-icon v-for="variant in argTypes.variant.options" :key="variant" :variant="variant" v-bind="args" />
+      <foam-icon v-for="variant in argTypes.variant.options" :size="18" color="primary" :variant="variant" />
     </div>`
 });
 
@@ -62,9 +62,7 @@ Variants.argTypes = {
     }
   },
   size: {
-   
     table: {
-      defaultValue: 20,
       disable: true
     }
   }
@@ -77,7 +75,7 @@ export const Size: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-icon v-for="size in argTypes.size.options" :key="size" :size="size" v-bind="args" />
+      <foam-icon v-for="size in argTypes.size.options" variant="warning" :size="size" color="primary"  />
     </div>`
 });
 
@@ -106,7 +104,7 @@ export const Color: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-icon v-for="color in argTypes.color.options" :key="size" :color="color" v-bind="args" />
+      <foam-icon v-for="color in argTypes.color.options" variant="warning" :color="color" />
     </div>`
 });
 
@@ -122,7 +120,6 @@ Color.argTypes = {
     }
   },
   size: {
-
     table: {
       defaultValue: 20,
       disable: true

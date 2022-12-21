@@ -44,7 +44,9 @@ const Template: StoryFn<typeof FoamBadge> = (args) => ({
 });
 
 export const Default = Template.bind({});
-
+Default.args = {
+  variant: 'secondary'
+}
 export const Variants: StoryFn<typeof FoamBadge> = (
   args,
   { argTypes }
