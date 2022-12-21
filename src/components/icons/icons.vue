@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { onBeforeMount, ref, type Ref } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { defaultVariantMixin, defaulColorMixin, iconColors, iconVariant } from "@/helpers/mixins/jsMixins";
-
+import { defaultVariantMixin, defaulColorMixin, iconColors, iconVariant } from "@/helpers/mixins/jsMixins"; 
 
 type IconProps = {
     variant: string;
@@ -11,7 +10,7 @@ type IconProps = {
 };
 const props = withDefaults(defineProps<IconProps>(), {
   variant: "secondary",
-  color:  "primary",
+  color:  "primary", 
 });
 
 
