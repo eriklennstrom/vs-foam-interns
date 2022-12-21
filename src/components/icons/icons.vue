@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<IconProps>(), {
 
 
 let size: Ref = ref<string>("100%");
-let iconColor: Ref = ref<string>(props.color);
+let iconColor: Ref = ref<string>('icon--'+props.color);
 let iconName: Ref = ref<string>(props.variant);
 props.size ? (size.value = props.size + "px") : null;
 
@@ -23,7 +23,7 @@ onBeforeMount(() => {
   defaulColorMixin(iconColors).verifyColor(props.color)
     ? null
     : (console.error('Incorrect color value. Value set to default "primary"'),
-      (iconColor.value = "primary"));
+      (iconColor.value = "icon--primary"));
     defaultVariantMixin(iconVariant).verifyVariant(iconName.value)
     ? (iconName.value = "fa-" + iconName.value)
     : (console.error(
@@ -42,5 +42,5 @@ onBeforeMount(() => {
 </template>
 
 <style lang="scss" scoped>
-  @import "./icons.scss";
+  @import "@/components/icons/icons.scss";
 </style>

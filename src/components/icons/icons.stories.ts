@@ -1,4 +1,4 @@
-import MyIcon from "@/components/icons/icons.vue";
+import FoamIcon from "@/components/icons/icons.vue";
 import type { Meta, StoryFn } from "@storybook/vue3";
 import iconDocs from './icon.md?raw';
 
@@ -15,7 +15,7 @@ export default {
   argTypes: {
     color: {
       control: { type: "select" },
-      options: ["success", "danger", "secondary", "not-a-color", "primary"],
+      options: ["success", "danger", "secondary", "primary", null],
     },
     size: {
       control: { type: "select" },
