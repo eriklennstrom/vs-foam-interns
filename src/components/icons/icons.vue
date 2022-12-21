@@ -4,11 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { defaultVariantMixin, defaulColorMixin, iconColors, iconVariant } from "@/helpers/mixins/jsMixins";
 
 
-const props = defineProps({
-  variant: { type: String, default: "warning" },
-  color: { type: String, default: "primary" },
-  size: { type: Number },
+type IconProps = {
+    variant: string;
+    color?: string;
+    size?: number;
+};
+const props = withDefaults(defineProps<IconProps>(), {
+  variant: "secondary",
+  color:  "primary",
 });
+
 
 let size: Ref = ref<string>("100%");
 let iconColor: Ref = ref<string>(props.color);
@@ -38,5 +43,5 @@ onBeforeMount(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "./icons.scss";
+  @import "./icons.scss";
 </style>

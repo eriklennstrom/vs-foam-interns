@@ -66,5 +66,3 @@ Colors that are available : `primary`, `secondary`, `danger`, `warning`, `succes
 ```
 
 The color property `green`does not exist, and will default to `secondary`
-
-<!-- WIP. FIX COLOR, SIZE STORIES -->

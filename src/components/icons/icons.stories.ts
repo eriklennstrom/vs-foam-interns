@@ -1,6 +1,6 @@
 import MyIcon from "@/components/icons/icons.vue";
 import type { Meta, StoryFn } from "@storybook/vue3";
-import iconDocs from '../../storybook/docs/icon.md?raw';
+import iconDocs from './icon.md?raw';
 
 export default {
   title: "components/Icons",
@@ -45,9 +45,10 @@ export const Variants: StoryFn<typeof FoamIcon> = (args: any, { argTypes }) => (
   setup() {
     return { args, argTypes };
   },
-  template: `<div style="display: flex; gap: 1em">
-  <foam-icon v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" v-bind="args" />
-  </div>`,
+  template: `
+    <div style="display: flex; gap: 1em">
+      <foam-icon v-for="variant in argTypes.variant.options" :key="variant" :variant="variant" v-bind="args" />
+    </div>`,
 });
 
 Variants.argTypes = {
@@ -62,7 +63,67 @@ Variants.argTypes = {
     },
   },
   size: {
-    defaultValue: 16,
+    defaultValue: 20,
+    table: {
+      disable: true,
+    },
+  },
+};
+
+
+export const Size: StoryFn<typeof FoamIcon> = (args: any, { argTypes }) => ({
+  components: { FoamIcon },
+  setup() {
+    return { args, argTypes };
+  },
+  template: `
+    <div style="display: flex; gap: 1em">
+      <foam-icon v-for="size in argTypes.size.options" :key="size" :size="size" v-bind="args" />
+    </div>`,
+});
+
+Size.argTypes = {
+  variant: {
+    table: {
+      disable: true,
+    },
+  },
+  color: {
+    table: {
+      disable: true,
+    },
+  },
+  size: {
+    table: {
+      disable: true,
+    },
+  },
+};
+
+export const Color: StoryFn<typeof FoamIcon> = (args: any, { argTypes }) => ({
+  components: { FoamIcon },
+  setup() {
+    return { args, argTypes };
+  },
+  template: `
+    <div style="display: flex; gap: 1em">
+      <foam-icon v-for="color in argTypes.color.options" :key="size" :color="color" v-bind="args" />
+    </div>`,
+});
+
+Color.argTypes = {
+  variant: {
+    table: {
+      disable: true,
+    },
+  },
+  color: {
+    table: {
+      disable: true,
+    },
+  },
+  size: {
+    defaultValue: 20,
     table: {
       disable: true,
     },
