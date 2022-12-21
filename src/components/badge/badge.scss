@@ -3,8 +3,8 @@
 @use "@/styles/variables.scss";
 
 @each $name, $bg in colors.$bg-colors {
-.badge--#{$name} {
-  @if(str-index($name, "secondary")) {
+  .badge--#{$name} {
+    @if (str-index($name, "secondary")) {
       color: map-get(colors.$text-colors, strong-dark);
     } @else {
       color: map-get(colors.$text-colors, strong-light);
