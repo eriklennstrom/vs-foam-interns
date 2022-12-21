@@ -2,6 +2,13 @@
 import { defineAsyncComponent, ref, computed, type Ref } from "vue";
 import { defaultVariantMixin, badgeVariant } from "@/helpers/mixins/jsMixins";
 
+type BadgeProps = {
+  variant: string;
+  outline?: boolean;
+  text?: string;
+  icon?: string;
+};
+
 const props = withDefaults(defineProps<BadgeProps>(), {
   variant: "secondary",
   outline: false,
