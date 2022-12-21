@@ -3,6 +3,7 @@
 
 @each $name, $bg in colors.$bg-colors {
   .badge-#{$name} {
+    font-family: 'SourceSansPro';
     @if (str-index($name, "secondary")) {
       color: map-get(colors.$text-colors, strong-dark);
     } @else {
