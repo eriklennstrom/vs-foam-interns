@@ -6,24 +6,24 @@ import { defaultVariantMixin, defaulColorMixin, iconColors, iconVariant } from '
 type IconProps = {
     variant?: string
     color?: string
-    size?: number
+    size?: number | null
 };
 const props = withDefaults(defineProps<IconProps>(), {
-  variant: 'secondary',
-  color:  'primary',
-  size: 0
+  variant: 'warning',
+  color: 'primary',
+  size: null
 });
 
 
 const size: Ref = ref<string>('100%');
-const iconColor: Ref = ref<string>('icon--'+props.color);
+const iconColor: Ref = ref<string>('icon--' + props.color);
 const iconName: Ref = ref<string>(props.variant);
 props.size ? (size.value = props.size + 'px') : size.value = '100%';
 
 onBeforeMount(() => {
   defaulColorMixin(iconColors).verifyColor(props.color)
     ? null
-    : (console.error('Incorrect color value. Value set to default "primary"'),
+    : (console.error('Incorrect style value. Value set to default "primary"'),
       (iconColor.value = 'icon--primary'));
     defaultVariantMixin(iconVariant).verifyVariant(iconName.value)
     ? (iconName.value = 'fa-' + iconName.value)

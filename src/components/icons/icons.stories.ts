@@ -15,15 +15,24 @@ export default {
   argTypes: {
     color: {
       control: { type: 'select' },
-      options: ['success', 'danger', 'secondary', 'primary']
+      options: ['success', 'danger', 'secondary', 'primary'],
+      table: {
+        defaultValue: 'primary',
+      }
     },
     size: {
       control: { type: 'select' },
-      options: [10, 12, 14, 16, 18]
+      options: [10, 12, 14, 16, 18, null],
+      table: {
+        defaultValue: null
+      }
     },
     variant: {
       control: { type: 'select' },
-      options: ['user-secret', 'warning', 'arrow-down', 'circle-down']
+      options: ['user-secret', 'warning', 'arrow-down', 'circle-down'],
+      table: {
+        defaultValue: 'warning',
+      }
     }
   }
 } as Meta<typeof FoamIcon>;
@@ -37,7 +46,7 @@ const Template: StoryFn<typeof FoamIcon> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = { variant: 'warning', color: 'primary', size: null };
+Default.args = { variant: 'warning'};
 
 export const Variants: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   components: { FoamIcon },
@@ -46,7 +55,7 @@ export const Variants: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-icon v-for="variant in argTypes.variant.options" :size="18" color="primary" :variant="variant" />
+      <foam-icon v-for="variant in argTypes.variant.options" :size="18" v-bind="args" :variant="variant" />
     </div>`
 });
 

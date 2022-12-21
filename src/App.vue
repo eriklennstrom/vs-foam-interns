@@ -6,9 +6,19 @@ import Badge from '@/components/badge/badge.vue'
 
 <template>
   <section>
-    <Badge variant="dangejyhgr" text="Hello Varnish" outline icon="warning" />
+    <Badge
+      variant="dangejyhgr"
+      text="Hello Varnish"
+      outline
+      icon="warning"
+    />
     <Badge variant="primary" text="Hello Varnish" icon="arrow-down" />
-    <Badge variant="warning" text="Hello Varnish" outline icon="arrow-down" />
+    <Badge
+      variant="warning"
+      text="Hello Varnish"
+      outline
+      icon="arrow-down"
+    />
     <Badge variant="success" text="Hello Varnish" icon="warning" />
   </section>
   <section>
@@ -19,13 +29,12 @@ import Badge from '@/components/badge/badge.vue'
     <Badge variant="success" outline text="Hello Varnish" />
   </section>
   <section>
-    <Icons variant="circle-down"/>
+    <Icons variant="circle-down" />
    
-    <Icons variant="warning" color="success"/>
-    <Icons variant="user-secret" color="red"/>
+    <Icons variant="warning" color="success" />
+    <Icons variant="user-secret" color="red" />
     <Icons />
   </section>
-
 </template>
 
 <style scoped lang="scss">
