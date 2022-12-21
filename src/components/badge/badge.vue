@@ -3,11 +3,11 @@ import { computed, type Ref } from "@vue/reactivity";
 import { defineAsyncComponent, ref } from "vue";
 import { badgeMixin } from "../mixins/jsMixins";
 
-export type BadgeProps = {
-    variant: string;
-    outline?: boolean;
-    text?: string;
-    icon?: string;
+type BadgeProps = {
+  variant: string;
+  outline?: boolean;
+  text?: string;
+  icon?: string;
 };
 
 const props = withDefaults(defineProps<BadgeProps>(), {
