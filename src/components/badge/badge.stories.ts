@@ -57,7 +57,7 @@ export const Variants: StoryFn<typeof FoamBadge> = (
   },
   template: `
   <div style="display: flex; gap: 1em">
-    <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" v-bind="args" />
+    <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" />
   </div>
 `,
 });
@@ -93,7 +93,7 @@ export const Outline: StoryFn<typeof FoamBadge> = (
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :variant="variant" :text="variant" v-bind="args" />
+      <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :variant="variant" :text="variant"  />
     </div>
   `,
 });
@@ -129,7 +129,7 @@ export const Icons: StoryFn<typeof FoamBadge> = (args) => ({
   template: `
     <div style="display: flex; gap: 1em">
       <foam-badge variant="primary" v-bind="args" />
-      <foam-badge variant="primary" outline v-bind="args" />
+      <foam-badge variant="primary" outline />
     </div>
   `,
 });

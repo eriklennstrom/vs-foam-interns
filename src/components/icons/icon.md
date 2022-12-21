@@ -1,4 +1,5 @@
-Icons are a medium to highlight important information to the user.
+
+Icons are a medium to highlight important information to the user. 
 
 ## Usage
 
@@ -27,12 +28,11 @@ The size property is a number value to decide the font size of the icon in pixel
 
 If a size property is not included, the icon size will default to 100% of the parents font size.
 
-Example :
+Example : 
 
 ```html
-<h2>
-  Headline
-  <foam-icon icon="circle-down" />
+<h2> Headline
+    <foam-icon icon="circle-down" />
 </h2>
 ```
 

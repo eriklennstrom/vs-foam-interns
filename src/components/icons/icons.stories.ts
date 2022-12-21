@@ -14,7 +14,7 @@ export default {
   },
   argTypes: {
     color: {
-      control: { type: 'select' },
+      control: { type: 'select'},
       options: ['success', 'danger', 'secondary', 'primary']
     },
     size: {
