@@ -35,7 +35,7 @@ const Icon = computed(() => {
 
 <style lang="scss" scoped>
 @use 'sass:color';
-@use '../styles/colors.scss';
+@use '@/styles/colors.scss';
 
 @each $name, $bg in colors.$bg-colors {
  

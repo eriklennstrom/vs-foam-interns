@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { onBeforeMount, ref, type Ref } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { iconMixin } from "../mixins/jsMixins";
+import { defaultVariantMixin, defaulColorMixin, iconColors, iconVariant } from "@/helpers/mixins/jsMixins";
+
 
 const props = defineProps({
   variant: { type: String, default: "warning" },
@@ -15,11 +16,11 @@ let iconName: Ref = ref<string>(props.variant);
 props.size ? (size.value = props.size + "px") : null;
 
 onBeforeMount(() => {
-  iconMixin.verifyColor(props.color)
+  defaulColorMixin(iconColors).verifyColor(props.color)
     ? null
     : (console.error('Incorrect color value. Value set to default "primary"'),
       (iconColor.value = "primary"));
-  iconMixin.verifyVariant(iconName.value)
+    defaultVariantMixin(iconVariant).verifyVariant(iconName.value)
     ? (iconName.value = "fa-" + iconName.value)
     : (console.error(
         'Icon value is incorrect or not included. Value set to default "warning"'

@@ -1,14 +1,15 @@
 @use "sass:color";
-@use "../styles/colors.scss";
+@use "@/styles/colors.scss";
+@use "@/styles/variables.scss";
 
 @each $name, $bg in colors.$bg-colors {
-  .badge-#{$name} {
-    font-family: 'SourceSansPro';
-    @if (str-index($name, "secondary")) {
+.badge--#{$name} {
+  @if(str-index($name, "secondary")) {
       color: map-get(colors.$text-colors, strong-dark);
     } @else {
       color: map-get(colors.$text-colors, strong-light);
     }
+    font-family: variables.$primaryFontFamily;
     width: fit-content;
     padding: 8px 16px;
     background-color: $bg;
@@ -25,7 +26,7 @@
       }
     }
   }
-  .badge-#{$name}.badge-outline {
+  .badge--#{$name}__outline {
     @if (str-index($name, "secondary")) {
       color: map-get(colors.$text-colors, light-light);
     } @else {
@@ -39,23 +40,5 @@
         padding: 0 8px;
       }
     }
-  }
-}
-
-@each $text, $color in colors.$text-colors {
-  .badge-#{$text} {
-    color: $color;
-    &:has(svg) {
-      display: flex;
-      padding-left: 0;
-      svg {
-        color: $color;
-        padding: 0 8px;
-      }
-    }
-  }
-
-  [v-cloak] {
-    display: none;
   }
 }

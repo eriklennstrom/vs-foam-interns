@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Badge from './badge.vue'
-import Icons from '../icons/icons.vue'
+import Badge from '@/components/badge/badge.vue'
+import Icons from '@/components/icons/icons.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown} from  '@fortawesome/free-solid-svg-icons';
 library.add( faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown)

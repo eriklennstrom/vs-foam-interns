@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { computed, type Ref } from "@vue/reactivity";
-import { defineAsyncComponent, ref } from "vue";
-import { badgeMixin } from "../mixins/jsMixins";
+import { defineAsyncComponent, ref, computed, type Ref } from "vue";
+import { defaultVariantMixin, badgeVariant } from "@/helpers/mixins/jsMixins";
 
 type BadgeProps = {
   variant: string;
@@ -17,26 +16,26 @@ const props = withDefaults(defineProps<BadgeProps>(), {
 
 const type: Ref = ref<string>(props.variant);
 
-badgeMixin.verifyVariant(props.variant)
+  defaultVariantMixin(badgeVariant).verifyVariant(props.variant)
   ? ""
   : (console.error(
       'Variant value is incorrect or not included. Value set to default "secondary"'
     ),
     (type.value = "secondary"));
 
-const badgeClass = ref("badge-" + type.value);
+const badgeClass = ref("badge--" + type.value);
 
 // dynamic component import
 const AsyncIcon = computed(() => {
   if (props.icon) {
-    const Icon = defineAsyncComponent(() => import("../icons/icons.vue"));
+    const Icon = defineAsyncComponent(() => import("@/components/icons/icons.vue"));
     return Icon;
   }
 });
 </script>
 
 <template>
-  <div :class="[badgeClass, props.outline ? 'badge-outline' : null]">
+  <div :class="[badgeClass, props.outline ? badgeClass + '__outline' : null]">
     <AsyncIcon v-if="props.icon" :variant="props.icon" />
     {{ props.text }}
   </div>

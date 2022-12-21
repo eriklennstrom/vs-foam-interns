@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
-import Icons from "./icons.vue";
+import Icons from "@/components/icons/icons.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faUserSecret,
