@@ -29,6 +29,7 @@ export default {
       description: 'Property to add outline to the badge',
     },
     text: {
+      control: {type: 'text'},
       description: 'Property for text content inside the badge',
     },
   },
