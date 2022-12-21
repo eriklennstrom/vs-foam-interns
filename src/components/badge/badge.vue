@@ -6,12 +6,13 @@ type BadgeProps = {
   variant: string
   outline?: boolean
   text?: string
-  icon?: string
+  icon?: string| null
 };
 const props = withDefaults(defineProps<BadgeProps>(), {
   variant: 'secondary',
   outline: false,
   text: 'Badge',
+  icon: null
 });
 
 const type: Ref = ref<string>(props.variant);
