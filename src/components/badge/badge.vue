@@ -8,7 +8,6 @@ type BadgeProps = {
   text?: string;
   icon?: string;
 };
-
 const props = withDefaults(defineProps<BadgeProps>(), {
   variant: "secondary",
   outline: false,
