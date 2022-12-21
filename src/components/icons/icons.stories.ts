@@ -62,8 +62,9 @@ Variants.argTypes = {
     }
   },
   size: {
-    defaultValue: 20,
+   
     table: {
+      defaultValue: 20,
       disable: true
     }
   }
@@ -121,8 +122,9 @@ Color.argTypes = {
     }
   },
   size: {
-    defaultValue: 20,
+
     table: {
+      defaultValue: 20,
       disable: true
     }
   }
