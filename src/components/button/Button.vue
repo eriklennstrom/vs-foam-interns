@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue';
 import { defineAsyncComponent, ref } from 'vue';
 
 const props = defineProps({
@@ -15,22 +15,22 @@ const iconName = computed(() => {
   if(props.icon) {
     const icon = 'fa-'+props.icon
     return icon
-  }else return ""
+  }else return ''
 })
 
 const Icon = computed(() => {
   if(props.icon) {
     const Icon = defineAsyncComponent(() => import('../icons/icons.vue'))
     return Icon
-  }
+  } else return null
 })
 </script>
 
 <template>
-    <div :class="[buttonClass, props.outline ? 'button-outline' : null]"> 
-      <Icon v-if="props.icon" :iconType="iconName" />
-      {{props.text}}
-    </div>
+  <div :class="[buttonClass, props.outline ? 'button-outline' : null]"> 
+    <Icon v-if="props.icon" :icon-type="iconName" />
+    {{ props.text }}
+  </div>
 </template>
 
 <style lang="scss" scoped>

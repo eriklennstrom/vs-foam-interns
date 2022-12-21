@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defaultVariantMixin, defaulColorMixin, iconColors, iconVariant } from '@/helpers/mixins/jsMixins'; 
 
 type IconProps = {
-    variant: string
+    variant?: string
     color?: string
     size?: number
 };

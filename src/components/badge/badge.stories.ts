@@ -108,8 +108,9 @@ Outline.argTypes = {
     },
   },
   outline: {
-    defaultValue: true,
+
     table: {
+      defaultValue: true,
       disable: true,
     },
   },
@@ -138,7 +139,8 @@ Icons.argTypes = {
     },
   },
   icon: {
-    defaultValue: 'warning',
+    table:{
+    defaultValue: 'warning'}
   },
   outline: {
     table: {
