@@ -2,7 +2,13 @@
 import { computed, type Ref } from "@vue/reactivity";
 import { defineAsyncComponent, ref } from "vue";
 import { badgeMixin } from "../mixins/jsMixins";
-import type { BadgeProps } from '../../models/types'
+
+export type BadgeProps = {
+    variant: string;
+    outline?: boolean;
+    text?: string;
+    icon?: string;
+};
 
 const props = withDefaults(defineProps<BadgeProps>(), {
   variant: "secondary",
