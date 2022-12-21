@@ -1,9 +1,9 @@
-import FoamBadge from "@/components/badge/badge.vue";
-import type { Meta, StoryFn } from "@storybook/vue3";
-import readme from "@/components/badge/badge.md?raw";
+import FoamBadge from '@/components/badge/badge.vue';
+import type { Meta, StoryFn } from '@storybook/vue3';
+import readme from '@/components/badge/badge.md?raw';
 
 export default {
-  title: "Components/Badge",
+  title: 'Components/Badge',
   component: FoamBadge,
   parameters: {
     docs: {
@@ -14,27 +14,28 @@ export default {
   },
   argTypes: {
     variant: {
-      control: { type: "select" },
-      options: ["primary", "secondary", "danger", "warning", "success"],
-      description: "Property to add chosen variant",
+      control: { type: 'select' },
+      options: ['primary', 'secondary', 'danger', 'warning', 'success'],
+      description: 'Property to add chosen variant',
     },
     icon: {
-      control: { type: "select" },
-      options: ["warning", "arrow-down", "circle-down", null],
-      description: "Property to add chosen icon",
+      control: { type: 'select' },
+      options: ['warning', 'arrow-down', 'circle-down', null],
+      description: 'Property to add chosen icon',
     },
     outline: {
-      control: { type: "select" },
+      control: { type: 'select' },
       options: [true, false],
-      description: "Property to add outline to the badge",
+      description: 'Property to add outline to the badge',
     },
     text: {
-      description: "Property for text content inside the badge",
+      control: {type: 'text'},
+      description: 'Property for text content inside the badge',
     },
   },
 } as Meta<typeof FoamBadge>;
 
-const Template: StoryFn<typeof FoamBadge> = (args: any) => ({
+const Template: StoryFn<typeof FoamBadge> = (args) => ({
   components: { FoamBadge },
   setup() {
     return { args };
@@ -45,7 +46,7 @@ const Template: StoryFn<typeof FoamBadge> = (args: any) => ({
 export const Default = Template.bind({});
 
 export const Variants: StoryFn<typeof FoamBadge> = (
-  args: any,
+  args,
   { argTypes }
 ) => ({
   components: { FoamBadge },
@@ -76,12 +77,12 @@ Variants.argTypes = {
     },
   },
   text: {
-    description: "Property for text content inside the badge",
+    description: 'Property for text content inside the badge',
   },
 };
 
 export const Outline: StoryFn<typeof FoamBadge> = (
-  args: any,
+  args,
   { argTypes }
 ) => ({
   components: { FoamBadge },
@@ -113,11 +114,11 @@ Outline.argTypes = {
     },
   },
   text: {
-    description: "Property for text content inside the badge",
+    description: 'Property for text content inside the badge',
   },
 };
 
-export const Icons: StoryFn<typeof FoamBadge> = (args: any) => ({
+export const Icons: StoryFn<typeof FoamBadge> = (args) => ({
   components: { FoamBadge },
   setup() {
     return { args };
@@ -137,7 +138,7 @@ Icons.argTypes = {
     },
   },
   icon: {
-    defaultValue: "warning",
+    defaultValue: 'warning',
   },
   outline: {
     table: {
@@ -145,6 +146,6 @@ Icons.argTypes = {
     },
   },
   text: {
-    description: "Property for text content inside the badge",
+    description: 'Property for text content inside the badge',
   },
 };
