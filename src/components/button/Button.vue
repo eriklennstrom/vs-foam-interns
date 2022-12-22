@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { computed } from 'vue';
 import { defineAsyncComponent, ref } from 'vue';
 
@@ -88,4 +88,4 @@ const Icon = computed(() => {
     }
   }
 }
-</style>
+</style> -->

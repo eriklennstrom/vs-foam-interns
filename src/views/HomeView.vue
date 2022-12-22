@@ -4,12 +4,12 @@ import Icons from '../components/icons/icons.vue'
 </script>
 
 <template>
-  <h1>Home <Icons iconType="bi-alarm" color="blue" /></h1>
+  <h1>Home <Icons icon-type="bi-alarm" color="blue" /></h1>
   <button>
     Button
-    <Icons iconType="bi-alarm" color="green" />
+    <Icons icon-type="bi-alarm" color="green" />
   </button>
-  <Icons iconType="bi-alarm" color="red" />
+  <Icons icon-type="bi-alarm" color="red" />
 </template>
 
 <style scoped lang="scss">
