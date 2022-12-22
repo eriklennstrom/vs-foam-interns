@@ -17,6 +17,8 @@ export const buttonVariant = [
 
 export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
 
+export const chipVariants = ['select', 'remove'];
+
 // icon names
 
 export const validIconNames = [
