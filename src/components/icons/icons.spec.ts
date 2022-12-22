@@ -12,47 +12,47 @@ library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown);
 
 describe('Icons', () => {
   it('renders properly', () => {
-    const wrapper = mount(Icons, { propsData: { variant: 'warning' } });
+    const wrapper = mount(Icons, { propsData: { icon: 'warning' } });
     expect(wrapper.classes()).toContain('fa-warning');
   });
 
-  it('renders correct variant prop', () => {
-    const wrapper = mount(Icons, { propsData: { variant: 'warning' } });
-    expect(wrapper.vm.variant).toBe('warning');
+  it('renders correct icon prop', () => {
+    const wrapper = mount(Icons, { propsData: { icon: 'warning' } });
+    expect(wrapper.vm.icon).toBe('warning');
   });
 
-  it('renders color', () => {
+  it('renders variant', () => {
     const wrapper = mount(Icons, {
-      propsData: { variant: 'warning', color: 'success' }
+      propsData: { icon: 'warning', variant: 'success' }
     });
-    expect(wrapper.vm.color).toBe('success');
-    expect(wrapper.classes()).toContain('success');
+    expect(wrapper.vm.variant).toBe('success');
+    expect(wrapper.classes()).toContain('icon--success');
   });
 
-  it('renders correct color prop and class with no input', () => {
+  it('renders correct variant prop and class with no input', () => {
     const wrapper = mount(Icons);
-    expect(wrapper.vm.color).toBe('primary');
-    expect(wrapper.classes()).toContain('primary');
+    expect(wrapper.vm.variant).toBe('primary');
+    expect(wrapper.classes()).toContain('icon--primary');
   });
 
   it('render correct size', () => {
     const wrapper = mount(Icons, {
-      propsData: { variant: 'warning', size: 18 }
+      propsData: { icon: 'warning', size: 18 }
     });
     expect(getComputedStyle(wrapper.element).fontSize).toBe('18px');
   });
 
   it('render correct size with no input', () => {
-    const wrapper = mount(Icons, { propsData: { variant: 'warning' } });
+    const wrapper = mount(Icons, { propsData: { icon: 'warning' } });
     console.log(getComputedStyle(wrapper.element).height);
     expect(getComputedStyle(wrapper.element).fontSize).toBe('100%');
   });
 
-  it('render default color with incorrect input', () => {
+  it('render default variant with incorrect input', () => {
     const wrapper = mount(Icons, {
-      propsData: { variant: 'warning', color: 'red' }
+      propsData: { icon: 'warning', variant: 'red' }
     });
     console.log(wrapper.classes());
-    expect(wrapper.classes()).toContain('primary');
+    expect(wrapper.classes()).toContain('icon--primary');
   });
 });
