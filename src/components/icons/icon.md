@@ -3,7 +3,7 @@ Icons are a medium to highlight important information to the user.
 
 ## Usage
 
-The variant property adds the icon type.
+The icon property adds the icon type.
 Icons that are included are -
 
 `warning`, `circle-down`, `user-secret`, `arrow-down`, `arrow-alt-circle-down`
@@ -46,23 +46,23 @@ The font size of the icon will follow the font size of the `<h2>` element.
 
 ```html
 <!-- bad -->
-<foam-badge icon="circle-down" size="12px" />
+<foam-icon icon="circle-down" size="12px" />
 ```
 
-## Color
+## Variant
 
-The color property decides what variant will be used. Default is `secondary`.
+The variant property decides what variant will be used. Default is `primary`.
 
-Colors that are available : `primary`, `secondary`, `danger`, `warning`, `success`
+Variants that are available : `primary`, `secondary`, `danger`, `success`
 
 ```html
 <!-- good -->
-<foam-icon icon="circle-down" color="success" />
+<foam-icon icon="circle-down" variant="success" />
 ```
 
 ```html
 <!-- bad -->
-<foam-badge icon="circle-down" color="green" />
+<foam-icon icon="circle-down" variant="green" />
 ```
 
-The color property `green`does not exist, and will default to `secondary`
+The variant property `green`does not exist, and will default to `secondary`

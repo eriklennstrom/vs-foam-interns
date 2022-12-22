@@ -6,6 +6,7 @@ export const badgeVariant = [
   'warning',
   'success'
 ];
+
 export const buttonVariant = [
   'primary',
   'secondary',
@@ -13,16 +14,18 @@ export const buttonVariant = [
   'danger-outline',
   'ghost'
 ];
-export const iconVariant = [
+
+export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
+
+// icon names
+
+export const validIconNames = [
   'warning',
   'circle-down',
   'user-secret',
   'arrow-down',
   'arrow-alt-circle-down'
 ];
-
-// Colors
-export const iconColors = ['success', 'danger', 'secondary', 'primary'];
 
 export const defaultVariantMixin = (variants: string[]) => ({
   variant: variants,
@@ -31,9 +34,9 @@ export const defaultVariantMixin = (variants: string[]) => ({
   }
 });
 
-export const defaulColorMixin = (colors: string[]) => ({
-  colors: colors,
-  verifyColor(probablyColor: string) {
-    return this.colors.includes(probablyColor);
+export const defaultNameMixin = (names: string[]) => ({
+  names: names,
+  verifyName(probablyName: string) {
+    return this.names.includes(probablyName);
   }
 });

@@ -29,10 +29,10 @@ import Badge from '@/components/badge/badge.vue'
     <Badge variant="success" outline text="Hello Varnish" />
   </section>
   <section>
-    <Icons variant="circle-down" />
+    <Icons icon="circle-down" />
    
-    <Icons variant="warning" color="success" />
-    <Icons variant="user-secret" color="red" />
+    <Icons icon="warning" variant="success" />
+    <Icons icon="user-secret" variant="danger" />
     <Icons />
   </section>
 </template>
