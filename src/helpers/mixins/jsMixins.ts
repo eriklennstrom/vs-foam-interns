@@ -17,7 +17,7 @@ export const buttonVariant = [
 
 export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
 
-export const chipVariants = ['select', 'remove'];
+export const chipVariants = ['filter', 'static'];
 
 // icon names
 
@@ -26,7 +26,9 @@ export const validIconNames = [
   'circle-down',
   'user-secret',
   'arrow-down',
-  'arrow-alt-circle-down'
+  'arrow-alt-circle-down',
+  'check',
+  'xmark'
 ];
 
 export const defaultVariantMixin = (variants: string[]) => ({

@@ -1,51 +1,66 @@
 <script setup lang="ts">
-import { computed, defineAsyncComponent, ref, type Ref } from 'vue';
+import { computed, defineAsyncComponent, onBeforeMount, ref, type Ref } from 'vue';
 import { defaultVariantMixin, chipVariants } from '@/helpers/mixins/jsMixins';
+import { useAttrs } from 'vue'
 type ChipProps = {
-  variant: string
+  variant?: string
   text?: string
-  icon?: string | null
-  dropDown?: string[] | null
+  icon?: string
 };
 
 const props = withDefaults(defineProps<ChipProps>(), {
   variant: 'select',
   text: 'Foam Chip',
-  icon: null,
-  dropDown: null,
+  icon: '',
 });
-const chipVariant: Ref = ref<string>(props.variant);
-const chipType = ref<string>(props.variant);
+// -------- WIP Fix emits, render X icon if the emit exists ----------
+const attrs = useAttrs()
+// const emit = defineEmits(['filter-list', 'remove-filter'])
+console.log(attrs.onFilterList)
 
+const foamChip = ref();
+const chipVariant: Ref = ref<string>(props.variant);
 const chipSelected = ref(false);
-const chipRemove = ref(false);
-const chipIcon = ref<string>(props.icon ? props.icon : '');
-const removedChip = ref(false);
-const activeChip = ref(false);
+const chipIcon = ref<string>(props.icon)
+
+const role = ref<string>('button')
 
 defaultVariantMixin(chipVariants).verifyVariant(props.variant)
   ? null
   : (console.error(
-      'Variant value is incorrect or not included. Value set to default "select"'
+      'Variant value is incorrect or not included. Value set to default "static"'
     ),
-    (chipVariant.value = 'select'));
+    (chipVariant.value = 'static'));
+
+onBeforeMount(() => {
+  // If the chip is not interactable, set role to not button
+  chipVariant.value == 'filter' ?
+  null 
+  : emit('filter-list', props.text)
+})
 
 const selectChip: () => void = () => {
-  if (chipType.value == 'select') {
-    activeChip.value = !activeChip.value;
+  if (chipVariant.value == 'filter') {
+    foamChip.value.classList.contains('chip__active') ?
+    (emit('remove-filter', props.text),
+      chipIcon.value = props.icon
+    )
+    : (emit('filter-list', props.text), chipIcon.value = 'check')
+    foamChip.value.classList.toggle('chip__active')
     chipSelected.value = !chipSelected.value;
-    chipIcon.value = 'check';
-  } else if (chipType.value == 'remove') {
-    activeChip.value = true;
-    chipRemove.value = true;
-    chipIcon.value = 'xmark';
-  }
+  } 
 };
 
 const removeChip: () => void = () => {
-  removedChip.value = true;
+  // Stop the user from removing the chip if the chip is selected
+  if(chipSelected.value != null) {  
+    chipVariant.value != 'select' ?
+    emit('remove-filter', props.text)
+    : null
+    foamChip.value.remove()
+  }
 };
-
+console.log(foamChip)
 // dynamic component import
 const AsyncIcon = computed(() => {
   if (props.icon) {
@@ -56,45 +71,29 @@ const AsyncIcon = computed(() => {
   } else return null;
 });
 
-// ----- For future dropdown component -----
-// const AsyncDropDown = computed(() => {
-//   if (props.dropDown) {
-//     const DropDown = defineAsyncComponent(
-//       () => import('@/components/dropdown/dropdown.vue')
-//     );
-//     return DropDown;
-//   } else return null;
-// });
 
-// const showDropDown = ref(false);
-// const activeDropDown: () => void = () => {
-//     showDropDown.value = !showDropDown.value
-// }
+
 </script>
 
 <template>
   <div
-    v-if="!removedChip"
+    ref="foamChip"
+    :role="role"
     class="chip"
-    :class="{ active: activeChip, dropContainer: props.dropDown }"
-    :clickable="props.variant"
+    :action="props.variant"
     @click="selectChip"
   >
+    <AsyncIcon v-if="chipSelected" :icon="chipIcon" :size="8" />
     <AsyncIcon
-      v-if="props.icon && props.variant == 'remove'"
-      :variant="props.icon"
+      v-if="props.icon && !chipSelected"
+      :icon="chipIcon"
     />
-    <AsyncIcon v-if="chipSelected" :variant="chipIcon" :size="8" />
     {{ props.text }}
     <AsyncIcon
-      v-if="chipRemove"
-      :icon-type="chipIcon"
+      v-if="$attrs.removefilter"
+      icon="xmark"
       :size="8"
       @click="removeChip"
-    />
-    <AsyncIcon
-      v-if="props.icon && props.variant == 'select'"
-      :variant="props.icon"
     />
   </div>
 </template>
