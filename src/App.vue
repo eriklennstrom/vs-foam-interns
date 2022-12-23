@@ -2,10 +2,28 @@
 // import ButtonVue from './components/Button/Button.vue';
 import Icons from '@/components/icons/icons.vue'
 import Badge from '@/components/badge/badge.vue'
+import Buttonvue from '@/components/button/button.vue'
 </script>
 
 <template>
   <section>
+    <Buttonvue
+      variant="ghost"
+      text="Hello Varnish"
+      icon="warning"
+
+    />
+    <Buttonvue
+      variant="primary"
+      text="Hello Varnish"
+      icon="warning"
+    />
+    <Buttonvue
+      variant="secondary"
+      text="Hello Varnish"
+      icon="warning"
+    />
+
     <Badge
       variant="dangejyhgr"
       text="Hello Varnish"
