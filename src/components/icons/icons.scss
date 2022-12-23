@@ -1,0 +1,7 @@
+@use "@/styles/colors.scss";
+
+@each $name, $color in colors.$icon-colors {
+  .icon--#{$name} {
+    color: $color;
+  }
+}
