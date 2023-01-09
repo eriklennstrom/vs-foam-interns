@@ -6,7 +6,7 @@ type ChipProps = {
   variant?: string
   text?: string
   icon?: string
-  removable?: boolean
+  removable?: boolean | null
   outline?: boolean
   selected?: boolean | null
 };
@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<ChipProps>(), {
   variant: 'select',
   text: 'Foam Chip',
   icon: '',
-  removable: false,
+  removable: null,
   outline: false,
   selected: null
 });
@@ -37,11 +37,14 @@ defaultVariantMixin(chipVariants).verifyVariant(props.variant)
 onBeforeMount(() => {
   // If the chip is not interactable, set role to not button
   chipVariant.value == 'filter' && chipRemove.value == true ? chipRemove.value = false : null
+  if(props.text == 'gul') {
+    console.log(chipRemove.value)
+  }
 })
 
 // dynamic component import
 const AsyncIcon = computed(() => {
-  if (props.icon) {
+  if (props.icon || props.removable) {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
     );
@@ -55,18 +58,16 @@ const AsyncIcon = computed(() => {
   <div
     ref="foamChip"
     :role="role"
-    :class="['chip', props.outline ? 'chip__outline' : null, '', props.selected ? 'chip--selected' : null, props.variant == 'input' ? 'chip--input' : null]"
+    :class="['chip', props.outline ? 'chip__outline' : null, '', props.selected ? 'chip--selected' : null, props.variant == 'filter' ? 'chip--filter' : null]"
     :action="props.variant"
-    @click="emit('click')"
+    @click="emit('click', props.text)"
   >
     <AsyncIcon v-if="props.selected" icon="check" :size="8" />
     <AsyncIcon
       v-if="props.icon && !props.selected"
       :icon="chipIcon"
     />
-    <text>
-      {{ props.text }}
-    </text>
+    {{ props.text }}
     <AsyncIcon
       v-if="chipRemove"
       icon="xmark"

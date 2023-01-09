@@ -7,7 +7,7 @@ import { ref } from 'vue';
 
 // TEST FUNCTIONS ----------------------------------------------------
 const selectedChipOne = ref(false)
-const functionSomSkaKöras: () => void = () => {
+const functionOne: () => void = () => {
   selectedChipOne.value = !selectedChipOne.value
   setTimeout(() => {
     selectedChipOne.value = !selectedChipOne.value
@@ -15,30 +15,31 @@ const functionSomSkaKöras: () => void = () => {
 }
 
 const selectedChipTwo = ref(false)
-const functionSomSkaKörasTvå: () => void = () => {
+const functionTwo: () => void = () => {
   selectedChipTwo.value = !selectedChipTwo.value
 }
 
 
-const showChipThree = ref(true)
-const selectedChipThree = ref(false)
-const removeChipThree: () => void = () => {
-  showChipThree.value = false
+const settings = ref([])
+const items = [
+      { id: 1, text: 'Item 1', value: 'item-1' },
+      { id: 2, text: 'Item 2', value: 'item-2' },
+      { id: 3, text: 'Item 3', value: 'item-3' },
+    ];
+const removeFilter: (e:any) => void = (e) => {
+  console.log(e)
 }
+
 //  --------------------------------------------------------------------
 
 // DARK MODE
-const body = document.querySelector('body')
-  
-  body?.classList.toggle('light')
+
 const darkMode: () => void = () => {
   const body = document.querySelector('body')
   
-  body?.classList.toggle('light')
   body?.classList.toggle('dark')
 
   body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : null
-  body?.classList.contains('light') ? body.style.backgroundColor = '#DEE2E6' : null
 }
 
 </script>
@@ -74,6 +75,7 @@ const darkMode: () => void = () => {
     <Icons icon="user-secret" variant="danger" />
     <Icons />
   </section>
+
   <section>
     <Chip
       variant="filter"
@@ -81,7 +83,7 @@ const darkMode: () => void = () => {
       text="1"
       outline
       :selected="selectedChipOne"
-      @click="functionSomSkaKöras"
+      @click="functionOne"
     />
     <Chip
       variant="filter"
@@ -90,22 +92,22 @@ const darkMode: () => void = () => {
       outline
       removable
       :selected="selectedChipTwo"
-      @click="functionSomSkaKörasTvå"
+      @click="functionTwo"
     />
 
     <Chip
-      v-if="showChipThree"
-      variant="input"
-      icon="circle-down"
-      text="3"
-      outline
+      v-for="setting in settings"
+      :key="setting"
+   
+      :text="setting"
+
       removable
-      :selected="selectedChipThree"
-      @click="removeChipThree"
+      @click="removeFilter($event)"
     />
     <Chip 
       variant="input"
       icon="circle-down"
+      removable
     />
   </section>
   <section>
