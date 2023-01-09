@@ -1,20 +1,29 @@
 <script setup lang="ts">
-import { defineAsyncComponent, ref, computed, type Ref } from 'vue';
+import { defineEmits, defineAsyncComponent, ref, computed, type Ref } from 'vue';
 import { defaultVariantMixin, buttonVariant } from '@/helpers/mixins/jsMixins';
+import type { EmitAsset } from 'rollup';
 
 type ButtonProps = {
   variant: string
   outline?: boolean
   text?: string
   icon?: string| null
+  dropdown?: boolean
+  disabled?: boolean
+  activeDropdown?:boolean
 };
+
+const emit = defineEmits(['click'])
+
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
   outline: false,
   text: 'Button',
-  icon: null
+  icon: null,
+  activeDropdown: false
 });
+
 
 const type: Ref = ref<string>(props.variant);
 
@@ -38,13 +47,30 @@ const AsyncIcon = computed(() => {
   } else return null;
 });
 
+const AsyncDropdownIcon = computed(() => {
+  if (props.dropdown) {
+    const Icon = defineAsyncComponent(
+      () => import('@/components/icons/icons.vue')
+    );
+    return Icon;
+  } else return null;
+});
+
 </script>
 
 <template>
-  <div :class="[buttonClass, props.outline ? buttonClass + '__outline' : null]">
-    <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
-    {{ props.text }}
-  </div>
+  <button
+    :class="[buttonClass, props.outline ? buttonClass + '__outline' : null]" 
+    @click="emit('click')"
+  >
+    <AsyncIcon v-if="props.icon" :icon="props.icon" />
+    <text>{{ props.text }}</text>
+    <AsyncDropdownIcon
+      v-if="props.dropdown"
+      :class="[props.activeDropdown? 'active' : null]" 
+      icon="caret-down"
+    />
+  </button>
 </template>
 
 <style lang="scss" scoped>
