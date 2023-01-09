@@ -5,17 +5,40 @@ import Badge from '@/components/badge/badge.vue'
 import Chip from '@/components/chip/chip.vue'
 import { ref } from 'vue';
 
-const testList = ref([1, 2, 3, 4, 5, 6])
-const filteredTestList = ref(testList.value)
-
-const filterTest: (y: number) => void = (y) => {
-  filteredTestList.value =  filteredTestList.value.filter(x => x != y) 
+// TEST FUNCTIONS ----------------------------------------------------
+const selectedChipOne = ref(false)
+const functionSomSkaKöras: () => void = () => {
+  selectedChipOne.value = !selectedChipOne.value
+  setTimeout(() => {
+    selectedChipOne.value = !selectedChipOne.value
+  }, 5000);
 }
 
-const revertFilter: (x:number) => void = (x) => {
-  const arrCopy: number[] = [...filteredTestList.value]
-  arrCopy.push(x)
-  filteredTestList.value =  arrCopy.sort()
+const selectedChipTwo = ref(false)
+const functionSomSkaKörasTvå: () => void = () => {
+  selectedChipTwo.value = !selectedChipTwo.value
+}
+
+
+const showChipThree = ref(true)
+const selectedChipThree = ref(false)
+const removeChipThree: () => void = () => {
+  showChipThree.value = false
+}
+//  --------------------------------------------------------------------
+
+// DARK MODE
+const body = document.querySelector('body')
+  
+  body?.classList.toggle('light')
+const darkMode: () => void = () => {
+  const body = document.querySelector('body')
+  
+  body?.classList.toggle('light')
+  body?.classList.toggle('dark')
+
+  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : null
+  body?.classList.contains('light') ? body.style.backgroundColor = '#DEE2E6' : null
 }
 
 </script>
@@ -56,24 +79,39 @@ const revertFilter: (x:number) => void = (x) => {
       variant="filter"
       icon="circle-down"
       text="1"
-      @filterList="filterTest"
-      @removefilter="revertFilter"
+      outline
+      :selected="selectedChipOne"
+      @click="functionSomSkaKöras"
     />
     <Chip
-      variant="static"
-      icon="user-secret"
+      variant="filter"
+      icon="circle-down"
       text="2"
-      @filter-list="filterTest"
-      @remove-filter="revertFilter"
+      outline
+      removable
+      :selected="selectedChipTwo"
+      @click="functionSomSkaKörasTvå"
     />
-    <Chip variant="static" icon="hdwajkdwa" />
-    <Chip variant="filter" icon="check" />
-    <Chip />
+
+    <Chip
+      v-if="showChipThree"
+      variant="input"
+      icon="circle-down"
+      text="3"
+      outline
+      removable
+      :selected="selectedChipThree"
+      @click="removeChipThree"
+    />
+    <Chip 
+      variant="input"
+      icon="circle-down"
+    />
   </section>
   <section>
-    <div v-for="item in filteredTestList" :key="item">
-      <li>{{ item }}</li>  
-    </div>
+    <button @click="darkMode">
+      DARK MODE!
+    </button>
   </section>
 </template>
 

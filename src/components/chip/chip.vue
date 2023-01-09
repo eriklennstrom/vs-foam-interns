@@ -1,66 +1,44 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, onBeforeMount, ref, type Ref } from 'vue';
 import { defaultVariantMixin, chipVariants } from '@/helpers/mixins/jsMixins';
-import { useAttrs } from 'vue'
+
 type ChipProps = {
   variant?: string
   text?: string
   icon?: string
+  removable?: boolean
+  outline?: boolean
+  selected?: boolean | null
 };
 
 const props = withDefaults(defineProps<ChipProps>(), {
   variant: 'select',
   text: 'Foam Chip',
   icon: '',
+  removable: false,
+  outline: false,
+  selected: null
 });
-// -------- WIP Fix emits, render X icon if the emit exists ----------
-const attrs = useAttrs()
-// const emit = defineEmits(['filter-list', 'remove-filter'])
-console.log(attrs.onFilterList)
 
+const emit = defineEmits(['click'])
 const foamChip = ref();
 const chipVariant: Ref = ref<string>(props.variant);
-const chipSelected = ref(false);
 const chipIcon = ref<string>(props.icon)
-
+const chipRemove = ref(props.removable)
 const role = ref<string>('button')
 
 defaultVariantMixin(chipVariants).verifyVariant(props.variant)
   ? null
   : (console.error(
-      'Variant value is incorrect or not included. Value set to default "static"'
+      'Variant value is incorrect or not included. Value set to default "input"'
     ),
-    (chipVariant.value = 'static'));
+    (chipVariant.value = 'input'));
 
 onBeforeMount(() => {
   // If the chip is not interactable, set role to not button
-  chipVariant.value == 'filter' ?
-  null 
-  : emit('filter-list', props.text)
+  chipVariant.value == 'filter' && chipRemove.value == true ? chipRemove.value = false : null
 })
 
-const selectChip: () => void = () => {
-  if (chipVariant.value == 'filter') {
-    foamChip.value.classList.contains('chip__active') ?
-    (emit('remove-filter', props.text),
-      chipIcon.value = props.icon
-    )
-    : (emit('filter-list', props.text), chipIcon.value = 'check')
-    foamChip.value.classList.toggle('chip__active')
-    chipSelected.value = !chipSelected.value;
-  } 
-};
-
-const removeChip: () => void = () => {
-  // Stop the user from removing the chip if the chip is selected
-  if(chipSelected.value != null) {  
-    chipVariant.value != 'select' ?
-    emit('remove-filter', props.text)
-    : null
-    foamChip.value.remove()
-  }
-};
-console.log(foamChip)
 // dynamic component import
 const AsyncIcon = computed(() => {
   if (props.icon) {
@@ -71,29 +49,28 @@ const AsyncIcon = computed(() => {
   } else return null;
 });
 
-
-
 </script>
 
 <template>
   <div
     ref="foamChip"
     :role="role"
-    class="chip"
+    :class="['chip', props.outline ? 'chip__outline' : null, '', props.selected ? 'chip--selected' : null, props.variant == 'input' ? 'chip--input' : null]"
     :action="props.variant"
-    @click="selectChip"
+    @click="emit('click')"
   >
-    <AsyncIcon v-if="chipSelected" :icon="chipIcon" :size="8" />
+    <AsyncIcon v-if="props.selected" icon="check" :size="8" />
     <AsyncIcon
-      v-if="props.icon && !chipSelected"
+      v-if="props.icon && !props.selected"
       :icon="chipIcon"
     />
-    {{ props.text }}
+    <text>
+      {{ props.text }}
+    </text>
     <AsyncIcon
-      v-if="$attrs.removefilter"
+      v-if="chipRemove"
       icon="xmark"
       :size="8"
-      @click="removeChip"
     />
   </div>
 </template>

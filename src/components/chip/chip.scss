@@ -10,8 +10,7 @@
   padding: 8px 16px;
   font-family: variables.$primaryFontFamily;
   width: fit-content;
-  color: map-get(colors.$bg-colors, primary);
-  border: 1px solid map-get(colors.$bg-colors, primary);
+  // color: map-get(colors.$bg-colors, primary);
   transition: all 300ms;
   &:has(svg) {
     display: flex;
@@ -21,17 +20,62 @@
       color: inherit;
     }
   }
-  &[role=button]:hover {
-    background: colors.$chipHover;
+  text {
+    pointer-events: none;
+    user-select: none;
   }
-}
-
-.chip__active {
-  background: colors.$chipActive;
-  border: none;
 }
 
 .chip--dropdown {
   position: relative;
 }
 
+body.light { 
+  .chip {
+    color: map-get(colors.$bg-colors, primary);
+    &[role=button]:hover {
+      background: colors.$chip-hover-light;
+      box-shadow: inset 0 0 2px  colors.$chip-hover-light-outline;
+    }
+    &:active {
+      background: colors.$chip-active-light;
+      box-shadow: inset 0 0 2px  colors.$chip-hover-light-outline;
+    }
+  }
+  
+  .chip__outline {
+    box-shadow: inset 0 0 2px  colors.$chip-hover-outline-light;
+  }
+  .chip--input {
+    box-shadow: inset 0 0 2px colors.$chip-hover-outline-light;
+  }
+  .chip--selected {
+    background-color: colors.$chip-bg-dark;
+    box-shadow: none;
+  }
+}
+
+body.dark {
+  .chip {
+    color: colors.$chip-color-dark;
+    &[role=button]:hover {
+      background: colors.$chip-hover-dark;
+      box-shadow: inset 0 0 2px  colors.$chip-hover-outline-dark;
+    }
+    &:active {
+      background: colors.$chip-hover-dark;
+      box-shadow: inset 0 0 2px colors.$chip-hover-outline-dark;
+    }
+  }
+  .chip__outline {
+    box-shadow: inset 0 0 2px colors.$chip-hover-outline-dark;
+  }
+  
+  .chip--input {
+    box-shadow: inset 0 0 2px colors.$chip-hover-outline-dark;
+  }
+  .chip--selected {
+    background-color: colors.$chip-bg-dark;
+    box-shadow: none;
+  }
+}

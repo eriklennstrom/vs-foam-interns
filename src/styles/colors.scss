@@ -8,8 +8,29 @@ $danger: #dc3545;
 $warning: #faa05a;
 $success: #55c284;
 
-$chipHover: rgba(0, 51, 73, 0.05);
-$chipActive: rgba(0, 51, 73, 0.1);
+// Body colors
+$primary-bg-light: #F6F8FA;
+$primary-bg-dark: #1F252F;
+
+// Chip
+// Light
+$chip-bg-light: #E6EBED;
+$chip-hover-light: #D0D9DD; // Hover and pressed light default
+$chip-hover-light-outline: rgba(0, 0, 0, 0.1); // Default outline light hover and pressed
+
+$chip-hover-outline-light: #003349;
+
+$chip-active-light: rgba(0, 51, 73, 0.1);
+
+// Dark 
+$chip-color-dark: rgba(255, 255, 255, 0.87);
+$chip-bg-dark: #373C43;
+$chip-hover-dark: #40464E; // Hover and pressed dark default
+
+$chip-active-dark-outline: rgba(255, 255, 255, 0.38); // Default outline dark hover and pressed
+
+$chip-hover-outline-dark: rgba(255, 255, 255, 0.38);
+
 
 //bg colors
 $bg-colors: (
