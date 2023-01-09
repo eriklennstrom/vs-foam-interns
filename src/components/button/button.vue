@@ -8,6 +8,7 @@ type ButtonProps = {
   text?: string
   icon?: string| null
 };
+
 const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
   outline: false,
@@ -36,6 +37,7 @@ const AsyncIcon = computed(() => {
     return Icon;
   } else return null;
 });
+
 </script>
 
 <template>
