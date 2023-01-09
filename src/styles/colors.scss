@@ -16,7 +16,6 @@ $bg-colors: (
   danger: #dc3545,
   warning: #faa05a,
   success: #55c284,
- 
 );
 
 $primary-100: #e6ebed;
@@ -57,6 +56,17 @@ $text-colors: (
   disabled: #8799a1,
   active: #4dd1bb,
   rest: #00b0d4,
+);
+
+
+$button-border-colors: (
+  danger-outline: #e6ebed,
+
+
+);
+
+$button-hover-colors:(
+  danger-outline: #64141b,
 );
 
 // Icon colors

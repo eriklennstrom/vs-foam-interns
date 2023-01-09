@@ -20,6 +20,7 @@ export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
 // icon names
 
 export const validIconNames = [
+  'caret-down',
   'warning',
   'circle-down',
   'user-secret',

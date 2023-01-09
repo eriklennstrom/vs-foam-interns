@@ -3,15 +3,28 @@
 import Icons from '@/components/icons/icons.vue'
 import Badge from '@/components/badge/badge.vue'
 import Buttonvue from '@/components/button/button.vue'
+import { ref } from 'vue';
+
+
+
+const buttonIcon1 = ref(false)
+const iconflip: () => void = () => {
+  buttonIcon1.value = !buttonIcon1.value
+}
+
+
+
 </script>
 
 <template>
   <section>
     <Buttonvue
       variant="danger-outline"
-      text="Hello Varnish"
+      text="Hover"
       icon="warning"
-
+      dropdown
+      :activeDropdown="buttonIcon1"
+      @click="iconflip"
     />
     <!-- <Buttonvue
       variant="primary"
