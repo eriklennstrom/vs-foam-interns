@@ -8,12 +8,12 @@ import Buttonvue from '@/components/button/button.vue'
 <template>
   <section>
     <Buttonvue
-      variant="ghost"
+      variant="danger-outline"
       text="Hello Varnish"
       icon="warning"
 
     />
-    <Buttonvue
+    <!-- <Buttonvue
       variant="primary"
       text="Hello Varnish"
       icon="warning"
@@ -51,7 +51,7 @@ import Buttonvue from '@/components/button/button.vue'
    
     <Icons icon="warning" variant="success" />
     <Icons icon="user-secret" variant="danger" />
-    <Icons />
+    <Icons /> -->
   </section>
 </template>
 

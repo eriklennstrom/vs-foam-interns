@@ -1,9 +1,9 @@
 import FoamButton from '@/components/button/button.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
-import readme from '@/components/badge/badge.md?raw';
+import readme from '@/components/button/button.md?raw';
 
 export default {
-  title: 'Components/Badge',
+  title: 'Components/Button',
   component: FoamButton,
   parameters: {
     docs: {
@@ -15,7 +15,7 @@ export default {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'danger', 'warning', 'success'],
+      options: ['primary', 'secondary', 'danger', 'warning', 'ghost'],
       description: 'Property to add chosen variant',
     },
     icon: {
@@ -26,11 +26,11 @@ export default {
     outline: {
       control: { type: 'select' },
       options: [true, false],
-      description: 'Property to add outline to the badge',
+      description: 'Property to add outline to the button',
     },
     text: {
       control: {type: 'text'},
-      description: 'Property for text content inside the badge',
+      description: 'Property for text content inside the button',
     },
   },
 } as Meta<typeof FoamButton>;
@@ -40,7 +40,7 @@ const Template: StoryFn<typeof FoamButton> = (args) => ({
   setup() {
     return { args };
   },
-  template: '<foam-badge v-bind="args" />',
+  template: '<foam-button v-bind="args" />',
 });
 
 export const Default = Template.bind({});
@@ -57,7 +57,7 @@ export const Variants: StoryFn<typeof FoamButton> = (
   },
   template: `
   <div style="display: flex; gap: 1em">
-    <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" />
+    <foam-button v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" />
   </div>
 `,
 });
@@ -79,7 +79,7 @@ Variants.argTypes = {
     },
   },
   text: {
-    description: 'Property for text content inside the badge',
+    description: 'Property for text content inside the button',
   },
 };
 
@@ -93,7 +93,7 @@ export const Outline: StoryFn<typeof FoamButton> = (
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :variant="variant" :text="variant"  />
+      <foam-button v-for="variant in argTypes.variant.options" :key="variant" :variant="variant" :text="variant"  />
     </div>
   `,
 });
@@ -117,7 +117,7 @@ Outline.argTypes = {
     },
   },
   text: {
-    description: 'Property for text content inside the badge',
+    description: 'Property for text content inside the button',
   },
 };
 
@@ -128,8 +128,8 @@ export const Icons: StoryFn<typeof FoamButton> = (args) => ({
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-badge variant="primary" v-bind="args" />
-      <foam-badge variant="primary" outline />
+      <foam-button variant="primary" v-bind="args" />
+      <foam-button variant="primary" outline />
     </div>
   `,
 });
@@ -150,7 +150,7 @@ Icons.argTypes = {
     },
   },
   text: {
-    description: 'Property for text content inside the badge',
+    description: 'Property for text content inside the button',
   },
 };
 

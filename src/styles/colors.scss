@@ -8,6 +8,7 @@ $danger: #dc3545;
 $warning: #faa05a;
 $success: #55c284;
 
+
 //bg colors
 $bg-colors: (
   primary: #003349,
@@ -15,26 +16,34 @@ $bg-colors: (
   danger: #dc3545,
   warning: #faa05a,
   success: #55c284,
-  ghost: transparent,
+ 
 );
 
-// primary-100: #e6ebed,
-// primary-300: #668592,
-// primary-400: #003349,
-// primary-700: #002737,
-// primary-900: #000507,
-// secondary-100: #f8f9fa,
-// secondary-300: #ebeff1,
-// secondary-400: #e6ebed,
-// secondary-700: #cfd4d5,
-// secondary-900: #a1a5a6,
-// danger-100: #ea868f,
-// danger-300: #e35d6a,
-// danger-500: #dc3545,
-// danger-700: #b02a37,
-// danger-900: #64141b,
-// warning: #faa05a,
-// success: #55c284
+$primary-100: #e6ebed;
+$primary-300: #668592;
+$primary-400: #003349;
+$primary-700: #002737;
+$primary-900: #000507;
+$secondary-100: #f8f9fa;
+$secondary-300: #ebeff1;
+$secondary-400: #e6ebed;
+$secondary-700: #cfd4d5;
+$secondary-900: #a1a5a6;
+$danger-100: #ea868f;
+$danger-300: #e35d6a;
+$danger-500: #dc3545;
+$danger-700: #b02a37;
+$danger-900: #64141b;
+$warning: #faa05a;
+$success: #55c284;
+
+$button-bg-colors: (
+  primary: #003349,
+  danger: #dc3545,
+  warning: #faa05a,
+  danger-outline: #e35d6a,
+  ghost: transparent,
+);
 
 //text colors
 // <--- WIP --->
