@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { defineEmits, defineAsyncComponent, ref, computed, type Ref } from 'vue';
 import { defaultVariantMixin, buttonVariant } from '@/helpers/mixins/jsMixins';
-import type { EmitAsset } from 'rollup';
 
 type ButtonProps = {
   variant: string
@@ -64,7 +63,7 @@ const AsyncDropdownIcon = computed(() => {
     @click="emit('click')"
   >
     <AsyncIcon v-if="props.icon" :icon="props.icon" />
-    <text>{{ props.text }}</text>
+    {{ props.text }}
     <AsyncDropdownIcon
       v-if="props.dropdown"
       :class="[props.activeDropdown? 'active' : null]" 

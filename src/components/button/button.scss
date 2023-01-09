@@ -6,6 +6,7 @@
   .button--#{$name} {
     all: unset;
     cursor: pointer;
+    user-select: none;
     @if (str-index($name, "secondary")) {
       color: map-get(colors.$text-colors, strong-dark);
     } @else if (str-index($name, "ghost")) {
@@ -20,34 +21,27 @@
     border-radius: 10px;
     font-size: 12px;
     transition: all 0.3s;
+
     &:focus {
-      outline-style:solid;
+      outline-style: solid;
       outline-width: 1px;
       outline-offset: -3px;
-      outline-color:  map-get(colors.$button-border-colors, $name) ;
+      outline-color: map-get(colors.$button-border-colors, $name);
     }
 
     &:hover {
-      background-color: map-get(colors.$button-hover-colors, $name) ;
+      background-color: map-get(colors.$button-hover-colors, $name);
     }
 
     &:has(svg) {
       display: flex;
       align-items: center;
-      gap:8px;
+      gap: 8px;
       svg {
         color: inherit;
-        transition: all 0.4s ease-in-out;
-        
+        transition: all 0.3s ease-in-out;
       }
     }
-    text {
-      pointer-events: none;
-      user-select: none ;
-    }
-
-    
-
   }
 
   .button--#{$name}__outline {
@@ -69,5 +63,5 @@
 }
 
 .active {
-  transform: rotate(-180deg); 
+  transform: rotate(-180deg);
 }
