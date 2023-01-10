@@ -13,11 +13,19 @@ const iconflip: () => void = () => {
 }
 
 
+const darkMode: () => void = () => {
+  const body = document.querySelector('body')
+
+  body?.classList.toggle('dark')
+
+  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body? body.style.backgroundColor = '#F6F8FA' : null
+}
 
 </script>
 
 <template>
   <section>
+
     <Buttonvue
       variant="danger-outline"
       text="Hover"
@@ -26,46 +34,47 @@ const iconflip: () => void = () => {
       :activeDropdown="buttonIcon1"
       @click="iconflip"
     />
-    <!-- <Buttonvue
-      variant="primary"
-      text="Hello Varnish"
-      icon="warning"
-    />
+
     <Buttonvue
-      variant="secondary"
-      text="Hello Varnish"
+      variant="danger"
+      text="Hover"
       icon="warning"
+      dropdown
+      :activeDropdown="buttonIcon1"
+      @click="iconflip"
     />
 
-    <Badge
-      variant="dangejyhgr"
-      text="Hello Varnish"
-      outline
+    <Buttonvue
+      variant="primary"
+      text="Hover"
       icon="warning"
+      dropdown
+      :activeDropdown="buttonIcon1"
+      @click="iconflip"
     />
-    <Badge variant="primary" text="Hello Varnish" icon="arrow-down" />
-    <Badge
-      variant="warning"
-      text="Hello Varnish"
-      outline
-      icon="arrow-down"
+
+    <Buttonvue
+      variant="ghost"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :activeDropdown="buttonIcon1"
+      @click="iconflip"
     />
-    <Badge variant="success" text="Hello Varnish" icon="warning" />
+
+    <Buttonvue
+      variant="secondary"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :activeDropdown="buttonIcon1"
+      @click="iconflip"
+    />
+
   </section>
-  <section>
-    <Badge variant="secondary" outline text="Hello Varnish" />
-    <Badge variant="danger" text="Hello Varnish" />
-    <Badge variant="primary" outline text="Hello Varnish" />
-    <Badge variant="warning" text="Hello Varnish" />
-    <Badge variant="success" outline text="Hello Varnish" />
-  </section>
-  <section>
-    <Icons icon="circle-down" />
-   
-    <Icons icon="warning" variant="success" />
-    <Icons icon="user-secret" variant="danger" />
-    <Icons /> -->
-  </section>
+  <button @click="darkMode">
+      DARK MODE!
+    </button>
 </template>
 
 <style scoped lang="scss">
