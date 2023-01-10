@@ -9,20 +9,13 @@ $warning: #faa05a;
 $success: #55c284;
 
 
-//bg colors
-$bg-colors: (
-  primary: #003349,
-  secondary: #e6ebed,
-  danger: #dc3545,
-  warning: #faa05a,
-  success: #55c284,
-);
 
-$primary-100: #e6ebed;
+$primary-100: #E6EBED;
 $primary-300: #668592;
 $primary-400: #003349;
 $primary-700: #002737;
 $primary-900: #000507;
+$primary-hover: #296C89;
 $secondary-100: #f8f9fa;
 $secondary-300: #ebeff1;
 $secondary-400: #e6ebed;
@@ -35,14 +28,28 @@ $danger-700: #b02a37;
 $danger-900: #64141b;
 $warning: #faa05a;
 $success: #55c284;
+$primary-dark-hover: #005E71;
+$primary-dark-rest: #009CBD;
+$secondary-hover: #B8CAD1;
+$secondary-dark-rest: rgba(255, 255, 255, 0.04);
+$secondary-dark-outline: rgba(255, 255, 255, 0.87);
+$secondary-dark-hover: rgba(255, 255, 255, 0.12);
+$ghost-hover: #F9F9F9;
+$ghost-dark-hover: rgba(255, 255, 255, 0.08);
 
-$button-bg-colors: (
+
+
+
+
+//bg colors
+$bg-colors: (
   primary: #003349,
+  secondary: #e6ebed,
   danger: #dc3545,
   warning: #faa05a,
-  danger-outline: #e35d6a,
-  ghost: transparent,
+  success: #55c284,
 );
+
 
 //text colors
 // <--- WIP --->
@@ -56,18 +63,65 @@ $text-colors: (
   disabled: #8799a1,
   active: #4dd1bb,
   rest: #00b0d4,
+  danger: #dc3545,
 );
 
 
 $button-border-colors: (
   danger-outline: $primary-100,
-  vev: $primary-100,
+  primary: $primary-100,
+  danger: $primary-100,
+  secondary: $primary-400,
+  ghost: $primary-400,
+);
+
+$button-hover-colors: (
+  danger-outline: $danger-500,
+  primary: $primary-hover,
+  secondary: $secondary-hover,
+  danger: $danger-900,
+  ghost: $ghost-hover,
 
 );
 
-$button-hover-colors:(
-  danger-outline: #64141b,
+$button-bg-colors: (
+  primary: $primary-400,
+  danger: $danger-500,
+  secondary: $primary-100,
+  danger-outline: transparent,
+  ghost: transparent,
 );
+
+
+$dark-button-border-colors: (
+  //fix
+  danger-outline: $danger-500,
+  primary: $primary-100,
+  danger: $primary-100,
+  secondary: $secondary-dark-outline,
+  ghost: $ghost-dark-hover,
+);
+
+
+$dark-button-hover-colors: (
+  danger-outline: $danger-500,
+  primary: $primary-hover,
+  secondary: $secondary-dark-hover,
+  danger: $danger-700,
+  ghost: $ghost-dark-hover,
+);
+
+
+$dark-button-bg-colors: (
+  primary: $primary-dark-rest,
+  danger: $danger-500,
+  secondary: $secondary-dark-rest,
+  danger-outline: transparent,
+  ghost: transparent,
+);
+
+
+
 
 // Icon colors
 $icon-colors: join($bg-colors, $text-colors, auto);

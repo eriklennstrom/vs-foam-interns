@@ -6,10 +6,10 @@ type ButtonProps = {
   variant: string
   outline?: boolean
   text?: string
-  icon?: string| null
+  icon?: string | null
   dropdown?: boolean
   disabled?: boolean
-  activeDropdown?:boolean
+  activeDropdown?: boolean
 };
 
 const emit = defineEmits(['click'])
@@ -29,8 +29,8 @@ const type: Ref = ref<string>(props.variant);
 defaultVariantMixin(buttonVariant).verifyVariant(props.variant)
   ? ''
   : (console.error(
-      'Variant value is incorrect or not included. Value set to default "primary"'
-    ),
+    'Variant value is incorrect or not included. Value set to default "primary"'
+  ),
     (type.value = 'primary'));
 
 const buttonClass = ref('button--' + type.value);
@@ -58,17 +58,11 @@ const AsyncDropdownIcon = computed(() => {
 </script>
 
 <template>
-  <button
-    :class="[buttonClass, props.outline ? buttonClass + '__outline' : null]" 
-    @click="emit('click')"
-  >
+  <button :class="[buttonClass, props.outline ? buttonClass + '__outline' : null]" @click="emit('click')">
     <AsyncIcon v-if="props.icon" :icon="props.icon" />
     {{ props.text }}
-    <AsyncDropdownIcon
-      v-if="props.dropdown"
-      :class="[props.activeDropdown? 'active' : null]" 
-      icon="caret-down"
-    />
+    <AsyncDropdownIcon v-if="props.dropdown" class="dropdown" :class="[props.activeDropdown ? 'active' : null]"
+      icon="caret-down" />
   </button>
 </template>
 

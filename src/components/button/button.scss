@@ -2,61 +2,74 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
 
-@each $name, $bg in colors.$button-bg-colors {
+
+
+
+@each $name,
+$bg in colors.$button-bg-colors {
   .button--#{$name} {
     all: unset;
     cursor: pointer;
     user-select: none;
+
+    ///TEXT FORMATTING
     @if (str-index($name, "secondary")) {
       color: map-get(colors.$text-colors, strong-dark);
-    } @else if (str-index($name, "ghost")) {
+    }
+
+    @else if (str-index($name, "ghost")) {
       color: map-get(colors.$text-colors, strong-dark);
-    } @else {
+    }
+
+    @else {
       color: map-get(colors.$text-colors, strong-light);
     }
+
+    @if (str-index($name, "danger-outline")) {
+      color: map-get(colors.$text-colors, danger);
+      outline-style: solid;
+      outline-width: 1px;
+      outline-offset: -3px;
+      outline-color: map-get(colors.$text-colors, danger);
+    }
+
+
+
     font-family: variables.$primaryFontFamily;
     width: fit-content;
     padding: 8px 16px;
     background-color: $bg;
     border-radius: 10px;
     font-size: 12px;
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out;
 
     &:focus {
       outline-style: solid;
       outline-width: 1px;
       outline-offset: -3px;
       outline-color: map-get(colors.$button-border-colors, $name);
+
+      @if (str-index($name, "danger-outline")) {
+        outline-color: inherit;
+      }
     }
+
 
     &:hover {
       background-color: map-get(colors.$button-hover-colors, $name);
+
+      @if (str-index($name, "danger-outline")) {
+        color: map-get(colors.$text-colors, strong-light);
+      }
     }
 
     &:has(svg) {
       display: flex;
       align-items: center;
       gap: 8px;
-      svg {
-        color: inherit;
-        transition: all 0.3s ease-in-out;
-      }
-    }
-  }
 
-  .button--#{$name}__outline {
-    @if (str-index($name, "secondary")) {
-      color: map-get(colors.$text-colors, light-light);
-    } @else {
-      color: $bg;
-    }
-    border: 1px solid $bg;
-    background-color: color.adjust($bg, $alpha: -0.9);
-    &:has(svg) {
       svg {
         color: inherit;
-        padding: 0 8px;
-        transition: all 0.4s ease-in-out;
       }
     }
   }
@@ -64,4 +77,54 @@
 
 .active {
   transform: rotate(-180deg);
+}
+
+.dropdown {
+  transition: transform 0.3s ease-in-out;
+}
+
+
+@each $name,
+$bg in colors.$dark-button-bg-colors {
+  .dark .button--#{$name} {
+
+    //TEXT FORMATTING
+    @if (str-index($name, "secondary")) {
+      color: map-get(colors.$text-colors, strong-light);
+    }
+
+    @else {
+      color: map-get(colors.$text-colors, strong-light);
+    }
+
+    ///BACKGROUND COLORS
+    @if (str-index($name, "danger-outline")) {
+      color: map-get(colors.$text-colors, danger);
+    }
+
+    background-color: $bg;
+
+
+    &:focus {
+      @if (str-index($name, "ghost")) {
+        outline-color: map-get(colors.$dark-button-border-colors, ghost);
+      } @else
+      {
+    }
+    }
+
+    &:hover {
+      background-color: map-get(colors.$dark-button-hover-colors, $name);
+
+      @if (str-index($name, "danger-outline")) {
+        color: map-get(colors.$text-colors, strong-light);
+      }
+
+      @if (str-index($name, "ghost")) {
+        text-decoration: underline;
+        background-color: map-get(colors.$dark-button-hover-colors, ghost);
+        ;
+      }
+    }
+  }
 }
