@@ -2,7 +2,7 @@
 @use "@/styles/variables.scss";
 
 .chip {
-  cursor: pointer;
+  height: 100%;
   user-select: none;
   font-weight: 400;
   font-size: 12px;
@@ -11,9 +11,10 @@
   padding: 8px 16px;
   font-family: variables.$primaryFontFamily;
   width: fit-content;
-  transition: all 300ms;
+  transition: background-color 300ms,  outline-color 300ms;
   outline-width: 1px;
   outline-style: solid;
+  outline-offset: -1px;
   &:has(svg) {
     display: flex;
     gap: 8px;
@@ -24,6 +25,15 @@
   }
 }
 
+.chip[role=button] {
+  cursor: pointer;
+}
+
+.chip[role=disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
 .chip--dropdown {
   position: relative;
 }
@@ -32,9 +42,9 @@ body {
   .chip {
     background-color: colors.$chip-bg-light;
     color: map-get(colors.$bg-colors, primary);
-    &[role=button]:hover {
+    &:hover {
       background: colors.$chip-hover-light;
-     outline-color: colors.$chip-hover-light-outline;
+      outline-color: colors.$chip-hover-light-outline;
     }
     &:active {
       background: colors.$chip-active-light;
@@ -43,10 +53,25 @@ body {
   }
   
   .chip__outline {
+    background-color: transparent;
     outline-color: colors.$chip-hover-outline-light;
   }
   .chip--filter {
+    background-color: transparent;
     outline-color: colors.$chip-hover-outline-light;
+    &:hover {
+      background-color: colors.$chip-bg-light;
+    }
+    &:active {
+      background-color: colors.$chip-hover-light;
+    }
+
+  }
+  .chip--input {
+    outline: none;
+    &:active {
+      background: colors.$chip-hover-light;
+    }
   }
   .chip--selected {
     background-color: colors.$chip-hover-light;
@@ -58,12 +83,8 @@ body.dark {
   .chip {
     background-color: colors.$chip-bg-dark;
     color: colors.$chip-color-dark;
-    &[role=button]:hover {
-      background: colors.$chip-hover-dark;
-      outline-color: colors.$chip-hover-outline-dark;
-    }
-    &:active {
-      background: colors.$chip-hover-dark;
+    &:hover, &:active {
+      background-color: colors.$chip-hover-dark;
       outline-color: colors.$chip-hover-outline-dark;
     }
   }
@@ -72,7 +93,14 @@ body.dark {
   }
   
   .chip--filter {
+    background-color: transparent;
     outline-color: colors.$chip-hover-outline-dark;
+    &:hover {
+      background-color: colors.$chip-bg-dark;
+    }
+    &:active {
+      background-color: colors.$chip-dark-input-active;
+    }
   }
 
   .chip--input {

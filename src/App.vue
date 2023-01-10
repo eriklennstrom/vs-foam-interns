@@ -19,23 +19,31 @@ const functionTwo: () => void = () => {
   selectedChipTwo.value = !selectedChipTwo.value
 }
 
-
-const settings = ref([])
-const filters = [
-  { id: 1, text: 'Gul', value: 'Gul', checked: false },
-  { id: 2, text: 'Grön', value: 'Grön', checked: false },
-  { id: 3, text: 'Blå', value: 'Blå', checked: false },
-];
-const removeFilter: (e:any) => void = (e) => {
-  console.log(e)
-}
-
-
 const selectedChipThree = ref(false)
 const functionThree: () => void = () => {
   selectedChipThree.value = !selectedChipThree.value
 }
 
+const activeFilters:any = ref([])
+
+const filters = [
+  { id: 1, text: 'Gul', value: 'Gul', checked: false },
+  { id: 2, text: 'Grön', value: 'Grön', checked: false },
+  { id: 3, text: 'Blå', value: 'Blå', checked: false },
+];
+
+const filterChip: (filter:any) => void = (filter) => {
+  filter.checked = !filter.checked
+  
+  let activeCopy = [...activeFilters.value]
+  if(!filter.checked) {
+    activeCopy = activeCopy.filter(x => x.id != filter.id)
+  } else if(filter.checked) {
+    activeCopy.push(filter)
+  }
+  activeFilters.value = [...activeCopy]
+  console.log(activeFilters.value)
+}
 //  --------------------------------------------------------------------
 
 // DARK MODE
@@ -47,15 +55,7 @@ const darkMode: () => void = () => {
 
   body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body? body.style.backgroundColor = '#F6F8FA' : null
 }
-const hejhopp = ref([])
 
-
-const tjenis: (filter:any) => void = (filter) => {
-  filter.checked = !filter.checked
-  filter.checked ? hejhopp.value.push(filter) : hejhopp.value = hejhopp.value.filter(x => x.text != filter.text)
-  console.log(hejhopp.value);
-  
-}
 </script>
 
 <template>
@@ -92,7 +92,12 @@ const tjenis: (filter:any) => void = (filter) => {
   <section>
     <div v-for="filter, id in filters" :key="id">
       <label :for="filter.text">{{ filter.text }}</label>
-      <input type="checkbox" :name="filter.text" @click="tjenis(filter)">
+      <input 
+        type="checkbox" 
+        :checked="filter.checked" 
+        :name="filter.text" 
+        @click="filterChip(filter)"
+      >
     </div>
   </section>
   <section>
@@ -101,6 +106,7 @@ const tjenis: (filter:any) => void = (filter) => {
       icon="circle-down"
       text="1"
       outline
+      disabled
       :selected="selectedChipOne"
       @click="functionOne"
     />
@@ -114,15 +120,6 @@ const tjenis: (filter:any) => void = (filter) => {
       @click="functionTwo"
     />
 
-    <Chip
-      v-for="setting in settings"
-      :key="setting"
-   
-      :text="setting"
-
-      removable
-      @click="removeFilter($event)"
-    />
     <Chip 
       variant="filter"
       icon="circle-down"
@@ -133,21 +130,20 @@ const tjenis: (filter:any) => void = (filter) => {
     />
 
     <Chip 
-      variant="input"
-      icon="circle-down"
+      variant="filter"
       text="Removable Input Chip"
-      outline
       removable
     />
   </section>
   <section>
     <Chip 
-      v-for="filter, id in hejhopp" 
+      v-for="filter, id in activeFilters" 
       :key="id" 
       variant="input"
       :text="filter.text" 
       removable 
       outline
+      @click="filterChip(filter)"
     />
   </section>
   <section>

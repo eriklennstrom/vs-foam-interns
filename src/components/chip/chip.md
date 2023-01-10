@@ -9,15 +9,13 @@ If the chip is used to emit a function.
 For example filter a list, all you need to do is to add the function to the Chip component
 
 ```html
-<foam-chip variant="static" text="Filter price" @click="filterPriceFunction" />
+<foam-chip variant="filter" text="< 100 kr" @click="filterFunction" />
 ```
 
-## Static
+## Filter
 
-In sets that contain at least two options, static chips represent a selection.
 
-## Selectable
 
-## Removable
+## Input
 
-Removable chips can be used to remove a filter setting.
+

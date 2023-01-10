@@ -7,8 +7,9 @@ type ChipProps = {
   text?: string
   icon?: string
   removable?: boolean | null
-  outline?: boolean
+  outline?: boolean | null
   selected?: boolean | null
+  disabled?: boolean
 };
 
 const props = withDefaults(defineProps<ChipProps>(), {
@@ -16,8 +17,9 @@ const props = withDefaults(defineProps<ChipProps>(), {
   text: 'Foam Chip',
   icon: '',
   removable: null,
-  outline: false,
-  selected: null
+  outline: null,
+  selected: null,
+  disabled: false
 });
 
 const emit = defineEmits(['click'])
@@ -36,12 +38,11 @@ defaultVariantMixin(chipVariants).verifyVariant(props.variant)
     (chipVariant.value = 'input'));
 
 onBeforeMount(() => {
-  // If the chip is not interactable, set role to not button
-  chipVariant.value == 'filter' && chipRemove.value == true ? chipRemove.value = false : null
-  chipVariant.value == 'filter' && chipOutline.value == true ? chipOutline.value = false : null
-  if(props.text == 'Filter chip') {
-    console.log(chipRemove.value)
-  }
+  // If the chip is disabled, set role to disabled
+  props.disabled ? role.value = 'disabled' : null
+
+  chipVariant.value == 'filter' && chipRemove.value == true ? chipRemove.value = null : null
+  chipVariant.value == 'filter' && chipOutline.value == true ? chipOutline.value = null : null
 })
 
 // dynamic component import
@@ -60,7 +61,11 @@ const AsyncIcon = computed(() => {
   <div
     ref="foamChip"
     :role="role"
-    :class="['chip', chipOutline ? 'chip__outline' : null, '', props.selected ? 'chip--selected' : null, props.variant == 'filter' ? 'chip--filter' : 'chip--input']"
+    :class="[
+      'chip', chipOutline ? 'chip__outline' : null, 
+      props.selected ? 'chip--selected' : null, 
+      props.variant == 'filter' ? 'chip--filter' : 'chip--input'
+    ]"
     :action="props.variant"
     @click="emit('click', props.text)"
   >

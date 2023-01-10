@@ -13,6 +13,7 @@ const config: StorybookViteConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
+    "@storybook/addon-actions",
     "storybook-dark-mode"
   ],
   framework: "@storybook/vue3",

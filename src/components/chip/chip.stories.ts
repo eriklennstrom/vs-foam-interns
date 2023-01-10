@@ -15,8 +15,9 @@ export default {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['select', 'remove', 'static'],
+      options: ['filter', 'input'],
       description: 'Property to add chosen variant',
+      defaultValue: 'filter'
     },
     icon: {
       control: { type: 'select' },
@@ -27,6 +28,23 @@ export default {
       control: {type: 'text'},
       description: 'Property for text content inside the chip',
     },
+    outline: {
+      control: { type: 'select' },
+      options: [true, false],
+      defaultValue: false
+    },
+    removable: {
+      control: { type: 'select' },
+      options: [true, false]
+    },
+    selected: {
+      control: { type: 'select' },
+      options: [false, true],
+      defaultValue: false
+    },
+    onClick: {   handleClick: {
+      action: 'select',
+    } }
   },
 } as Meta<typeof FoamChip>;
 
@@ -35,12 +53,12 @@ const Template: StoryFn<typeof FoamChip> = (args) => ({
     setup() {
       return { args };
     },
-    template: '<foam-chip v-bind="args" />',
+    template: '<foam-chip v-bind="args" />'
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: 'secondary'
+  variant: 'input'
 }
 
 export const Static: StoryFn<typeof FoamChip> = (
@@ -51,7 +69,7 @@ export const Static: StoryFn<typeof FoamChip> = (
   setup() {
     return { args, argTypes };
   },
-  template: '<foam-chip v-bind="args" variant="static" />',
+  template: '<foam-chip v-bind="args" variant="filter" />',
 });
 
 Static.argTypes = {
@@ -75,7 +93,7 @@ export const StaticIcon: StoryFn<typeof FoamChip> = (
     setup() {
       return { args, argTypes };
     },
-    template: '<foam-chip v-bind="args" variant="static" icon="warning" />',
+    template: '<foam-chip v-bind="args" variant="filter" icon="warning" />',
   });
   
   StaticIcon.storyName = 'Static with icon';
@@ -100,7 +118,7 @@ export const Selectable: StoryFn<typeof FoamChip> = (
   setup() {
     return { args, argTypes };
   },
-  template: '<foam-chip v-bind="args" variant="select" />',
+  template: '<foam-chip v-bind="args" variant="filter" />',
 });
 
 Selectable.argTypes = {
@@ -124,7 +142,7 @@ export const SelectableIcon: StoryFn<typeof FoamChip> = (
     setup() {
       return { args, argTypes };
     },
-    template: '<foam-chip v-bind="args" variant="select" icon="warning" />',
+    template: '<foam-chip v-bind="args" variant="filter" icon="warning" />',
   });
   
 SelectableIcon.storyName = 'Select with icon';
@@ -149,7 +167,7 @@ export const Removable: StoryFn<typeof FoamChip> = (
   setup() {
     return { args, argTypes };
   },
-  template: '<foam-chip v-bind="args" variant="remove" />',
+  template: '<foam-chip v-bind="args" variant="filter" removable />',
 });
 
 Removable.argTypes = {

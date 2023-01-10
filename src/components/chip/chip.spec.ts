@@ -21,6 +21,7 @@ describe('Chip', () => {
 
     it('does not render remove icon if variant is filter', () => {
         const wrapper = mount(Chip, { propsData: { variant:'filter', removable: true } })
+        // <---- WIP ---->
         expect(wrapper.vm.chipRemove).toBe(false)
     })
 
