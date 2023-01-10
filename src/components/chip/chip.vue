@@ -12,7 +12,7 @@ type ChipProps = {
 };
 
 const props = withDefaults(defineProps<ChipProps>(), {
-  variant: 'select',
+  variant: 'input',
   text: 'Foam Chip',
   icon: '',
   removable: null,
@@ -25,6 +25,7 @@ const foamChip = ref();
 const chipVariant: Ref = ref<string>(props.variant);
 const chipIcon = ref<string>(props.icon)
 const chipRemove = ref(props.removable)
+const chipOutline = ref(props.outline)
 const role = ref<string>('button')
 
 defaultVariantMixin(chipVariants).verifyVariant(props.variant)
@@ -37,7 +38,8 @@ defaultVariantMixin(chipVariants).verifyVariant(props.variant)
 onBeforeMount(() => {
   // If the chip is not interactable, set role to not button
   chipVariant.value == 'filter' && chipRemove.value == true ? chipRemove.value = false : null
-  if(props.text == 'gul') {
+  chipVariant.value == 'filter' && chipOutline.value == true ? chipOutline.value = false : null
+  if(props.text == 'Filter chip') {
     console.log(chipRemove.value)
   }
 })
@@ -58,7 +60,7 @@ const AsyncIcon = computed(() => {
   <div
     ref="foamChip"
     :role="role"
-    :class="['chip', props.outline ? 'chip__outline' : null, '', props.selected ? 'chip--selected' : null, props.variant == 'filter' ? 'chip--filter' : null]"
+    :class="['chip', chipOutline ? 'chip__outline' : null, '', props.selected ? 'chip--selected' : null, props.variant == 'filter' ? 'chip--filter' : 'chip--input']"
     :action="props.variant"
     @click="emit('click', props.text)"
   >

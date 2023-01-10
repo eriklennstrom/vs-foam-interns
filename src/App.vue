@@ -21,13 +21,19 @@ const functionTwo: () => void = () => {
 
 
 const settings = ref([])
-const items = [
-      { id: 1, text: 'Item 1', value: 'item-1' },
-      { id: 2, text: 'Item 2', value: 'item-2' },
-      { id: 3, text: 'Item 3', value: 'item-3' },
-    ];
+const filters = [
+  { id: 1, text: 'Gul', value: 'Gul', checked: false },
+  { id: 2, text: 'Grön', value: 'Grön', checked: false },
+  { id: 3, text: 'Blå', value: 'Blå', checked: false },
+];
 const removeFilter: (e:any) => void = (e) => {
   console.log(e)
+}
+
+
+const selectedChipThree = ref(false)
+const functionThree: () => void = () => {
+  selectedChipThree.value = !selectedChipThree.value
 }
 
 //  --------------------------------------------------------------------
@@ -39,9 +45,17 @@ const darkMode: () => void = () => {
   
   body?.classList.toggle('dark')
 
-  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : null
+  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body? body.style.backgroundColor = '#F6F8FA' : null
 }
+const hejhopp = ref([])
 
+
+const tjenis: (filter:any) => void = (filter) => {
+  filter.checked = !filter.checked
+  filter.checked ? hejhopp.value.push(filter) : hejhopp.value = hejhopp.value.filter(x => x.text != filter.text)
+  console.log(hejhopp.value);
+  
+}
 </script>
 
 <template>
@@ -75,7 +89,12 @@ const darkMode: () => void = () => {
     <Icons icon="user-secret" variant="danger" />
     <Icons />
   </section>
-
+  <section>
+    <div v-for="filter, id in filters" :key="id">
+      <label :for="filter.text">{{ filter.text }}</label>
+      <input type="checkbox" :name="filter.text" @click="tjenis(filter)">
+    </div>
+  </section>
   <section>
     <Chip
       variant="filter"
@@ -105,9 +124,30 @@ const darkMode: () => void = () => {
       @click="removeFilter($event)"
     />
     <Chip 
+      variant="filter"
+      icon="circle-down"
+      text="Filter chip"
+      removable
+      :selected="selectedChipThree"
+      @click="functionThree"
+    />
+
+    <Chip 
       variant="input"
       icon="circle-down"
+      text="Removable Input Chip"
+      outline
       removable
+    />
+  </section>
+  <section>
+    <Chip 
+      v-for="filter, id in hejhopp" 
+      :key="id" 
+      variant="input"
+      :text="filter.text" 
+      removable 
+      outline
     />
   </section>
   <section>
@@ -118,6 +158,10 @@ const darkMode: () => void = () => {
 </template>
 
 <style scoped lang="scss">
+
+body {
+  background-color: #F6F8FA;
+}
 section {
   display: flex;
   flex-wrap: wrap;
