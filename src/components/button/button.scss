@@ -51,8 +51,8 @@ $bg in colors.$button-bg-colors {
       outline-color: map-get(colors.$button-border-colors, $name);
 
       @if (str-index($name, "danger-outline")) {
-        
-        background-color: map-get(colors.$button-bg-colors, danger );
+
+        background-color: map-get(colors.$button-bg-colors, danger);
         color: map-get(colors.$text-colors, strong-light);
         outline-color: inherit;
       }
@@ -64,7 +64,7 @@ $bg in colors.$button-bg-colors {
 
       @if (str-index($name, "danger-outline")) {
         color: map-get(colors.$text-colors, strong-light);
-        background-color: map-get(colors.$button-hover-colors, danger-outline );
+        background-color: map-get(colors.$button-hover-colors, danger-outline);
 
       }
     }
@@ -81,13 +81,6 @@ $bg in colors.$button-bg-colors {
   }
 }
 
-.active {
-  transform: rotate(-180deg);
-}
-
-.dropdown {
-  transition: transform 0.3s ease-in-out;
-}
 
 
 @each $name,
@@ -114,9 +107,11 @@ $bg in colors.$dark-button-bg-colors {
     &:focus {
       @if (str-index($name, "ghost")) {
         outline-color: map-get(colors.$dark-button-border-colors, ghost);
-      }@if (str-index($name, "danger-outline")) {
-        
-        background-color: map-get(colors.$button-bg-colors, danger );
+      }
+
+      @if (str-index($name, "danger-outline")) {
+
+        background-color: map-get(colors.$button-bg-colors, danger);
         color: map-get(colors.$text-colors, strong-light);
         outline-color: inherit;
       }
@@ -140,5 +135,24 @@ $bg in colors.$dark-button-bg-colors {
         ;
       }
     }
+  }
+}
+
+.active {
+  transform: rotate(-180deg);
+}
+
+.dropdown {
+  transition: transform 0.3s ease-in-out;
+}
+
+@each $name,
+$bg in colors.$disabled {
+  .button--#{$name} , .disabled  {
+     
+        background-color: map-get(colors.$disabled, $name);
+        outline-color: inherit;
+        pointer-events: none;
+        ///color: FIX 
   }
 }
