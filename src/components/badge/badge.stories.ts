@@ -93,7 +93,7 @@ export const Outline: StoryFn<typeof FoamBadge> = (
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-badge v-for="variant in argTypes.variant.options" :key="variant" :variant="variant" :text="variant"  />
+      <foam-badge v-for="variant in argTypes.variant.options" outline :key="variant" :variant="variant" :text="variant"  />
     </div>
   `,
 });
@@ -110,9 +110,7 @@ Outline.argTypes = {
     },
   },
   outline: {
-
     table: {
-      defaultValue: true,
       disable: true,
     },
   },

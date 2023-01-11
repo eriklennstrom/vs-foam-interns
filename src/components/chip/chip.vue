@@ -43,6 +43,7 @@ onBeforeMount(() => {
 
   chipVariant.value == 'filter' && chipRemove.value == true ? chipRemove.value = null : null
   chipVariant.value == 'filter' && chipOutline.value == true ? chipOutline.value = null : null
+  props.selected != null ? chipRemove.value = null : null
 })
 
 // dynamic component import
