@@ -38,11 +38,12 @@ For outline, an `` outline `` prop needs to be passed to the component.
 ```
 
 ## Input Removable
+!Disclaimer - the `` removable `` prop does not work in conjunction with the `` selected `` prop.
+
 You can add the ```removable``` prop to an ```input chip``` to render the remove icon.
 
 However, you also need to pass a `` click event `` for the remove function.
 
-!Disclaimer - the `` removable `` prop does not work in conjunction with the `` selected `` prop.
 
 ```html
 <!-- good -->
@@ -65,12 +66,16 @@ However, you also need to pass a `` click event `` for the remove function.
 ```
 
 ## Selected
+!Disclaimer - the `` selected `` prop does not work in conjunction with the `` removable `` prop.
+
+The `` selected `` prop indicated to the user that the value in the chip is being active.
+
+Example. Chip with the value ``blue`` is selected - items with the property ``blue`` will then be filtered.
 
 The `` selected `` prop works in both the `` input `` and `` filter `` variants.
 
 If the `` selected `` prop should be toggleable, you also need to pass in a `` click event `` that toggles the `` selected `` prop.
 
-!Disclaimer - the `` selected `` prop does not work in conjunction with the `` removable `` prop.
 
 ```html
 <!-- good -->
@@ -94,6 +99,8 @@ Icons that are included are -
 
 If the icon property does not have the correct spelling and / or an icon that is not included, it will default to the `warning` icon.
 
+If the `` selected `` prop is used, and the value is `` true ``, the `` selected `` prop will overwrite the icon.
+
 ```html
 <!-- good -->
 <foam-chip icon="warning" />
@@ -105,4 +112,17 @@ If the icon property does not have the correct spelling and / or an icon that is
 <foam-chip icon="warning-icon" />
 ```
 
+## Disabled
 
+The `` disabled `` property is a boolean value that can be used to indicate to the user that you cannt interact with the chip
+
+```html
+<!-- good -->
+<foam-chip disabled />
+
+```
+
+```html
+<!-- bad -->
+<foam-chip "disabled" />
+```

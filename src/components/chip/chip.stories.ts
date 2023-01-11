@@ -88,14 +88,21 @@ const Template: StoryFn<typeof FoamChip> = (args) => ({
         return { args, handleClick };
       },
       template: `
-      <div style="display: flex; gap: 1em">
-        <foam-chip text="Click to select" v-bind="args" @click="handleClick"/>
+      <div style="display: flex; gap: 1em; flex-direction: column;">
+        <div style="display: flex; gap: 1em">
+          <foam-chip text="Click to select" v-bind="args" @click="handleClick"/>
+        </div>
+        <div style="display: flex; gap: 1em">
+          <foam-chip text="Input select" v-bind="args" variant="input" selected />
+          <foam-chip text="Filter select" v-bind="args" variant="filter" selected />
+        </div>
       </div>
       `
     };
   };
   
   SelectableChip.args = {
+    variant: 'input',
     selected: false,
     disabled: false,
     outline: false,
@@ -153,6 +160,11 @@ const Template: StoryFn<typeof FoamChip> = (args) => ({
       disable: true,
     },
   },
+  text: {
+    table: {
+      disable: true
+    }
+  }
 };
 
 export const Input: StoryFn<typeof FoamChip> = (
@@ -172,20 +184,53 @@ export const Input: StoryFn<typeof FoamChip> = (
   },
   template: `
   <div style="display: flex; gap: 1em; flex-direction: column; flex-wrap: wrap">
-    <p>Hover and press to see colors</p>
+    <p class="story-info">Hover and press to see colors</p>
     <div style="display: flex; gap: 1em; flex-wrap: wrap">
       <foam-chip v-bind="args" text="Input Chip" variant="input" removable />
-
       <foam-chip v-bind="args" text="Input Selected" variant="input" selected />
+      <foam-chip v-bind="args" text="Input Disabled" variant="input" disabled />
     </div>
     <div style="display: flex; gap: 1em; flex-wrap: wrap">
       <foam-chip v-bind="args" text="Outline Input" variant="input" outline removable />
-
       <foam-chip v-bind="args" text="Outline Selected" variant="input" outline selected />
+      <foam-chip v-bind="args" text="Outline Disabled" variant="input" outline disabled />
     </div>
   </div>
   `,
 });
+
+Input.argTypes = {
+  variant: {
+    table: {
+      disable: true,
+    },
+  },
+  removable: {
+    table: {
+      disable: true,
+    },
+  },
+  selected: {
+    table: {
+      disable: true,
+    },
+  },
+  outline: {
+    table: {
+      disable: true
+    }
+  },
+  disabled: {
+    table: {
+      disable: true
+    }
+  },
+  text: {
+    table: {
+      disable: true
+    }
+  }
+};
 
 export const Filter: StoryFn<typeof FoamChip> = (
   args,
@@ -195,5 +240,115 @@ export const Filter: StoryFn<typeof FoamChip> = (
   setup() {
     return { args, argTypes };
   },
-  template: '<foam-chip v-bind="args" variant="filter" />',
+  template: `
+  <div style="display: flex; gap: 1em; flex-direction: column; flex-wrap: wrap">
+    <p class="story-info">Hover and press to see colors</p>
+    <div style="display: flex; gap: 1em; flex-wrap: wrap">
+      <foam-chip v-bind="args" text="Filter Chip" variant="filter" removable />
+      <foam-chip v-bind="args" text="Filter Selected" variant="filter" selected />
+      <foam-chip v-bind="args" text="Filter Disabled" variant="filter" disabled />
+    </div>
+  </div>
+  `,
 });
+
+Filter.argTypes = {
+  variant: {
+    table: {
+      disable: true,
+    },
+  },
+  removable: {
+    table: {
+      disable: true,
+    },
+  },
+  selected: {
+    table: {
+      disable: true,
+    },
+  },
+  outline: {
+    table: {
+      disable: true
+    }
+  },
+  disabled: {
+    table: {
+      disable: true
+    }
+  },
+  text: {
+    table: {
+      disable: true
+    }
+  }
+};
+
+export const Icon: StoryFn<typeof FoamChip> = (
+  args,
+  { argTypes }
+) => ({
+  components: { FoamChip },
+  setup() {
+    return { args, argTypes };
+  },
+  template: `
+  <div style="display: flex; gap: 1em; flex-direction: column; flex-wrap: wrap">
+   <p class="story-info">Input Chip</p>
+    <div style="display: flex; gap: 1em; flex-wrap: wrap">
+      <foam-chip v-bind="args" text="Input Default" />
+      <foam-chip v-bind="args" text="Input Removable" removable />
+      <foam-chip v-bind="args" text="Input Disabled" disabled />
+    </div>
+    <div style="display: flex; gap: 1em; flex-wrap: wrap">
+      <foam-chip v-bind="args" text="Outline Default" outline />
+      <foam-chip v-bind="args" text="Outline Removable" outline removable />
+      <foam-chip v-bind="args" text="Outline Disabled" outline disabled />
+    </div>
+    <p class="story-info">Filter Chip</p>
+    <div style="display: flex; gap: 1em; flex-wrap: wrap">
+    <foam-chip v-bind="args" text="Filter Default" variant="filter" />
+    <foam-chip v-bind="args" text="Filter Disabled" variant="filter" disabled />
+  </div>
+  </div>
+  `,
+});
+
+Icon.args = {
+  icon: 'circle-down'
+}
+
+Icon.argTypes = {
+  variant: {
+    table: {
+      disable: true,
+    },
+  },
+  removable: {
+    table: {
+      disable: true,
+    },
+  },
+  selected: {
+    table: {
+      disable: true,
+    },
+  },
+  outline: {
+    table: {
+      disable: true
+    }
+  },
+  disabled: {
+    table: {
+      disable: true
+    }
+  },
+  text: {
+    table: {
+      disable: true
+    }
+  }
+};
+

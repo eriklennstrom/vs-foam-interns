@@ -1,21 +1,30 @@
 body.dark .docs-story {
   background-color: var(--surface) !important;
+  
+}
+
+body.dark .story-info {
+  color: #F6F8FA;
 }
 body.dark .sbdocs-wrapper {
   background-color: var(--light) !important;
+  
 }
 /* body.dark h2, body.dark div{
   border-color: var(--border-color);
 } */
 body.dark .docs-story > div:last-child {
   background-color: var(--overlay-2);
+  
 }
 
 body {
   overflow: scroll !important;
+  
 }
 body::-webkit-scrollbar-track, body::-webkit-scrollbar {
   background-color: unset !important;
+  
 }
 
 /* Color swatches */
@@ -26,7 +35,9 @@ body::-webkit-scrollbar-track, body::-webkit-scrollbar {
 /* Docs page */
 
 body.dark .sbdocs-wrapper .css-1fqqvvq, body.dark .css-tm6i3o.css-tm6i3o tbody tr:not(:first-child), body.dark .css-tmvzag {
-  border-color: var(--border-color);
+  border-color: #F6F8FA;
+  color: #F6F8FA;
+  background-color: #1F252F;
 }
 body.dark .sbdocs-wrapper .css-1fqqvvq, body.dark .sbdocs-wrapper .css-tm6i3o.css-tm6i3o tbody td {
   background-color: var(--surface);
@@ -43,7 +54,6 @@ body.dark .sbdocs-wrapper .css-141ccx4, body.dark .sbdocs-wrapper .css-1aszhj9, 
   color: var(--onsurface-medium);
   border-color: var(--border-color);
 }
-
 /* Color palette Docs */
 body.dark {
   .docblock-colorpalette{
@@ -70,15 +80,47 @@ body.dark {
     }
   }
   .sbdocs-wrapper {
+    .css-z9ai3{
+      color: #F6F8FA;
+    }
     .css-idch3x {
       // H2 heading
       border-color: var(--border-color);
+      color: #F6F8FA;
+    }
+    .css-1p8ieni {
+      color: #F6F8FA;
     }
     .css-1p8ieni code {
       //Small codesnippets ``
-      background-color: var(--overlay-2);
-      color: var(--onsurface-medium);
+      background-color: white;
+      color: #1F252F;
       border-color: var(--border-color);
+    }
+
+    .css-63ne3z {
+      color: #F6F8FA;
+    }
+
+    .sbdocs-h3{
+      color: #F6F8FA;
+    }
+    .css-1bwv4zc {
+      color: #F6F8FA;
+      fill: red;
+    }
+
+    .css-s7utv5 {
+      color: white;
+    }
+
+    .docblock-argstable span {
+      color: #F6F8FA;
+    }
+
+    .css-1h8u63y {
+      background-color: #F6F8FA;
+      color: #1F252F;
     }
   }
 }
