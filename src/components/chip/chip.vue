@@ -47,7 +47,7 @@ onBeforeMount(() => {
 
 // dynamic component import
 const AsyncIcon = computed(() => {
-  if (props.icon || props.removable) {
+  if (props.icon || props.removable || props.selected) {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
     );

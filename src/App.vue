@@ -147,6 +147,25 @@ const darkMode: () => void = () => {
     />
   </section>
   <section>
+    <Chip variant="input" />
+    <Chip variant="input" outline />
+    <Chip variant="input" removable />
+    <Chip 
+      variant="input"
+      outline
+      :selected="selectedChipThree"
+      @click="functionThree"
+    />
+  </section>
+  <section>
+    <Chip variant="filter" />
+    <Chip 
+      variant="filter"       
+      :selected="selectedChipTwo"
+      @click="functionTwo" 
+    />
+  </section>
+  <section>
     <button @click="darkMode">
       DARK MODE!
     </button>
