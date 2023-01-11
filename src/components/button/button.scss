@@ -14,11 +14,12 @@ $bg in colors.$button-bg-colors {
 
     ///TEXT FORMATTING
     @if (str-index($name, "secondary")) {
-      color: map-get(colors.$text-colors, strong-dark);
+      color: map-get(colors.$text-colors, secondary-light);
     }
 
     @else if (str-index($name, "ghost")) {
       color: map-get(colors.$text-colors, strong-dark);
+      text-decoration: underline;
     }
 
     @else {
@@ -50,6 +51,9 @@ $bg in colors.$button-bg-colors {
       outline-color: map-get(colors.$button-border-colors, $name);
 
       @if (str-index($name, "danger-outline")) {
+        
+        background-color: map-get(colors.$button-bg-colors, danger );
+        color: map-get(colors.$text-colors, strong-light);
         outline-color: inherit;
       }
     }
@@ -60,6 +64,8 @@ $bg in colors.$button-bg-colors {
 
       @if (str-index($name, "danger-outline")) {
         color: map-get(colors.$text-colors, strong-light);
+        background-color: map-get(colors.$button-hover-colors, danger-outline );
+
       }
     }
 
@@ -108,9 +114,16 @@ $bg in colors.$dark-button-bg-colors {
     &:focus {
       @if (str-index($name, "ghost")) {
         outline-color: map-get(colors.$dark-button-border-colors, ghost);
-      } @else
-      {
-    }
+      }@if (str-index($name, "danger-outline")) {
+        
+        background-color: map-get(colors.$button-bg-colors, danger );
+        color: map-get(colors.$text-colors, strong-light);
+        outline-color: inherit;
+      }
+
+      @else if (str-index($name, "secondary")) {
+        outline-color: map-get(colors.$button-hover-colors, secondary);
+      }
     }
 
     &:hover {
@@ -119,6 +132,7 @@ $bg in colors.$dark-button-bg-colors {
       @if (str-index($name, "danger-outline")) {
         color: map-get(colors.$text-colors, strong-light);
       }
+
 
       @if (str-index($name, "ghost")) {
         text-decoration: underline;

@@ -4,7 +4,6 @@ import { defaultVariantMixin, buttonVariant } from '@/helpers/mixins/jsMixins';
 
 type ButtonProps = {
   variant: string
-  outline?: boolean
   text?: string
   icon?: string | null
   dropdown?: boolean
@@ -17,10 +16,11 @@ const emit = defineEmits(['click'])
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
-  outline: false,
   text: 'Button',
   icon: null,
-  activeDropdown: false
+  activeDropdown: false,
+  dropdown: false,
+  disabled: false
 });
 
 
@@ -58,7 +58,7 @@ const AsyncDropdownIcon = computed(() => {
 </script>
 
 <template>
-  <button :class="[buttonClass, props.outline ? buttonClass + '__outline' : null]" @click="emit('click')">
+  <button :class="[buttonClass]" @click="emit('click')">
     <AsyncIcon v-if="props.icon" :icon="props.icon" />
     {{ props.text }}
     <AsyncDropdownIcon v-if="props.dropdown" class="dropdown" :class="[props.activeDropdown ? 'active' : null]"
