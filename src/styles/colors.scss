@@ -36,6 +36,15 @@ $secondary-dark-outline: rgba(255, 255, 255, 0.87);
 $secondary-dark-hover: rgba(255, 255, 255, 0.12);
 $ghost-hover: #F9F9F9;
 $ghost-dark-hover: rgba(255, 255, 255, 0.08);
+$primary-disabled:#F3F3F3;
+$primary-dark-disabled: rgba(255, 255, 255, 0.38);
+
+$primary-text-disabled: #A9A9A9;
+$primary-text-dark-disabled:rgba(255, 255, 255, 0.38);
+
+
+
+
 
 
 
@@ -65,6 +74,10 @@ $text-colors: (
   rest: #00b0d4,
   danger: #dc3545,
   secondary-light:  #002737,
+);
+
+$disabled-text-colors:(
+
 );
 
 
@@ -121,7 +134,21 @@ $dark-button-bg-colors: (
   ghost: transparent,
 );
 
+$disabled: (
+  primary: $primary-disabled,
+  danger: $primary-disabled,
+  danger-outline: transparent,
+  secondary: transparent,
+  ghost: transparent,
+);
 
+$dark-disabled:(
+  primary: transparent,
+  danger: $primary-disabled,
+  danger-outline:transparent,
+  secondary: transparent,
+  ghost: transparent,
+);
 
 
 // Icon colors

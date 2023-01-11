@@ -27,6 +27,7 @@ const darkMode: () => void = () => {
   <section>
 
     <Buttonvue
+    disabled
       variant="danger-outline"
       text="Hover"
       icon="warning"

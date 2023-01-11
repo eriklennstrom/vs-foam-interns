@@ -58,7 +58,7 @@ const AsyncDropdownIcon = computed(() => {
 </script>
 
 <template>
-  <button :class="[buttonClass]" @click="emit('click')">
+  <button :class="[buttonClass, props.disabled ? 'disabled' : '']" @click="emit('click')">
     <AsyncIcon v-if="props.icon" :icon="props.icon" />
     {{ props.text }}
     <AsyncDropdownIcon v-if="props.dropdown" class="dropdown" :class="[props.activeDropdown ? 'active' : null]"
