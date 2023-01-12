@@ -85,7 +85,7 @@ const AsyncRemoveIcon = computed(() => {
       props.variant == 'filter' ? 'chip--filter' : 'chip--input'
     ]"
     :action="props.variant"
-    @click="emit('click', props.text)"
+    @click="emit('click')"
   >
     <AsyncSelectedIcon v-if="props.selected" icon="check" :size="8" />
     <AsyncIcon
