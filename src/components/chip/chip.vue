@@ -25,7 +25,6 @@ const props = withDefaults(defineProps<ChipProps>(), {
 const emit = defineEmits(['click'])
 const foamChip: Ref = ref();
 const chipVariant: Ref = ref<string>(props.variant);
-const chipIcon: Ref = ref<string>(props.icon)
 const chipRemove: Ref = ref<boolean | null>(props.removable)
 const chipOutline: Ref = ref<boolean | null>(props.outline)
 const role: Ref = ref<string>('button')
@@ -73,7 +72,7 @@ const AsyncIcon = computed(() => {
     <AsyncIcon v-if="props.selected" icon="check" :size="8" />
     <AsyncIcon
       v-if="props.icon && !props.selected"
-      :icon="chipIcon"
+      :icon="props.icon"
     />
     {{ props.text }}
     <AsyncIcon
