@@ -23,12 +23,12 @@ const props = withDefaults(defineProps<ChipProps>(), {
 });
 
 const emit = defineEmits(['click'])
-const foamChip = ref();
+const foamChip: Ref = ref();
 const chipVariant: Ref = ref<string>(props.variant);
-const chipIcon = ref<string>(props.icon)
-const chipRemove = ref(props.removable)
-const chipOutline = ref(props.outline)
-const role = ref<string>('button')
+const chipIcon: Ref = ref<string>(props.icon)
+const chipRemove: Ref = ref<boolean | null>(props.removable)
+const chipOutline: Ref = ref<boolean | null>(props.outline)
+const role: Ref = ref<string>('button')
 
 defaultVariantMixin(chipVariants).verifyVariant(props.variant)
   ? null
