@@ -28,13 +28,11 @@ $bg in colors.$button-bg-colors {
 
     @if (str-index($name, "danger-outline")) {
       color: map-get(colors.$text-colors, danger);
+      outline-offset: -1px;
       outline-style: solid;
       outline-width: 1px;
-      outline-offset: -3px;
       outline-color: map-get(colors.$text-colors, danger);
     }
-
-
 
     font-family: variables.$primaryFontFamily;
     width: fit-content;
@@ -44,6 +42,7 @@ $bg in colors.$button-bg-colors {
     font-size: 12px;
     transition: all 0.3s ease-in-out;
 
+    ///Borders
     &:focus {
       outline-style: solid;
       outline-width: 1px;
@@ -148,11 +147,60 @@ $bg in colors.$dark-button-bg-colors {
 
 @each $name,
 $bg in colors.$disabled {
-  .button--#{$name} , .disabled  {
-     
-        background-color: map-get(colors.$disabled, $name);
-        outline-color: inherit;
-        pointer-events: none;
-        ///color: FIX 
+
+  // TEXT FORMATTING
+  .button--#{$name}.disabled {
+    pointer-events: none;
+    background-color: map-get(colors.$disabled, $name);
+    color: map-get(colors.$disabled-text-colors, $name);
+    text-decoration: none;
+
+
+    // BORDER EXCEPTIONS
+    @if (str-index($name, "danger-outline")) {
+      outline-color: map-get(colors.$disabled-text-colors, $name);
+      outline-style: solid;
+      outline-width: 1px;
+      text-decoration: none;
+    }
+
+    @if (str-index($name, "secondary")) {
+      outline-color: map-get(colors.$disabled-text-colors, $name);
+      outline-style: solid;
+      outline-width: 1px;
+      text-decoration: none;
+    }
+
+
+
+    &:focus {
+      background-color: map-get(colors.$disabled, $name);
+      outline-color: map-get(colors.$disabled, $name);
+      pointer-events: none;
+      color: map-get(colors.$disabled-text-colors, $name);
+      outline-width: 1px;
+    }
+  }
+}
+
+@each $name,
+$bg in colors.$disabled {
+
+  // BORDER FORMAT DARK MODE
+  .dark .button--#{$name}.disabled {
+    background-color: map-get(colors.$dark-disabled, $name);
+    outline-color: map-get(colors.$disabled-text-colors, $name);
+    color: map-get(colors.$disabled-text-colors, $name);
+    text-decoration: none;
+
+    // BORDER EXCEPTIONS
+    @if (str-index($name, "primary")) {
+      outline-color: map-get(colors.$disabled-text-colors, $name);
+      outline-style: solid;
+      outline-width: 1px;
+      text-decoration: none;
+    }
+
+
   }
 }

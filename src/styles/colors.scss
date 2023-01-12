@@ -31,17 +31,16 @@ $success: #55c284;
 $primary-dark-hover: #005E71;
 $primary-dark-rest: #009CBD;
 $secondary-hover: #B8CAD1;
-$secondary-dark-rest: rgba(255, 255, 255, 0.04);
-$secondary-dark-outline: rgba(255, 255, 255, 0.87);
-$secondary-dark-hover: rgba(255, 255, 255, 0.12);
+$secondary-dark-rest: #ffffff0a;
+$secondary-dark-outline: #ffffffde;
+$secondary-dark-hover: #ffffff1f;
 $ghost-hover: #F9F9F9;
-$ghost-dark-hover: rgba(255, 255, 255, 0.08);
-$primary-disabled:#F3F3F3;
-$primary-dark-disabled: rgba(255, 255, 255, 0.38);
+$ghost-dark-hover: #ffffff14;
+$primary-disabled: #F3F3F3;
+$primary-dark-disabled: #ffffff61;
 
 $primary-text-disabled: #A9A9A9;
-$primary-text-dark-disabled:rgba(255, 255, 255, 0.38);
-
+$primary-text-dark-disabled: #ffffff61;
 
 
 
@@ -73,11 +72,7 @@ $text-colors: (
   active: #4dd1bb,
   rest: #00b0d4,
   danger: #dc3545,
-  secondary-light:  #002737,
-);
-
-$disabled-text-colors:(
-
+  secondary-light: #002737,
 );
 
 
@@ -134,6 +129,9 @@ $dark-button-bg-colors: (
   ghost: transparent,
 );
 
+
+
+
 $disabled: (
   primary: $primary-disabled,
   danger: $primary-disabled,
@@ -142,13 +140,24 @@ $disabled: (
   ghost: transparent,
 );
 
-$dark-disabled:(
+$dark-disabled: (
   primary: transparent,
   danger: $primary-disabled,
   danger-outline:transparent,
   secondary: transparent,
   ghost: transparent,
 );
+
+
+$disabled-text-colors: (
+  primary: #A9A9A9,
+  danger: #A9A9A9,
+  danger-outline: #C4C4C4,
+  secondary: #C4C4C4,
+  ghost: #C4C4C4,
+);
+
+
 
 
 // Icon colors

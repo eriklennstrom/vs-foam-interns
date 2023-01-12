@@ -18,64 +18,56 @@ const darkMode: () => void = () => {
 
   body?.classList.toggle('dark')
 
-  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body? body.style.backgroundColor = '#F6F8FA' : null
+  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body ? body.style.backgroundColor = '#F6F8FA' : null
 }
 
 </script>
 
 <template>
   <section>
+    <Buttonvue/>
+    <Buttonvue variant="primary" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1" @click="iconflip" />
+    <Buttonvue variant="danger" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1" @click="iconflip" />
 
-    <Buttonvue
-    disabled
-      variant="danger-outline"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :activeDropdown="buttonIcon1"
-      @click="iconflip"
-    />
+    <Buttonvue variant="danger-outline" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
+      @click="iconflip" />
 
-    <Buttonvue
-      variant="danger"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :activeDropdown="buttonIcon1"
-      @click="iconflip"
-    />
 
-    <Buttonvue
-      variant="primary"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :activeDropdown="buttonIcon1"
-      @click="iconflip"
-    />
+    <Buttonvue variant="secondary" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
+      @click="iconflip" />
 
-    <Buttonvue
-      variant="ghost"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :activeDropdown="buttonIcon1"
-      @click="iconflip"
-    />
+    <Buttonvue variant="ghost" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1" @click="iconflip" />
 
-    <Buttonvue
-      variant="secondary"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :activeDropdown="buttonIcon1"
-      @click="iconflip"
-    />
+
 
   </section>
+  <section>
+
+    <Buttonvue disabled variant="primary" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
+      @click="iconflip" />
+
+    <Buttonvue disabled variant="danger" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
+      @click="iconflip" />
+
+    <Buttonvue disabled variant="danger-outline" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
+      @click="iconflip" />
+
+    <Buttonvue disabled variant="secondary" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
+      @click="iconflip" />
+
+
+
+    <Buttonvue disabled variant="ghost" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
+      @click="iconflip" />
+
+
+
+  </section>
+
+
   <button @click="darkMode">
-      DARK MODE!
-    </button>
+    DARK MODE!
+  </button>
 </template>
 
 <style scoped lang="scss">
@@ -86,7 +78,4 @@ section {
   justify-content: space-evenly;
   margin-bottom: 4em;
 }
-
-
-
 </style>

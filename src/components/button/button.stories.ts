@@ -40,6 +40,11 @@ export default {
       options: [true, false],
       description: 'Property for dropdown boolean',
     },
+    disabled: {
+      control: { type: 'boolean' },
+      options: [true, false],
+      description: 'Property for disabled boolean',
+    },
 
     click: {
       table: {
@@ -149,20 +154,21 @@ export const Dropdown: StoryFn<typeof FoamButton> = (
 export const Icons: StoryFn<typeof FoamButton> = (args) => {
   const [_, updateArgs] = useArgs();
   return {
-  components: { FoamButton },
-  setup() {
-    const handleClick = () => {
-      updateArgs({ activeDropdown: !args.activeDropdown })
-    };
+    components: { FoamButton },
+    setup() {
+      const handleClick = () => {
+        updateArgs({ activeDropdown: !args.activeDropdown })
+      };
 
 
-    return { args, handleClick };
-  },
-  template: `
+      return { args, handleClick };
+    },
+    template: `
     <div style="display: flex; gap: 1em">
       <foam-button variant="primary" v-bind="args" icon='circle-down' @click="handleClick" />
     </div>
-  `,}
+  `,
+  }
 };
 
 Icons.argTypes = {
@@ -183,12 +189,12 @@ Icons.argTypes = {
 };
 
 Dropdown.args = {
-variant: "primary",
- dropdown: {
-  table:{
-    defaultValue: "true"
+  variant: "primary",
+  dropdown: {
+    table: {
+      defaultValue: "true"
+    }
   }
- }
 }
 
 
@@ -212,5 +218,46 @@ Dropdown.argTypes = {
   },
 };
 
+
+
+export const Disabled: StoryFn<typeof FoamButton> = (
+  args,
+  { argTypes }
+) => ({
+  components: { FoamButton },
+  setup() {
+    return { args, argTypes };
+  },
+  template: `
+  <div style="display: flex; gap: 1em; flex-wrap: wrap">
+    <foam-button disabled v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" />
+  </div>
+`,
+});
+
+
+
+
+
+Disabled.argTypes = {
+  variant: {
+    table: {
+      disable: true,
+    },
+  },
+  activeDropdown: {
+    table: {
+      disable: true,
+    },
+  },
+  dropdown: {
+    table: {
+      disable: true,
+    },
+  },
+  text: {
+    description: 'Property for text content inside the button',
+  },
+};
 
 
