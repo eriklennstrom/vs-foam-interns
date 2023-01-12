@@ -47,7 +47,25 @@ onBeforeMount(() => {
 
 // dynamic component import
 const AsyncIcon = computed(() => {
-  if (props.icon || props.removable || props.selected) {
+  if (props.icon) {
+    const Icon = defineAsyncComponent(
+      () => import('@/components/icons/icons.vue')
+    );
+    return Icon;
+  } else return null;
+});
+
+const AsyncSelectedIcon = computed(() => {
+  if (props.selected) {
+    const Icon = defineAsyncComponent(
+      () => import('@/components/icons/icons.vue')
+    );
+    return Icon;
+  } else return null;
+});
+
+const AsyncRemoveIcon = computed(() => {
+  if (props.removable) {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
     );
@@ -69,13 +87,13 @@ const AsyncIcon = computed(() => {
     :action="props.variant"
     @click="emit('click', props.text)"
   >
-    <AsyncIcon v-if="props.selected" icon="check" :size="8" />
+    <AsyncSelectedIcon v-if="props.selected" icon="check" :size="8" />
     <AsyncIcon
       v-if="props.icon && !props.selected"
       :icon="props.icon"
     />
     {{ props.text }}
-    <AsyncIcon
+    <AsyncRemoveIcon
       v-if="chipRemove"
       icon="xmark"
       :size="8"
