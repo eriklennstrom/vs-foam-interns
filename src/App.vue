@@ -59,7 +59,7 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
-  <section>
+  <!-- <section>
     <Badge
       variant="dangejyhgr"
       text="Hello Varnish"
@@ -164,6 +164,22 @@ const darkMode: () => void = () => {
       :selected="selectedChipTwo"
       @click="functionTwo" 
     />
+  </section> -->
+  <section>
+    <h2>Input Default</h2>
+    <Chip variant="input" />
+    <Chip variant="input" selected />
+    <Chip variant="input" removable />
+    <h2>Input Outline</h2>
+    <Chip variant="input" outline />
+    <Chip variant="input" outline selected />
+    <Chip variant="input" outline removable />  
+  </section>
+
+  <section>
+    <h2>Filter</h2>
+    <Chip variant="filter" />
+    <Chip variant="filter" selected />
   </section>
   <section>
     <button @click="darkMode">

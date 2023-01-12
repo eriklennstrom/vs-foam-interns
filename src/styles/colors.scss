@@ -14,23 +14,77 @@ $primary-bg-dark: #1F252F;
 
 // Chip
 // Light
-$chip-bg-light: #E6EBED;
-$chip-hover-light: #D0D9DD; // Hover and pressed light default
-$chip-hover-light-outline: rgba(0, 0, 0, 0.1); // Default outline light hover and pressed
-$chip-active-light-bg: #EBEFF1;
-$chip-hover-outline-light: #003349;
+// $chip-bg-light: #E6EBED;
+// $chip-hover-light: #D0D9DD; // Hover and pressed light default
+// $chip-hover-light-outline: rgba(0, 0, 0, 0.1); // Default outline light hover and pressed
+// $chip-active-light-bg: #EBEFF1;
+// $chip-hover-outline-light: #003349;
 
-$chip-active-light: rgba(0, 51, 73, 0.1);
+// $chip-active-light: rgba(0, 51, 73, 0.1);
 
-// Dark 
-$chip-color-dark: rgba(255, 255, 255, 0.87); 
-$chip-bg-dark: #373C43;
-$chip-hover-dark: #40464E; // Hover and pressed dark default
+// // Dark 
+// $chip-color-dark: rgba(255, 255, 255, 0.87); 
+// $chip-bg-dark: #373C43;
+// $chip-hover-dark: #40464E; // Hover and pressed dark default
 
-$chip-hover-outline-dark: rgba(255, 255, 255, 0.38);
-$chip-dark-input-active: #4B525B;
+// $chip-hover-outline-dark: rgba(255, 255, 255, 0.38);
+// $chip-dark-input-active: #4B525B;
 
-$chip-filter-outline-dark: rgba(255, 255, 255, 0.2);
+// $chip-filter-outline-dark: rgba(255, 255, 255, 0.2);
+
+
+// Chip
+// Light
+// Input
+$chip-text-light: #003349;
+$chip-default-bg-light: #E6EBED;
+$chip-default-hover-light: #D0D9DD;
+$chip-default-active-light: #D0D9DD;
+$chip-default-border-light: rgba(0, 0, 0, 0.1);
+
+$chip-outline-bg-light: transparent;
+$chip-outline-hover-light: #EBEFF1;
+$chip-outline-active-light: #EBEFF1;
+$chip-outline-border-light: #003349;
+
+$chip-selected-light: rgba(0, 51, 73, 0.1);
+
+// Filter
+$chip-filter-bg-light: transparent;
+$chip-filter-hover-light: #E6EBED;
+$chip-filter-active-light: #D0D9DD;
+$chip-filter-border-light: #003349;
+
+// ---- WIP not in figma ---
+// $chip-filter-hover-border-light: rgba(255, 255, 255, 0.38);
+// $chip-filter-active-border-light: rgba(255, 255, 255, 0.38);
+
+// Dark
+// Input 
+$chip-text-dark: rgba(255, 255, 255, 0.87);
+$chip-default-bg-dark: #373C43;
+$chip-default-hover-dark: #40464E;
+$chip-default-active-dark: #40464E;
+$chip-default-border-dark: rgba(255, 255, 255, 0.38);
+
+$chip-outline-bg-dark: transparent;
+$chip-outline-hover-dark: #EBEFF1;
+$chip-outline-active-dark: #EBEFF1;
+$chip-outline-border-dark: rgba(255, 255, 255, 0.38);;
+
+// Filter
+$chip-filter-bg-dark: transparent;
+$chip-filter-hover-dark: #373C43;
+$chip-filter-active-dark: #4B525B;
+$chip-filter-border-dark: rgba(255, 255, 255, 0.2);
+$chip-filter-hover-border-dark: rgba(255, 255, 255, 0.38);
+$chip-filter-active-border-dark: rgba(255, 255, 255, 0.38);
+
+$chip-selected-dark: #373C43;
+
+
+
+
 
 //bg colors
 $bg-colors: (
@@ -58,7 +112,7 @@ $bg-colors: (
 // danger-900: #64141b,
 // warning: #faa05a,
 // success: #55c284
-
+$transparent: transparent;
 //text colors
 // <--- WIP --->
 $text-colors: (
