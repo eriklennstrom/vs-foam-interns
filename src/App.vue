@@ -167,7 +167,7 @@ const darkMode: () => void = () => {
   </section> -->
   <section>
     <h2>Input Default</h2>
-    <Chip variant="input" />
+    <Chip variant="input" disabled />
     <Chip variant="input" selected />
     <Chip variant="input" removable />
     <h2>Input Outline</h2>
