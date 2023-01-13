@@ -3,13 +3,10 @@ import type { Meta, StoryFn } from '@storybook/vue3';
 import readme from '@/components/button/button.md?raw';
 import { useArgs } from '@storybook/client-api';
 
-
-
 export default {
   title: 'Components/Button',
   component: FoamButton,
   parameters: {
-
     docs: {
       description: {
         component: readme,
@@ -58,8 +55,6 @@ export default {
   },
 } as Meta<typeof FoamButton>;
 
-
-
 const Template: StoryFn<typeof FoamButton> = (args) => {
   const [_, updateArgs] = useArgs();
   return {
@@ -67,29 +62,21 @@ const Template: StoryFn<typeof FoamButton> = (args) => {
 
     setup() {
       const handleClick = () => {
-        updateArgs({ activeDropdown: !args.activeDropdown })
+        updateArgs({ activeDropdown: !args.activeDropdown });
       };
 
       return { args, handleClick };
     },
     template: '<foam-button  v-bind="args" @click="handleClick" />',
-  }
+  };
 };
-
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: 'primary'
-}
+  variant: 'primary',
+};
 
-
-
-
-
-export const Variants: StoryFn<typeof FoamButton> = (
-  args,
-  { argTypes }
-) => ({
+export const Variants: StoryFn<typeof FoamButton> = (args, { argTypes }) => ({
   components: { FoamButton },
   setup() {
     return { args, argTypes };
@@ -100,11 +87,6 @@ export const Variants: StoryFn<typeof FoamButton> = (
   </div>
 `,
 });
-
-
-
-
-
 
 Variants.argTypes = {
   variant: {
@@ -127,19 +109,14 @@ Variants.argTypes = {
   },
 };
 
-export const Dropdown: StoryFn<typeof FoamButton> = (
-  args,
-  { argTypes }
-) => {
+export const Dropdown: StoryFn<typeof FoamButton> = (args, { argTypes }) => {
   const [_, updateArgs] = useArgs();
   return {
-
     components: { FoamButton },
     setup() {
       const handleClick = () => {
-        updateArgs({ activeDropdown: !args.activeDropdown })
+        updateArgs({ activeDropdown: !args.activeDropdown });
       };
-
 
       return { args, argTypes, handleClick };
     },
@@ -149,7 +126,7 @@ export const Dropdown: StoryFn<typeof FoamButton> = (
     </div>
   `,
   };
-}
+};
 
 export const Icons: StoryFn<typeof FoamButton> = (args) => {
   const [_, updateArgs] = useArgs();
@@ -157,9 +134,8 @@ export const Icons: StoryFn<typeof FoamButton> = (args) => {
     components: { FoamButton },
     setup() {
       const handleClick = () => {
-        updateArgs({ activeDropdown: !args.activeDropdown })
+        updateArgs({ activeDropdown: !args.activeDropdown });
       };
-
 
       return { args, handleClick };
     },
@@ -168,7 +144,7 @@ export const Icons: StoryFn<typeof FoamButton> = (args) => {
       <foam-button variant="primary" v-bind="args" icon='circle-down' @click="handleClick" />
     </div>
   `,
-  }
+  };
 };
 
 Icons.argTypes = {
@@ -179,8 +155,8 @@ Icons.argTypes = {
   },
   icon: {
     table: {
-      defaultValue: 'circle-down'
-    }
+      defaultValue: 'circle-down',
+    },
   },
 
   text: {
@@ -189,21 +165,17 @@ Icons.argTypes = {
 };
 
 Dropdown.args = {
-  variant: "primary",
+  variant: 'primary',
   dropdown: {
     table: {
-      defaultValue: "true"
-    }
-  }
-}
-
+      defaultValue: 'true',
+    },
+  },
+};
 
 Dropdown.argTypes = {
-  variant:
-  {
-
+  variant: {
     table: {
-
       disable: true,
     },
   },
@@ -218,12 +190,7 @@ Dropdown.argTypes = {
   },
 };
 
-
-
-export const Disabled: StoryFn<typeof FoamButton> = (
-  args,
-  { argTypes }
-) => ({
+export const Disabled: StoryFn<typeof FoamButton> = (args, { argTypes }) => ({
   components: { FoamButton },
   setup() {
     return { args, argTypes };
@@ -234,10 +201,6 @@ export const Disabled: StoryFn<typeof FoamButton> = (
   </div>
 `,
 });
-
-
-
-
 
 Disabled.argTypes = {
   variant: {
@@ -259,5 +222,3 @@ Disabled.argTypes = {
     description: 'Property for text content inside the button',
   },
 };
-
-

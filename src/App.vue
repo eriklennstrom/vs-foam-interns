@@ -25,43 +25,104 @@ const darkMode: () => void = () => {
 
 <template>
   <section>
-    <Buttonvue/>
-    <Buttonvue variant="primary" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1" @click="iconflip" />
-    <Buttonvue variant="danger" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1" @click="iconflip" />
+    <Buttonvue />
+    <Buttonvue
+      variant="primary"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
+    <Buttonvue
+      variant="danger"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
 
-    <Buttonvue variant="danger-outline" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
-      @click="iconflip" />
+    <Buttonvue
+      variant="danger-outline"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
 
 
-    <Buttonvue variant="secondary" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
-      @click="iconflip" />
+    <Buttonvue
+      variant="secondary"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
 
-    <Buttonvue variant="ghost" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1" @click="iconflip" />
-
-
-
+    <Buttonvue
+      variant="ghost"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
   </section>
   <section>
+    <Buttonvue
+      disabled
+      variant="primary"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
 
-    <Buttonvue disabled variant="primary" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
-      @click="iconflip" />
+    <Buttonvue
+      disabled
+      variant="danger"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
 
-    <Buttonvue disabled variant="danger" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
-      @click="iconflip" />
+    <Buttonvue
+      disabled
+      variant="danger-outline"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
 
-    <Buttonvue disabled variant="danger-outline" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
-      @click="iconflip" />
-
-    <Buttonvue disabled variant="secondary" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
-      @click="iconflip" />
-
-
-
-    <Buttonvue disabled variant="ghost" text="Hover" icon="warning" dropdown :activeDropdown="buttonIcon1"
-      @click="iconflip" />
-
+    <Buttonvue
+      disabled
+      variant="secondary"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
 
 
+
+    <Buttonvue
+      disabled
+      variant="ghost"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
   </section>
 
 
