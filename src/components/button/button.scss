@@ -189,6 +189,7 @@ $bg in colors.$disabled {
 
   // BORDER FORMAT DARK MODE
   .dark .button--#{$name}.disabled {
+    
     background-color: map-get(colors.$dark-disabled, $name);
     outline-color: map-get(colors.$disabled-text-colors, $name);
     color: map-get(colors.$disabled-text-colors, $name);
@@ -200,6 +201,9 @@ $bg in colors.$disabled {
       outline-style: solid;
       outline-width: 1px;
       text-decoration: none;
+    }
+
+    &:focus-visible{
     }
 
 
