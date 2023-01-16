@@ -32,10 +32,7 @@ const type: Ref = ref<string>(props.variant);
 
 defaultVariantMixin(buttonVariant).verifyVariant(props.variant)
   ? ''
-  : (console.error(
-      'Variant value is incorrect or not included. Value set to default "primary"'
-    ),
-    (type.value = 'primary'));
+  : (type.value = 'primary');
 
 const buttonClass = ref('button--' + type.value);
 
@@ -56,7 +53,8 @@ const AsyncDropdownIcon = computed(() => {
       () => import('@/components/icons/icons.vue')
     );
     return Icon;
-  } else return null;
+  }
+  return null;
 });
 </script>
 
