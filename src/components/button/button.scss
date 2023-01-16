@@ -1,30 +1,211 @@
-// .storybook-button {
-//   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-//   font-weight: 700;
-//   border: 0;
-//   border-radius: 3em;
-//   cursor: pointer;
-//   display: inline-block;
-//   line-height: 1;
-// }
-// .storybook-button--primary {
-//   color: white;
-//   background-color: #1ea7fd;
-// }
-// .storybook-button--secondary {
-//   color: #333;
-//   background-color: transparent;
-//   box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
-// }
-// .storybook-button--small {
-//   font-size: 12px;
-//   padding: 10px 16px;
-// }
-// .storybook-button--medium {
-//   font-size: 14px;
-//   padding: 11px 20px;
-// }
-// .storybook-button--large {
-//   font-size: 16px;
-//   padding: 12px 24px;
-// }
+@use "sass:color";
+@use "@/styles/colors.scss";
+@use "@/styles/variables.scss";
+
+
+
+
+@each $name,
+$bg in colors.$button-bg-colors {
+  .button--#{$name} {
+    all: unset;
+    cursor: pointer;
+    user-select: none;
+
+    ///TEXT FORMATTING
+    @if (str-index($name, "secondary")) {
+      color: map-get(colors.$text-colors, secondary-light);
+    }
+
+    @else if (str-index($name, "ghost")) {
+      color: map-get(colors.$text-colors, strong-dark);
+      text-decoration: underline;
+    }
+
+    @else {
+      color: map-get(colors.$text-colors, strong-light);
+    }
+
+    @if (str-index($name, "danger-outline")) {
+      color: map-get(colors.$text-colors, danger);
+      outline-offset: -1px;
+      outline-style: solid;
+      outline-width: 1px;
+      outline-color: map-get(colors.$text-colors, danger);
+    }
+
+    font-family: variables.$primaryFontFamily;
+    width: fit-content;
+    padding: 8px 16px;
+    background-color: $bg;
+    border-radius: 10px;
+    font-size: 12px;
+    transition: all 0.15s ease-in-out;
+
+    ///Borders
+    &:focus-visible {
+      outline-style: solid;
+      outline-width: 1px;
+      outline-offset: -3px;
+      outline-color: map-get(colors.$button-border-colors, $name);
+      transition: outline 0s;
+
+      @if (str-index($name, "danger-outline")) {
+
+        background-color: map-get(colors.$button-bg-colors, danger);
+        color: map-get(colors.$text-colors, strong-light);
+        outline-color: inherit;
+      }
+    }
+
+
+    &:hover {
+      background-color: map-get(colors.$button-hover-colors, $name);
+
+      @if (str-index($name, "danger-outline")) {
+        color: map-get(colors.$text-colors, strong-light);
+        background-color: map-get(colors.$button-hover-colors, danger-outline);
+
+      }
+    }
+
+    &:has(svg) {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      svg {
+        color: inherit;
+      }
+    }
+  }
+}
+
+
+
+@each $name,
+$bg in colors.$dark-button-bg-colors {
+  .dark .button--#{$name} {
+
+    //TEXT FORMATTING
+    @if (str-index($name, "secondary")) {
+      color: map-get(colors.$text-colors, strong-light);
+    }
+
+    @else {
+      color: map-get(colors.$text-colors, strong-light);
+    }
+
+    ///BACKGROUND COLORS
+    @if (str-index($name, "danger-outline")) {
+      color: map-get(colors.$text-colors, danger);
+    }
+
+    background-color: $bg;
+
+
+    &:focus-visible {
+      @if (str-index($name, "ghost")) {
+        outline-color: map-get(colors.$dark-button-border-colors, ghost);
+      }
+
+      @if (str-index($name, "danger-outline")) {
+
+        background-color: map-get(colors.$button-bg-colors, danger);
+        color: map-get(colors.$text-colors, strong-light);
+        outline-color: inherit;
+      }
+
+      @else if (str-index($name, "secondary")) {
+        outline-color: map-get(colors.$button-hover-colors, secondary);
+      }
+    }
+
+    &:hover {
+      background-color: map-get(colors.$dark-button-hover-colors, $name);
+
+      @if (str-index($name, "danger-outline")) {
+        color: map-get(colors.$text-colors, strong-light);
+      }
+
+
+      @if (str-index($name, "ghost")) {
+        text-decoration: underline;
+        background-color: map-get(colors.$dark-button-hover-colors, ghost);
+        ;
+      }
+    }
+  }
+}
+
+.active {
+  transform: rotate(-180deg);
+}
+
+.dropdown {
+  transition: transform 0.15s ease-in-out;
+}
+
+@each $name,
+$bg in colors.$disabled {
+
+  // TEXT FORMATTING
+  .button--#{$name}.disabled {
+    pointer-events: none;
+    background-color: map-get(colors.$disabled, $name);
+    color: map-get(colors.$disabled-text-colors, $name);
+    text-decoration: none;
+
+
+    // BORDER EXCEPTIONS
+    @if (str-index($name, "danger-outline")) {
+      outline-color: map-get(colors.$disabled-text-colors, $name);
+      outline-style: solid;
+      outline-width: 1px;
+      text-decoration: none;
+    }
+
+    @if (str-index($name, "secondary")) {
+      outline-color: map-get(colors.$disabled-text-colors, $name);
+      outline-style: solid;
+      outline-width: 1px;
+      text-decoration: none;
+    }
+
+
+
+    &:focus-visible {
+      background-color: map-get(colors.$disabled, $name);
+      outline-color: map-get(colors.$disabled, $name);
+      pointer-events: none;
+      color: map-get(colors.$disabled-text-colors, $name);
+      outline-width: 1px;
+    }
+  }
+}
+
+@each $name,
+$bg in colors.$disabled {
+
+  // BORDER FORMAT DARK MODE
+  .dark .button--#{$name}.disabled {
+    
+    background-color: map-get(colors.$dark-disabled, $name);
+    outline-color: map-get(colors.$disabled-text-colors, $name);
+    color: map-get(colors.$disabled-text-colors, $name);
+    text-decoration: none;
+
+    // BORDER EXCEPTIONS
+    @if (str-index($name, "primary")) {
+      outline-color: map-get(colors.$disabled-text-colors, $name);
+      outline-style: solid;
+      outline-width: 1px;
+      text-decoration: none;
+    }
+
+    &:focus-visible{
+    }
+
+
+  }
+}

@@ -2,39 +2,133 @@
 // import ButtonVue from './components/Button/Button.vue';
 import Icons from '@/components/icons/icons.vue'
 import Badge from '@/components/badge/badge.vue'
+import Buttonvue from '@/components/button/button.vue'
+import { ref } from 'vue';
+
+
+
+const buttonIcon1 = ref(false)
+const iconflip: () => void = () => {
+  buttonIcon1.value = !buttonIcon1.value
+}
+
+
+const darkMode: () => void = () => {
+  const body = document.querySelector('body')
+
+  body?.classList.toggle('dark')
+
+  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body ? body.style.backgroundColor = '#F6F8FA' : null
+}
+
 </script>
 
 <template>
   <section>
-    <Badge
-      variant="dangejyhgr"
-      text="Hello Varnish"
-      outline
+    <Buttonvue />
+    <Buttonvue
+      variant="primary"
+      text="Hover"
       icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
     />
-    <Badge variant="primary" text="Hello Varnish" icon="arrow-down" />
-    <Badge
-      variant="warning"
-      text="Hello Varnish"
-      outline
-      icon="arrow-down"
+    <Buttonvue
+      variant="danger"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
     />
-    <Badge variant="success" text="Hello Varnish" icon="warning" />
+
+    <Buttonvue
+      variant="danger-outline"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
+
+
+    <Buttonvue
+      variant="secondary"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
+
+    <Buttonvue
+      variant="ghost"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
   </section>
   <section>
-    <Badge variant="secondary" outline text="Hello Varnish" />
-    <Badge variant="danger" text="Hello Varnish" />
-    <Badge variant="primary" outline text="Hello Varnish" />
-    <Badge variant="warning" text="Hello Varnish" />
-    <Badge variant="success" outline text="Hello Varnish" />
+    <Buttonvue
+      disabled
+      variant="primary"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
+
+    <Buttonvue
+      disabled
+      variant="danger"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
+
+    <Buttonvue
+      disabled
+      variant="danger-outline"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
+
+    <Buttonvue
+      disabled
+      variant="secondary"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
+
+
+
+    <Buttonvue
+      disabled
+      variant="ghost"
+      text="Hover"
+      icon="warning"
+      dropdown
+      :active-dropdown="buttonIcon1"
+      @click="iconflip"
+    />
   </section>
-  <section>
-    <Icons icon="circle-down" />
-   
-    <Icons icon="warning" variant="success" />
-    <Icons icon="user-secret" variant="danger" />
-    <Icons />
-  </section>
+
+
+  <button @click="darkMode">
+    DARK MODE!
+  </button>
 </template>
 
 <style scoped lang="scss">
@@ -45,7 +139,4 @@ section {
   justify-content: space-evenly;
   margin-bottom: 4em;
 }
-
-
-
 </style>
