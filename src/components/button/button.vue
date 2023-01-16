@@ -44,7 +44,7 @@ const AsyncIcon = computed(() => {
       () => import('@/components/icons/icons.vue')
     );
     return Icon;
-  } else return null;
+  } return null;
 });
 
 const AsyncDropdownIcon = computed(() => {
