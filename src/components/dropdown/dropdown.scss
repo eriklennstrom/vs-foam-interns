@@ -13,7 +13,8 @@
     font-size: 13px;
     border-radius: 4px;
     display: none;
-    animation: dropDown 150ms ease forwards;
+    max-height: 0;
+    animation: dropDown 1500ms ease forwards;
   }
 
   @keyframes dropDown {
@@ -28,6 +29,7 @@
 
   #dropdown[data-show] {
     display: block;
+    max-height: 100%;
   }
 
   #arrow,
