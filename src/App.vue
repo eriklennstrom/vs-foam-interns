@@ -25,10 +25,16 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
-  <Inputvue variant="text" text="Label" placeholder="placeholder"/>
-  <Inputvue variant="text" text="Label" placeholder="placeholder" accordian />
+  <Inputvue :isValid="true" validationText="Yep"  variant="text" text="Label" placeholder="placeholder"/>
+  <Inputvue :isValid="false" validationText="Nope" variant="text" text="Label" placeholder="placeholder" accordian />
+  <Inputvue validationText="Nope" variant="text" text="Label" placeholder="placeholder" accordian />
   <Inputvue variant="text" text="Label" placeholder="placeholder" disabled />
-  <Inputvue variant="password" text="Label" placeholder="placeholder" />
+  <Inputvue :isValid="false" validationText="Nope" variant="password" text="Label" placeholder="placeholder">    
+      <template #helperMessageText>
+      A paragraph for the main content.
+      </template>
+  </Inputvue>
+  
   <section>
     
 
