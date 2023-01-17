@@ -7,6 +7,7 @@ import {
   watch,
   useSlots,
   type Ref,
+  onBeforeMount,
 } from 'vue';
 import {
   inputSize,
@@ -104,7 +105,13 @@ const AsyncIcon = computed(() => {
 
 //USE sentContent class for styling in parent
 
+
+function changePasswordVisibility() {
+  showPassword.value = !showPassword.value
+  console.log(showPassword.value, "password value")
+}
 </script>
+
 
 <template>
   <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
@@ -199,6 +206,7 @@ const AsyncIcon = computed(() => {
     <p class="helperMessageText">
       {{ props.helpertext }}
     </p>
+    <slot name="helperMessageText" class="helperMessageText"/> 
   </div>
 </template>
 
