@@ -4,7 +4,9 @@ import {
   defineAsyncComponent,
   ref,
   computed,
+  watch,
   type Ref,
+  onBeforeMount,
 } from 'vue';
 import { defaultVariantMixin, inputVariant } from '@/helpers/mixins/jsMixins';
 
@@ -12,6 +14,8 @@ import { defaultVariantMixin, inputVariant } from '@/helpers/mixins/jsMixins';
 type InputProps = {
   text: string
   variant?: string
+  validationText?: string
+  isValid?: boolean | null
   placeholder?: string | undefined
   accordian?: boolean
   disabled?: boolean
@@ -21,6 +25,8 @@ type InputProps = {
 const emit = defineEmits(['change']);
 
 const props = withDefaults(defineProps<InputProps>(), {
+  validationText: "",
+  isValid: null,
   placeholder: undefined,
   accordian: false,
   variant: 'text',
@@ -29,16 +35,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   disabled: false,
 });
 
-const success = true
-const error = true
-
 const type: Ref = ref<string>(props.variant);
-const disableCheck: Ref = ref<boolean>(props.disabled);
-
-defaultVariantMixin(inputVariant).verifyVariant(props.variant)
-  ? ''
-  : (type.value = 'text');
-const inputClass = ref('input--' + type.value);
 
 // dynamic component import
 const AsyncIcon = computed(() => {
@@ -47,26 +44,43 @@ const AsyncIcon = computed(() => {
       () => import('@/components/icons/icons.vue')
     );
     return Icon;
-  } return null;
+  };
 });
-
 const AsyncSuccess = computed(() => {
   {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
     );
     return Icon;
-  } return null;
+  };
 });
+defaultVariantMixin(inputVariant).verifyVariant(props.variant)
+  ? ''
+  : (type.value = 'text');
+const inputClass = ref('input--' + type.value);
 
-let showPassword:boolean = false
 
-function changePasswordVisibility (){
-  showPassword=!showPassword
-  console.log(showPassword)
+
+
+let variantMiddleware: Ref = ref<string>()
+let showPassword: Ref = ref<boolean>(false);
+
+
+
+if (props.variant == "password" && showPassword.value == false) {
+  variantMiddleware.value = "password"
+} else {
+  variantMiddleware.value = "text"
+  console.log("usch")
 }
 
+
+function changePasswordVisibility() {
+  showPassword.value = !showPassword.value
+  console.log(showPassword.value, "password value")
+}
 </script>
+
 
 <template>
   <div class="topWrapper">
@@ -74,30 +88,30 @@ function changePasswordVisibility (){
       <AsyncIcon v-if="props.accordian" class="dropdown" :class="[props.activeDropdown ? 'active' : null]"
         icon="caret-down" />
     </h2>
-    <slot></slot>
+    <slot class="sendContent"/>
   </div>
 
-  <div :disabled=disableCheck :class="['inputWrapper', inputClass, props.disabled ? 'disabled' : '']">
-    <input @click="emit('change')" type="text" :placeholder="props.placeholder" :disabled=disableCheck>
+  <div :disabled=props.disabled
+    :class="['inputWrapper', inputClass, props.isValid? 'valid' : '', props.isValid!? 'invalid' : '', props.disabled ? 'disabled' : '']">
+    <input autocomplete="off" @click="emit('change')" :type="variantMiddleware.value ? 'password' : props.variant"
+      :placeholder="props.placeholder" :disabled=props.disabled>
 
-    <AsyncIcon class="warningIcon" v-if="error" icon="warning" variant="danger" />
-    <AsyncSuccess class="successIcon" v-if="success" icon="check" variant="success" />
-    <div v-if="props.variant=='password'" class="passwordControls">
-      <AsyncSuccess   @click=changePasswordVisibility class="passwordIcon" icon="eye" />
-      <AsyncSuccess  @click=changePasswordVisibility class="passwordIcon"  icon="eye-slash" />
+    <AsyncIcon class="warningIcon" v-if="props.isValid == false" icon="warning" variant="danger" />
+    <AsyncSuccess class="successIcon" v-if="props.isValid == true" icon="check" variant="success" />
+
+    <div v-if="props.variant == 'password'" class="passwordControls">
+      <AsyncSuccess :v-if="showPassword.value == false" @click=changePasswordVisibility class="passwordIcon"
+        icon="eye" />
+      <AsyncSuccess :v-if="showPassword.value == true" @click=changePasswordVisibility class="passwordIcon"
+        icon="eye-slash" />
     </div>
 
   </div>
   <div class="userInstructions">
-    <p class="errorMessageText">
-      <slot name="error"> </slot>
+    <p :class="[props.isValid ? 'successMessageText' : '', !props.isValid? 'errorMessageText': '']">
+      {{ props.validationText }}
     </p>
-    <p class="successMessageText">
-      <slot name="success"> </slot>
-    </p>
-    <p class="helperMessageText">
-      <slot name="helper"> </slot>
-    </p>
+    <slot name="helperMessageText" class="helperMessageText"/> 
   </div>
 
 
