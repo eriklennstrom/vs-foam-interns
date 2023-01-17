@@ -6,25 +6,45 @@
   margin: 0;
 }
 
+.topWrapper{
+  margin-top: 10px;
+}
+
 h2 {
-  margin: 0;
   display: flex;
   font-family: variables.$primaryFontFamily;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 21px;
 }
-
+.dropdown{
+  height:14px;
+  width:14px;
+  align-self: center;
+  justify-self: center;
+  margin-left: 5px;
+}
 .inputWrapper {
   width: fit-content;
   display: flex;
   align-items: center;
   border: 1px solid black;
   border-radius: 4px;
+ width: 100%;
 }
 
+.warningIcon{
+  margin-right:10px;
+}
+
+.successIcon{
+  margin-right:10px;
+}
+
+
 .userInstructions {
-  font-size: 16px;
-  padding: 0;
+  font-size: 14px;
+  padding: 1px;
+  margin-right: 10px;
 
   .successMessageText {
     color: colors.$success;
@@ -32,10 +52,11 @@ h2 {
   .errorMessageText {
     color: colors.$danger;
   }
-
-
 }
 
+.passwordControls{
+
+}
 
 
 input::placeholder {
@@ -43,9 +64,12 @@ input::placeholder {
 }
 
 input{
+  margin-left: 10px;
+  width:100%;
   border:0;
   outline:0;
   background: transparent;
+  font-size: 22px;
 }
 
 
