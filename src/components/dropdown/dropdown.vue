@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
+import { computed, onMounted, ref, watch, type Ref } from 'vue';
 import FoamButton from '@/components/button/button.vue';
+import { v4 as uuidv4 } from 'uuid';
+import { createPopper } from '@popperjs/core';
 
 type DropdownProps = {
     variant?: string
@@ -14,32 +16,105 @@ const props = withDefaults(defineProps<DropdownProps>(), {
     icon: null
 });
 
-const foamDropdown: Ref = ref();
-const showDropdown: Ref = ref<boolean>(false)
+const showDropdown: Ref = ref<boolean>(false);
+const dropdownId = ref(uuidv4())
 
 // Is this needed?
 const role: Ref = ref<string>('button')
+// const popperInstance = ref()
+// onMounted(() => {
+//   const buttonElem = document.querySelector('.button') as HTMLElement
+//   const dropdownElem = document.querySelector('#dropdown') as HTMLElement
 
-const displayDropdown: () => void = () => {
-showDropdown.value = !showDropdown.value
+
+//   createPopper(buttonElem, dropdownElem, {
+//     placement: 'bottom',
+//     modifiers: [
+//       {
+//         name: 'offset',
+//         options: {
+//           offset: [0, 8],
+//         },
+//       },
+//     ],
+//     strategy: 'absolute'
+//   });
+// })
+
+// watch(() => showDropdown.value, (newVal) => {  
+//   newVal ?  
+//   popperInstance.value.update()
+//   : null
+// })
+const popperInstance = computed(() => {
+  const buttonElem = document.querySelector('.button') as HTMLElement
+  const dropdownElem = document.querySelector('#dropdown') as HTMLElement
+  return createPopper(buttonElem, dropdownElem, {
+    placement: 'auto-start',
+    modifiers: [
+      {
+        name: 'flip',
+        options: {
+          allowedAutoPlacements: ['bottom-start', 'top-start']
+        },
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 2],
+        }
+      }
+    ],
+    strategy: 'absolute'
+  });
+})
+const dropdown = ref()
+const handleShowDropdown: () => void = () => {
+  showDropdown.value = !showDropdown.value
+
+  if(showDropdown.value) {
+    popperInstance.value.update()
+    dropdown.value.setAttribute('data-show', '')
+  } else {
+    dropdown.value.removeAttribute('data-show')
+  }
 }
 
 </script>
 
 <template>
   <section
-    ref="foamDropdown"
+    :id="dropdownId"
     :role="role"
     :action="props.variant"
+    class="dropdown-container"
   >
     <FoamButton
+      class="button"
       dropdown
       :text="props.text"
       :variant="props.variant"
       :active-dropdown="showDropdown"
       :icon="props.icon"
-      @click="displayDropdown"
+      @click="handleShowDropdown"
     />
+    
+    <div id="dropdown" ref="dropdown">
+      <h2>Hejsan</h2>
+      <h2>Hejsan</h2>
+      <h2>Hejsan</h2>
+      <h2>Hejsan</h2>
+      <h2>Hejsan</h2>
+      <h2>Hejsan</h2>
+      <h2>Hejsan</h2>
+    </div>
+
+
+
+
+    <!-- <p v-if="showDropdown" ref="dropdown" class="test">
+      hejhopp
+    </p> -->
   </section>
 </template>
 

@@ -24,7 +24,7 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
-  <section>
+  <section class="dropdown-test">
     <FoamDropdown variant="danger" text="test" />
   </section>
 
@@ -44,5 +44,9 @@ section {
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 4em;
+}
+
+.dropdown-test {
+  margin: 15rem 0;
 }
 </style>
