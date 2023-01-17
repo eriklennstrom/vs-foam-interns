@@ -15,17 +15,29 @@ export const buttonVariant = [
   'ghost'
 ];
 
+export const inputVariant = [
+  'text',
+  'number',
+  'email',
+  'password',
+];
+
 export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
 
 // icon names
 
 export const validIconNames = [
+  'check',
   'caret-down',
   'warning',
   'circle-down',
   'user-secret',
   'arrow-down',
-  'arrow-alt-circle-down'
+  'arrow-alt-circle-down',
+  'eye-slash',
+  'eye'
+
+  
 ];
 
 export const defaultVariantMixin = (variants: string[]) => ({

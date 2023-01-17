@@ -3,6 +3,7 @@
 import Icons from '@/components/icons/icons.vue'
 import Badge from '@/components/badge/badge.vue'
 import Buttonvue from '@/components/button/button.vue'
+import Inputvue from '@/components/input/input.vue'
 import { ref } from 'vue';
 
 
@@ -24,8 +25,22 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
+  <Inputvue variant="text" text="Label" placeholder="placeholder"/>
+  <Inputvue variant="text" text="Label" placeholder="placeholder" accordian />
+  <Inputvue variant="text" text="Label" placeholder="placeholder" disabled />
+  <Inputvue variant="password" text="Label" placeholder="placeholder" />
   <section>
-    <Buttonvue />
+    
+
+
+
+
+
+
+
+
+
+
     <Buttonvue
       variant="primary"
       text="Hover"
@@ -138,5 +153,6 @@ section {
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 4em;
+  margin-top: 4em;
 }
 </style>

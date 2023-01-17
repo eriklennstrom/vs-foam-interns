@@ -1,0 +1,199 @@
+@use "sass:color";
+@use "@/styles/colors.scss";
+@use "@/styles/variables.scss";
+
+* {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+  display: flex;
+  font-family: variables.$primaryFontFamily;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.inputWrapper {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.userInstructions {
+  font-size: 16px;
+  padding: 0;
+
+  .successMessageText {
+    color: colors.$success;
+  }
+  .errorMessageText {
+    color: colors.$danger;
+  }
+
+
+}
+
+
+
+input::placeholder {
+  opacity: 0.3;
+}
+
+input{
+  border:0;
+  outline:0;
+  background: transparent;
+}
+
+
+@each $name,
+$bg in colors.$input-colors {
+  .input--#{$name} {
+
+
+    all: unset;
+    cursor: pointer;
+    user-select: none;
+
+    ///TEXT FORMATTING
+    color: map-get(colors.$text-colors, strong-light);
+    font-family: variables.$primaryFontFamily;
+    background-color: $bg;
+    font-size: 12px;
+    border: 0px;
+
+    ///Borders
+    &:focus-visible {
+      outline-style: solid;
+      outline-width: 0px;
+      outline-color: map-get(colors.$input-colors, $name);
+      transition: outline 0s;
+
+
+    }
+
+
+    &:hover {}
+  }
+}
+
+
+
+@each $name,
+$bg in colors.$dark-input-colors {
+  .dark .input--#{$name} {
+
+    color: map-get(colors.$text-colors, strong-light);
+
+
+    ///BACKGROUND COLORS
+    @if (str-index($name, "danger-outline")) {
+      color: map-get(colors.$text-colors, danger);
+    }
+
+    background-color: $bg;
+
+
+    &:focus-visible {}
+
+    &:hover {
+      background-color: map-get(colors.$dark-button-hover-colors, $name);
+
+      @if (str-index($name, "danger-outline")) {
+        color: map-get(colors.$text-colors, strong-light);
+      }
+
+
+      @if (str-index($name, "ghost")) {
+        text-decoration: underline;
+        background-color: map-get(colors.$dark-button-hover-colors, ghost);
+        ;
+      }
+    }
+  }
+}
+
+.active {
+  transform: rotate(-180deg);
+}
+
+.dropdown {
+  background-color: black;
+  transition: transform 0.15s ease-in-out;
+}
+
+.dark {
+  .dropdown {
+    background-color: white;
+  }
+}
+
+@each $name,
+$bg in colors.$disabled {
+
+  // TEXT FORMATTING
+  .input--#{$name}.disabled {
+    pointer-events: none;
+    background-color: map-get(colors.$disabled, $name);
+    color: map-get(colors.$disabled-text-colors, $name);
+    text-decoration: none;
+
+    input {
+      pointer-events: none;
+    }
+
+
+    // BORDER EXCEPTIONS
+    @if (str-index($name, "danger-outline")) {
+      outline-color: map-get(colors.$disabled-text-colors, $name);
+      outline-style: solid;
+      outline-width: 1px;
+      text-decoration: none;
+    }
+
+    @if (str-index($name, "secondary")) {
+      outline-color: map-get(colors.$disabled-text-colors, $name);
+      outline-style: solid;
+      outline-width: 1px;
+      text-decoration: none;
+    }
+
+
+
+    &:focus-visible {
+      background-color: map-get(colors.$disabled, $name);
+      outline-color: map-get(colors.$disabled, $name);
+      pointer-events: none;
+      color: map-get(colors.$disabled-text-colors, $name);
+      outline-width: 1px;
+    }
+  }
+}
+
+@each $name,
+$bg in colors.$disabled {
+
+  // BORDER FORMAT DARK MODE
+  .dark .button--#{$name}.disabled {
+
+    background-color: map-get(colors.$dark-disabled, $name);
+    outline-color: map-get(colors.$disabled-text-colors, $name);
+    color: map-get(colors.$disabled-text-colors, $name);
+    text-decoration: none;
+
+    // BORDER EXCEPTIONS
+    @if (str-index($name, "primary")) {
+      outline-color: map-get(colors.$disabled-text-colors, $name);
+      outline-style: solid;
+      outline-width: 1px;
+      text-decoration: none;
+    }
+
+    &:focus-visible {}
+
+
+  }
+}
