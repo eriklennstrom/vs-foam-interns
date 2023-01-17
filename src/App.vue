@@ -3,6 +3,7 @@
 import Icons from '@/components/icons/icons.vue'
 import Badge from '@/components/badge/badge.vue'
 import FoamDropdown from '@/components/dropdown/dropdown.vue';
+import FoamDropdownItem from '@/components/dropdown/dropdown-item.vue';
 import FoamButton from '@/components/button/button.vue'
 import { ref } from 'vue';
 
@@ -25,7 +26,19 @@ const darkMode: () => void = () => {
 
 <template>
   <section class="dropdown-test">
-    <FoamDropdown variant="danger" text="test" />
+    <FoamDropdown variant="danger" text="test" >
+
+      <!-- <FoamDropdownItem />
+      <FoamDropdownItem />
+      <FoamDropdownItem />
+      <FoamDropdownItem /> -->
+      <h2>Test</h2>
+      <h2>Test</h2>
+      <h2>Test</h2>
+      <h2>Test</h2>
+      <h2>Test</h2>
+
+    </FoamDropdown>
   </section>
 
   <button @click="darkMode">

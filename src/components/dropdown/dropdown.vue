@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch, type Ref } from 'vue';
+import { computed, ref, type Ref } from 'vue';
 import FoamButton from '@/components/button/button.vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
@@ -18,34 +18,10 @@ const props = withDefaults(defineProps<DropdownProps>(), {
 
 const showDropdown: Ref = ref<boolean>(false);
 const dropdownId = ref(uuidv4())
-
+const dropdown = ref()
 // Is this needed?
 const role: Ref = ref<string>('button')
-// const popperInstance = ref()
-// onMounted(() => {
-//   const buttonElem = document.querySelector('.button') as HTMLElement
-//   const dropdownElem = document.querySelector('#dropdown') as HTMLElement
 
-
-//   createPopper(buttonElem, dropdownElem, {
-//     placement: 'bottom',
-//     modifiers: [
-//       {
-//         name: 'offset',
-//         options: {
-//           offset: [0, 8],
-//         },
-//       },
-//     ],
-//     strategy: 'absolute'
-//   });
-// })
-
-// watch(() => showDropdown.value, (newVal) => {  
-//   newVal ?  
-//   popperInstance.value.update()
-//   : null
-// })
 const popperInstance = computed(() => {
   const buttonElem = document.querySelector('.button') as HTMLElement
   const dropdownElem = document.querySelector('#dropdown') as HTMLElement
@@ -68,7 +44,7 @@ const popperInstance = computed(() => {
     strategy: 'absolute'
   });
 })
-const dropdown = ref()
+
 const handleShowDropdown: () => void = () => {
   showDropdown.value = !showDropdown.value
 
@@ -98,23 +74,11 @@ const handleShowDropdown: () => void = () => {
       :icon="props.icon"
       @click="handleShowDropdown"
     />
-    
     <div id="dropdown" ref="dropdown">
-      <h2>Hejsan</h2>
-      <h2>Hejsan</h2>
-      <h2>Hejsan</h2>
-      <h2>Hejsan</h2>
-      <h2>Hejsan</h2>
-      <h2>Hejsan</h2>
-      <h2>Hejsan</h2>
+      <slot ></slot>
+
     </div>
 
-
-
-
-    <!-- <p v-if="showDropdown" ref="dropdown" class="test">
-      hejhopp
-    </p> -->
   </section>
 </template>
 
