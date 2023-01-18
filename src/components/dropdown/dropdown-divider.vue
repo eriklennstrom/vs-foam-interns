@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div></div>
+  <div class="divider" />
 </template>
 
 <style lang="scss" scoped>

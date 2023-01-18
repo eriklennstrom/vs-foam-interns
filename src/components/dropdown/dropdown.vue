@@ -3,6 +3,7 @@ import { computed, ref, type Ref } from 'vue';
 import FoamButton from '@/components/button/button.vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
+import useDetectOutsideClick from '@/composables/clickOutsideComponent'
 
 type DropdownProps = {
     variant?: string
@@ -19,8 +20,6 @@ const props = withDefaults(defineProps<DropdownProps>(), {
 const showDropdown: Ref = ref<boolean>(false);
 const dropdownId = ref(uuidv4())
 const dropdown = ref()
-// Is this needed?
-const role: Ref = ref<string>('button')
 
 const popperInstance = computed(() => {
   const buttonElem = document.querySelector('.button') as HTMLElement
@@ -56,12 +55,18 @@ const handleShowDropdown: () => void = () => {
   }
 }
 
+const componentRef = ref()
+// Close dropdown on click outside the component
+useDetectOutsideClick(componentRef, () => { 
+  showDropdown.value = false
+  dropdown.value.removeAttribute('data-show')
+})
 </script>
 
 <template>
   <section
     :id="dropdownId"
-    :role="role"
+    ref="componentRef"
     :action="props.variant"
     class="dropdown-container"
   >
@@ -74,11 +79,13 @@ const handleShowDropdown: () => void = () => {
       :icon="props.icon"
       @click="handleShowDropdown"
     />
-    <div id="dropdown" ref="dropdown">
-      <slot ></slot>
-
+    <div
+      id="dropdown"
+      ref="dropdown"
+      @keyup.escape="handleShowDropdown"
+    >
+      <slot />
     </div>
-
   </section>
 </template>
 

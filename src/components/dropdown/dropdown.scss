@@ -1,67 +1,51 @@
-// FOR POPPER TEST - REMOVE
-#dropdown {
-    padding: 3em;
-    border: 4px solid black;
-}
-
+@use "@/styles/colors.scss";
+@use "@/styles/variables.scss";
 
 #dropdown {
-    background: #333;
-    color: white;
-    font-weight: bold;
-    padding: 4px 8px;
-    font-size: 13px;
+    border: 1px solid colors.$secondary-hover;
     border-radius: 4px;
     display: none;
     max-height: 0;
-    animation: dropDown 1500ms ease forwards;
-  }
-
-  @keyframes dropDown {
-    from {
-        max-height: 0;
-    }
-
-    to {
+    &[data-show] {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         max-height: 100%;
+
     }
   }
 
-  #dropdown[data-show] {
-    display: block;
-    max-height: 100%;
-  }
 
-  #arrow,
-  #arrow::before {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: inherit;
-  }
+// Dropdown Item
+.dropdown__item {
+padding: 0 12px;
+cursor: pointer;
+&:hover {
+    background-color: colors.$primary-300;
+    color: map-get(colors.$text-colors, strong-light);
+}
+&:has(svg) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-  #arrow {
-    visibility: hidden;
-  }
+    svg {
+        color: inherit;
+    }
+}
+&:active {
+    background-color: colors.$primary;
+    color: map-get(colors.$text-colors, strong-light);
+}
+p {
+    user-select: none;
+}
+}
 
-  #arrow::before {
-    visibility: visible;
-    content: '';
-    transform: rotate(45deg);
-  }
-
-  #tooltip[data-popper-placement^='top'] > #arrow {
-    bottom: -4px;
-  }
-
-  #tooltip[data-popper-placement^='bottom'] > #arrow {
-    top: -4px;
-  }
-
-  #tooltip[data-popper-placement^='left'] > #arrow {
-    right: -4px;
-  }
-
-  #tooltip[data-popper-placement^='right'] > #arrow {
-    left: -4px;
-  }
+// Dropdown Divider
+.divider {
+    width: 80%;
+    height: 2px;
+    background-color: colors.$primary-100;
+    margin: 0 auto;
+}
