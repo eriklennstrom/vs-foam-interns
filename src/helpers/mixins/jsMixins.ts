@@ -7,6 +7,12 @@ export const badgeVariant = [
   'success'
 ];
 
+export const inputSize = [
+  'S',
+  'M',
+  'L',
+];
+
 export const buttonVariant = [
   'primary',
   'secondary',
