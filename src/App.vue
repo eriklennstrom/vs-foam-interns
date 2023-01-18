@@ -39,6 +39,7 @@ const test= ref('')
     helpertext="Helper text"
   />
   <Inputvue
+  v-model="test"
     :is-valid="false"
     validation-text="validation-text"
     variant="text"
@@ -53,6 +54,7 @@ const test= ref('')
 
 
   <Inputvue
+  v-model="test"
     validation-text="validation-text"
     variant="text"
     text="Neutral"
@@ -65,12 +67,14 @@ const test= ref('')
   </Inputvue>
 
   <Inputvue
+  v-model="test"
     variant="text"
     text="Disabled"
     placeholder="placeholder"
     disabled
   />
   <Inputvue
+  v-model="test"
     :is-valid="false"
     validation-text="validation-text"
     variant="password"
@@ -80,6 +84,7 @@ const test= ref('')
   
 
   <Inputvue
+  v-model="test"
     :is-valid="true"
     validation-text="validation-text"
     variant="password"

@@ -6,28 +6,39 @@
   margin: 0;
 }
 
-.toggledAccordian{
+.toggledAccordian {
   transform: rotate(180deg);
   transition: transform;
 }
 
-.topWrapper{
+.topWrapper {
   margin-top: 10px;
-}
+  h2 {
+    display: flex;
+    font-family: variables.$primaryFontFamily;
+    font-weight: 400;
+    font-size: 21px;
+    color: colors.$primary-300;
+  }
+  .iconWrapper {
+    margin-left: 10px;
+    align-self: center;
+    background-color: colors.$primary-300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 14px;
+    width: 14px;
 
-h2 {
-  display: flex;
-  font-family: variables.$primaryFontFamily;
-  font-weight: 400;
-  font-size: 21px;
-  color: colors.$primary-300
-}
-.dropdown{
-  height:14px;
-  width:14px;
-  align-self: center;
-  justify-self: center;
-  rotate:180deg;
+    .dropdown {
+      height: 14px;
+      width: 14px;
+      align-self: center;
+      justify-self: center;
+    }
+    .sentContent {
+    }
+  }
 }
 
 .inputWrapper {
@@ -35,18 +46,16 @@ h2 {
   display: flex;
   align-items: center;
   border: 1px solid black;
-  border-radius: 4px;
- width: 100%;
+  border-radius: 8px;
+  width: 100%;
 }
 
-
-
-.warningIcon{
-  margin-right:10px;
+.warningIcon {
+  margin-right: 10px;
 }
 
-.successIcon{
-  margin-right:10px;
+.successIcon {
+  margin-right: 10px;
 }
 
 .valid {
@@ -57,11 +66,9 @@ h2 {
   border-color: colors.$danger;
 }
 
-.disabled{
+.disabled {
   opacity: 0.3;
-
 }
-
 
 .userInstructions {
   font-size: 14px;
@@ -74,67 +81,48 @@ h2 {
   .errorMessageText {
     color: colors.$danger;
   }
+
+  .helperMessageText {
+    font-size: 13px;
+    opacity: 0.5;
+  }
 }
 
-.passwordControls{
-margin-right: 10px;
+.passwordControls {
+  margin-right: 10px;
 }
-
 
 input::placeholder {
   opacity: 0.3;
 }
 
-input{
+input {
   margin-left: 10px;
-  width:100%;
-  border:0;
-  outline:0;
+  width: 100%;
+  border: 0;
+  outline: 0;
   background: transparent;
   font-size: 22px;
-  padding:10px;
+  padding: 10px;
 }
 
-
-@each $name,
-$bg in colors.$input-colors {
+@each $name, $bg in colors.$input-colors {
   .input--#{$name} {
-
-
-    all: unset;
-    cursor: pointer;
-    user-select: none;
-
-    ///TEXT FORMATTING
-    color: map-get(colors.$text-colors, strong-light);
-    font-family: variables.$primaryFontFamily;
-    background-color: $bg;
-    font-size: 12px;
-    border: 0px;
-
-    ///Borders
     &:focus-visible {
       outline-style: solid;
       outline-width: 0px;
       outline-color: map-get(colors.$input-colors, $name);
       transition: outline 0s;
-
-
     }
 
-
-    &:hover {}
+    &:hover {
+    }
   }
 }
 
-
-
-@each $name,
-$bg in colors.$dark-input-colors {
+@each $name, $bg in colors.$dark-input-colors {
   .dark .input--#{$name} {
-
     color: map-get(colors.$text-colors, strong-light);
-
 
     ///BACKGROUND COLORS
     @if (str-index($name, "danger-outline")) {
@@ -143,8 +131,8 @@ $bg in colors.$dark-input-colors {
 
     background-color: $bg;
 
-
-    &:focus-visible {}
+    &:focus-visible {
+    }
 
     &:hover {
       background-color: map-get(colors.$dark-button-hover-colors, $name);
@@ -153,18 +141,12 @@ $bg in colors.$dark-input-colors {
         color: map-get(colors.$text-colors, strong-light);
       }
 
-
       @if (str-index($name, "ghost")) {
         text-decoration: underline;
         background-color: map-get(colors.$dark-button-hover-colors, ghost);
-        ;
       }
     }
   }
-}
-
-.active {
-  transform: rotate(-180deg);
 }
 
 .dropdown {
@@ -172,32 +154,12 @@ $bg in colors.$dark-input-colors {
   transition: transform 0.15s ease-in-out;
 }
 
-.iconWrapper{
-  margin-left:10px;
-  align-self: center;
-  background-color: colors.$primary-300;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height:14px;
-  width:14px;
-}
-
-.dark {
-  .dropdown {
-    background-color: white;
-  }
-}
-
-.topWrapper svg{
-  color:white;
+.topWrapper svg {
+  color: white;
   background-color: transparent;
 }
 
-
-@each $name,
-$bg in colors.$disabled {
-
+@each $name, $bg in colors.$disabled {
   // TEXT FORMATTING
   .input--#{$name}.disabled {
     pointer-events: none;
@@ -208,7 +170,6 @@ $bg in colors.$disabled {
     input {
       pointer-events: none;
     }
-
 
     // BORDER EXCEPTIONS
     @if (str-index($name, "danger-outline")) {
@@ -225,8 +186,6 @@ $bg in colors.$disabled {
       text-decoration: none;
     }
 
-
-
     &:focus-visible {
       background-color: map-get(colors.$disabled, $name);
       outline-color: map-get(colors.$disabled, $name);
@@ -237,12 +196,9 @@ $bg in colors.$disabled {
   }
 }
 
-@each $name,
-$bg in colors.$disabled {
-
+@each $name, $bg in colors.$disabled {
   // BORDER FORMAT DARK MODE
   .dark .button--#{$name}.disabled {
-
     background-color: map-get(colors.$dark-disabled, $name);
     outline-color: map-get(colors.$disabled-text-colors, $name);
     color: map-get(colors.$disabled-text-colors, $name);
@@ -256,9 +212,7 @@ $bg in colors.$disabled {
       text-decoration: none;
     }
 
-    &:focus-visible {}
-
-
+    &:focus-visible {
+    }
   }
 }
-
