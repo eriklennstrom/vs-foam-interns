@@ -105,13 +105,15 @@ const AsyncIcon = computed(() => {
 
 //USE sentContent class for styling in parent
 
-
 function changePasswordVisibility() {
-  showPassword.value = !showPassword.value
-  console.log(showPassword.value, "password value")
+  showPassword.value = !showPassword.value;
 }
-</script>
 
+function toggleAccordian(){
+  accordianSwitch.value= !accordianSwitch.value
+}
+
+</script>
 
 <template>
   <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
