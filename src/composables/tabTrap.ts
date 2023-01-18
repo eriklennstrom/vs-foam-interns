@@ -5,13 +5,13 @@ const keysPressed = {} as { [key: string]: boolean }
 
 export function getKeyBoardFocusableElements (element = document) {
   const elements = ref([] as Element[])
-
+// ACTIVE PARENT
+  
   elements.value = [
     ...element.querySelectorAll(
       'a, button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])'
     )
   ].filter(el => !el.hasAttribute('disabled'))
-
   return { elements }
 }
 export function useRemoveRecordedStroke (e:KeyboardEvent) {
@@ -29,12 +29,16 @@ export function useTabTrap (e: KeyboardEvent) {
   if(e.key != 'Enter') {
     e.preventDefault()
     const currentElem = document.activeElement as HTMLElement
-    const firstElem = currentElem?.parentElement?.firstElementChild as HTMLElement
-    const lastElem = currentElem?.parentElement?.lastElementChild as HTMLElement
-    let index = 0;
-    const elements = getKeyBoardFocusableElements()
-    getPrevActiveElem(currentElem)
+    const parentElement = currentElem.parentElement as unknown as Document
     
+    let index = 0;
+    const elements = getKeyBoardFocusableElements(parentElement)
+    const firstElem = elements.elements.value[0] as HTMLElement
+    const lastElem = elements.elements.value[elements.elements.value.length - 1] as HTMLElement
+
+    getPrevActiveElem(currentElem)
+
+
     if(e.key === 'Shift') {
       keysPressed[e.key] = true
     }
@@ -64,7 +68,4 @@ export function useTabTrap (e: KeyboardEvent) {
         previousFocusableElement.focus()
     }
   }
-  console.log(e);
-  
-
 }

@@ -39,20 +39,37 @@ const darkMode: () => void = () => {
         icon="warning"
         type="button"
         text="Button"
+        disabled
         @click="testFunctionOne('Test dropdown item 1')"
+      />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        icon="circle-down"
+        type="route"
+        text="Route /test"
+        to="/test"
+        @click="testFunctionTwo('Test dropdown item 2')"
       />
       <FoamDropdownItem
         icon="circle-down"
         type="route"
         text="Route /test"
-        to="/TEST"
+        to="/test"
         @click="testFunctionTwo('Test dropdown item 2')"
       />
       <FoamDropdownDivider />
       <FoamDropdownItem
         text="google.se"
-        type="route"
+        type="link"
         to="http://www.google.se"
+        @click="testFunctionThree('Test dropdown item 3')"
+      />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        text="Disabled"
+        type="link"
+        to="http://www.google.se"
+        disabled
         @click="testFunctionThree('Test dropdown item 3')"
       />
     </FoamDropdown>

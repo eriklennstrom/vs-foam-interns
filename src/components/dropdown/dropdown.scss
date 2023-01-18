@@ -2,50 +2,82 @@
 @use "@/styles/variables.scss";
 
 #dropdown {
-    border: 1px solid colors.$secondary-hover;
+    background-color: colors.$dropdown-item-bg-light;
+    border: 1px solid colors.$dropdown-border-color-light;
     border-radius: 4px;
     display: none;
     max-height: 0;
     &[data-show] {
         display: flex;
         flex-direction: column;
-        gap: 8px;
         max-height: 100%;
 
     }
+    // Dropdown Item
+    .dropdown__item {
+    all: unset;
+    padding: 12px;
+    cursor: pointer;
+    color: colors.$dropdown-item-text-light;
+    background-color: colors.$dropdown-item-bg-light;
+    &:hover, &:focus-visible {
+        background-color: colors.$dropdown-hover-bg-light;
+    }
+    &:has(svg) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;    
+        svg {
+            color: inherit;
+        }
+    }
+    &:active {
+        background-color: colors.$dropdown-active-bg-light;
+    }
+        p {
+            margin: 0;
+            user-select: none;
+        }
+        &[role=disabled] {
+            pointer-events: none;
+            opacity: 0.6;
+            &:focus-visible {
+                background-color: none;
+            }
+        }
+    }
+    
+    // Dropdown Divider
+    .divider {
+        width: 90%;
+        height: 2px;
+        background-color: colors.$dropdown-divider-light;
+        margin: 0 auto;
+    }
   }
 
+body.dark {
+    #dropdown {
+        background-color: colors.$dropdown-item-bg-dark;
+        border-color: colors.$dropdown-border-color-dark;
 
-// Dropdown Item
-.dropdown__item {
-padding: 0 12px;
-cursor: pointer;
-&:hover {
-    background-color: colors.$primary-300;
-    color: map-get(colors.$text-colors, strong-light);
-}
-&:has(svg) {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+        // Dropdown Item
+        .dropdown__item {
+            color: colors.$dropdown-item-text-dark;
+            background-color: colors.$dropdown-item-bg-dark;
+            &:hover, &:focus-visible {
+                background-color: colors.$dropdown-hover-bg-dark;
+            }
 
-    svg {
-        color: inherit;
+            &:active {
+                background-color: colors.$dropdown-active-bg-dark;
+            }
+        }
+        
+        // Dropdown Divider
+        .divider {
+            background-color: colors.$dropdown-divider-dark;
+        }
     }
-}
-&:active {
-    background-color: colors.$primary;
-    color: map-get(colors.$text-colors, strong-light);
-}
-p {
-    user-select: none;
-}
-}
-
-// Dropdown Divider
-.divider {
-    width: 80%;
-    height: 2px;
-    background-color: colors.$primary-100;
-    margin: 0 auto;
 }

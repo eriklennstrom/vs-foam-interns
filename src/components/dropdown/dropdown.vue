@@ -30,7 +30,7 @@ const popperInstance = computed(() => {
       {
         name: 'flip',
         options: {
-          allowedAutoPlacements: ['bottom-start', 'top-start']
+          allowedAutoPlacements: ['bottom-end', 'top-end']
         },
       },
       {

@@ -10,6 +10,7 @@ type DropdownProps = {
     text?: string
     icon?: string | null
     to?: string
+    disabled?: boolean
 };
 
 const props = withDefaults(defineProps<DropdownProps>(), {
@@ -51,20 +52,22 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
 
 <template>
   <component
-    :is="elementType == 'link' ? 'a' : elementType == 'route' ? 'router-link' : 'button'" 
+    :is="elementType == 'link' ? 'a' : elementType == 'route' ? 'router-link' : 'button'"
+    :role="props.disabled ? 'disabled' : null" 
     :href="elementType == 'link' ? props.to : null"
     :target="elementType == 'link' ? '_blank' : null"
     :to="elementType == 'route' ? props.to : null"
     :class="itemId"
     class="dropdown__item"
     tabindex="0"
+    :disabled="props.disabled ? disabled : null"
     @keydown.enter="goToRoute($event)"
     @keydown="useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"
     @click="elementType == 'button' ? emit('click') : null"
   >
-    <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
     <p>{{ props.text }}</p>
+    <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
   </component>
 </template>
 
