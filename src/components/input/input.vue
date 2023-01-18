@@ -7,7 +7,6 @@ import {
   watch,
   useSlots,
   type Ref,
-  onBeforeMount,
 } from 'vue';
 import {
   inputSize,
@@ -109,10 +108,9 @@ function changePasswordVisibility() {
   showPassword.value = !showPassword.value;
 }
 
-function toggleAccordian(){
-  accordianSwitch.value= !accordianSwitch.value
+function toggleAccordian() {
+  accordianSwitch.value = !accordianSwitch.value;
 }
-
 </script>
 
 <template>
