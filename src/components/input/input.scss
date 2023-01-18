@@ -6,6 +6,11 @@
   margin: 0;
 }
 
+.toggledAccordian{
+  transform: rotate(180deg);
+  transition: transform;
+}
+
 .topWrapper{
   margin-top: 10px;
 }
@@ -15,14 +20,16 @@ h2 {
   font-family: variables.$primaryFontFamily;
   font-weight: 400;
   font-size: 21px;
+  color: colors.$primary-300
 }
 .dropdown{
   height:14px;
   width:14px;
   align-self: center;
   justify-self: center;
-  margin-left: 5px;
+  rotate:180deg;
 }
+
 .inputWrapper {
   width: fit-content;
   display: flex;
@@ -32,12 +39,27 @@ h2 {
  width: 100%;
 }
 
+
+
 .warningIcon{
   margin-right:10px;
 }
 
 .successIcon{
   margin-right:10px;
+}
+
+.valid {
+  border-color: colors.$success;
+}
+
+.invalid {
+  border-color: colors.$danger;
+}
+
+.disabled{
+  opacity: 0.3;
+
 }
 
 
@@ -55,7 +77,7 @@ h2 {
 }
 
 .passwordControls{
-
+margin-right: 10px;
 }
 
 
@@ -70,6 +92,7 @@ input{
   outline:0;
   background: transparent;
   font-size: 22px;
+  padding:10px;
 }
 
 
@@ -149,11 +172,28 @@ $bg in colors.$dark-input-colors {
   transition: transform 0.15s ease-in-out;
 }
 
+.iconWrapper{
+  margin-left:10px;
+  align-self: center;
+  background-color: colors.$primary-300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:14px;
+  width:14px;
+}
+
 .dark {
   .dropdown {
     background-color: white;
   }
 }
+
+.topWrapper svg{
+  color:white;
+  background-color: transparent;
+}
+
 
 @each $name,
 $bg in colors.$disabled {
@@ -221,3 +261,4 @@ $bg in colors.$disabled {
 
   }
 }
+
