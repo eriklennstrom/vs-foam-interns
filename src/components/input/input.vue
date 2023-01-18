@@ -6,9 +6,12 @@ import {
   computed,
   watch,
   type Ref,
-  onBeforeMount,
 } from 'vue';
-import { defaultVariantMixin, inputVariant } from '@/helpers/mixins/jsMixins';
+import {
+  inputSize,
+  defaultVariantMixin,
+  inputVariant,
+} from '@/helpers/mixins/jsMixins';
 
 type InputProps = {
   text: string
@@ -19,9 +22,9 @@ type InputProps = {
   accordian?: boolean
   disabled?: boolean
   activeDropdown?: boolean
-  modelValue?:string | null
-  helpertext?:string
-  
+  modelValue?: string | null
+  helpertext?: string
+  size?: string
 };
 
 const emit = defineEmits(['change', 'update:modelValue']);
@@ -36,8 +39,15 @@ const props = withDefaults(defineProps<InputProps>(), {
   activeDropdown: false,
   disabled: false,
   helpertext: '',
-  modelValue:''
+  modelValue: '',
+  size: 'M',
 });
+
+const size: Ref = ref<string>(props.size);
+
+defaultVariantMixin(inputSize).verifyVariant(size.value)
+  ? ''
+  : (size.value = 'M');
 
 const type: Ref = ref<string>(props.variant);
 const accordianSwitch: Ref = ref<boolean>(false);
@@ -69,7 +79,7 @@ const variantMiddleware: Ref = ref<string>(props.variant);
 const showPassword: Ref = ref<boolean>(false);
 
 watch(
-  () => showPassword.value, 
+  () => showPassword.value,
   (newVal) => {
     newVal
       ? (variantMiddleware.value = 'text')
@@ -77,33 +87,33 @@ watch(
   }
 );
 
-function emitInput(e: InputEvent | null){
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-  emit('update:modelValue', e.target.value)
-
+function emitInput(e: Event | null) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  emit('update:modelValue', e.target.value);
 }
 
 function changePasswordVisibility() {
   showPassword.value = !showPassword.value;
 }
 
-function toggleAccordian(){
-  accordianSwitch.value= !accordianSwitch.value
+function toggleAccordian() {
+  accordianSwitch.value = !accordianSwitch.value;
 }
-
 </script>
 
 <template>
-  <div :class="['topWrapper', props.disabled ? 'disabled' : '' ]">
+  <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
     <h2>
       {{ props.text }}
       <div v-if="props.accordian" class="iconWrapper">
         <AsyncIcon
           v-if="props.accordian"
           class="dropdown"
-          :class="[props.activeDropdown ? 'active' : ''
-                   , accordianSwitch? 'toggledAccordian' :'']"
+          :class="[
+            props.activeDropdown ? 'active' : '',
+            accordianSwitch ? 'toggledAccordian' : '',
+          ]"
           icon="caret-down"
           @click="toggleAccordian"
         />
