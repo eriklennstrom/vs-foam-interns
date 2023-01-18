@@ -22,129 +22,74 @@ const darkMode: () => void = () => {
   body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body ? body.style.backgroundColor = '#F6F8FA' : null
 }
 
+const test= ref('')
+
 </script>
 
 <template>
-  <Inputvue :isValid="true" validationText="Yep"  variant="text" text="Label" placeholder="placeholder"/>
-  <Inputvue :isValid="false" validationText="Nope" variant="text" text="Label" placeholder="placeholder" accordian />
-  <Inputvue validationText="Nope" variant="text" text="Label" placeholder="placeholder" accordian />
-  <Inputvue variant="text" text="Label" placeholder="placeholder" disabled />
-  <Inputvue :isValid="false" validationText="Nope" variant="password" text="Label" placeholder="placeholder">    
-      <template #helperMessageText>
-      A paragraph for the main content.
-      </template>
+<h1>{{ test }}</h1>
+
+  <Inputvue
+    v-model="test"
+    :is-valid="true"
+    validation-text="validation-text"
+    variant="text"
+    text="Valid"
+    placeholder="placeholder"
+    helpertext="Helper text"
+  />
+  <Inputvue
+    :is-valid="false"
+    validation-text="validation-text"
+    variant="text"
+    text="Not valid"
+    placeholder="placeholder"
+    accordian
+  >
+    <template #sendContent>
+      Sent content
+    </template>
   </Inputvue>
+
+
+  <Inputvue
+    validation-text="validation-text"
+    variant="text"
+    text="Neutral"
+    placeholder="placeholder"
+    accordian
+  >
+    <template #sendContent>
+      Sent content
+    </template>
+  </Inputvue>
+
+  <Inputvue
+    variant="text"
+    text="Disabled"
+    placeholder="placeholder"
+    disabled
+  />
+  <Inputvue
+    :is-valid="false"
+    validation-text="validation-text"
+    variant="password"
+    text="Password"
+    placeholder="placeholder"
+  />
   
-  <section>
-    
 
-
-
-
-
-
-
-
-
-
-    <Buttonvue
-      variant="primary"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-    <Buttonvue
-      variant="danger"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-
-    <Buttonvue
-      variant="danger-outline"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-
-
-    <Buttonvue
-      variant="secondary"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-
-    <Buttonvue
-      variant="ghost"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-  </section>
-  <section>
-    <Buttonvue
-      disabled
-      variant="primary"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-
-    <Buttonvue
-      disabled
-      variant="danger"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-
-    <Buttonvue
-      disabled
-      variant="danger-outline"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-
-    <Buttonvue
-      disabled
-      variant="secondary"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-
-
-
-    <Buttonvue
-      disabled
-      variant="ghost"
-      text="Hover"
-      icon="warning"
-      dropdown
-      :active-dropdown="buttonIcon1"
-      @click="iconflip"
-    />
-  </section>
+  <Inputvue
+    :is-valid="true"
+    validation-text="validation-text"
+    variant="password"
+    text="Password"
+    placeholder="placeholder"
+  >
+    <template #helperMessageText>
+      Helper text
+    </template>
+  </Inputvue>
 
 
   <button @click="darkMode">
