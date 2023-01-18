@@ -8,6 +8,8 @@ const darkMode: () => void = () => {
 
 }
 
+const test= ref('')
+
 </script>
 
 <template>
