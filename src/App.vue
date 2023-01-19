@@ -13,6 +13,76 @@ const test= ref('')
 </script>
 
 <template>
+<h1>{{ test }}</h1>
+
+  <Inputvue
+    v-model="test"
+    :is-valid="true"
+    validation-text="Validation-text"
+    variant="text"
+    text="Valid"
+    placeholder="placeholder"
+    helpertext="Helper text"
+  />
+  <Inputvue
+  v-model="test"
+    :is-valid="false"
+    validation-text="Validation-text"
+    variant="text"
+    text="Not valid"
+    placeholder="placeholder"
+    accordian
+    helpertext="Helper text"
+  >
+    <template #sendContent>
+      <p>sent content</p>
+    </template>
+  </Inputvue>
+
+
+  <Inputvue
+  v-model="test"
+    variant="text"
+    text="Neutral"
+    placeholder="placeholder"
+    accordian
+    helpertext="Helper text"
+  >
+    <template #sendContent>
+      Sent content
+    </template>
+  </Inputvue>
+
+  <Inputvue
+  v-model="test"
+    variant="text"
+    text="Disabled"
+    placeholder="placeholder"
+    disabled
+  />
+  <Inputvue
+  v-model="test"
+    :is-valid="false"
+    validation-text="validation-text"
+    variant="password"
+    text="Password"
+    placeholder="placeholder"
+  />
+  
+
+  <Inputvue
+  v-model="test"
+    :is-valid="true"
+    validation-text="validation-text"
+    variant="password"
+    text="Password"
+    placeholder="placeholder"
+  >
+    <template #helperMessageText>
+      Helper text
+    </template>
+  </Inputvue>
+
 
   <button @click="darkMode">
     DARK MODE!
@@ -32,4 +102,11 @@ section {
   margin-bottom: 4em;
   margin-top: 4em;
 }
+
+.nice{
+  border: 1px solid black;
+  background-color: grey;
+  border-radius: 7px;
+}
+
 </style>

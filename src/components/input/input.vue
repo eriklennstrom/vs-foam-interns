@@ -6,12 +6,14 @@ import {
   computed,
   watch,
   type Ref,
+onMounted,
 } from 'vue';
 import {
   inputSize,
   defaultVariantMixin,
   inputVariant,
 } from '@/helpers/mixins/jsMixins';
+import ('@/components/button/button.vue')
 
 type InputProps = {
   text: string
@@ -43,7 +45,10 @@ const props = withDefaults(defineProps<InputProps>(), {
   size: 'M',
 });
 
+
+
 const size: Ref = ref<string>(props.size);
+ 
 
 defaultVariantMixin(inputSize).verifyVariant(size.value)
   ? ''
@@ -54,14 +59,6 @@ const accordianSwitch: Ref = ref<boolean>(false);
 
 // dynamic component import
 const AsyncIcon = computed(() => {
-  {
-    const Icon = defineAsyncComponent(
-      () => import('@/components/icons/icons.vue')
-    );
-    return Icon;
-  }
-});
-const AsyncSuccess = computed(() => {
   {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
@@ -87,10 +84,9 @@ watch(
   }
 );
 
-function emitInput(e: Event | null) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  emit('update:modelValue', e.target.value);
+function emitInput(e:any ) {
+  const targetVal = e.value
+  emit('update:modelValue', targetVal);
 }
 
 function changePasswordVisibility() {
@@ -103,79 +99,46 @@ function toggleAccordian() {
 </script>
 
 <template>
-  <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
+  <div  :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
     <h2>
       {{ props.text }}
       <div v-if="props.accordian" class="iconWrapper">
-        <AsyncIcon
-          v-if="props.accordian"
-          class="dropdown"
-          :class="[
-            props.activeDropdown ? 'active' : '',
-            accordianSwitch ? 'toggledAccordian' : '',
-          ]"
-          icon="caret-down"
-          @click="toggleAccordian"
-        />
+        <AsyncIcon v-if="props.accordian" class="dropdown" :class="[
+          props.activeDropdown ? 'active' : '',
+          accordianSwitch ? 'toggledAccordian' : '',
+        ]" icon="caret-down" @click="toggleAccordian" />
       </div>
     </h2>
-    <slot v-if="accordianSwitch" name="sendContent" class="sendContent" />
-  </div>
-
-  <div
-    :disabled="props.disabled"
-    :class="[
-      'inputWrapper',
-      inputClass,
-      props.isValid ? 'valid' : '',
-      props.isValid == false ? 'invalid' : '',
-      props.disabled ? 'disabled' : '',
-    ]"
-  >
-    <input
-      autocomplete="off"
-      :type="variantMiddleware"
-      :placeholder="props.placeholder"
-      :disabled="props.disabled"
-      :value="props.modelValue"
-      @input="emitInput($event)"
-    >
-
-    <AsyncIcon
-      v-if="props.isValid == false"
-      class="warningIcon"
-      icon="warning"
-      variant="danger"
-    />
-    <AsyncSuccess
-      v-if="props.isValid == true"
-      class="successIcon"
-      icon="check"
-      variant="success"
-    />
-
-    <div v-if="props.variant == 'password'" class="passwordControls">
-      <AsyncSuccess
-        v-if="showPassword == false"
-        class="passwordIcon"
-        icon="eye"
-        @click="changePasswordVisibility"
-      />
-      <AsyncSuccess
-        v-if="showPassword == true"
-        class="passwordIcon"
-        icon="eye-slash"
-        @click="changePasswordVisibility"
-      />
+    
+    <Transition  name="slot" appear > <slot v-if="accordianSwitch" name="sendContent" class="sendContent" />
+    </Transition>
     </div>
+
+  <div :disabled="props.disabled" :class="[
+    'inputWrapper',
+    inputClass,
+    props.isValid ? 'valid' : '',
+    props.isValid == false ? 'invalid' : '',
+    props.disabled ? 'disabled' : '',
+  ]">
+    <input autocomplete="off" :type="variantMiddleware" :placeholder="props.placeholder" :disabled="props.disabled"
+      :value="props.modelValue" @input="emitInput($event.target)">
+
+      <div v-if="props.variant == 'password'" class="passwordControls">
+        <AsyncIcon v-if="showPassword == false" class="passwordIcon" icon="eye" @click="changePasswordVisibility" />
+        <AsyncIcon v-if="showPassword == true" class="passwordIcon" icon="eye-slash"
+          @click="changePasswordVisibility" />
+      </div>
+    <AsyncIcon v-if="props.isValid == false" class="warningIcon" icon="warning" variant="danger" />
+    <AsyncIcon v-if="props.isValid == true" class="successIcon" icon="check" variant="success" />
+
+    
   </div>
   <div class="userInstructions">
-    <p
-      :class="[
-        props.isValid == true ? 'successMessageText' : '',
-        props.isValid == false ? 'errorMessageText' : '',
-      ]"
-    >
+    <p :class="[
+      props.isValid == true ? 'successMessageText' : '',
+      props.isValid == false ? 'errorMessageText' : '',
+    ]">
       {{ props.validationText }}
     </p>
     <p class="helperMessageText">
@@ -186,4 +149,5 @@ function toggleAccordian() {
 
 <style lang="scss" scoped>
 @import "./input.scss";
+
 </style>

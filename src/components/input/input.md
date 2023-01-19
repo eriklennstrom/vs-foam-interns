@@ -13,12 +13,12 @@ Variants available : `text`, `numer`, `email`, `password`
 
 ```html
 <!-- good -->
-<foam-input variant="password" text="Password" />
+<foam-input variant="password" text="enter your password" />
 ```
 
 ```html
 <!-- bad -->
-<foam-input variant="primary" text="Password" />
+<foam-input variant="primary" text="enter your password" />
 ```
 
 Primary variant does not exist - will give the default input "text".
@@ -59,3 +59,18 @@ This is handled by adding disabled to the html
 ```
 
 
+
+##Slots
+
+Within the component there are slots for content with embedded functionality with the accordian boolean, when paired with the slot will provide information from the acordian button-
+
+
+```html
+<!-- good -->
+<foam-input accordian />
+```
+
+```html
+<!-- bad -->
+<foam-input "disabled" text="Password" />
+```

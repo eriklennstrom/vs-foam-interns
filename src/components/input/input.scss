@@ -9,6 +9,36 @@
 .toggledAccordian {
   transform: rotate(180deg);
   transition: transform;
+  overflow: hidden;
+}
+
+.slot-enter-active,
+.slot-leave-active,
+.slot-move {
+  transition: 200ms ease-in-out;
+  transition-property: transform;
+}
+
+.slot-enter {
+
+  transform: translateX(150px);
+}
+
+
+
+.slot-enter-to {
+  transform: translateX(0);
+}
+
+.slot-leave-active {
+  position: relative;
+  
+}
+
+.slot-leave-to {
+
+  transform: scaleY(0);
+  transform-origin: top;
 }
 
 .topWrapper {
@@ -19,7 +49,15 @@
     font-weight: 400;
     font-size: 21px;
     color: colors.$primary-300;
+    user-select: none;
+
+    svg {
+      color: white;
+      background-color: transparent;
+    }
   }
+ 
+
   .iconWrapper {
     margin-left: 10px;
     align-self: center;
@@ -45,59 +83,85 @@
   width: fit-content;
   display: flex;
   align-items: center;
-  border: 1px solid black;
+  justify-content: center;
+  gap:2px;
+  border: 1px solid colors.$primary-300;
   border-radius: 8px;
   width: 100%;
+
+  .warningIcon {
+    padding:10px;
+    user-select: none;
+  }
+  
+  .successIcon {
+    padding:10px;
+    margin:0 auto;
+    user-select: none;
+  }
+  .passwordControls {
+  width:25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+   .passwordIcon{
+   }
+
+  }
 }
 
-.warningIcon {
-  margin-right: 10px;
-}
-
-.successIcon {
-  margin-right: 10px;
-}
 
 .valid {
   border-color: colors.$success;
+  user-select: none;
 }
 
 .invalid {
-  border-color: colors.$danger;
+  user-select: none;
+  border-color: colors.$danger-100;
 }
 
-.disabled {
-  opacity: 0.3;
-}
+
+
 
 .userInstructions {
-  font-size: 14px;
+  user-select: none;
+  font-size: 12px;
   padding: 1px;
   margin-right: 10px;
+  max-width: 100%;
+  word-wrap: break-word;
 
   .successMessageText {
-    color: colors.$success;
+    color: colors.$success; 
   }
+
   .errorMessageText {
     color: colors.$danger;
   }
 
   .helperMessageText {
-    font-size: 13px;
     opacity: 0.5;
+
   }
 }
 
-.passwordControls {
-  margin-right: 10px;
+.dark .userInstructions{
+  .helperMessageText {
+    color: rgba(255, 251, 245, 0.958);
+    
+  }
 }
+
+
 
 input::placeholder {
   opacity: 0.3;
 }
 
 input {
-  margin-left: 10px;
+  
   width: 100%;
   border: 0;
   outline: 0;
@@ -106,113 +170,25 @@ input {
   padding: 10px;
 }
 
-@each $name, $bg in colors.$input-colors {
-  .input--#{$name} {
-    &:focus-visible {
-      outline-style: solid;
-      outline-width: 0px;
-      outline-color: map-get(colors.$input-colors, $name);
-      transition: outline 0s;
-    }
-
-    &:hover {
-    }
-  }
-}
-
-@each $name, $bg in colors.$dark-input-colors {
-  .dark .input--#{$name} {
-    color: map-get(colors.$text-colors, strong-light);
-
-    ///BACKGROUND COLORS
-    @if (str-index($name, "danger-outline")) {
-      color: map-get(colors.$text-colors, danger);
-    }
-
-    background-color: $bg;
-
-    &:focus-visible {
-    }
-
-    &:hover {
-      background-color: map-get(colors.$dark-button-hover-colors, $name);
-
-      @if (str-index($name, "danger-outline")) {
-        color: map-get(colors.$text-colors, strong-light);
-      }
-
-      @if (str-index($name, "ghost")) {
-        text-decoration: underline;
-        background-color: map-get(colors.$dark-button-hover-colors, ghost);
-      }
-    }
-  }
-}
 
 .dropdown {
   background-color: black;
   transition: transform 0.15s ease-in-out;
+  rotate:180deg;
 }
 
-.topWrapper svg {
-  color: white;
-  background-color: transparent;
-}
 
-@each $name, $bg in colors.$disabled {
-  // TEXT FORMATTING
-  .input--#{$name}.disabled {
+
+  .disabled {
+    opacity: 0.3;
     pointer-events: none;
-    background-color: map-get(colors.$disabled, $name);
-    color: map-get(colors.$disabled-text-colors, $name);
     text-decoration: none;
 
-    input {
-      pointer-events: none;
-    }
 
-    // BORDER EXCEPTIONS
-    @if (str-index($name, "danger-outline")) {
-      outline-color: map-get(colors.$disabled-text-colors, $name);
-      outline-style: solid;
-      outline-width: 1px;
-      text-decoration: none;
-    }
-
-    @if (str-index($name, "secondary")) {
-      outline-color: map-get(colors.$disabled-text-colors, $name);
-      outline-style: solid;
-      outline-width: 1px;
-      text-decoration: none;
-    }
-
-    &:focus-visible {
-      background-color: map-get(colors.$disabled, $name);
-      outline-color: map-get(colors.$disabled, $name);
-      pointer-events: none;
-      color: map-get(colors.$disabled-text-colors, $name);
-      outline-width: 1px;
-    }
   }
-}
 
-@each $name, $bg in colors.$disabled {
-  // BORDER FORMAT DARK MODE
-  .dark .button--#{$name}.disabled {
-    background-color: map-get(colors.$dark-disabled, $name);
-    outline-color: map-get(colors.$disabled-text-colors, $name);
-    color: map-get(colors.$disabled-text-colors, $name);
-    text-decoration: none;
 
-    // BORDER EXCEPTIONS
-    @if (str-index($name, "primary")) {
-      outline-color: map-get(colors.$disabled-text-colors, $name);
-      outline-style: solid;
-      outline-width: 1px;
-      text-decoration: none;
-    }
-
-    &:focus-visible {
-    }
-  }
-}
+//  background-color: map-get(colors.$dark-disabled, $name);
+//  outline-color: map-get(colors.$disabled-text-colors, $name);
+//  color: map-get(colors.$disabled-text-colors, $name);
+//  text-decoration: none;
