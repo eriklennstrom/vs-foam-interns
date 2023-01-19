@@ -57,9 +57,7 @@ describe('DropdownItem', () => {
             setup() {
                 const propText = ref('test')
 
-                function vitestTest() {
-                    console.log('hej');
-                    
+                function vitestTest() {                   
                     propText.value = 'Vitest'
                 }
 

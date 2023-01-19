@@ -41,6 +41,9 @@
             margin-right: auto;
             user-select: none;
         }
+        .secondary-text {
+            font-size: 10px;
+        }
         &[role=disabled] {
             pointer-events: none;
             opacity: 0.6;

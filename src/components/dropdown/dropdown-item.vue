@@ -12,6 +12,7 @@ type DropdownProps = {
     to?: string
     disabled?: boolean
     selected?: boolean
+    secondaryText?: string | null
 };
 
 const props = withDefaults(defineProps<DropdownProps>(), {
@@ -19,6 +20,7 @@ const props = withDefaults(defineProps<DropdownProps>(), {
     icon: null,
     type: 'button',
     to: '/',
+    secondaryText: null
 });
 
 const emit = defineEmits(['click']);
@@ -85,6 +87,7 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
       variant="primary"
     />
     <p>{{ props.text }}</p>
+    <p v-if="props.secondaryText" class="secondary-text">{{ props.secondaryText }}</p>
     <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
   </component>
 </template>
