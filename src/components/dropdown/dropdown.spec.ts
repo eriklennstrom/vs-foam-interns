@@ -3,7 +3,44 @@ import { mount } from '@vue/test-utils'
 import Dropdown from '@/components/dropdown/dropdown.vue'
 import DropdownItem from '@/components/dropdown/dropdown-item.vue'
 import DropdownDivider from '@/components/dropdown/dropdown-divider.vue'
-import Icons from '@/components/icons/icons.vue'
+import Button from '@/components/button/button.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
-library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown)
+import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown)
+
+describe('Dropdown', () => {
+    it('renders dropdown button properly', () => {
+        const wrapper = mount(Dropdown, { propsData: { variant: 'primary', text: 'Foam Dropdown' } })
+        expect(wrapper.getComponent(Button)).toBeTruthy()
+    })
+
+    it('toggles dropdown on click', async () => {
+        const wrapper = mount(Dropdown, { propsData: { variant: 'primary', text: 'Foam Dropdown' } })
+        const button = wrapper.getComponent(Button)
+        await button.trigger('click')
+        expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(true)
+        await button.trigger('click')
+        expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(false)
+    })
+
+    it('renders components correctly when added into the slot', () => {
+        const wrapper = mount(Dropdown, { propsData: { variant: 'primary', text: 'Foam Dropdown' }, 
+            slots : {
+                default : [DropdownDivider, DropdownItem]
+            } 
+        })
+ 
+        expect(wrapper.getComponent(DropdownDivider))
+        expect(wrapper.getComponent(DropdownItem))      
+    })
+
+    it('renders custom slots', () => {
+        const wrapper = mount(Dropdown, { propsData: { variant: 'primary', text: 'Foam Dropdown' }, 
+            slots : {
+                default : '<p class="vitest">Vitest testing custom html injection into the slot</p>'
+            } 
+        })
+        
+        expect(wrapper.find('.vitest')).toBeTruthy()
+    })
+})

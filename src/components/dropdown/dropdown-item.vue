@@ -77,7 +77,12 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
     @keyup="useRemoveRecordedStroke($event)"
     @click="elementType == 'button' ? emit('click') : null"
   >
-    <AsyncSelectedIcon v-if="props.selected" icon="check" :size="8" />
+    <AsyncSelectedIcon
+      v-if="props.selected"
+      icon="check"
+      :size="8"
+      variant="primary"
+    />
     <p>{{ props.text }}</p>
     <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
   </component>

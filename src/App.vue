@@ -84,14 +84,6 @@ const darkMode: () => void = () => {
         disabled
         @click="testFunctionOne('Test dropdown item 1')"
       />
-      <FoamDropdownDivider />
-      <FoamDropdownItem
-        icon="circle-down"
-        type="route"
-        text="Route /test"
-        to="/test"
-        @click="testFunctionTwo('Test dropdown item 2')"
-      />
     </FoamDropdown>
   </section>
 
