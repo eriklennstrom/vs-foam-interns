@@ -55,6 +55,7 @@ const darkMode: () => void = () => {
         type="route"
         text="Route /test"
         to="/test"
+        :selected="true"
         @click="testFunctionTwo('Test dropdown item 2')"
       />
       <FoamDropdownDivider />

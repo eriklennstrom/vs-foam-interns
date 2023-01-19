@@ -47,7 +47,12 @@
             }
         }
     }
-    
+    .dropdown__item--selected {
+        background-color: colors.$dropdown-item-selected-light;
+        &:hover, &:focus-visible, &:active {
+            background-color: colors.$dropdown-item-selected-light;
+        }
+    }
     // Dropdown Divider
     .divider {
         width: 90%;
@@ -72,6 +77,12 @@ body.dark {
 
             &:active {
                 background-color: colors.$dropdown-active-bg-dark;
+            }
+        }
+        .dropdown__item--selected {
+            background-color: colors.$dropdown-item-selected-dark;
+            &:hover, &:focus-visible, &:active {
+                background-color: colors.$dropdown-item-selected-dark;
             }
         }
         

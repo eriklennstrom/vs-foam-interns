@@ -127,6 +127,7 @@ $text-colors: (
   $dropdown-hover-bg-light: #F5F5F5;
   $dropdown-active-bg-light: #ECEBEB;
   $dropdown-divider-light: $secondary-hover;
+  $dropdown-item-selected-light : #0033491a;
   
   // Dark
   $dropdown-border-color-dark: $primary-dark-disabled;
@@ -135,6 +136,7 @@ $text-colors: (
   $dropdown-hover-bg-dark: #262D37;
   $dropdown-active-bg-dark: #313842;
   $dropdown-divider-dark: $primary-dark-disabled;
+  $dropdown-item-selected-dark : #373C43;
 
 $button-border-colors: (
   danger-outline: $primary-100,

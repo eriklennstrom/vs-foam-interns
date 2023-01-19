@@ -11,13 +11,14 @@ type DropdownProps = {
     icon?: string | null
     to?: string
     disabled?: boolean
+    selected?: boolean
 };
 
 const props = withDefaults(defineProps<DropdownProps>(), {
     text: 'Dropdown Item',
     icon: null,
     type: 'button',
-    to: '/'
+    to: '/',
 });
 
 const emit = defineEmits(['click']);
@@ -33,6 +34,16 @@ defaultTypeMixin(dropdownItemTypes).verifyType(props.type)
 // dynamic component import
 const AsyncIcon = computed(() => {
   if (props.icon) {
+    const Icon = defineAsyncComponent(
+      () => import('@/components/icons/icons.vue')
+    );
+    return Icon;
+  } 
+  return null;
+});
+
+const AsyncSelectedIcon = computed(() => {
+  if (props.selected) {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
     );
@@ -57,7 +68,7 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
     :href="elementType == 'link' ? props.to : null"
     :target="elementType == 'link' ? '_blank' : null"
     :to="elementType == 'route' ? props.to : null"
-    :class="itemId"
+    :class="[itemId, props.selected ? 'dropdown__item--selected' : null]"
     class="dropdown__item"
     tabindex="0"
     :disabled="props.disabled ? disabled : null"
@@ -66,6 +77,7 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
     @keyup="useRemoveRecordedStroke($event)"
     @click="elementType == 'button' ? emit('click') : null"
   >
+    <AsyncSelectedIcon v-if="props.selected" icon="check" :size="8" />
     <p>{{ props.text }}</p>
     <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
   </component>
