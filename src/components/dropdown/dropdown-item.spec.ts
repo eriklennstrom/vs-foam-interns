@@ -1,11 +1,10 @@
-import { emit } from 'process';
-import { describe, it, expect, test } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { ref } from 'vue'
 import DropdownItem from '@/components/dropdown/dropdown-item.vue'
 import Icons from '@/components/icons/icons.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { ref } from 'vue'
 library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown, faCheck)
 
 describe('DropdownItem', () => {
