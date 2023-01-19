@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, type Ref } from 'vue';
+import { computed, onMounted, ref, type Ref } from 'vue';
 import FoamButton from '@/components/button/button.vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
@@ -9,28 +9,41 @@ type DropdownProps = {
     variant?: string
     text?: string
     icon?: string | null
+    width?: number | null
+    align?: string
 };
 
 const props = withDefaults(defineProps<DropdownProps>(), {
     variant: 'secondary',
     text: 'Foam Dropdown',
-    icon: null
+    icon: null,
+    width: null,
+    align: 'end'
 });
 
 const showDropdown: Ref = ref<boolean>(false);
-const dropdownId = ref(uuidv4())
-const dropdown = ref()
+const dropdownId = ref<string>('dropdown-' + uuidv4())
+const buttonId = ref<string>('btn-' + uuidv4())
+const dropdown: Ref = ref()
+const dropdownAlign = ref<string>(props.align)
 
+onMounted(() => {
+  if(props.align == 'end' || props.align == 'start') {
+    return
+  } else {
+    dropdownAlign.value = 'end'
+  }
+})
 const popperInstance = computed(() => {
-  const buttonElem = document.querySelector('.button') as HTMLElement
-  const dropdownElem = document.querySelector('#dropdown') as HTMLElement
+  const buttonElem = document.querySelector(`#${buttonId.value}`) as HTMLElement
+  const dropdownElem = document.querySelector(`.${dropdownId.value}`) as HTMLElement
   return createPopper(buttonElem, dropdownElem, {
     placement: 'auto-start',
     modifiers: [
       {
         name: 'flip',
         options: {
-          allowedAutoPlacements: ['bottom-end', 'top-end']
+          allowedAutoPlacements: [`bottom-${dropdownAlign.value}`, `top-${dropdownAlign.value}`]
         },
       },
       {
@@ -50,7 +63,7 @@ const handleShowDropdown: () => void = () => {
   if(showDropdown.value) {
     popperInstance.value.update()
     dropdown.value.setAttribute('data-show', '')
-  } else {
+  } else {   
     dropdown.value.removeAttribute('data-show')
   }
 }
@@ -71,6 +84,7 @@ useDetectOutsideClick(componentRef, () => {
     class="dropdown-container"
   >
     <FoamButton
+      :id="buttonId"
       class="button"
       dropdown
       :text="props.text"
@@ -82,6 +96,7 @@ useDetectOutsideClick(componentRef, () => {
     <div
       id="dropdown"
       ref="dropdown"
+      :class="dropdownId"
       @keyup.escape="handleShowDropdown"
     >
       <slot />

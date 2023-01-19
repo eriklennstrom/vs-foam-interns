@@ -30,9 +30,12 @@ export function useTabTrap (e: KeyboardEvent) {
     e.preventDefault()
     const currentElem = document.activeElement as HTMLElement
     const parentElement = currentElem.parentElement as unknown as Document
+    const elements = getKeyBoardFocusableElements(parentElement)
+    if(elements.elements.value.length <= 1) {
+      return
+    }
     
     let index = 0;
-    const elements = getKeyBoardFocusableElements(parentElement)
     const firstElem = elements.elements.value[0] as HTMLElement
     const lastElem = elements.elements.value[elements.elements.value.length - 1] as HTMLElement
 

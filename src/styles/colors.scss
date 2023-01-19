@@ -124,8 +124,8 @@ $text-colors: (
   $dropdown-border-color-light: $secondary-hover;
   $dropdown-item-bg-light: #FFFFFF;
   $dropdown-item-text-light: map-get($text-colors, strong-dark);
-  $dropdown-hover-bg-light: #F5F5F5;
-  $dropdown-active-bg-light: #ECEBEB;
+  $dropdown-hover-bg-light: #ECECEC;
+  $dropdown-active-bg-light: #D8D8D8;
   $dropdown-divider-light: $secondary-hover;
   $dropdown-item-selected-light : #0033491a;
   
@@ -133,8 +133,8 @@ $text-colors: (
   $dropdown-border-color-dark: $primary-dark-disabled;
   $dropdown-item-bg-dark: #1F252F;
   $dropdown-item-text-dark: map-get($text-colors, strong-light);
-  $dropdown-hover-bg-dark: #262D37;
-  $dropdown-active-bg-dark: #313842;
+  $dropdown-hover-bg-dark: #303A49;
+  $dropdown-active-bg-dark: #485262;
   $dropdown-divider-dark: $primary-dark-disabled;
   $dropdown-item-selected-dark : #373C43;
 

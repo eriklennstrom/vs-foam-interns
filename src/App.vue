@@ -1,16 +1,8 @@
 <script setup lang="ts">
-// import ButtonVue from './components/Button/Button.vue';
-import Icons from '@/components/icons/icons.vue'
-import Badge from '@/components/badge/badge.vue'
 import FoamDropdown from '@/components/dropdown/dropdown.vue';
 import FoamDropdownItem from '@/components/dropdown/dropdown-item.vue';
 import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
-import FoamButton from '@/components/button/button.vue'
-import { ref } from 'vue';
 
-
-
-const buttonIcon1 = ref(false)
 const testFunctionOne: (param:string) => void = (param) => {
   console.log(param)
 }
@@ -34,7 +26,12 @@ const darkMode: () => void = () => {
 
 <template>
   <section class="dropdown-test">
-    <FoamDropdown icon="warning" variant="danger" text="Test Dropdown">
+    <FoamDropdown
+      icon="warning"
+      variant="danger"
+      text="Test Dropdown"
+      align="start"
+    >
       <FoamDropdownItem
         icon="warning"
         type="button"
@@ -72,6 +69,28 @@ const darkMode: () => void = () => {
         to="http://www.google.se"
         disabled
         @click="testFunctionThree('Test dropdown item 3')"
+      />
+    </FoamDropdown>
+    <FoamDropdown
+      icon="warning"
+      variant="primary"
+      text="Test Dropdown"
+      align="end"
+    >
+      <FoamDropdownItem
+        icon="warning"
+        type="button"
+        text="Button"
+        disabled
+        @click="testFunctionOne('Test dropdown item 1')"
+      />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        icon="circle-down"
+        type="route"
+        text="Route /test"
+        to="/test"
+        @click="testFunctionTwo('Test dropdown item 2')"
       />
     </FoamDropdown>
   </section>

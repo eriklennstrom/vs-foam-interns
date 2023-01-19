@@ -1,3 +1,3 @@
 declare module '*.md';
 declare module 'uuid'
-declare module 'focus-trap-vue'
+declare module '@popperjs/core'
