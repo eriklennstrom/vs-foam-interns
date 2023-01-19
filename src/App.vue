@@ -32,7 +32,7 @@ const test= ref('')
   <Inputvue
     v-model="test"
     :is-valid="true"
-    validation-text="validation-text"
+    validation-text="Validation-text"
     variant="text"
     text="Valid"
     placeholder="placeholder"
@@ -41,25 +41,26 @@ const test= ref('')
   <Inputvue
   v-model="test"
     :is-valid="false"
-    validation-text="validation-text"
+    validation-text="Validation-text"
     variant="text"
     text="Not valid"
     placeholder="placeholder"
     accordian
+    helpertext="Helper text"
   >
     <template #sendContent>
-      Sent content
+      <p>sent content</p>
     </template>
   </Inputvue>
 
 
   <Inputvue
   v-model="test"
-    validation-text="validation-text"
     variant="text"
     text="Neutral"
     placeholder="placeholder"
     accordian
+    helpertext="Helper text"
   >
     <template #sendContent>
       Sent content
@@ -111,4 +112,11 @@ section {
   margin-bottom: 4em;
   margin-top: 4em;
 }
+
+.nice{
+  border: 1px solid black;
+  background-color: grey;
+  border-radius: 7px;
+}
+
 </style>
