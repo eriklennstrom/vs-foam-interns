@@ -27,10 +27,11 @@ const darkMode: () => void = () => {
 <template>
   <section class="dropdown-test">
     <FoamDropdown
-      icon="warning"
+      icon="circle-aaaaaaaaa"
       variant="danger"
       text="Test Dropdown"
       align="start"
+      :width="200"
     >
       <FoamDropdownItem
         icon="warning"
@@ -72,7 +73,7 @@ const darkMode: () => void = () => {
       />
     </FoamDropdown>
     <FoamDropdown
-      icon="warning"
+      icon="circle-down"
       variant="primary"
       text="Test Dropdown"
       align="end"

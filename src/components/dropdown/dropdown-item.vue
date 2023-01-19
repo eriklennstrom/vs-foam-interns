@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 
 
 type DropdownProps = {
-    type: string
+    type?: string
     text?: string
     icon?: string | null
     to?: string
@@ -72,6 +72,7 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
     class="dropdown__item"
     tabindex="0"
     :disabled="props.disabled ? disabled : null"
+    :data-test="elementType"
     @keydown.enter="goToRoute($event)"
     @keydown="useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"

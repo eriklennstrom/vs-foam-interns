@@ -80,8 +80,8 @@ useDetectOutsideClick(componentRef, () => {
   <section
     :id="dropdownId"
     ref="componentRef"
-    :action="props.variant"
     class="dropdown-container"
+    :data-test="dropdownAlign"
   >
     <FoamButton
       :id="buttonId"
@@ -97,6 +97,7 @@ useDetectOutsideClick(componentRef, () => {
       id="dropdown"
       ref="dropdown"
       :class="dropdownId"
+      :style="{ width: props.width ? props.width + 'px' : 'fit-content' }"
       @keyup.escape="handleShowDropdown"
     >
       <slot />
