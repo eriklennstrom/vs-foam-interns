@@ -58,4 +58,11 @@ section {
   margin-bottom: 4em;
   margin-top: 4em;
 }
+
+.nice{
+  border: 1px solid black;
+  background-color: grey;
+  border-radius: 7px;
+}
+
 </style>
