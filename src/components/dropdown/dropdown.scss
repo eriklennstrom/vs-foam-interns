@@ -15,27 +15,28 @@
     }
     // Dropdown Item
     .dropdown__item {
-    all: unset;
-    padding: 12px;
-    cursor: pointer;
-    color: colors.$dropdown-item-text-light;
-    background-color: colors.$dropdown-item-bg-light;
-    &:hover, &:focus-visible {
-        background-color: colors.$dropdown-hover-bg-light;
-    }
-    &:has(svg) {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;    
-        svg {
-            color: inherit;
+        all: unset;
+        padding: 12px;
+        cursor: pointer;
+        color: colors.$dropdown-item-text-light;
+        background-color: colors.$dropdown-item-bg-light;
+        &:hover, &:focus-visible {
+            background-color: colors.$dropdown-hover-bg-light;
         }
-    }
-    &:active {
-        background-color: colors.$dropdown-active-bg-light;
-    }
+        &:has(svg) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;    
+            svg {
+                color: inherit;
+            }
+        }
+        &:active {
+            background-color: colors.$dropdown-active-bg-light;
+        }
         p {
+            font-size: 12px;
             margin: 0;
             margin-right: auto;
             user-select: none;
