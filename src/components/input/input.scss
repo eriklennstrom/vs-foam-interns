@@ -13,32 +13,16 @@
 }
 
 .slot-enter-active,
-.slot-leave-active,
-.slot-move {
-  transition: 200ms ease-in-out;
-  transition-property: transform;
-}
-
-.slot-enter {
-
-  transform: translateX(150px);
-}
-
-
-
-.slot-enter-to {
-  transform: translateX(0);
-}
-
 .slot-leave-active {
-  position: relative;
-  
+  will-change: height, opacity;
+  transition: height 0.25s ease, opacity 0.25s ease;
+  overflow: hidden;
 }
 
+.slot-enter,
 .slot-leave-to {
-
-  transform: scaleY(0);
-  transform-origin: top;
+  height: 0 !important;
+  opacity: 0;
 }
 
 .topWrapper {
@@ -56,7 +40,6 @@
       background-color: transparent;
     }
   }
- 
 
   .iconWrapper {
     margin-left: 10px;
@@ -84,33 +67,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:2px;
+  gap: 2px;
   border: 1px solid colors.$primary-300;
   border-radius: 8px;
   width: 100%;
 
   .warningIcon {
-    padding:10px;
+    padding: 10px;
     user-select: none;
   }
-  
+
   .successIcon {
-    padding:10px;
-    margin:0 auto;
+    padding: 10px;
+    margin: 0 auto;
     user-select: none;
   }
   .passwordControls {
-  width:25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-   .passwordIcon{
-   }
-
+    .passwordIcon {
+    }
   }
 }
-
 
 .valid {
   border-color: colors.$success;
@@ -122,9 +103,6 @@
   border-color: colors.$danger-100;
 }
 
-
-
-
 .userInstructions {
   user-select: none;
   font-size: 12px;
@@ -134,7 +112,7 @@
   word-wrap: break-word;
 
   .successMessageText {
-    color: colors.$success; 
+    color: colors.$success;
   }
 
   .errorMessageText {
@@ -143,25 +121,20 @@
 
   .helperMessageText {
     opacity: 0.5;
-
   }
 }
 
-.dark .userInstructions{
+.dark .userInstructions {
   .helperMessageText {
     color: rgba(255, 251, 245, 0.958);
-    
   }
 }
-
-
 
 input::placeholder {
   opacity: 0.3;
 }
 
 input {
-  
   width: 100%;
   border: 0;
   outline: 0;
@@ -170,23 +143,17 @@ input {
   padding: 10px;
 }
 
-
 .dropdown {
   background-color: black;
   transition: transform 0.15s ease-in-out;
-  rotate:180deg;
+  rotate: 180deg;
 }
 
-
-
-  .disabled {
-    opacity: 0.3;
-    pointer-events: none;
-    text-decoration: none;
-
-
-  }
-
+.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  text-decoration: none;
+}
 
 //  background-color: map-get(colors.$dark-disabled, $name);
 //  outline-color: map-get(colors.$disabled-text-colors, $name);
