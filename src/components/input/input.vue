@@ -83,7 +83,6 @@ function changePasswordVisibility() {
 
 function toggleAccordian() {
   accordianSwitch.value = !accordianSwitch.value;
-  console.log(accordianSwitch.value);
 }
 
 function start(el: HTMLElement) {
