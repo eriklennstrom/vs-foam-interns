@@ -64,5 +64,9 @@ section {
   background-color: grey;
   border-radius: 7px;
 }
+body{
+  background-color: #668592;
+;
+}
 
 </style>

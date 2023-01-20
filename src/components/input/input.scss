@@ -57,8 +57,6 @@
       align-self: center;
       justify-self: center;
     }
-    .sentContent {
-    }
   }
 }
 
@@ -73,23 +71,21 @@
   width: 100%;
 
   .warningIcon {
-    padding: 10px;
+    padding-right: 10px;
     user-select: none;
   }
 
   .successIcon {
-    padding: 10px;
+    padding-right: 10px;
     margin: 0 auto;
     user-select: none;
   }
   .passwordControls {
+    padding-right:10px;
     width: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .passwordIcon {
-    }
   }
 }
 
@@ -133,6 +129,7 @@
 input::placeholder {
   opacity: 0.3;
 }
+
 
 input {
   width: 100%;
