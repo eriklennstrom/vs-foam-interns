@@ -47,17 +47,18 @@ const props = withDefaults(defineProps<InputProps>(), {
 const size: Ref = ref<string>(props.size);
 const variantMiddleware: Ref = ref<string>(props.variant);
 const showPassword: Ref = ref<boolean>(false);
+const type: Ref = ref<string>(props.variant);
+const accordianSwitch: Ref = ref<boolean>(false);
+
 
 defaultVariantMixin(inputSize).verifyVariant(size.value)
   ? ''
   : (size.value = 'M');
 
-const type: Ref = ref<string>(props.variant);
-const accordianSwitch: Ref = ref<boolean>(false);
-
 defaultVariantMixin(inputVariant).verifyVariant(props.variant)
   ? ''
   : (type.value = 'text');
+
 const inputClass = ref('input--' + type.value);
 
 watch(
@@ -69,6 +70,7 @@ watch(
   }
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function emitInput(e: any) {
   const targetVal = e.value;
   emit('update:modelValue', targetVal);
@@ -80,7 +82,6 @@ function changePasswordVisibility() {
 
 function toggleAccordian() {
   accordianSwitch.value = !accordianSwitch.value;
-  console.log(accordianSwitch.value);
 }
 
 function start(el: HTMLElement) {
@@ -154,7 +155,7 @@ const AsyncIcon = computed(() => {
       @input="emitInput($event.target)"
     >
 
-    <div v-if="props.variant == 'password'" class="passwordControls">
+    <div v-if="variantMiddleware == 'password' || props.variant == 'password' " class="passwordControls">
       <AsyncIcon
         v-if="showPassword == false"
         class="passwordIcon"

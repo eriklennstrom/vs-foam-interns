@@ -1,8 +1,8 @@
 import './assets/theming.scss'
 import './assets/fonts.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCaretDown, faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown} from  '@fortawesome/free-solid-svg-icons';
-library.add( faCaretDown,faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown)
+import { faEye, faEyeSlash, faCheck, faCaretDown, faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown} from  '@fortawesome/free-solid-svg-icons';
+library.add( faEye, faEyeSlash, faCheck, faCaretDown,faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown)
 import { themes } from '@storybook/theming';
 import logo from './varnish-software-logo-dark-text.svg'
 

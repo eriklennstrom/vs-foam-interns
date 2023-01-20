@@ -1,11 +1,10 @@
-import FoamButton from '@/components/button/button.vue';
+import FoamInput from '@/components/input/input.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
-import readme from '@/components/button/button.md?raw';
-import { useArgs } from '@storybook/client-api';
+import readme from '@/components/input/input.md?raw';
 
 export default {
-  title: 'Components/Button',
-  component: FoamButton,
+  title: 'Components/input',
+  component: FoamInput,
   parameters: {
     docs: {
       description: {
@@ -14,16 +13,41 @@ export default {
     },
   },
   argTypes: {
+    text: {
+      control: { type: 'text' },
+      description: 'Property for Label',
+    },
+    placeholder: {
+      control: { type: 'text' },
+      description: 'Placeholder property for text content inside the input',
+      defaultValue:'placeholder'
+    },
+    helpertext: {
+      control: { type: 'text' },
+      description: 'Property to add text to identify with isValid',
+      defaultValue: 'helpertext'
+    },
+
     variant: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'danger', 'danger-outline', 'ghost'],
+      options: ['text', 'number', 'email', 'password'],
       description: 'Property to add chosen variant',
     },
-    icon: {
+    isValid: {
       control: { type: 'select' },
-      options: ['warning', 'arrow-down', 'circle-down', null],
-      description: 'Property to add chosen icon',
+      options: [true, false, null],
+      description: 'Property to add if value is valid',
     },
+    accordian: {
+      control: { type: 'boolean' },
+      options: [true, false],
+    },
+    sentContent:{
+      table:{
+        disable:true
+      }
+    },
+
     activeDropdown: {
       control: { type: 'boolean' },
       options: [true, false],
@@ -31,11 +55,12 @@ export default {
       table: {
         disable: true,
       },
+
+
     },
-    dropdown: {
-      control: { type: 'boolean' },
-      options: [true, false],
-      description: 'Property for dropdown boolean',
+    validationText: {
+      control: { type: 'text' },
+      description: 'Property for describing validation',
     },
     disabled: {
       control: { type: 'boolean' },
@@ -48,42 +73,32 @@ export default {
         disable: true,
       },
     },
-    text: {
-      control: { type: 'text' },
-      description: 'Property for text content inside the button',
-    },
+
+
   },
-} as Meta<typeof FoamButton>;
+} as Meta<typeof FoamInput>;
 
-const Template: StoryFn<typeof FoamButton> = (args) => {
-  const [_, updateArgs] = useArgs();
+const Template: StoryFn<typeof FoamInput> = () => {
   return {
-    components: { FoamButton },
-
-    setup() {
-      const handleClick = () => {
-        updateArgs({ activeDropdown: !args.activeDropdown });
-      };
-
-      return { args, handleClick };
-    },
-    template: '<foam-button  v-bind="args" @click="handleClick" />',
+    components: { FoamInput },
+    template: '<foam-input  v-bind="args"/>',
   };
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: 'primary',
+  variant: 'text',
+  placeholder: 'placeholder'
 };
 
-export const Variants: StoryFn<typeof FoamButton> = (args, { argTypes }) => ({
-  components: { FoamButton },
+export const Variants: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
+  components: { FoamInput },
   setup() {
     return { args, argTypes };
   },
   template: `
-  <div style="display: flex; gap: 1em; flex-wrap: wrap">
-    <foam-button v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" />
+  <div style="display: flex; flex-direction:column; flex-wrap: wrap;">
+    <foam-input v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" :placeholder ="placeholder" />
   </div>
 `,
 });
@@ -105,99 +120,75 @@ Variants.argTypes = {
     },
   },
   text: {
-    description: 'Property for text content inside the button',
+    description: 'Property for text content inside the input',
   },
 };
 
-export const Dropdown: StoryFn<typeof FoamButton> = (args, { argTypes }) => {
-  const [_, updateArgs] = useArgs();
+export const Validation: StoryFn<typeof FoamInput> = (args, { argTypes }) => {
   return {
-    components: { FoamButton },
+    components: { FoamInput },
     setup() {
-      const handleClick = () => {
-        updateArgs({ activeDropdown: !args.activeDropdown });
-      };
-
-      return { args, argTypes, handleClick };
+      return { args, argTypes};
     },
     template: `
-    <div style="display: flex; gap: 1em">
-      <foam-button v-bind="args" @click="handleClick" dropdown/>
+    <div style="display: flex; flex-direction: column;">
+    <foam-input variant="text" helpertext="helpertext" validationText="validationText" :isValid=false v-bind="args"  />
+    <foam-input variant="text" 
+    helpertext="helpertext"  validationText="validationText"  :isValid=true v-bind="args"  />
     </div>
   `,
   };
 };
 
-export const Icons: StoryFn<typeof FoamButton> = (args) => {
-  const [_, updateArgs] = useArgs();
+export const Accordian: StoryFn<typeof FoamInput> = () => {
   return {
-    components: { FoamButton },
-    setup() {
-      const handleClick = () => {
-        updateArgs({ activeDropdown: !args.activeDropdown });
-      };
-
-      return { args, handleClick };
-    },
+    components: { FoamInput },
     template: `
-    <div style="display: flex; gap: 1em">
-      <foam-button variant="primary" v-bind="args" icon='circle-down' @click="handleClick" />
+    <div style="display: flex; flex-direction: column;">
+      <foam-input variant="text" v-bind="args" accordian placeholder="placeholder"  >
+      <template #sentContent>
+      Slot content
+    </template>
+      </foam-input >
     </div>
   `,
   };
 };
 
-Icons.argTypes = {
+Accordian.argTypes = {
   variant: {
-    table: {
-      disable: true,
-    },
-  },
-  icon: {
-    table: {
-      defaultValue: 'circle-down',
-    },
-  },
-
-  text: {
-    description: 'Property for text content inside the button',
-  },
-};
-
-Dropdown.args = {
-  variant: 'primary',
-  dropdown: {
-    table: {
-      defaultValue: 'true',
-    },
-  },
-};
-
-Dropdown.argTypes = {
-  variant: {
-    table: {
-      disable: true,
-    },
-  },
-  activeDropdown: {
     table: {
       disable: true,
     },
   },
 
   text: {
-    description: 'Property for text content inside the button',
+    description: 'Property for text content inside the input',
   },
 };
 
-export const Disabled: StoryFn<typeof FoamButton> = (args, { argTypes }) => ({
-  components: { FoamButton },
+
+
+Validation.argTypes = {
+  variant: {
+    table: {
+      disable: true,
+    },
+  },
+
+  text: {
+    description: 'Property for text content inside the input',
+  },
+};
+
+export const Disabled: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
+  components: { FoamInput },
   setup() {
     return { args, argTypes };
   },
   template: `
-  <div style="display: flex; gap: 1em; flex-wrap: wrap">
-    <foam-button disabled v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" />
+  <div style="display: flex; flex-direction: column; flex-wrap: wrap">
+    <foam-input disabled v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" />
   </div>
 `,
 });
@@ -219,6 +210,6 @@ Disabled.argTypes = {
     },
   },
   text: {
-    description: 'Property for text content inside the button',
+    description: 'Property for text content inside the input',
   },
 };

@@ -1,17 +1,12 @@
 <script setup lang="ts">
 // import ButtonVue from './components/Button/Button.vue';
-import Icons from '@/components/icons/icons.vue'
-import Badge from '@/components/badge/badge.vue'
-import Buttonvue from '@/components/button/button.vue'
+// import Icons from '@/components/icons/icons.vue'
+// import Badge from '@/components/badge/badge.vue'
+// import Buttonvue from '@/components/button/button.vue'
 import Inputvue from '@/components/input/input.vue'
 import { ref } from 'vue';
 
 
-
-const buttonIcon1 = ref(false)
-const iconflip: () => void = () => {
-  buttonIcon1.value = !buttonIcon1.value
-}
 
 
 const darkMode: () => void = () => {
@@ -19,7 +14,7 @@ const darkMode: () => void = () => {
 
   body?.classList.toggle('dark')
 
-  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body ? body.style.backgroundColor = '#F6F8FA' : null
+  body?.classList.contains('dark') ? body.style.backgroundColor = '#002737' : body ? body.style.backgroundColor = '#F6F8FA' : null
 }
 
 const test= ref('')
@@ -33,7 +28,7 @@ const test= ref('')
     v-model="test"
     :is-valid="true"
     validation-text="Validation-text"
-    variant="text"
+    variant="email"
     text="Valid"
     placeholder="placeholder"
     helpertext="Helper text"
@@ -45,13 +40,8 @@ const test= ref('')
     variant="text"
     text="Not valid"
     placeholder="placeholder"
-    accordian
     helpertext="Helper text"
-  >
-    <template #sentContent>
-      sent content
-    </template>
-  </Inputvue>
+  />
 
 
   <Inputvue
@@ -64,14 +54,14 @@ const test= ref('')
   >
     <template #sentContent>
       <div>
-      <p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p>
-    </div>
+        <p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p>
+      </div>
     </template>
   </Inputvue>
 
   <Inputvue
     v-model="test"
-    variant="text"
+    variant="number"
     text="Disabled"
     placeholder="placeholder"
     disabled
@@ -119,6 +109,10 @@ section {
   border: 1px solid black;
   background-color: grey;
   border-radius: 7px;
+}
+body{
+  background-color: #668592;
+;
 }
 
 </style>
