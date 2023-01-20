@@ -13,7 +13,7 @@ const test= ref('')
 </script>
 
 <template>
-<h1>{{ test }}</h1>
+  <h1>{{ test }}</h1>
 
   <Inputvue
     v-model="test"
@@ -25,7 +25,7 @@ const test= ref('')
     helpertext="Helper text"
   />
   <Inputvue
-  v-model="test"
+    v-model="test"
     :is-valid="false"
     validation-text="Validation-text"
     variant="text"
@@ -34,34 +34,36 @@ const test= ref('')
     accordian
     helpertext="Helper text"
   >
-    <template #sendContent>
-      <p>sent content</p>
+    <template #sentContent>
+      sent content
     </template>
   </Inputvue>
 
 
   <Inputvue
-  v-model="test"
+    v-model="test"
     variant="text"
     text="Neutral"
     placeholder="placeholder"
     accordian
     helpertext="Helper text"
   >
-    <template #sendContent>
-      Sent content
+    <template #sentContent>
+      <div>
+      <p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p>
+    </div>
     </template>
   </Inputvue>
 
   <Inputvue
-  v-model="test"
+    v-model="test"
     variant="text"
     text="Disabled"
     placeholder="placeholder"
     disabled
   />
   <Inputvue
-  v-model="test"
+    v-model="test"
     :is-valid="false"
     validation-text="validation-text"
     variant="password"
@@ -71,7 +73,7 @@ const test= ref('')
   
 
   <Inputvue
-  v-model="test"
+    v-model="test"
     :is-valid="true"
     validation-text="validation-text"
     variant="password"
