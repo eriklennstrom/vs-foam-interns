@@ -7,7 +7,6 @@ import {
   watch,
   useSlots,
   type Ref,
-onMounted,
 } from 'vue';
 import {
   inputSize,
@@ -84,6 +83,7 @@ function changePasswordVisibility() {
 
 function toggleAccordian() {
   accordianSwitch.value = !accordianSwitch.value;
+  console.log(accordianSwitch.value);
 }
 
 function start(el: HTMLElement) {
@@ -115,7 +115,7 @@ function toggleAccordian() {
 </script>
 
 <template>
-  <div  :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
+  <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
     <h2>
       {{ props.text }}
       <div v-if="accordianRef" class="iconWrapper">
@@ -213,5 +213,4 @@ function toggleAccordian() {
 
 <style lang="scss" scoped>
 @import "./input.scss";
-
 </style>
