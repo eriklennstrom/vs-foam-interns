@@ -95,6 +95,53 @@ const darkMode: () => void = () => {
       align="end"
       disabled
     />
+
+    <FoamDropdown
+      icon="circle-aaaaaaaaa"
+      variant="danger"
+      text=""
+      align="start"
+    >
+      <FoamDropdownItem
+        icon="warning"
+        type="button"
+        text=""
+        @click="testFunctionOne('Test dropdown item 1')"
+      />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        icon="circle-down"
+        type="route"
+        text=""
+        to="/test"
+        @click="testFunctionTwo('Test dropdown item 2')"
+      />
+      <FoamDropdownItem
+        icon="circle-down"
+        type="route"
+        text=""
+        to="/test"
+        :selected="true"
+        @click="testFunctionTwo('Test dropdown item 2')"
+      />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        text=""
+        type="link"
+        to="http://www.google.se"
+        secondary-text="Link to Göggle"
+        @click="testFunctionThree('Test dropdown item 3')"
+      />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        text=""
+        type="link"
+        to="http://www.google.se"
+        disabled
+        secondary-text="Secondary Text"
+        @click="testFunctionThree('Test dropdown item 3')"
+      />
+    </FoamDropdown>
   </section>
 
   <button @click="darkMode">

@@ -93,7 +93,9 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
       variant="primary"
     />
     <div class="text-container">
-      <p>{{ props.text }}</p>
+      <p v-if="props.text.length > 0">
+        {{ props.text }}
+      </p>
       <p v-if="secondaryText" class="secondary-text">
         {{ secondaryText }}
       </p>

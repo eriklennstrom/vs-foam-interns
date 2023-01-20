@@ -20,14 +20,21 @@
         cursor: pointer;
         color: colors.$dropdown-item-text-light;
         background-color: colors.$dropdown-item-bg-light;
-        &:hover, &:focus-visible {
+        &:hover {
             background-color: colors.$dropdown-hover-bg-light;
+        }
+        &:focus-visible {
+            outline: 1px solid colors.$primary;
+            outline-offset: -1px;
+        }
+        &:has(p) {
+            gap: 12px;  
         }
         &:has(svg) {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;    
+              
             svg {
                 color: inherit;
             }
@@ -61,14 +68,11 @@
         &:hover &:active {
             background-color: colors.$dropdown-item-selected-light;
         }
-        &:focus-visible {
-            border: 1px solid red;
-        }
     }
     // Dropdown Divider
     .divider {
         width: 90%;
-        height: 2px;
+        height: 1px;
         background-color: colors.$dropdown-divider-light;
         margin: 0 auto;
     }
@@ -83,12 +87,15 @@ body.dark {
         .dropdown__item {
             color: colors.$dropdown-item-text-dark;
             background-color: colors.$dropdown-item-bg-dark;
-            &:hover, &:focus-visible {
+            &:hover {
                 background-color: colors.$dropdown-hover-bg-dark;
             }
 
             &:active {
                 background-color: colors.$dropdown-active-bg-dark;
+            }
+            &:focus-visible {
+                outline: 1px solid colors.$secondary;
             }
         }
         .dropdown__item--selected {
