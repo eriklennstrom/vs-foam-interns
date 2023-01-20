@@ -37,7 +37,7 @@ const darkMode: () => void = () => {
         icon="warning"
         type="button"
         text="Button"
-        disabled
+        selected
         @click="testFunctionOne('Test dropdown item 1')"
       />
       <FoamDropdownDivider />
@@ -58,10 +58,9 @@ const darkMode: () => void = () => {
       />
       <FoamDropdownDivider />
       <FoamDropdownItem
-
+        text="Google"
         type="link"
         to="http://www.google.se"
-        selected
         secondary-text="Link to Göggle"
         @click="testFunctionThree('Test dropdown item 3')"
       />

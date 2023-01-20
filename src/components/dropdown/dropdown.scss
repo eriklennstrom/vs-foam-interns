@@ -58,8 +58,11 @@
     }
     .dropdown__item--selected {
         background-color: colors.$dropdown-item-selected-light;
-        &:hover, &:focus-visible, &:active {
+        &:hover &:active {
             background-color: colors.$dropdown-item-selected-light;
+        }
+        &:focus-visible {
+            border: 1px solid red;
         }
     }
     // Dropdown Divider

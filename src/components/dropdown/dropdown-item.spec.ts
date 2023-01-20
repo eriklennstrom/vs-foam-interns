@@ -5,6 +5,7 @@ import DropdownItem from '@/components/dropdown/dropdown-item.vue'
 import Icons from '@/components/icons/icons.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons';
+import exp from 'constants'
 library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown, faCheck)
 
 describe('DropdownItem', () => {
@@ -49,6 +50,12 @@ describe('DropdownItem', () => {
         const wrapper = mount(DropdownItem, { propsData: { text: 'Dropdown Item', type: 'route', to: '/vitest-test' }})
         expect(wrapper.attributes('to')).toBe('/vitest-test') 
         expect(wrapper.attributes('data-test')).toBe('route') 
+    })
+
+    it('renders secondary text properly', () => {
+        const wrapper = mount(DropdownItem, {propsData : {text : 'Test text', secondaryText: 'Secondary Text Test'}})
+        const secondaryTestElem = wrapper.element.childNodes[1].lastChild;
+        expect(secondaryTestElem?.textContent).toEqual('Secondary Text Test');
     })
 
     it('emits passed function properly', async () => {

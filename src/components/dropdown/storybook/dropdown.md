@@ -21,6 +21,8 @@ The ``disabled`` property is a boolean that decides if the dropdown button is ac
 
 For more info about button component - see ``Button``
 
+> Note - The dropdown component is using the ``popperjs`` positioning engine for the dropdown positioning. Read more at https://popper.js.org/
+
 
 ## Variant
 

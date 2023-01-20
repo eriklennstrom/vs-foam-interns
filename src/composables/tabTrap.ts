@@ -3,7 +3,7 @@ import { ref } from 'vue'
 // Store to lookut for multiple presses
 const keysPressed = {} as { [key: string]: boolean }
 
-export function getKeyBoardFocusableElements (element = document) {
+export function getKeyBoardFocusableElements (element : HTMLElement) {
   const elements = ref([] as Element[])
 // ACTIVE PARENT
   
@@ -29,7 +29,7 @@ export function useTabTrap (e: KeyboardEvent) {
   if(e.key != 'Enter') {
     e.preventDefault()
     const currentElem = document.activeElement as HTMLElement
-    const parentElement = currentElem.parentElement as unknown as Document
+    const parentElement = currentElem.parentElement as HTMLElement
     const elements = getKeyBoardFocusableElements(parentElement)
     if(elements.elements.value.length <= 1) {
       return

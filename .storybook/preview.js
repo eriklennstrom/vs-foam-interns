@@ -1,7 +1,7 @@
 import './assets/theming.scss'
 import './assets/fonts.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faXmark, faCaretDown } from  '@fortawesome/free-solid-svg-icons';
+import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCheck, faXmark, faCaretDown} from  '@fortawesome/free-solid-svg-icons';
 library.add( faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCheck, faXmark, faCaretDown)
 import { themes } from '@storybook/theming';
 import logoLight from './varnish-software-logo-dark-text.svg'
@@ -15,7 +15,7 @@ export const parameters = {
     },
   },
   backgrounds: { 
-    disable: false
+    disable: true
   } 
   ,
   darkMode: {
