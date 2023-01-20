@@ -58,9 +58,10 @@ const darkMode: () => void = () => {
       />
       <FoamDropdownDivider />
       <FoamDropdownItem
-        text="Google"
+
         type="link"
         to="http://www.google.se"
+        selected
         secondary-text="Link to Göggle"
         @click="testFunctionThree('Test dropdown item 3')"
       />
@@ -88,6 +89,13 @@ const darkMode: () => void = () => {
         @click="testFunctionOne('Test dropdown item 1')"
       />
     </FoamDropdown>
+    <FoamDropdown
+      icon="circle-down"
+      variant="primary"
+      text="Test Dropdown"
+      align="end"
+      disabled
+    />
   </section>
 
   <button @click="darkMode">

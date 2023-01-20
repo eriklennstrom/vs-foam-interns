@@ -11,6 +11,7 @@ type DropdownProps = {
     icon?: string | null
     width?: number | null
     align?: string
+    disabled?: boolean
 };
 
 const props = withDefaults(defineProps<DropdownProps>(), {
@@ -18,7 +19,8 @@ const props = withDefaults(defineProps<DropdownProps>(), {
     text: 'Foam Dropdown',
     icon: null,
     width: null,
-    align: 'end'
+    align: 'end',
+    disabled: false
 });
 
 const showDropdown: Ref = ref<boolean>(false);
@@ -91,6 +93,7 @@ useDetectOutsideClick(componentRef, () => {
       :variant="props.variant"
       :active-dropdown="showDropdown"
       :icon="props.icon"
+      :disabled="props.disabled"
       @click="handleShowDropdown"
     />
     <div

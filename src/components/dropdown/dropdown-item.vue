@@ -1,4 +1,4 @@
-<script setup lang="ts">import { computed, defineAsyncComponent, ref} from 'vue';
+<script setup lang="ts">import { computed, defineAsyncComponent, onMounted, ref} from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { defaultTypeMixin, dropdownItemTypes } from '@/helpers/mixins/jsMixins';
 import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap'
@@ -20,14 +20,20 @@ const props = withDefaults(defineProps<DropdownProps>(), {
     icon: null,
     type: 'button',
     to: '/',
-    secondaryText: null
+    secondaryText: null,
 });
 
 const emit = defineEmits(['click']);
 
 const elementType = ref(props.type)
 const itemId = ref(uuidv4)
+const secondaryText = ref<string | null>(props.secondaryText)
+const selectedItem = ref<boolean | undefined>(props.selected)
 
+onMounted(() => {
+  elementType.value != 'button' ? selectedItem.value = false : null
+  props.text.length == 0 || props.text == 'Dropdown Item' ? secondaryText.value = null : null
+})
 
 defaultTypeMixin(dropdownItemTypes).verifyType(props.type)
   ? ''
@@ -45,7 +51,7 @@ const AsyncIcon = computed(() => {
 });
 
 const AsyncSelectedIcon = computed(() => {
-  if (props.selected) {
+  if (selectedItem.value) {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
     );
@@ -70,7 +76,7 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
     :href="elementType == 'link' ? props.to : null"
     :target="elementType == 'link' ? '_blank' : null"
     :to="elementType == 'route' ? props.to : null"
-    :class="[itemId, props.selected ? 'dropdown__item--selected' : null]"
+    :class="[itemId, selectedItem ? 'dropdown__item--selected' : null]"
     class="dropdown__item"
     tabindex="0"
     :disabled="props.disabled ? disabled : null"
@@ -86,8 +92,12 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
       :size="8"
       variant="primary"
     />
-    <p>{{ props.text }}</p>
-    <p v-if="props.secondaryText" class="secondary-text">{{ props.secondaryText }}</p>
+    <div class="text-container">
+      <p>{{ props.text }}</p>
+      <p v-if="secondaryText" class="secondary-text">
+        {{ secondaryText }}
+      </p>
+    </div>
     <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
   </component>
 </template>

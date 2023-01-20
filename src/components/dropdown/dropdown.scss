@@ -35,14 +35,18 @@
         &:active {
             background-color: colors.$dropdown-active-bg-light;
         }
-        p {
-            font-size: 12px;
-            margin: 0;
-            margin-right: auto;
-            user-select: none;
-        }
-        .secondary-text {
-            font-size: 10px;
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            p {
+                font-size: 12px;
+                margin: 0;
+                margin-right: auto;
+                user-select: none;
+            }
+            .secondary-text {
+                font-size: 10px;
+            }
         }
         &[role=disabled] {
             pointer-events: none;
