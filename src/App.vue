@@ -19,7 +19,7 @@ const test= ref('')
     v-model="test"
     :is-valid="true"
     validation-text="Validation-text"
-    variant="text"
+    variant="email"
     text="Valid"
     placeholder="placeholder"
     helpertext="Helper text"
@@ -31,13 +31,8 @@ const test= ref('')
     variant="text"
     text="Not valid"
     placeholder="placeholder"
-    accordian
     helpertext="Helper text"
-  >
-    <template #sentContent>
-      sent content
-    </template>
-  </Inputvue>
+  />
 
 
   <Inputvue
@@ -50,14 +45,14 @@ const test= ref('')
   >
     <template #sentContent>
       <div>
-      <p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p>
-    </div>
+        <p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p>
+      </div>
     </template>
   </Inputvue>
 
   <Inputvue
     v-model="test"
-    variant="text"
+    variant="number"
     text="Disabled"
     placeholder="placeholder"
     disabled
@@ -109,6 +104,10 @@ section {
   border: 1px solid black;
   background-color: grey;
   border-radius: 7px;
+}
+body{
+  background-color: #668592;
+;
 }
 
 </style>
