@@ -62,15 +62,19 @@ This is handled by adding disabled to the html
 
 ##Slots
 
-Within the component there are slots for content with embedded functionality with the accordian boolean, when paired with the slot will provide information from the acordian button-
+Within the component there are slots for content with embedded functionality with the accordian boolean, when paired with the slot will provide information from the acordian button.
 
 
 ```html
 <!-- good -->
+<foam-input accordian >     
+    <template #sentContent>
+      Slot items
+    </template>   
 <foam-input accordian />
 ```
 
 ```html
 <!-- bad -->
-<foam-input "disabled" text="Password" />
+<foam-input accordian slot= /> 
 ```
