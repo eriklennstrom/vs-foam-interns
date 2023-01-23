@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Icon from '@/components/icons/icons.vue';
-import { computed, onMounted, ref, type Ref } from 'vue';
+import { computed, onMounted, ref, watch, type Ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent'
@@ -28,6 +28,16 @@ const buttonId = ref<string>('btn-' + uuidv4())
 const dropdownFilter: Ref = ref()
 const dropdownAlign = ref<string>(props.align)
 const userInput = ref<string>('')
+
+
+// Maybe use watch to check input?
+watch(() => userInput.value, (newVal) => {   
+    console.log(userInput.value);
+    const dropdownElems = document.querySelector('.dropdown--input')?.childNodes
+    console.log(dropdownElems);
+    
+    
+    });
 
 onMounted(() => {
   if(props.align == 'end' || props.align == 'start') {
@@ -69,8 +79,6 @@ const handleShowDropdown: () => void = () => {
   }
 }
 
-
-
 const componentRef = ref()
 // Close dropdown on click outside the component
 useDetectOutsideClick(componentRef, () => { 
@@ -86,7 +94,7 @@ useDetectOutsideClick(componentRef, () => {
     class="dropdown-container"
     :data-test="dropdownAlign"
   >
-    <div class="dropdown__input--container">
+    <div :id="buttonId" class="dropdown__input--container">
       <label class="dropdown__input--label" for="dropdown-input">{{ props.text }}</label>
       <div class="input-container" @click="handleShowDropdown">
         <input
@@ -103,15 +111,14 @@ useDetectOutsideClick(componentRef, () => {
           />
         </button>
       </div>
+    </div>
     <div
       id="dropdown"
       ref="dropdownFilter"
       class="dropdown--input"
       :class="dropdownId"
-      :style="{ width : '100%' }"
     >
       <slot />
-    </div>
     </div>
   </section>
 </template>
