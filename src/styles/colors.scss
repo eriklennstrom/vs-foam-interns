@@ -103,7 +103,6 @@ $button-bg-colors: (
 
 
 $dark-button-border-colors: (
-  //fix
   danger-outline: $danger-500,
   primary: $primary-100,
   danger: $primary-100,
@@ -158,12 +157,26 @@ $disabled-text-colors: (
 );
 
 
-$input-colors:(
+$input-text-colors:(
+  light: #668592,
+  danger: #dc3545,
+  warning: #faa05a,
+  success: #55c284,
+);
 
+
+$input-colors:(
+  light: #668592,
+  danger: #dc3545,
+  warning: #faa05a,
+  success: #55c284,
 );
 
 $dark-input-colors:(
-
+  light: #668592,
+  danger: #dc3545,
+  warning: #faa05a,
+  success: #55c284,
 );
 
 
