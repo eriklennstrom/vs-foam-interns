@@ -4,6 +4,7 @@ import Icons from '@/components/icons/icons.vue'
 import Badge from '@/components/badge/badge.vue'
 import Buttonvue from '@/components/button/button.vue'
 import { ref } from 'vue';
+import '@/components/typography/font-system.scss'
 
 
 
@@ -24,6 +25,10 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
+  <div class="h1">H1</div>
+  <div class="h2">H1</div>
+  <div class="h3">H1</div>
+  
   <section>
     <Buttonvue />
     <Buttonvue
