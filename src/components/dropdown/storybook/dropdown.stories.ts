@@ -1,4 +1,4 @@
-import FoamDropdown from '@/components/dropdown/dropdown.vue';
+import FoamDropdown from '@/components/dropdown/dropdown-button.vue';
 import FoamDropdownItem from '@/components/dropdown/dropdown-item.vue';
 import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';

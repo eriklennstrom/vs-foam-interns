@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Dropdown from '@/components/dropdown/dropdown.vue'
+import Dropdown from '@/components/dropdown/dropdown-button.vue'
 import DropdownItem from '@/components/dropdown/dropdown-item.vue'
 import DropdownDivider from '@/components/dropdown/dropdown-divider.vue'
 import Button from '@/components/button/button.vue'

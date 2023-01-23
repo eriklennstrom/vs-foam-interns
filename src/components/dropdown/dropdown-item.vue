@@ -1,8 +1,10 @@
-<script setup lang="ts">import { computed, defineAsyncComponent, onMounted, ref} from 'vue';
+<script setup lang="ts">import { computed, defineAsyncComponent, onMounted, ref, type Ref} from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { defaultTypeMixin, dropdownItemTypes } from '@/helpers/mixins/jsMixins';
 import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap'
 import { useRouter } from 'vue-router'
+import { createPopper } from '@popperjs/core';
+import useDetectOutsideClick from '@/composables/clickOutsideComponent';
 
 
 type DropdownPropsItem = {
@@ -13,6 +15,8 @@ type DropdownPropsItem = {
     disabled?: boolean
     selected?: boolean
     secondaryText?: string | null
+    width?: number | null
+    subdropdown?: boolean
 };
 
 const props = withDefaults(defineProps<DropdownPropsItem>(), {
@@ -21,6 +25,7 @@ const props = withDefaults(defineProps<DropdownPropsItem>(), {
     type: 'button',
     to: '/',
     secondaryText: null,
+    width: null
 });
 
 const emit = defineEmits(['click']);
@@ -66,12 +71,63 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
     router.push({ path: props.to });
   }
 }
+const showSubDropdown: Ref = ref<boolean>(false);
+const subDropdownId = ref<string>('sub-dropdown-' + uuidv4())
+const subDropdown: Ref = ref()
+
+const popperInstance = computed(() => {
+  const buttonElem = document.querySelector(`#${subDropdownId.value}`) as HTMLElement
+  const dropdownElem = document.querySelector(`.${subDropdownId.value}`) as HTMLElement
+  return createPopper(buttonElem, dropdownElem, {
+    placement: 'auto-start',
+    modifiers: [
+      {
+        name: 'flip',
+        options: {
+          allowedAutoPlacements: [`left-start`, `left-start`]
+        },
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 2],
+        }
+      }
+    ],
+    strategy: 'absolute'
+  });
+})
+
+const handleShowSubDropdown: () => void = () => {
+  showSubDropdown.value = !showSubDropdown.value
+  console.log(showSubDropdown.value);
+  
+  if(showSubDropdown.value) {
+    popperInstance.value.update()
+    subDropdown.value.setAttribute('data-show', '')
+  } else {   
+    subDropdown.value.removeAttribute('data-show')
+    componentRef.value.focus()
+  }
+}
+
+const componentRef = ref()
+// Close dropdown on click outside the component
+// useDetectOutsideClick(componentRef, () => { 
+//   showSubDropdown.value = false
+//   console.log('tja');
+  
+//   subDropdown.value.removeAttribute('data-show')
+// })
+console.log(props.subdropdown);
 
 </script>
 
 <template>
   <component
     :is="elementType == 'link' ? 'a' : elementType == 'route' ? 'router-link' : 'button'"
+    :id="subDropdownId"
+    ref="componentRef"
     :role="props.disabled ? 'disabled' : null" 
     :href="elementType == 'link' ? props.to : null"
     :target="elementType == 'link' ? '_blank' : null"
@@ -85,6 +141,8 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
     @keydown="useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"
     @click="elementType == 'button' ? emit('click') : null"
+    @mouseenter="props.subdropdown ? handleShowSubDropdown() : null"
+    @focus="props.subdropdown ? handleShowSubDropdown() : null"
   >
     <AsyncSelectedIcon
       v-if="props.selected"
@@ -102,6 +160,16 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
     </div>
     <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
   </component>
+  <div
+    v-if="elementType == 'button'"
+    id="dropdown"
+    ref="subDropdown"
+    :class="subDropdownId"
+    :style="{ width: props.width ? props.width + 'px' : 'fit-content' }"
+    @keyup.escape="handleShowSubDropdown"
+  >
+    <slot />
+  </div>
 </template>
 
 <style lang="scss" scoped>

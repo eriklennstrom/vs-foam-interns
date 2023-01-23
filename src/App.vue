@@ -208,6 +208,21 @@ const darkMode: () => void = () => {
       <FoamDropdownFilter type="checkbox" text="Checkbox" />
     </FoamDropdownButton>
   </section>
+  <section>
+    <FoamDropdownButton>
+      <FoamDropdownItem text="1" />
+      <FoamDropdownItem text="test 2" />
+      <FoamDropdownItem text="test 3" />
+      <FoamDropdownItem text="SUB DROP" icon="arrow-down" subdropdown>
+        <FoamDropdownItem text="test inuti 1" />
+        <FoamDropdownItem text="test inuti 2" />
+      </FoamDropdownItem>
+      <FoamDropdownItem text="test 4" />
+      <FoamDropdownItem text="test 5" />
+      <FoamDropdownItem text="test 6" />
+      <FoamDropdownItem text="test 7" />
+    </FoamDropdownButton>
+  </section>
 </template>
 
 <style scoped lang="scss">

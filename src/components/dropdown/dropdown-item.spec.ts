@@ -57,8 +57,9 @@ describe('DropdownItem', () => {
         const secondaryTestElem = wrapper.element.childNodes[1].lastChild;
         expect(secondaryTestElem?.textContent).toEqual('Secondary Text Test');
     })
-
     it('emits passed function properly', async () => {
+        // Creating a parent with a ref that is sent as a text prop to the dropdown-item component
+        // parent function sent as a click event to the component
         const Parent = {
             component : DropdownItem,
             setup() {
