@@ -5,6 +5,7 @@ import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap'
 import { useRouter } from 'vue-router'
 import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent';
+import { e } from 'vitest/dist/index-220c1d70';
 
 
 type DropdownPropsItem = {
@@ -100,26 +101,35 @@ const popperInstance = computed(() => {
 
 const handleShowSubDropdown: () => void = () => {
   showSubDropdown.value = !showSubDropdown.value
-  console.log(showSubDropdown.value);
   
   if(showSubDropdown.value) {
-    popperInstance.value.update()
+    console.log(showSubDropdown.value);
     subDropdown.value.setAttribute('data-show', '')
+    popperInstance.value.update()
   } else {   
+    const buttonElem = document.querySelector(`#${subDropdownId.value}`) as HTMLElement
+    buttonElem.focus()
     subDropdown.value.removeAttribute('data-show')
-    componentRef.value.focus()
   }
 }
 
-const componentRef = ref()
+const handleCloseSubDropdown: (e:KeyboardEvent) => void = (e) => {
+  e.stopPropagation()
+  e.preventDefault()
+  const buttonElem = document.querySelector(`#${subDropdownId.value}`) as HTMLElement
+  buttonElem.focus()
+  subDropdown.value.removeAttribute('data-show')
+}
+
+const subDropdownRef = ref()
 // Close dropdown on click outside the component
-// useDetectOutsideClick(componentRef, () => { 
-//   showSubDropdown.value = false
-//   console.log('tja');
-  
-//   subDropdown.value.removeAttribute('data-show')
-// })
-console.log(props.subdropdown);
+useDetectOutsideClick(subDropdownRef, () => { 
+  if(showSubDropdown.value) {
+    showSubDropdown.value = false 
+    subDropdown.value.removeAttribute('data-show')
+  }
+})
+// console.log(document.querySelector());
 
 </script>
 
@@ -127,7 +137,7 @@ console.log(props.subdropdown);
   <component
     :is="elementType == 'link' ? 'a' : elementType == 'route' ? 'router-link' : 'button'"
     :id="subDropdownId"
-    ref="componentRef"
+    ref="subDropdownRef"
     :role="props.disabled ? 'disabled' : null" 
     :href="elementType == 'link' ? props.to : null"
     :target="elementType == 'link' ? '_blank' : null"
@@ -138,11 +148,10 @@ console.log(props.subdropdown);
     :disabled="props.disabled ? disabled : null"
     :data-test="elementType"
     @keydown.enter="goToRoute($event)"
-    @keydown="useTabTrap($event)"
+    @keydown="props.subdropdown ? handleShowSubDropdown() : useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"
     @click="elementType == 'button' ? emit('click') : null"
     @mouseenter="props.subdropdown ? handleShowSubDropdown() : null"
-    @focus="props.subdropdown ? handleShowSubDropdown() : null"
   >
     <AsyncSelectedIcon
       v-if="props.selected"
@@ -161,12 +170,13 @@ console.log(props.subdropdown);
     <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
   </component>
   <div
-    v-if="elementType == 'button'"
-    id="dropdown"
+    v-if="elementType == 'button' && props.subdropdown"
+    id="sub-dropdown"
     ref="subDropdown"
     :class="subDropdownId"
     :style="{ width: props.width ? props.width + 'px' : 'fit-content' }"
-    @keyup.escape="handleShowSubDropdown"
+    @keyup.escape="handleCloseSubDropdown($event)"
+    @mouseleave="handleShowSubDropdown()"
   >
     <slot />
   </div>

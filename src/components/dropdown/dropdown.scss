@@ -1,7 +1,7 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
 
-#dropdown {
+#dropdown, #sub-dropdown {
     background-color: colors.$dropdown-item-bg-light;
     border: 1px solid colors.$dropdown-border-color-light;
     border-radius: 4px;

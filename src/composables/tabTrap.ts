@@ -6,7 +6,7 @@ const keysPressed = {} as { [key: string]: boolean }
 export function getKeyBoardFocusableElements (element : HTMLElement) {
   const elements = ref([] as Element[])
 // ACTIVE PARENT
-  
+ 
   elements.value = [
     ...element.querySelectorAll(
       'a, button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])'

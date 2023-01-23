@@ -49,7 +49,6 @@ const AsyncSelectedIcon = computed(() => {
   } 
   return null;
 });
-console.log(filterType);
 
 </script>
 
