@@ -2,6 +2,7 @@
 import FoamDropdownButton from '@/components/dropdown/dropdown-button.vue';
 import FoamDropdownItem from '@/components/dropdown/dropdown-item.vue';
 import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
+import FoamDropdownInput from '@/components/dropdown/dropdown-input.vue';
 import FoamDropdownFilter from '@/components/dropdown/dropdown-filter.vue';
 
 const testFunctionOne: (param:string) => void = (param) => {
@@ -222,6 +223,12 @@ const darkMode: () => void = () => {
       <FoamDropdownItem text="test 6" />
       <FoamDropdownItem text="test 7" />
     </FoamDropdownButton>
+
+    <FoamDropdownInput>
+      <FoamDropdownFilter type="checkbox" text="Checkbox" />
+      <FoamDropdownFilter type="checkbox" text="Checkbox" selected />
+      <FoamDropdownFilter type="checkbox" text="Checkbox" />
+    </FoamDropdownInput>
   </section>
 </template>
 

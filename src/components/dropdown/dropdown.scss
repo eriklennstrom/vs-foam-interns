@@ -162,6 +162,38 @@
     }
 }
 
+.dropdown__input--container {
+    display: flex;
+    flex-direction: column;
+    .input-container {
+        .dropdown__input--label {
+            font-size: 12px;
+        }
+        position: relative;
+        #dropdown__input--input {
+            all: unset;
+            border-radius: 4px;
+            padding: 8px 12px;
+            border: 1px solid colors.$secondary-900;
+            &:focus {
+                border-color: colors.$primary;
+            }
+        }
+        .dropdown__input--button {
+            all: unset;
+            position: absolute;
+            right: 10px;
+            top: calc(50% - 8px);
+            svg {
+                transition: transform 0.15s ease-in-out;
+            }
+        }
+        .dropdown-active {
+            transform: rotate(-180deg);
+          }
+    }
+}
+
 body.dark {
     #dropdown {
         background-color: colors.$dropdown-item-bg-dark;

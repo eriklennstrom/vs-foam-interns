@@ -85,7 +85,7 @@ const popperInstance = computed(() => {
       {
         name: 'flip',
         options: {
-          allowedAutoPlacements: [`left-start`, `left-start`]
+          allowedAutoPlacements: [`right-start`, `left-start`]
         },
       },
       {
@@ -129,7 +129,6 @@ useDetectOutsideClick(subDropdownRef, () => {
     subDropdown.value.removeAttribute('data-show')
   }
 })
-// console.log(document.querySelector());
 
 </script>
 
