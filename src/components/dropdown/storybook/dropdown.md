@@ -1,4 +1,4 @@
-The dropdown component offers a user multiple items or actions to choose from which are initially collapsed behind a button.
+The dropdown button component offers a user multiple items or actions to choose from which are initially collapsed behind a button.
 
 Dropdowns are toggleable, contextual overlays for displaying lists of links and actions in a dropdown menu format.
 
@@ -30,12 +30,12 @@ A prop that decides what variant on the button will be used.
 
 ```jsx
 <!-- good -->
-<foam-dropdown variant="danger" />
+<foam-dropdown-button variant="danger" />
 ```
 
 ```jsx
 <!-- bad -->
-<foam-dropdown variant="danger-variant" />
+<foam-dropdown-button variant="danger-variant" />
 ```
 
 ## Text
@@ -44,7 +44,7 @@ A prop that decides what variant on the button will be used.
 
 ```jsx
 <!-- good -->
-<foam-dropdown text="Dropdown Text" />
+<foam-dropdown-button text="Dropdown Text" />
 ```
 
 ## Icons
@@ -58,12 +58,12 @@ If the icon property does not have the correct spelling and / or an icon that is
 
 ```html
 <!-- good -->
-<foam-dropdown variant="danger" text="Warning" icon="warning" />
+<foam-dropdown-button variant="danger" text="Warning" icon="warning" />
 ```
 
 ```html
 <!-- bad -->
-<foam-dropdown variant="danger" text="Warning" icon="warning-icon" />
+<foam-dropdown-button variant="danger" text="Warning" icon="warning-icon" />
 ```
 
 > Note: The icons being used in this component are imported from Font Awesome.
@@ -74,13 +74,13 @@ The `` disabled `` property is a boolean value that can be used to indicate to t
 
 ```jsx
 <!-- good -->
-<foam-dropdown disabled />
+<foam-dropdown-button disabled />
 
 ```
 
 ```jsx
 <!-- bad -->
-<foam-dropdown disabled="true" />
+<foam-dropdown-button disabled="true" />
 ```
 
 ## Align
@@ -93,13 +93,13 @@ The default value is ``end``
 
 ```jsx
 <!-- good -->
-<foam-dropdown disabled />
+<foam-dropdown-button disabled />
 
 ```
 
 ```jsx
 <!-- bad -->
-<foam-dropdown disabled="true" />
+<foam-dropdown-button disabled="true" />
 ```
 
 
@@ -111,11 +111,11 @@ The default value is ``fit-content``
 
 ```jsx
 <!-- good -->
-<foam-dropdown :width="400" />
+<foam-dropdown-button :width="400" />
 
 ```
 
 ```jsx
 <!-- bad -->
-<foam-dropdown width="400px" />
+<foam-dropdown-button width="400px" />
 ```

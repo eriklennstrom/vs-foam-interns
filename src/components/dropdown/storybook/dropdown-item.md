@@ -37,7 +37,7 @@ The ``route`` value will be rendered as <router-link></router-link>.
 
 ```jsx
 <!-- good -->
-<foam-dropdown text="Dropdown Text" />
+<foam-dropdown-item text="Dropdown Text" />
 ```
 
 ## Secondary text
@@ -46,13 +46,13 @@ The ``secondaryText`` property adds text below the main text in a smaller font.
 
 ```jsx
 <!-- good -->
-<foam-dropdown text="Primary Text" secondaryText="Secondary Text" />
+<foam-dropdown-item text="Primary Text" secondaryText="Secondary Text" />
 
 ```
 
 ```jsx
 <!-- bad -->
-<foam-dropdown secondaryText="Secondary Text" />
+<foam-dropdown-item secondaryText="Secondary Text" />
 ```
 
 ## To 
@@ -64,15 +64,15 @@ For the type value ``route`` the ``to`` property will be a ``to`` attribute for 
 
 ```jsx
 <!-- good -->
-<foam-dropdown type="link" to="https://www.google.com" />
-<foam-dropdown type="route" to="/account" />
+<foam-dropdown-item type="link" to="https://www.google.com" />
+<foam-dropdown-item type="route" to="/account" />
 
 ```
 
 ```jsx
 <!-- bad -->
-<foam-dropdown type="route" to="/account" />
-<foam-dropdown type="route" to="https://www.google.com" />
+<foam-dropdown-item type="route" to="/account" />
+<foam-dropdown-item type="route" to="https://www.google.com" />
 ```
 
 
@@ -107,19 +107,19 @@ The `` disabled `` property is a boolean value that can be used to indicate to t
 
 ```jsx
 <!-- good -->
-<foam-dropdown disabled />
+<foam-dropdown-item disabled />
 
 ```
 
 ```jsx
 <!-- bad -->
-<foam-dropdown disabled="true" />
+<foam-dropdown-item disabled="true" />
 ```
 
 
 ## Icons
 
-The icons property adds an icon to the button.
+The icons property adds an icon to the dropdown item.
 Icons that are included are -
 
 `warning`, `circle-down`, `user-secret`, `arrow-down`, `arrow-alt-circle-down`
@@ -128,12 +128,12 @@ If the icon property does not have the correct spelling and / or an icon that is
 
 ```html
 <!-- good -->
-<foam-dropdown variant="danger" text="Warning" icon="warning" />
+<foam-dropdown-item text="Warning" icon="warning" />
 ```
 
 ```html
 <!-- bad -->
-<foam-dropdown variant="danger" text="Warning" icon="warning-icon" />
+<foam-dropdown-item text="Warning" icon="warning-icon" />
 ```
 
 > Note: The icons being used in this component are imported from Font Awesome.

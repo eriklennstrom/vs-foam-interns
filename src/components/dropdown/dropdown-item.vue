@@ -5,9 +5,9 @@ import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap'
 import { useRouter } from 'vue-router'
 
 
-type DropdownProps = {
+type DropdownPropsItem = {
     type?: string
-    text?: string
+    text?: string | null
     icon?: string | null
     to?: string
     disabled?: boolean
@@ -15,7 +15,7 @@ type DropdownProps = {
     secondaryText?: string | null
 };
 
-const props = withDefaults(defineProps<DropdownProps>(), {
+const props = withDefaults(defineProps<DropdownPropsItem>(), {
     text: 'Dropdown Item',
     icon: null,
     type: 'button',
@@ -32,7 +32,7 @@ const selectedItem = ref<boolean | undefined>(props.selected)
 
 onMounted(() => {
   elementType.value != 'button' ? selectedItem.value = false : null
-  props.text.length == 0 || props.text == 'Dropdown Item' ? secondaryText.value = null : null
+  !props.text ? secondaryText.value = null : null
 })
 
 defaultTypeMixin(dropdownItemTypes).verifyType(props.type)
@@ -93,7 +93,7 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
       variant="primary"
     />
     <div class="text-container">
-      <p v-if="props.text.length > 0">
+      <p v-if="props.text">
         {{ props.text }}
       </p>
       <p v-if="secondaryText" class="secondary-text">

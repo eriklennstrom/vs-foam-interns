@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import FoamDropdown from '@/components/dropdown/dropdown.vue';
+import FoamDropdownButton from '@/components/dropdown/dropdown-button.vue';
 import FoamDropdownItem from '@/components/dropdown/dropdown-item.vue';
 import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
+import FoamDropdownFilter from '@/components/dropdown/dropdown-filter.vue';
 
 const testFunctionOne: (param:string) => void = (param) => {
   console.log(param)
@@ -26,7 +27,7 @@ const darkMode: () => void = () => {
 
 <template>
   <section class="dropdown-test">
-    <FoamDropdown
+    <FoamDropdownButton
       icon="circle-aaaaaaaaa"
       variant="danger"
       text="Test Dropdown"
@@ -73,8 +74,8 @@ const darkMode: () => void = () => {
         secondary-text="Secondary Text"
         @click="testFunctionThree('Test dropdown item 3')"
       />
-    </FoamDropdown>
-    <FoamDropdown
+    </FoamDropdownButton>
+    <FoamDropdownButton
       icon="circle-down"
       variant="primary"
       text="Test Dropdown"
@@ -87,8 +88,8 @@ const darkMode: () => void = () => {
         disabled
         @click="testFunctionOne('Test dropdown item 1')"
       />
-    </FoamDropdown>
-    <FoamDropdown
+    </FoamDropdownButton>
+    <FoamDropdownButton
       icon="circle-down"
       variant="primary"
       text="Test Dropdown"
@@ -96,7 +97,7 @@ const darkMode: () => void = () => {
       disabled
     />
 
-    <FoamDropdown
+    <FoamDropdownButton
       icon="circle-aaaaaaaaa"
       variant="danger"
       text=""
@@ -141,12 +142,72 @@ const darkMode: () => void = () => {
         secondary-text="Secondary Text"
         @click="testFunctionThree('Test dropdown item 3')"
       />
-    </FoamDropdown>
+    </FoamDropdownButton>
   </section>
 
   <button @click="darkMode">
     DARK MODE!
   </button>
+
+  <section>
+    <FoamDropdownButton :width="200">
+      <FoamDropdownFilter type="color" color="red" text="Color" />
+      <FoamDropdownFilter
+        type="color"
+        color="blue"
+        text="Color"
+        selected
+      />
+      <FoamDropdownFilter
+        type="color"
+        color="green"
+        text="Color"
+        selected
+      />
+      <FoamDropdownFilter
+        type="color"
+        color="#003349"
+        text="Color"
+        selected
+      />
+      <FoamDropdownFilter type="color" color="purple" text="Color" />
+      <FoamDropdownFilter type="color" color="yellow" text="Color" />
+      <FoamDropdownFilter type="color" color="white" text="Color" />
+      <FoamDropdownFilter type="color" color="brown" text="Color" />
+      <FoamDropdownFilter type="color" color="black" text="Color" />
+      <FoamDropdownFilter type="color" color="hotpink" text="Color" />
+    </FoamDropdownButton>
+    <FoamDropdownButton :width="50">
+      <FoamDropdownFilter type="container" text="1jsakdjksajd adjksalj dsak" />
+      <FoamDropdownFilter type="container" text="2" />
+      <FoamDropdownFilter type="container" text="3" />
+      <FoamDropdownFilter type="container" text="4" />
+      <FoamDropdownFilter type="container" text="Detta är en längre text" />
+      <FoamDropdownFilter type="container" text="6" />
+      <FoamDropdownFilter type="container" text="7" />
+      <FoamDropdownFilter type="container" text="Långordhärhaha" />
+      <FoamDropdownFilter type="container" text="9" />
+      <FoamDropdownFilter type="container" text="10" />
+    </FoamDropdownButton>
+    <FoamDropdownButton :width="120">
+      <FoamDropdownFilter type="container" text="1" selected />
+      <FoamDropdownFilter type="container" text="2" />
+      <FoamDropdownFilter type="container" text="3" selected />
+      <FoamDropdownFilter type="container" text="4" selected />
+      <FoamDropdownFilter type="container" text="5" />
+      <FoamDropdownFilter type="container" text="6" />
+      <FoamDropdownFilter type="container" text="7" />
+      <FoamDropdownFilter type="container" text="8" />
+      <FoamDropdownFilter type="container" text="9" />
+      <FoamDropdownFilter type="container" text="10" />
+      <FoamDropdownFilter type="container" text="10" />
+    </FoamDropdownButton>
+    <FoamDropdownButton>
+      <FoamDropdownFilter type="checkbox" text="Checkbox" />
+      <FoamDropdownFilter type="checkbox" text="Checkbox" selected />
+      <FoamDropdownFilter type="checkbox" text="Checkbox" />
+    </FoamDropdownButton>
+  </section>
 </template>
 
 <style scoped lang="scss">

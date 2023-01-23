@@ -20,6 +20,8 @@ export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
 export const chipVariants = ['input', 'filter'];
 
 export const dropdownItemTypes = ['button', 'route', 'link']
+export const dropdownFilterTypes = ['checkbox', 'color', 'container']
+
 // icon names
 
 export const validIconNames = [

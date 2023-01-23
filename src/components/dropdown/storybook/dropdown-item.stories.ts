@@ -1,5 +1,5 @@
 import FoamDropdownItem from '@/components/dropdown/dropdown-item.vue';
-import FoamDropdown from '@/components/dropdown/dropdown.vue';
+import FoamDropdownButton from '@/components/dropdown/dropdown-button.vue';
 import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
 import readme from '@/components/dropdown/storybook/dropdown-item.md?raw';
@@ -63,15 +63,15 @@ export default {
   } as Meta<typeof FoamDropdownItem>;
   
   const Template: StoryFn<typeof FoamDropdownItem> = () => ({
-    components: { FoamDropdown, FoamDropdownDivider, FoamDropdownItem },
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
 
     template: `
     <div>
-        <foam-dropdown v-bind="args">
+        <foam-dropdown-button v-bind="args">
             <foam-dropdown-item />
             <foam-dropdown-divider />
             <foam-dropdown-item />
-        </foam-dropdown>
+        </foam-dropdown-button>
     </div>
     `
   });
