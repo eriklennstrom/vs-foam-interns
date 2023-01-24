@@ -23,7 +23,6 @@ const emit = defineEmits(['click']);
 
 const filterType = ref(props.type)
 const itemId = ref(uuidv4)
-const selectedItem = ref<boolean | undefined>(props.selected)
 
 defaultTypeMixin(dropdownFilterTypes).verifyType(props.type)
   ? ''
@@ -41,7 +40,7 @@ const AsyncIcon = computed(() => {
 });
 
 const AsyncSelectedIcon = computed(() => {
-  if (selectedItem.value) {
+  if (props.selected) {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
     );
@@ -49,13 +48,16 @@ const AsyncSelectedIcon = computed(() => {
   } 
   return null;
 });
-
+function handleEmit(e: MouseEvent) {
+  e.stopPropagation()
+  emit('click')
+}
 </script>
 
 <template>
   <div
     :role="props.disabled ? 'disabled' : ''" 
-    :class="[itemId, selectedItem ? 'dropdown__filter--selected' : null]"
+    :class="[itemId, props.selected ? 'dropdown__filter--selected' : null]"
     class="dropdown__filter"
     tabindex="0"
     :disabled="props.disabled ? disabled : null"
@@ -63,7 +65,7 @@ const AsyncSelectedIcon = computed(() => {
     @keydown.enter="emit('click')"
     @keydown="useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"
-    @click="filterType != 'checkbox' ? emit('click') : null"
+    @click="handleEmit($event)"
   >
     <div v-if="props.type == 'checkbox'" :class="[filterType + '__item']" :checked="props.selected ? true : false">
       <AsyncSelectedIcon

@@ -52,7 +52,11 @@ export default {
           control : {type: 'boolean'},
           options: [true, false],
           description: 'Property to add a secondary dropdown withing the dropdown item'
-        },    
+        },
+        width: {
+          control: { type: 'number' },
+          description: 'Property for subdropdown container width',
+        },
         click: {
           table: {
             disable: true,
@@ -66,19 +70,28 @@ export default {
       },
   } as Meta<typeof FoamDropdownItem>;
   
-  const Template: StoryFn<typeof FoamDropdownItem> = () => ({
-    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
+  const Template: StoryFn<typeof FoamDropdownItem> = (args) => {
+    const [_, updateArgs] = useArgs();
+    return {
+      components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
+  
+      setup() {
 
-    template: `
-    <div>
-        <foam-dropdown-button v-bind="args">
-            <foam-dropdown-item text="Dropdown Item 1" />
-            <foam-dropdown-divider />
-            <foam-dropdown-item text="Dropdown Item 1" />
-        </foam-dropdown-button>
-    </div>
-    `
-  });
+  
+        return { args };
+      },
+      template: `
+      <div>
+          <foam-dropdown-button variant="primary" >
+              <foam-dropdown-item text="Dropdown Item 1" v-bind="args" />
+              <foam-dropdown-divider />
+              <foam-dropdown-item text="Dropdown Item 1" v-bind="args" />
+          </foam-dropdown-button>
+      </div>
+      `
+    };
+  };
+
 
   export const Default = Template.bind({});
 
@@ -91,98 +104,299 @@ export default {
     <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
         <foam-dropdown-button variant="primary" >
           <foam-dropdown-item v-bind="args" v-for="type in argTypes.type.options" :key="type" :text="type" :type="type" />
-      </foam-dropdown>
+      </foam-dropdown-button>
     </div>
   `,
   });
 
-// To - not needed
-// Text - not needed
-// SecondaryText - needed?
+  Type.argTypes = {
+    type: {
+        table: {
+            disable: true,
+        },
+    },
+    text: {
+        table: {
+            disable: true,
+        },
+    },
+    icon: {
+        table: {
+            disable: true,
+        },
+    },  
+    width: {
+        table: {
+            disable: true,
+        },
+    },
+    subdropdown: {
+        table: {
+            disable: true,
+        },
+    },
+  };
 
-// Icon - one with text and icon, one with only icons
-// Disabled 
-// Selected
+  export const Icons: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
+    setup() {
+      const iconTypes = ['warning', 'arrow-down', 'circle-down', 'xmark']
+      return { args, argTypes, iconTypes };
+    },
+    template: `
+      <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
+        <div>
+          <p>Text and icons</p>
+          <foam-dropdown-button variant="primary" >
+            <foam-dropdown-item v-bind="args"  v-for="icon in iconTypes" :key="type" :icon="icon" :text="icon" />
+          </foam-dropdown-button>
+        </div>
+        <div>
+          <p>Only icons</p>
+          <foam-dropdown-button variant="primary" >
+            <foam-dropdown-item v-bind="args" v-for="icon in iconTypes" :key="type" :icon="icon" />
+          </foam-dropdown-button>
+        </div>
+      </div>
+    `,
+  }); 
+
+ 
+
+  Icons.argTypes = {
+    type: {
+        table: {
+            disable: true,
+        },
+    },
+    text: {
+        table: {
+            disable: true,
+        },
+    },
+    icon: {
+        table: {
+            disable: true,
+        },
+    },  
+    width: {
+        table: {
+            disable: true,
+        },
+    },
+    subdropdown: {
+        table: {
+            disable: true,
+        },
+    },
+    secondaryText: {
+      table: {
+        disable: true
+      }
+    },
+    to: {
+      table: {
+        disable: true
+      }
+    },
+  };
+
+  export const Disabled: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
+    setup() {
+      const iconTypes = ['warning', 'arrow-down', 'circle-down', 'xmark']
+      return { args, argTypes, iconTypes };
+    },
+    template: `
+      <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
+        <foam-dropdown-button variant="primary" >
+          <foam-dropdown-item disabled text="Disabled" />
+          <foam-dropdown-divider />
+          <foam-dropdown-item text="Not Disabled" />
+        </foam-dropdown-button>
+      </div>
+    `,
+  }); 
+
+  Disabled.argTypes = {
+    type: {
+        table: {
+            disable: true,
+        },
+    },
+    text: {
+        table: {
+            disable: true,
+        },
+    },
+    icon: {
+        table: {
+            disable: true,
+        },
+    },  
+    width: {
+        table: {
+            disable: true,
+        },
+    },
+    subdropdown: {
+        table: {
+            disable: true,
+        },
+    },
+    secondaryText: {
+      table: {
+        disable: true
+      }
+    },
+    to: {
+      table: {
+        disable: true
+      }
+    },
+    disabled: {
+      table: {
+        disable: true
+      }
+    },
+    selected: {
+      table: {
+        disable: true
+      }
+    },
+  };
+
+  export const Selected: StoryFn<typeof FoamDropdownItem> = (args, { argTypes }) => {
+    const [_, updateArgs] = useArgs();
+    return {
+      components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
+  
+      setup() {
+        const handleClick = () => {
+          updateArgs({ selected: !args.selected });
+        };
+  
+        return { args, argTypes, handleClick };
+      },
+      template: `
+        <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
+          <foam-dropdown-button variant="primary" >
+            <foam-dropdown-item text="Selected" />
+            <foam-dropdown-divider />
+            <foam-dropdown-item v-bind="args" text="Click me" @click="handleClick" />
+          </foam-dropdown-button>
+        </div>
+      `,
+    };
+  };
+
+  Selected.argTypes = {
+    type: {
+        table: {
+            disable: true,
+        },
+    },
+    text: {
+        table: {
+            disable: true,
+        },
+    },
+    icon: {
+        table: {
+            disable: true,
+        },
+    },  
+    width: {
+        table: {
+            disable: true,
+        },
+    },
+    subdropdown: {
+        table: {
+            disable: true,
+        },
+    },
+    secondaryText: {
+      table: {
+        disable: true
+      }
+    },
+    to: {
+      table: {
+        disable: true
+      }
+    },
+    disabled: {
+      table: {
+        disable: true
+      }
+    },
+  };
+
+  export const Subdropdown: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
+    setup() {
+      return { args, argTypes };
+    },
+    template: `
+      <div style="display: flex; gap: 24px; flex-direction: column; 1em; flex-wrap: wrap">
+      <p>The width prop changes the width of the subdropdown</p>
+        <foam-dropdown-button variant="primary" text="Subdropdown" >
+          <foam-dropdown-item v-bind="args" text="List of links" subdropdown >
+              <foam-dropdown-item type="link" text="link 1" />
+              <foam-dropdown-item type="link" text="link 2" />
+              <foam-dropdown-item type="link" text="link 3" />
+          </foam-dropdown-item>
+        </foam-dropdown-button>
+      </div>
+    `,
+  }); 
+
+  Subdropdown.argTypes = {
+    type: {
+        table: {
+            disable: true,
+        },
+    },
+    text: {
+        table: {
+            disable: true,
+        },
+    },
+    icon: {
+        table: {
+            disable: true,
+        },
+    },  
+    subdropdown: {
+        table: {
+            disable: true,
+        },
+    },
+    secondaryText: {
+      table: {
+        disable: true
+      }
+    },
+    to: {
+      table: {
+        disable: true
+      }
+    },
+    disabled: {
+      table: {
+        disable: true
+      }
+    },
+    selected: {
+      table: {
+        disable: true
+      }
+    },
+  };
+
 
 // Width - för subdropdown
 // Subdropdown
 
-
-
   // All props
-  // Type.argTypes = {
-  //   type: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },
-  //   text: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },
-  //   icon: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },  
-  //   width: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },
-  //   subdropdown: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },
-  // };
-  
-
-  // Type.argTypes = {
-  //   type: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },
-  //   text: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },
-  //   icon: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },  
-  //   width: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },
-  //   subdropdown: {
-  //       table: {
-  //           disable: true,
-  //       },
-  //   },
-  //   disabled: {
-  //     table: {
-  //       disable: true
-  //     }
-  //   },
-  //   secondaryText: {
-  //     table: {
-  //       disable: true
-  //     }
-  //   },
-  //   to: {
-  //     table: {
-  //       disable: true
-  //     }
-  //   },
-  //   selected: {
-  //     table: {
-  //       disable: true
-  //     }
-  //   }
-  // };

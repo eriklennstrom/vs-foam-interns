@@ -144,7 +144,10 @@ If the icon property does not have the correct spelling and / or an icon that is
 
 The ``subdropdown`` property marks a dropdown item with the type ``button`` to be able to include a dropdown.
 
+The content that should be included in the subdropdown is in a ``<slot>`` element and should be used in the same way as dropdown-button.
+
 > Note - ``subdropdown`` only works with type ``button``
+>> Note - While the ``subdropdown`` property is added and ``true``, emits are disabled.
 
 ```html
 <!-- good -->
@@ -159,5 +162,11 @@ The ``subdropdown`` property marks a dropdown item with the type ``button`` to b
 
 ```html
 <!-- bad -->
-<foam-dropdown-item text="Warning" icon="warning-icon" />
+<foam-dropdown-button type="link">
+    <foam-dropdown-item text="List of links" subdropdown>
+        <foam-dropdown-item type="link" text="link 1" />
+        <foam-dropdown-item type="link" text="link 2" />
+        <foam-dropdown-item type="link" text="link 3" />
+    </foam-dropdown-item>
+</foam-dropdown-button>
 ```

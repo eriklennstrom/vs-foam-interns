@@ -4,6 +4,7 @@ import FoamDropdownItem from '@/components/dropdown/dropdown-item.vue';
 import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
 import FoamDropdownInput from '@/components/dropdown/dropdown-input.vue';
 import FoamDropdownFilter from '@/components/dropdown/dropdown-filter.vue';
+import { ref } from 'vue';
 
 const testFunctionOne: (param:string) => void = (param) => {
   console.log(param)
@@ -16,7 +17,10 @@ const testFunctionThree: (param:string) => void = (param) => {
   console.log(param)
 }
 
-
+const selectTest = ref(false)
+const testSelect: () => void = () => {
+  selectTest.value = !selectTest.value
+}
 const darkMode: () => void = () => {
   const body = document.querySelector('body')
   body?.classList.toggle('dark')
@@ -203,9 +207,14 @@ const darkMode: () => void = () => {
       <FoamDropdownFilter type="container" text="10" />
       <FoamDropdownFilter type="container" text="10" />
     </FoamDropdownButton>
-    <FoamDropdownButton>
-      <FoamDropdownFilter type="checkbox" text="Checkbox" />
+    <FoamDropdownButton text="Test">
       <FoamDropdownFilter type="checkbox" text="Checkbox" selected />
+      <FoamDropdownFilter
+        type="checkbox"
+        text="Checkbox"
+        :selected="selectTest"
+        @click="testSelect"
+      />
       <FoamDropdownFilter type="checkbox" text="Checkbox" />
     </FoamDropdownButton>
     <FoamDropdownButton variant="ghost">
@@ -223,9 +232,14 @@ const darkMode: () => void = () => {
     </FoamDropdownButton>
   </article>
   <article>
-    <FoamDropdownInput>
+    <FoamDropdownInput text="Test Checkbox Function">
       <FoamDropdownFilter type="checkbox" text="Checkbox 1" />
-      <FoamDropdownFilter type="checkbox" text="Checkbox 2" selected />
+      <FoamDropdownFilter
+        type="checkbox"
+        text="Checkbox 2"
+        :selected="selectTest"
+        @click="testSelect"
+      />
       <FoamDropdownFilter type="checkbox" text="Checkbox 3" />
     </FoamDropdownInput>
   </article>

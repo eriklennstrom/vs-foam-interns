@@ -76,6 +76,8 @@ const popperInstance = computed(() => {
 const handleShowDropdown: () => void = () => {
   showDropdown.value = !showDropdown.value
   if(showDropdown.value) {
+    const inputElem = document.querySelector('#dropdown__input--input') as HTMLElement
+    inputElem.focus()
     popperInstance.value.update()
     dropdownFilter.value.setAttribute('data-show', '')
   } else {   
@@ -111,7 +113,7 @@ useDetectOutsideClick(componentRef, () => {
           v-model="userInput"
           type="text"
           name="dropdown-input"
-          @focus="showDropdown = true"
+          placeholder="Search"
         >
         <Icon
           v-if="userInput.length > 0"

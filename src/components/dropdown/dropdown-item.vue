@@ -19,7 +19,7 @@ type DropdownPropsItem = {
 };
 
 const props = withDefaults(defineProps<DropdownPropsItem>(), {
-    text: 'Dropdown Item',
+    text: '',
     icon: null,
     type: 'button',
     to: '/',
@@ -56,6 +56,16 @@ const AsyncIcon = computed(() => {
 
 const AsyncSelectedIcon = computed(() => {
   if (selectedItem.value) {
+    const Icon = defineAsyncComponent(
+      () => import('@/components/icons/icons.vue')
+    );
+    return Icon;
+  } 
+  return null;
+});
+
+const AsyncSubdropdownIcon = computed(() => {
+  if (props.subdropdown) {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
     );
@@ -101,7 +111,6 @@ const handleShowSubDropdown: () => void = () => {
   showSubDropdown.value = !showSubDropdown.value
   
   if(showSubDropdown.value) {
-    console.log(showSubDropdown.value);
     subDropdown.value.setAttribute('data-show', '')
     popperInstance.value.update()
   } else {   
@@ -156,15 +165,23 @@ useDetectOutsideClick(subDropdownRef, () => {
       :size="8"
       variant="primary"
     />
-    <div class="text-container">
-      <p v-if="props.text">
+    <div v-if="props.text" class="text-container">
+      <p>
         {{ props.text }}
       </p>
       <p v-if="secondaryText" class="secondary-text">
         {{ secondaryText }}
       </p>
     </div>
-    <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
+    <AsyncIcon v-if="props.icon && !props.subdropdown" :size="10" :icon="props.icon" />
+    <AsyncSubdropdownIcon
+      v-if="props.subdropdown"
+      class="subdropdown-icon"
+      :dropdown-open="[showSubDropdown]"
+      :size="10"
+      icon="caret-down"
+    />
+    <p v-if="props.subdropdown" />
   </component>
   <div
     v-if="elementType == 'button' && props.subdropdown"
