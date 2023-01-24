@@ -13,8 +13,8 @@ export default {
     }
   },
   argTypes: {
-    color: {
-      control: { type: 'select'},
+    variant: {
+      control: { type: 'select' },
       options: ['success', 'danger', 'secondary', 'primary']
     },
     size: {
@@ -24,7 +24,7 @@ export default {
         defaultValue: null
       }
     },
-    variant: {
+    icon: {
       control: { type: 'select' },
       options: ['user-secret', 'warning', 'arrow-down', 'circle-down'],
       table: {
@@ -43,7 +43,7 @@ const Template: StoryFn<typeof FoamIcon> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = { variant: 'warning'};
+Default.args = { icon: 'warning' };
 
 export const Variants: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   components: { FoamIcon },
@@ -52,17 +52,17 @@ export const Variants: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-icon v-for="variant in argTypes.variant.options" :size="18" v-bind="args" :variant="variant" />
+      <foam-icon v-for="icon in argTypes.icon.options" :size="18" v-bind="args" :icon="icon" />
     </div>`
 });
 
 Variants.argTypes = {
-  variant: {
+  icon: {
     table: {
       disable: true
     }
   },
-  color: {
+  variant: {
     table: {
       disable: true
     }
@@ -81,17 +81,18 @@ export const Size: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-icon v-for="size in argTypes.size.options" variant="warning" :size="size" color="primary"  />
+      <foam-icon v-for="size in argTypes.size.options" :size="size"   />
     </div>`
 });
 
 Size.argTypes = {
-  variant: {
+  icon: {
     table: {
       disable: true
     }
   },
-  color: {
+
+  variant: {
     table: {
       disable: true
     }
@@ -110,17 +111,17 @@ export const Color: StoryFn<typeof FoamIcon> = (args, { argTypes }) => ({
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-icon v-for="color in argTypes.color.options" variant="warning" :color="color" />
+      <foam-icon v-for="variant in argTypes.variant.options" icon="warning" :variant="variant" />
     </div>`
 });
 
 Color.argTypes = {
-  variant: {
+  icon: {
     table: {
       disable: true
     }
   },
-  color: {
+  variant: {
     table: {
       disable: true
     }

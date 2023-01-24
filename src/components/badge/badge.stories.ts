@@ -29,7 +29,7 @@ export default {
       description: 'Property to add outline to the badge',
     },
     text: {
-      control: {type: 'text'},
+      control: { type: 'text' },
       description: 'Property for text content inside the badge',
     },
   },
@@ -128,11 +128,19 @@ export const Icons: StoryFn<typeof FoamBadge> = (args) => ({
   },
   template: `
     <div style="display: flex; gap: 1em">
-      <foam-badge variant="primary" v-bind="args" />
-      <foam-badge variant="primary" outline />
+      <foam-badge variant="primary" v-bind="args"   />
+      <foam-badge variant="primary" v-bind="args" outline />
     </div>
   `,
 });
+
+Icons.args = {
+  icon: {
+    table: {
+      defaultValue: 'circle-down',
+    },
+  },
+};
 
 Icons.argTypes = {
   variant: {
@@ -141,15 +149,14 @@ Icons.argTypes = {
     },
   },
   icon: {
-    table:{
-    defaultValue: 'warning'}
+    table: {
+      defaultValue: 'circle-down',
+    },
   },
   outline: {
     table: {
       disable: true,
     },
   },
-  text: {
-    description: 'Property for text content inside the badge',
-  },
-};
+}
+
