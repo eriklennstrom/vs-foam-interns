@@ -49,7 +49,6 @@ const test= ref('')
     variant="text"
     text="Neutral"
     placeholder="placeholder"
-    accordian
     helpertext="Helper text"
   >
     <template #sentContent>
@@ -64,7 +63,7 @@ const test= ref('')
     variant="number"
     text="Disabled"
     placeholder="placeholder"
-    disabled
+   
   />
   <Inputvue
     v-model="test"
