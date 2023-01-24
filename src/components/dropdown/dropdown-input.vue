@@ -111,7 +111,7 @@ useDetectOutsideClick(componentRef, () => {
           v-model="userInput"
           type="text"
           name="dropdown-input"
-          @focus="showDropdown.value = true"
+          @focus="showDropdown = true"
         >
         <Icon
           v-if="userInput.length > 0"
