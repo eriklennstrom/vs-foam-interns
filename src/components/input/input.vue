@@ -5,6 +5,7 @@ import {
   ref,
   computed,
   watch,
+  useSlots,
   type Ref,
 } from 'vue';
 import {
@@ -14,19 +15,24 @@ import {
 } from '@/helpers/mixins/jsMixins';
 import('@/components/button/button.vue');
 
+
 type InputProps = {
   text: string
   variant?: string
   validationText?: string
   isValid?: boolean | null
   placeholder?: string | undefined
-  accordian?: boolean
   disabled?: boolean
-  activeDropdown?: boolean
   modelValue?: string | null
   helpertext?: string
   size?: string
 };
+
+const slots = useSlots()
+
+
+
+
 
 const emit = defineEmits(['change', 'update:modelValue']);
 
@@ -34,16 +40,17 @@ const props = withDefaults(defineProps<InputProps>(), {
   validationText: '',
   isValid: null,
   placeholder: undefined,
-  accordian: false,
   variant: 'text',
   text: 'Label',
-  activeDropdown: false,
   disabled: false,
   helpertext: '',
   modelValue: '',
-  size: 'M',
+  size: 'L',
 });
 
+
+const accordianRef: Ref = ref<boolean>(false)
+!!slots.sentContent? accordianRef.value= true : accordianRef.value= false
 const size: Ref = ref<string>(props.size);
 const variantMiddleware: Ref = ref<string>(props.variant);
 const showPassword: Ref = ref<boolean>(false);
@@ -106,13 +113,11 @@ const AsyncIcon = computed(() => {
   <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
     <h2>
       {{ props.text }}
-      <div v-if="props.accordian" class="iconWrapper">
+      <div v-if="accordianRef" class="iconWrapper">
         <AsyncIcon
-          v-if="props.accordian"
+          v-if="accordianRef"
           class="dropdown"
-          :class="[
-            props.activeDropdown ? 'active' : '',
-            accordianSwitch ? 'toggledAccordian' : '',
+          :class="[accordianSwitch ? 'toggledAccordian' : '',
           ]"
           icon="caret-down"
           @click="toggleAccordian"
@@ -138,7 +143,7 @@ const AsyncIcon = computed(() => {
 
   <div
     :disabled="props.disabled"
-    :class="[
+    :class="[size,
       'inputWrapper',
       inputClass,
       props.isValid ? 'valid' : '',

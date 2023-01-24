@@ -9,7 +9,7 @@ The text property is the text content that will be rendered as a label. Default 
 
 The variant property decides what variant will be used. Default is `text`.
 
-Variants available : `text`, `numer`, `email`, `password`
+Variants available : `text`, `number`, `email`, `password`
 
 ```html
 <!-- good -->
@@ -62,16 +62,17 @@ This is handled by adding disabled to the html
 
 ##Slots
 
-Within the component there are slots for content with embedded functionality with the accordian boolean, when paired with the slot will provide information from the acordian button.
+Within the component there are slots for content with embedded functionality that adds a button to the label.
+Clicking the button will drop down your slotted content and clicking it again will hide it.
 
 
 ```html
 <!-- good -->
-<foam-input accordian >     
+<foam-input >     
     <template #sentContent>
       Slot items
     </template>   
-<foam-input accordian />
+<foam-input />
 ```
 
 ```html
