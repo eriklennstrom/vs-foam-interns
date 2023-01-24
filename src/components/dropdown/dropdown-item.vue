@@ -153,10 +153,10 @@ useDetectOutsideClick(subDropdownRef, () => {
     tabindex="0"
     :disabled="props.disabled ? disabled : null"
     :data-test="elementType"
-    @keydown.enter="goToRoute($event)"
+    @keydown.enter="elementType == 'route' ? goToRoute($event) : null"
     @keydown="props.subdropdown ? handleShowSubDropdown() : useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"
-    @click="elementType == 'button' && !props.subdropdown ? emit('click') : null"
+    @click="elementType == 'button' && !props.subdropdown ? emit('click') : props.subdropdown ? handleShowSubDropdown() : null"
     @mouseenter="props.subdropdown ? handleShowSubDropdown() : null"
   >
     <AsyncSelectedIcon
