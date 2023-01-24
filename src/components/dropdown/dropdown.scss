@@ -198,12 +198,12 @@
                 }
             }
             .dropdown__input--button {
-                cursor: pointer;
                 all: unset;
                 position: absolute;
                 right: 10px;
                 top: calc(50% - 8px);
                 svg {
+                    cursor: pointer;
                     transition: transform 0.15s ease-in-out;
                 }
                 .dropdown-active {

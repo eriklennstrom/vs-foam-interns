@@ -31,7 +31,7 @@ const optionsSelected = ref<number>(0)
 // Maybe use watch to check input?
 watch(() => userInput.value, (newVal) => { 
   const dropdownElems = document.querySelectorAll('.dropdown__filter--container .checkbox__item')
-
+  dropdownFilter.value.setAttribute('data-show', '')
   const inputLowerCase = newVal.toLowerCase()
   optionsSelected.value = 0
   Array.from(dropdownElems).forEach(function (element) {
@@ -76,8 +76,6 @@ const popperInstance = computed(() => {
 const handleShowDropdown: () => void = () => {
   showDropdown.value = !showDropdown.value
   if(showDropdown.value) {
-    const lol = document.querySelector('.dropdown__input--input') as HTMLElement
-    lol.focus()
     popperInstance.value.update()
     dropdownFilter.value.setAttribute('data-show', '')
   } else {   
