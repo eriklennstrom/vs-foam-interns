@@ -48,7 +48,11 @@ export default {
           options: [true, false],
           description: 'Property for disabled boolean',
         },
-    
+        subdropdown: {
+          control : {type: 'boolean'},
+          options: [true, false],
+          description: 'Property to add a secondary dropdown withing the dropdown item'
+        },    
         click: {
           table: {
             disable: true,
@@ -68,9 +72,9 @@ export default {
     template: `
     <div>
         <foam-dropdown-button v-bind="args">
-            <foam-dropdown-item />
+            <foam-dropdown-item text="Dropdown Item 1" />
             <foam-dropdown-divider />
-            <foam-dropdown-item />
+            <foam-dropdown-item text="Dropdown Item 1" />
         </foam-dropdown-button>
     </div>
     `
@@ -78,4 +82,107 @@ export default {
 
   export const Default = Template.bind({});
 
+  export const Type: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
+    setup() {
+      return { args, argTypes };
+    },
+    template: `
+    <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
+        <foam-dropdown-button variant="primary" >
+          <foam-dropdown-item v-bind="args" v-for="type in argTypes.type.options" :key="type" :text="type" :type="type" />
+      </foam-dropdown>
+    </div>
+  `,
+  });
+
+// To - not needed
+// Text - not needed
+// SecondaryText - needed?
+
+// Icon - one with text and icon, one with only icons
+// Disabled 
+// Selected
+
+// Width - för subdropdown
+// Subdropdown
+
+
+
+  // All props
+  // Type.argTypes = {
+  //   type: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },
+  //   text: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },
+  //   icon: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },  
+  //   width: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },
+  //   subdropdown: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },
+  // };
   
+
+  // Type.argTypes = {
+  //   type: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },
+  //   text: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },
+  //   icon: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },  
+  //   width: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },
+  //   subdropdown: {
+  //       table: {
+  //           disable: true,
+  //       },
+  //   },
+  //   disabled: {
+  //     table: {
+  //       disable: true
+  //     }
+  //   },
+  //   secondaryText: {
+  //     table: {
+  //       disable: true
+  //     }
+  //   },
+  //   to: {
+  //     table: {
+  //       disable: true
+  //     }
+  //   },
+  //   selected: {
+  //     table: {
+  //       disable: true
+  //     }
+  //   }
+  // };

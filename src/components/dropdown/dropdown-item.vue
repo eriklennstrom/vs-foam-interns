@@ -5,8 +5,6 @@ import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap'
 import { useRouter } from 'vue-router'
 import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent';
-import { e } from 'vitest/dist/index-220c1d70';
-
 
 type DropdownPropsItem = {
     type?: string
@@ -149,7 +147,7 @@ useDetectOutsideClick(subDropdownRef, () => {
     @keydown.enter="goToRoute($event)"
     @keydown="props.subdropdown ? handleShowSubDropdown() : useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"
-    @click="elementType == 'button' ? emit('click') : null"
+    @click="elementType == 'button' && !props.subdropdown ? emit('click') : null"
     @mouseenter="props.subdropdown ? handleShowSubDropdown() : null"
   >
     <AsyncSelectedIcon

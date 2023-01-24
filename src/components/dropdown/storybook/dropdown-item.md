@@ -18,6 +18,8 @@ The ``selected`` property is a boolean that decides if the dropdown item is sele
 The ``to`` property is a string that decides the url link. 
 > Note - Only usable with type values ``link`` and ``route`` 
 
+The ``subdropdown``propertyp is a boolean that can be used with type ``button`` to create a secondary dropdown inside the dropdown item.
+
 ## Type
 
 The ``type`` property decides what type of html-element will be rendered in the DOM.
@@ -137,3 +139,25 @@ If the icon property does not have the correct spelling and / or an icon that is
 ```
 
 > Note: The icons being used in this component are imported from Font Awesome.
+
+## Subdropdown
+
+The ``subdropdown`` property marks a dropdown item with the type ``button`` to be able to include a dropdown.
+
+> Note - ``subdropdown`` only works with type ``button``
+
+```html
+<!-- good -->
+<foam-dropdown-button>
+    <foam-dropdown-item text="List of links" subdropdown>
+        <foam-dropdown-item type="link" text="link 1" />
+        <foam-dropdown-item type="link" text="link 2" />
+        <foam-dropdown-item type="link" text="link 3" />
+    </foam-dropdown-item>
+</foam-dropdown-button>
+```
+
+```html
+<!-- bad -->
+<foam-dropdown-item text="Warning" icon="warning-icon" />
+```

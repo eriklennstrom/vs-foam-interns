@@ -1,12 +1,12 @@
-import FoamDropdown from '@/components/dropdown/dropdown-button.vue';
+import FoamDropdownButton from '@/components/dropdown/dropdown-button.vue';
 import FoamDropdownItem from '@/components/dropdown/dropdown-item.vue';
 import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
-import readme from '@/components/dropdown/storybook/dropdown.md?raw';
+import readme from '@/components/dropdown/storybook/dropdown-button.md?raw';
 
 export default {
-    title: 'Components/Dropdown',
-    component: FoamDropdown,
+    title: 'Components/Dropdown/Dropdown-Button',
+    component: FoamDropdownButton,
     parameters: {
       docs: {
         description: {
@@ -55,39 +55,39 @@ export default {
           description: 'Property for text content inside the dropdown button',
         },
       },
-  } as Meta<typeof FoamDropdown>;
+  } as Meta<typeof FoamDropdownButton>;
   
-  const Template: StoryFn<typeof FoamDropdown> = (args) => ({
+  const Template: StoryFn<typeof FoamDropdownButton> = (args) => ({
     setup() {      
         return { args };
     },
-    components: { FoamDropdown, FoamDropdownDivider, FoamDropdownItem },
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
 
     template: `
     <div>
-        <foam-dropdown v-bind="args">
-            <foam-dropdown-item />
+        <foam-dropdown-button v-bind="args">
+            <foam-dropdown-item text="Dropdown Item" />
             <foam-dropdown-divider />
-            <foam-dropdown-item />
-        </foam-dropdown>
+            <foam-dropdown-item text="Dropdown Item" />
+        </foam-dropdown-button>
     </div>
     `
   });
 
   export const Default = Template.bind({});
 
-  export const Variants: StoryFn<typeof FoamDropdown> = (args, { argTypes }) => ({
-    components: { FoamDropdown, FoamDropdownDivider, FoamDropdownItem },
+  export const Variants: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
     setup() {
       return { args, argTypes };
     },
     template: `
     <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
-        <foam-dropdown v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant">
-            <foam-dropdown-item />
+        <foam-dropdown-button v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant">
+            <foam-dropdown-item text="Dropdown Item" />
             <foam-dropdown-divider />
-            <foam-dropdown-item />
-      </foam-dropdown>
+            <foam-dropdown-item text="Dropdown Item" />
+      </foam-dropdown-button>
     </div>
   `,
   });
@@ -126,18 +126,25 @@ export default {
   };
 
 
-  export const Icons: StoryFn<typeof FoamDropdown> = (args, { argTypes }) => ({
-    components: { FoamDropdown, FoamDropdownDivider, FoamDropdownItem },
+  export const Icons: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
     setup() {
       return { args, argTypes };
     },
     template: `
-    <div>
-        <foam-dropdown v-bind="args">
-            <foam-dropdown-item />
+    <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
+        <foam-dropdown-button v-bind="args">
+            <foam-dropdown-item text="Dropdown Item" />
             <foam-dropdown-divider />
-            <foam-dropdown-item />
-        </foam-dropdown>
+            <foam-dropdown-item text="Dropdown Item" />
+        </foam-dropdown-button>
+        <foam-dropdown-button v-bind="args">
+            <foam-dropdown-item icon="user-secret" />
+            <foam-dropdown-divider />
+            <foam-dropdown-item icon="arrow-down" />
+            <foam-dropdown-item icon="warning" />
+            <foam-dropdown-item icon="circle-down" />
+    </foam-dropdown-button>
     </div>
   `,
   });
@@ -172,23 +179,23 @@ export default {
     }, 
   };
 
-  export const Align: StoryFn<typeof FoamDropdown> = (args, { argTypes }) => ({
-    components: { FoamDropdown, FoamDropdownDivider, FoamDropdownItem },
+  export const Align: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
     setup() {
       return { args, argTypes };
     },
     template: `
     <div style="display: flex; gap: 24px; flex-direction: row; justify-content: center; width : 100%;" >
-        <foam-dropdown align="end" text="Align : end" :width="250" >
-            <foam-dropdown-item />
+        <foam-dropdown-button align="end" text="Align : end" :width="250" >
+            <foam-dropdown-item text="Dropdown Item" />
             <foam-dropdown-divider />
-            <foam-dropdown-item />
-        </foam-dropdown>
-        <foam-dropdown align="start" text="Align : start" :width="250" >
-            <foam-dropdown-item />
+            <foam-dropdown-item text="Dropdown Item" />
+        </foam-dropdown-button>
+        <foam-dropdown-button align="start" text="Align : start" :width="250" >
+            <foam-dropdown-item text="Dropdown Item" />
             <foam-dropdown-divider />
-            <foam-dropdown-item />
-        </foam-dropdown>
+            <foam-dropdown-item text="Dropdown Item" />
+        </foam-dropdown-button>
     </div>
   `,
   });
@@ -226,18 +233,18 @@ export default {
     }, 
   };
 
-  export const Width: StoryFn<typeof FoamDropdown> = (args, { argTypes }) => ({
-      components: { FoamDropdown, FoamDropdownDivider, FoamDropdownItem },
+  export const Width: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+      components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
       setup() {
           return { args, argTypes };
         },
         template: `
         <div>
-            <foam-dropdown v-bind="args" >
-                <foam-dropdown-item />
+            <foam-dropdown-button v-bind="args" >
+                <foam-dropdown-item text="Dropdown Item" />
                 <foam-dropdown-divider />
-                <foam-dropdown-item />
-            </foam-dropdown>
+                <foam-dropdown-item text="Dropdown Item" />
+            </foam-dropdown-button>
         </div>
         `
   });
@@ -270,18 +277,18 @@ export default {
     }, 
   };
 
-  export const Disabled: StoryFn<typeof FoamDropdown> = (args, { argTypes }) => ({
-      components: { FoamDropdown, FoamDropdownDivider, FoamDropdownItem },
+  export const Disabled: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+      components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
       setup() {
           return { args, argTypes };
         },
     template: `
     <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
-        <foam-dropdown v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" disabled>
-            <foam-dropdown-item />
+        <foam-dropdown-button v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" disabled>
+            <foam-dropdown-item text="Dropdown Item" />
             <foam-dropdown-divider />
-            <foam-dropdown-item />
-      </foam-dropdown>
+            <foam-dropdown-item text="Dropdown Item" />
+      </foam-dropdown-button>
     </div>
   `,
   });
