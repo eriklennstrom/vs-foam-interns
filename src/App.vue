@@ -27,7 +27,7 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
-  <section class="dropdown-test">
+  <article class="dropdown-test">
     <FoamDropdownButton
       icon="circle-aaaaaaaaa"
       variant="danger"
@@ -144,14 +144,14 @@ const darkMode: () => void = () => {
         @click="testFunctionThree('Test dropdown item 3')"
       />
     </FoamDropdownButton>
-  </section>
+  </article>
 
   <button @click="darkMode">
     DARK MODE!
   </button>
 
-  <section>
-    <FoamDropdownButton :width="200">
+  <article>
+    <FoamDropdownButton :width="200" variant="danger">
       <FoamDropdownFilter type="color" color="red" text="Color" />
       <FoamDropdownFilter
         type="color"
@@ -178,7 +178,7 @@ const darkMode: () => void = () => {
       <FoamDropdownFilter type="color" color="black" text="Color" />
       <FoamDropdownFilter type="color" color="hotpink" text="Color" />
     </FoamDropdownButton>
-    <FoamDropdownButton :width="50">
+    <FoamDropdownButton :width="50" variant="primary">
       <FoamDropdownFilter type="container" text="1jsakdjksajd adjksalj dsak" />
       <FoamDropdownFilter type="container" text="2" />
       <FoamDropdownFilter type="container" text="3" />
@@ -190,7 +190,7 @@ const darkMode: () => void = () => {
       <FoamDropdownFilter type="container" text="9" />
       <FoamDropdownFilter type="container" text="10" />
     </FoamDropdownButton>
-    <FoamDropdownButton :width="120">
+    <FoamDropdownButton :width="120" variant="danger-outline">
       <FoamDropdownFilter type="container" text="1" selected />
       <FoamDropdownFilter type="container" text="2" />
       <FoamDropdownFilter type="container" text="3" selected />
@@ -208,8 +208,28 @@ const darkMode: () => void = () => {
       <FoamDropdownFilter type="checkbox" text="Checkbox" selected />
       <FoamDropdownFilter type="checkbox" text="Checkbox" />
     </FoamDropdownButton>
-  </section>
-  <section>
+    <FoamDropdownButton variant="ghost">
+      <FoamDropdownItem text="1" />
+      <FoamDropdownItem text="test 2" />
+      <FoamDropdownItem text="test 3" />
+      <FoamDropdownItem text="SUB DROP" icon="arrow-down" subdropdown>
+        <FoamDropdownItem text="test inuti 1" />
+        <FoamDropdownItem text="test inuti 2" />
+      </FoamDropdownItem>
+      <FoamDropdownItem text="test 4" />
+      <FoamDropdownItem text="test 5" />
+      <FoamDropdownItem text="test 6" />
+      <FoamDropdownItem text="test 7" />
+    </FoamDropdownButton>
+  </article>
+  <article>
+    <FoamDropdownInput>
+      <FoamDropdownFilter type="checkbox" text="Checkbox 1" />
+      <FoamDropdownFilter type="checkbox" text="Checkbox 2" selected />
+      <FoamDropdownFilter type="checkbox" text="Checkbox 3" />
+    </FoamDropdownInput>
+  </article>
+  <article>
     <FoamDropdownButton>
       <FoamDropdownItem text="1" />
       <FoamDropdownItem text="test 2" />
@@ -223,21 +243,15 @@ const darkMode: () => void = () => {
       <FoamDropdownItem text="test 6" />
       <FoamDropdownItem text="test 7" />
     </FoamDropdownButton>
-
-    <FoamDropdownInput>
-      <FoamDropdownFilter type="checkbox" text="Checkbox" />
-      <FoamDropdownFilter type="checkbox" text="Checkbox" selected />
-      <FoamDropdownFilter type="checkbox" text="Checkbox" />
-    </FoamDropdownInput>
-  </section>
+  </article>
+  <article>
+    <div style="height: 100vh" />
+  </article>
 </template>
 
 <style scoped lang="scss">
 
-body {
-  background-color: #F6F8FA;
-}
-section {
+article {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;

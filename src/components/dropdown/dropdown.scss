@@ -126,6 +126,12 @@
                 outline-offset: -1px;
             }
         }
+        .color__item, .container__item {
+            width: 100%;
+        }
+        .removed {
+            display: none;
+        }
     }
     .dropdown__filter--selected {
         .checkbox__item, .color__item, .container__item {
@@ -162,35 +168,56 @@
     }
 }
 
-.dropdown__input--container {
-    display: flex;
-    flex-direction: column;
-    .input-container {
+.dropdown__filter--container {
+    .dropdown__input--container {
+        display: flex;
+        flex-direction: column;
         .dropdown__input--label {
             font-size: 12px;
         }
-        position: relative;
-        #dropdown__input--input {
-            all: unset;
-            border-radius: 4px;
-            padding: 8px 12px;
+        .input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
             border: 1px solid colors.$secondary-900;
-            &:focus {
-                border-color: colors.$primary;
+            .amount-selected {
+                font-size: 12px;
+                padding: 4px 8px;
+                margin-left: 4px;
+                background-color: #000;
+                color: #fff;
+                border-radius: 50%;
+            }
+            #dropdown__input--input {
+                all: unset;
+                width: 70%;
+                border-radius: 4px;
+                padding: 8px 12px;
+                &:focus {
+                    border-color: colors.$primary;
+                }
+            }
+            .dropdown__input--button {
+                cursor: pointer;
+                all: unset;
+                position: absolute;
+                right: 10px;
+                top: calc(50% - 8px);
+                svg {
+                    transition: transform 0.15s ease-in-out;
+                }
+                .dropdown-active {
+                    transform: rotate(-180deg);
+                  }
+            }
+            .remove-input {
+                position: absolute;
+                right: 20px;
+                cursor: pointer;
+                padding: 0 12px;
+
             }
         }
-        .dropdown__input--button {
-            all: unset;
-            position: absolute;
-            right: 10px;
-            top: calc(50% - 8px);
-            svg {
-                transition: transform 0.15s ease-in-out;
-            }
-        }
-        .dropdown-active {
-            transform: rotate(-180deg);
-          }
     }
 }
 

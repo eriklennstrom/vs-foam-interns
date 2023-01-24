@@ -65,7 +65,7 @@ const AsyncSelectedIcon = computed(() => {
     @keyup="useRemoveRecordedStroke($event)"
     @click="filterType != 'checkbox' ? emit('click') : null"
   >
-    <div v-if="props.type == 'checkbox'" :class="[filterType + '__item']">
+    <div v-if="props.type == 'checkbox'" :class="[filterType + '__item']" :checked="props.selected ? true : false">
       <AsyncSelectedIcon
         v-if="props.selected"
         icon="check"

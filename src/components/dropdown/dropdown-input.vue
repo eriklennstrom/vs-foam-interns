@@ -4,12 +4,12 @@ import { computed, onMounted, ref, watch, type Ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent'
+import { isQualifiedTypeIdentifier } from '@babel/types';
 
 type DropdownProps = {
     variant?: string
     text?: string
     icon?: string | null
-    align?: string
     disabled?: boolean
 };
 
@@ -18,7 +18,6 @@ const props = withDefaults(defineProps<DropdownProps>(), {
     text: 'Foam Dropdown',
     icon: null,
     width: null,
-    align: 'end',
     disabled: false
 });
 
@@ -26,25 +25,30 @@ const showDropdown: Ref = ref<boolean>(false);
 const dropdownId = ref<string>('dropdown-filter' + uuidv4())
 const buttonId = ref<string>('btn-' + uuidv4())
 const dropdownFilter: Ref = ref()
-const dropdownAlign = ref<string>(props.align)
 const userInput = ref<string>('')
-
+const optionsSelected = ref<number>(0)
 
 // Maybe use watch to check input?
-watch(() => userInput.value, (newVal) => {   
-    console.log(userInput.value);
-    const dropdownElems = document.querySelector('.dropdown--input')?.childNodes
-    console.log(dropdownElems);
+watch(() => userInput.value, (newVal) => { 
+  const dropdownElems = document.querySelectorAll('.dropdown__filter--container .checkbox__item')
+
+  const inputLowerCase = newVal.toLowerCase()
+  optionsSelected.value = 0
+  Array.from(dropdownElems).forEach(function (element) {
+    element.getAttribute('checked') == 'true' ? optionsSelected.value = optionsSelected.value + 1 : null   
+    element.textContent?.toLowerCase().includes(inputLowerCase) ? element.classList.remove('removed') : element.classList.add('removed')
+  });
     
-    
-    });
+});
 
 onMounted(() => {
-  if(props.align == 'end' || props.align == 'start') {
-    return
-  } else {
-    dropdownAlign.value = 'end'
-  }
+  const dropdownElems = document.querySelectorAll('.dropdown__filter--container .checkbox__item')
+
+  optionsSelected.value = 0
+  Array.from(dropdownElems).forEach(function (element) {
+    element.getAttribute('checked') == 'true' ? optionsSelected.value = optionsSelected.value + 1 : null   
+
+  });
 })
 const popperInstance = computed(() => {
   const buttonElem = document.querySelector(`#${buttonId.value}`) as HTMLElement
@@ -55,7 +59,7 @@ const popperInstance = computed(() => {
       {
         name: 'flip',
         options: {
-          allowedAutoPlacements: [`bottom-${dropdownAlign.value}`, `top-${dropdownAlign.value}`]
+          allowedAutoPlacements: [`bottom-end`, `top-end`]
         },
       },
       {
@@ -72,11 +76,17 @@ const popperInstance = computed(() => {
 const handleShowDropdown: () => void = () => {
   showDropdown.value = !showDropdown.value
   if(showDropdown.value) {
+    const lol = document.querySelector('.dropdown__input--input') as HTMLElement
+    lol.focus()
     popperInstance.value.update()
     dropdownFilter.value.setAttribute('data-show', '')
   } else {   
     dropdownFilter.value.removeAttribute('data-show')
   }
+}
+
+const handeClearInput: () => void = () => {
+  userInput.value = ''
 }
 
 const componentRef = ref()
@@ -91,18 +101,27 @@ useDetectOutsideClick(componentRef, () => {
   <section
     :id="dropdownId"
     ref="componentRef"
-    class="dropdown-container"
-    :data-test="dropdownAlign"
+    class="dropdown__filter--container"
+    @click="handleShowDropdown"
   >
     <div :id="buttonId" class="dropdown__input--container">
       <label class="dropdown__input--label" for="dropdown-input">{{ props.text }}</label>
-      <div class="input-container" @click="handleShowDropdown">
+      <div class="input-container">
+        <span class="amount-selected">{{ optionsSelected }}</span>
         <input
           id="dropdown__input--input"
           v-model="userInput"
           type="text"
           name="dropdown-input"
+          @focus="showDropdown.value = true"
         >
+        <Icon
+          v-if="userInput.length > 0"
+          class="remove-input"
+          icon="xmark"
+          :size="16"
+          @click="handeClearInput"
+        />
         <button class="dropdown__input--button">
           <Icon
             :class="[showDropdown ? 'dropdown-active' : null]"
