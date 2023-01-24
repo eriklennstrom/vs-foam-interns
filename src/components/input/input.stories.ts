@@ -81,7 +81,7 @@ export default {
 const Template: StoryFn<typeof FoamInput> = () => {
   return {
     components: { FoamInput },
-    template: '<foam-input  v-bind="args"/>',
+    template: '<foam-input  v-bind="args" placeholder="placeholder"/>',
   };
 };
 
@@ -98,7 +98,7 @@ export const Variants: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
   },
   template: `
   <div style="display: flex; flex-direction:column; flex-wrap: wrap;">
-    <foam-input v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" :placeholder ="placeholder" />
+    <foam-input v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" placeholder ="placeholder" />
   </div>
 `,
 });
@@ -115,6 +115,11 @@ Variants.argTypes = {
     },
   },
   dropdown: {
+    table: {
+      disable: true,
+    },
+  },
+  placeholder: {
     table: {
       disable: true,
     },
