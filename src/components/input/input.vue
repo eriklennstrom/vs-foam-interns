@@ -30,10 +30,6 @@ type InputProps = {
 
 const slots = useSlots()
 
-
-
-
-
 const emit = defineEmits(['change', 'update:modelValue']);
 
 const props = withDefaults(defineProps<InputProps>(), {

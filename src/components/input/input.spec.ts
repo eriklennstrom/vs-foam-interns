@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Button from '@/components/button/button.vue'
+import Input from '@/components/input/input.vue'
 import Icons from '@/components/icons/icons.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown)
 
-describe('Button', () => {
+describe('Input', () => {
 
   const textVariable = 'Varnish'
 
@@ -21,25 +21,25 @@ describe('Button', () => {
 
 
   it('renders button properly', () => {
-    const wrapper = mount(Button, { propsData: { variant: 'danger', text: textVariable } })
+    const wrapper = mount(Input, { propsData: { variant: 'danger', text: textVariable } })
     expect(wrapper.classes()).toContain('button--danger')
   })
 
   it('renders text correctly', () => {
 
-    const wrapper = mount(Button, { propsData: { variant: 'danger', text: textVariable } })
+    const wrapper = mount(Input, { propsData: { variant: 'danger', text: textVariable } })
     expect(wrapper.vm.text).toBe(textVariable)
   })
 
   it('renders correct color', () => {
-    const wrapper = mount(Button, { propsData: { variant: 'primary', text: textVariable } })
+    const wrapper = mount(Input, { propsData: { variant: 'primary', text: textVariable } })
     console.log(wrapper.classes())
-    expect(wrapper.classes()).toContain('button--primary');
+    expect(wrapper.classes()).toContain('Input--primary');
   })
 
 
   it('render icon properly', () => {
-    const wrapper = mount(Button, { propsData: { variant: 'primary', text: textVariable, icon: 'warning' } })
+    const wrapper = mount(Input, { propsData: { isValid=true  } })
     expect(wrapper.findComponent(Icons))
   })
 })
