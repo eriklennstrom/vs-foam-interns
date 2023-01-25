@@ -64,6 +64,11 @@ defaultVariantMixin(inputVariant).verifyVariant(props.variant)
 
 const inputClass = ref('input--' + type.value);
 
+if(props.variant == 'low-number'){
+  size.value = 'S'
+  ///Lägg till klass som ger pilar
+}
+
 watch(
   () => showPassword.value,
   (newVal) => {
