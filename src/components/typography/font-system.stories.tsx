@@ -15,7 +15,7 @@ export default {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'body1', 'subtitle1', 'body2',  'subtitle2', 'small'],
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'body1', 'subtitle1', 'body2',  'subtitle2', 'small', 'overline'],
       description: 'Property to add chosen variant',
     },
     text: {
