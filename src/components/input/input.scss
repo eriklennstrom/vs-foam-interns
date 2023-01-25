@@ -2,21 +2,12 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
 
+
 * {
   margin: 0;
 }
 
-.S{
-  max-width:250px;
-  }
 
-.M{
-max-width:400px;
-}
-
-.L{
-  max-width:100%;
-  }
 
 .toggledAccordian {
   transform: rotate(180deg);
@@ -185,9 +176,31 @@ input {
   border: 0;
   outline: 0;
   background: transparent;
-  font-size: 22px;
+  font-size: 1rem;
   padding: 10px;
+
+  
 }
+
+.S{
+  input{
+    font-size: 0.9rem;
+    padding:4px;
+  }
+  }
+
+.M{
+  input{
+    font-size: 1rem;
+    padding:8px;
+  }
+}
+
+.L{
+  input{
+    font-size: 1.1rem;
+  }
+  }
 
 .dropdown {
   background-color: black;
