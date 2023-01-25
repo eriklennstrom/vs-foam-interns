@@ -141,12 +141,12 @@ export const Sizes: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
   },
   template: `
   <div style="display: flex; flex-direction:column; flex-wrap: wrap;">
-    <foam-input v-bind="args" v-for="sizes in argTypes.size.options" :key="size" :text="size" :size="size" placeholder ="placeholder" />
+    <foam-input v-bind="args" v-for="size in argTypes.size.options" :key="size" :text="size" :size="size" placeholder ="placeholder" />
   </div>
 `,
 });
 
-Variants.argTypes = {
+Sizes.argTypes = {
   variant: {
     table: {
       disable: true,
