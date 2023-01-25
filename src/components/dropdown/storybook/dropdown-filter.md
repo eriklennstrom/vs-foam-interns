@@ -6,8 +6,6 @@ The ``type`` property decides the type for the dropdown item. Valid values are `
 
 The ``text`` property is the text content that will be rendered inside the dropdown filter component.
 
-The ``icon`` property decides what type of icon should be rendered. Default is ``null``.
-
 The ``disabled`` property is a boolean that decides if the dropdown item is active or not. 
 
 The ``selected`` property is a boolean that decides if the dropdown item is selected or not. 
@@ -112,25 +110,3 @@ Best usage is to pass a boolean variable together with a ``click event`` that up
 <!-- bad -->
 <foam-dropdown-filter disabled="true" />
 ```
-
-
-## Icon
-
-The icons property adds an icon to the dropdown item.
-Icons that are included are -
-
-`warning`, `circle-down`, `user-secret`, `arrow-down`, `arrow-alt-circle-down`
-
-If the icon property does not have the correct spelling and / or an icon that is not included, it will default to the `warning` icon.
-
-```html
-<!-- good -->
-<foam-dropdown-filter text="Warning" icon="caret-down" />
-```
-
-```html
-<!-- bad -->
-<foam-dropdown-filter text="Warning" icon="warning-icon" />
-```
-
-> Note: The icons being used in this component are imported from Font Awesome.

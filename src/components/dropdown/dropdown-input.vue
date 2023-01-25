@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<DropdownProps>(), {
 });
 
 const showDropdown: Ref = ref<boolean>(false);
-const dropdownId = ref<string>('dropdown-filter' + uuidv4())
+const dropdownId = ref<string>('dropdown-filter-' + uuidv4())
 const buttonId = ref<string>('btn-' + uuidv4())
 const dropdownFilter: Ref = ref()
 const userInput = ref<string>('')
@@ -29,7 +29,9 @@ const optionsSelected = ref<number>(0)
 
 // Maybe use watch to check input?
 watch(() => userInput.value, (newVal) => { 
-  const dropdownElems = document.querySelectorAll('.dropdown__filter--container .checkbox__item')
+  const dropdownElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__filter`)
+  console.log(dropdownElems);
+  
   dropdownFilter.value.setAttribute('data-show', '')
   const inputLowerCase = newVal.toLowerCase()
   optionsSelected.value = 0
@@ -41,7 +43,7 @@ watch(() => userInput.value, (newVal) => {
 });
 
 onMounted(() => {
-  const dropdownElems = document.querySelectorAll('.dropdown__filter--container .checkbox__item')
+  const dropdownElems = document.querySelectorAll(dropdownId.value + '.checkbox__item')
 
   optionsSelected.value = 0
   Array.from(dropdownElems).forEach(function (element) {
@@ -75,7 +77,7 @@ const popperInstance = computed(() => {
 const handleShowDropdown: () => void = () => {
   showDropdown.value = !showDropdown.value
   if(showDropdown.value) {
-    const inputElem = document.querySelector('#dropdown__input--input') as HTMLElement
+    const inputElem = document.querySelector(`#${dropdownId.value} #dropdown__input--input`) as HTMLElement    
     inputElem.focus()
     popperInstance.value.update()
     dropdownFilter.value.setAttribute('data-show', '')

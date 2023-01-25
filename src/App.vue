@@ -212,6 +212,7 @@ const darkMode: () => void = () => {
       <FoamDropdownFilter
         type="checkbox"
         text="Checkbox"
+        icon="warning"
         :selected="selectTest"
         @click="testSelect"
       />
@@ -241,6 +242,36 @@ const darkMode: () => void = () => {
         @click="testSelect"
       />
       <FoamDropdownFilter type="checkbox" text="Checkbox 3" />
+    </FoamDropdownInput>
+
+    <FoamDropdownInput text="Test Color Function">
+      <FoamDropdownFilter type="color" text="Blue" color="blue" />
+      <FoamDropdownFilter
+        type="color"
+        text="Red"
+        color="red"
+        :selected="selectTest"
+        @click="testSelect"
+      />
+      <FoamDropdownFilter type="color" text="Green" color="green" />
+      <FoamDropdownFilter type="color" text="Pink" color="hotpink" />
+      <FoamDropdownFilter type="color" text="Yellow" color="yellow" />
+      <FoamDropdownFilter type="color" text="Purple" color="purple" />
+      <FoamDropdownFilter type="color" text="Brown" color="brown" />
+    </FoamDropdownInput>
+
+    <FoamDropdownInput text="Test Container Function">
+      <FoamDropdownFilter type="container" text="1" selected />
+      <FoamDropdownFilter type="container" text="2" />
+      <FoamDropdownFilter type="container" text="3" selected />
+      <FoamDropdownFilter type="container" text="4" selected />
+      <FoamDropdownFilter type="container" text="5" />
+      <FoamDropdownFilter type="container" text="6" />
+      <FoamDropdownFilter type="container" text="7" />
+      <FoamDropdownFilter type="container" text="8" />
+      <FoamDropdownFilter type="container" text="9" />
+      <FoamDropdownFilter type="container" text="10" />
+      <FoamDropdownFilter type="container" text="10" />
     </FoamDropdownInput>
   </article>
   <article>

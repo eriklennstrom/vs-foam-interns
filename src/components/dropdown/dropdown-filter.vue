@@ -6,15 +6,13 @@ import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap'
 type DropdownPropsFilter = {
     type?: string
     text?: string
-    icon?: string | null
     disabled?: boolean
     selected?: boolean
     color?: string | null
 };
 
 const props = withDefaults(defineProps<DropdownPropsFilter>(), {
-    text: 'Filter Item',
-    icon: null,
+    text: '',
     type: 'checkbox',
     color: null
 });
@@ -29,16 +27,6 @@ defaultTypeMixin(dropdownFilterTypes).verifyType(props.type)
   : (filterType.value = 'checkbox');
 
 // dynamic component import
-const AsyncIcon = computed(() => {
-  if (props.icon) {
-    const Icon = defineAsyncComponent(
-      () => import('@/components/icons/icons.vue')
-    );
-    return Icon;
-  } 
-  return null;
-});
-
 const AsyncSelectedIcon = computed(() => {
   if (props.selected) {
     const Icon = defineAsyncComponent(
@@ -75,7 +63,7 @@ function handleEmit(e: MouseEvent) {
         variant="primary"
       />
       <div v-else class="dropdown__filter--checkbox" @click="emit('click')" />
-      <p>
+      <p v-if="props.text">
         {{ props.text }}
       </p>
     </div>
@@ -85,7 +73,6 @@ function handleEmit(e: MouseEvent) {
         {{ props.text }}
       </span>
     </div>
-    <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
   </div>
 </template>
 

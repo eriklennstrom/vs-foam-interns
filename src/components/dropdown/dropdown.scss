@@ -15,6 +15,9 @@
         min-width: min-content;
         max-height: 100%;
     }
+    .removed {
+        display: none !important;
+    }
     // Dropdown Item
     .dropdown__item {
         all: unset;
@@ -139,9 +142,6 @@
         .color__item, .container__item {
             width: 100%;
         }
-        .removed {
-            display: none;
-        }
     }
     .dropdown__filter--selected {
         .checkbox__item, .color__item, .container__item {
@@ -150,19 +150,17 @@
     }
 }
 #dropdown:has(.container__item), #dropdown:has(.color__item) {
-    padding: 8px;
     &[data-show] {
         flex-direction: row;
         flex-wrap: wrap;
         gap: 5px;
+        color: rgba(255, 0, 0, 0.4);
     }
     .dropdown__filter {
         flex: 0 1 30%;
-        max-width: 100%;
         display: flex;
         justify-content: center;
         .container__item {
-            flex: 0 1 100%;
             flex-wrap: wrap;
             padding: 0;
             span {
@@ -176,6 +174,10 @@
             padding: 12px;
         }
     }
+}
+
+.dropdown--input {
+    width: 200px;
 }
 
 .dropdown__filter--container {
