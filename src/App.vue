@@ -257,7 +257,6 @@ const darkMode: () => void = () => {
       <FoamDropdownItem text="test 6" />
       <FoamDropdownItem text="test 7" />
     </FoamDropdownButton>
-    <FoamDropdownItem text="hej" selected @click="testFunctionThree('tja')" />
   </article>
   <article>
     <div style="height: 100vh" />

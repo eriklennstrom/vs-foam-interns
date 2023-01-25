@@ -4,7 +4,6 @@ import { computed, onMounted, ref, watch, type Ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent'
-import { isQualifiedTypeIdentifier } from '@babel/types';
 
 type DropdownProps = {
     variant?: string

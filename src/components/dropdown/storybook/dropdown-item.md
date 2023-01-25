@@ -106,10 +106,12 @@ If the `` selected `` property should be toggleable, you also need to pass in a 
 ## Disabled
 
 The `` disabled `` property is a boolean value that can be used to indicate to the user that you cannt interact with the chip
+Best usage is to pass a boolean variable together with a ``click event`` that updated the passed ``disabled`` variable.
 
 ```jsx
 <!-- good -->
 <foam-dropdown-item disabled />
+<foam-dropdown-item :disabled="isDisabled" @click="handleAPICall" />
 
 ```
 

@@ -71,13 +71,9 @@ export default {
   } as Meta<typeof FoamDropdownItem>;
   
   const Template: StoryFn<typeof FoamDropdownItem> = (args) => {
-    const [_, updateArgs] = useArgs();
     return {
       components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
-  
       setup() {
-
-  
         return { args };
       },
       template: `
@@ -394,9 +390,3 @@ export default {
       }
     },
   };
-
-
-// Width - för subdropdown
-// Subdropdown
-
-  // All props
