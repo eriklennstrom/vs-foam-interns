@@ -26,6 +26,7 @@ const config: StorybookViteConfig = {
     );
     return mergeConfig(config, {
       ...userConfig,
+      
       // manually specify plugins to avoid conflict
       plugins: [],
       optimizeDeps: {

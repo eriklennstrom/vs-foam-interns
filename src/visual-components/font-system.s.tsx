@@ -1,6 +1,6 @@
-import FoamText from '@/components/typography/fonts-preview.vue';
+import FoamText from '@/visual-components/fonts-preview.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
-import readme from '@/components/typography/font-system.md?raw';
+import readme from '@/visual-components/font-system.md?raw';
 
 export default {
   title: 'Components/Text',

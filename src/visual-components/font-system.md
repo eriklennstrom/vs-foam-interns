@@ -1,8 +1,8 @@
 Default typography and classes for FOAM
 ## Usage
-import 'fonts-system.scss' from '@foam/typography'
+add "import 'fonts-system.scss' from '@foam/typography'" to your project to add this library to your css.
 
-Adding classes to desired element overrides current fontsize and font-family to selected font using $primaryFontFamily default("SourceSansPro").
+Adding classes to desired element overrides current fontsize and font-family to selected font using $primaryFontFamily default is ("SourceSansPro").
 
 The class decides what typography will be used. Default is 1rem (16px).
 
