@@ -46,7 +46,7 @@ const props = withDefaults(defineProps<InputProps>(), {
 
 
 const accordianRef: Ref = ref<boolean>(false)
-!!slots.sentContent? accordianRef.value= true : accordianRef.value= false
+slots.sentContent? accordianRef.value= true : accordianRef.value= false
 const size: Ref = ref<string>(props.size);
 const variantMiddleware: Ref = ref<string>(props.variant);
 const showPassword: Ref = ref<boolean>(false);
@@ -145,11 +145,11 @@ const AsyncIcon = computed(() => {
   <div
     :disabled="props.disabled"
     :class="[size,
-      'inputWrapper',
-      inputClass,
-      props.isValid ? 'valid' : '',
-      props.isValid == false ? 'invalid' : '',
-      props.disabled ? 'disabled' : '',
+             'inputWrapper',
+             inputClass,
+             props.isValid ? 'valid' : '',
+             props.isValid == false ? 'invalid' : '',
+             props.disabled ? 'disabled' : '',
     ]"
   >
     <input

@@ -18,13 +18,33 @@ const darkMode: () => void = () => {
 }
 
 const test= ref('')
+//add height props
+// sm md lg
+
+
+//new input-number
+// horizontal + vertical
+//prop negative numbers????
+
+
 
 </script>
 
 <template>
   <h1>{{ test }}</h1>
+  
+  <Inputvue
+    size="S"
+    v-model="test"
+    validation-text="Validation-text"
+    variant="number"
+    text="Valid"
+    placeholder="placeholder"
+    helpertext="Helper text"
+  />
 
   <Inputvue
+
     v-model="test"
     :is-valid="true"
     validation-text="Validation-text"
@@ -35,6 +55,7 @@ const test= ref('')
   />
   <Inputvue
     v-model="test"
+    size="S"
     :is-valid="false"
     validation-text="Validation-text"
     variant="text"
@@ -46,6 +67,7 @@ const test= ref('')
 
   <Inputvue
     v-model="test"
+    size="M"
     variant="text"
     text="Neutral"
     placeholder="placeholder"
@@ -63,7 +85,6 @@ const test= ref('')
     variant="number"
     text="Disabled"
     placeholder="placeholder"
-   
   />
   <Inputvue
     v-model="test"
