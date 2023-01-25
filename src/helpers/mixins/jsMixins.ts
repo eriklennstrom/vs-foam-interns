@@ -26,6 +26,7 @@ export const inputVariant = [
   'number',
   'email',
   'password',
+  'low-number'
 ];
 
 export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
