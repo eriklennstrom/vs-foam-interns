@@ -1,0 +1,156 @@
+@use "sass:color";
+@use "@/styles/colors.scss";
+@use "@/styles/variables.scss";
+
+
+* {
+  margin: 0;
+}
+
+.topWrapper {
+  margin-top: 10px;
+  width:100%;
+  h2 {
+    display: flex;
+    font-family: variables.$primaryFontFamily;
+    font-weight: 400;
+    align-items: flex-start;
+    font-size: 21px;
+    color: map-get(colors.$input-text-colors, light);
+    user-select: none;
+  }
+}
+
+
+
+
+.inputWrapper {
+
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid map-get(colors.$input-colors, light);
+  border-radius: 8px;
+  width: 100%;
+
+  .warningIcon {
+    padding-right: 10px;
+    user-select: none;
+  }
+
+  .successIcon {
+    padding-right: 10px;
+    margin: 0 auto;
+    user-select: none;
+  }
+}
+
+.dark .inputWrapper{
+  border-color: map-get(colors.$dark-input-colors, light);
+}
+.incrementDiv{
+    background-color: red;
+    width:60px;
+    height:100%;
+    border-radius: 0 6px 6px 0;
+}
+
+.decrementDiv{
+    background-color:map-get(colors.$input-colors, light) ;
+    height:100%;
+    width:60px;
+    border-radius: 6px 0 0 6px;
+}
+
+.valid {
+  border-color: map-get(colors.$input-colors, success);
+  user-select: none;
+  svg{
+    color:map-get(colors.$input-colors, success);
+  }
+}
+.dark .valid {
+  border-color: map-get(colors.$dark-input-colors, success);
+  user-select: none;
+  svg{
+    color:map-get(colors.$dark-input-colors, success);
+  }
+}
+
+
+.invalid {
+  user-select: none;
+  border-color: map-get(colors.$input-colors, danger);
+  svg{
+    color:map-get(colors.$input-colors, danger);
+  }
+}
+
+.dark .invalid {
+  user-select: none;
+  border-color: map-get(colors.$dark-input-colors, danger);
+  svg{
+    color:map-get(colors.$dark-input-colors, danger);
+  }
+}
+
+.userInstructions {
+  user-select: none;
+  font-size: 12px;
+  padding: 1px;
+  margin-right: 10px;
+  max-width: 100%;
+  word-wrap: break-word;
+
+  .successMessageText {
+    color: map-get(colors.$input-text-colors, success);
+  }
+
+  .errorMessageText {
+    color: map-get(colors.$input-text-colors, danger);
+  }
+
+  .helperMessageText {
+    opacity: 0.5;
+  }
+}
+
+.dark .userInstructions {
+  .helperMessageText {
+    color: rgba(255, 251, 245, 0.958);
+  }
+}
+
+input::placeholder {
+  opacity: 0.3;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+
+
+.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+//  background-color: map-get(colors.$dark-disabled, $name);
+//  outline-color: map-get(colors.$disabled-text-colors, $name);
+//  color: map-get(colors.$disabled-text-colors, $name);
+//  text-decoration: none;
