@@ -206,3 +206,27 @@ $disabled-text-colors: (
 
 // Icon colors
 $icon-colors: join($bg-colors, $text-colors, auto);
+
+
+
+$input-text-colors:(
+  light: #668592,
+  danger: #dc3545,
+  warning: #faa05a,
+  success: #55c284,
+);
+
+
+$input-colors:(
+  light: #668592,
+  danger: #dc3545,
+  warning: #faa05a,
+  success: #55c284,
+);
+
+$dark-input-colors:(
+  light: #668592,
+  danger: #dc3545,
+  warning: #faa05a,
+  success: #55c284,
+);
