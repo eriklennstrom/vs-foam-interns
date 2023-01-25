@@ -33,6 +33,11 @@ export default {
       options: ['text', 'number', 'email', 'password'],
       description: 'Property to add chosen variant',
     },
+    size: {
+      control: { type: 'select' },
+      options: ['sm', 'md', 'lg'],
+      description: 'Property to add height and font-size',
+    },
     isValid: {
       control: { type: 'select' },
       options: [true, false, null],
@@ -128,6 +133,46 @@ Variants.argTypes = {
     description: 'Property for text content inside the input',
   },
 };
+
+export const Sizes: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
+  components: { FoamInput },
+  setup() {
+    return { args, argTypes };
+  },
+  template: `
+  <div style="display: flex; flex-direction:column; flex-wrap: wrap;">
+    <foam-input v-bind="args" v-for="sizes in argTypes.size.options" :key="size" :text="size" :size="size" placeholder ="placeholder" />
+  </div>
+`,
+});
+
+Variants.argTypes = {
+  variant: {
+    table: {
+      disable: true,
+    },
+  },
+  activeDropdown: {
+    table: {
+      disable: true,
+    },
+  },
+  dropdown: {
+    table: {
+      disable: true,
+    },
+  },
+  placeholder: {
+    table: {
+      disable: true,
+    },
+  },
+  text: {
+    description: 'Property for text content inside the input',
+  },
+};
+
+
 
 export const Validation: StoryFn<typeof FoamInput> = (args, { argTypes }) => {
   return {
