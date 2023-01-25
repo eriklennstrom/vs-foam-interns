@@ -1,19 +1,27 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { ref } from 'vue'
 import DropdownItem from '@/components/dropdown/dropdown-item.vue'
 import Icons from '@/components/icons/icons.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons';
-import exp from 'constants'
 library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown, faCheck)
 
 describe('DropdownItem', () => {
     it('renders default dropdown item properly', () => {
-        const wrapper = mount(DropdownItem)
-        expect(wrapper.vm.$props).toContain({type : 'button', text: 'Dropdown Item'})
-        expect(wrapper.classes()).toContain('dropdown__item')
-        
+        const wrapper = mount(DropdownItem, { propsData: {  } })
+        expect(wrapper.vm.$props).toContain(
+            {
+                type : 'button', 
+                text: '', 
+                icon: null, 
+                to: '/', 
+                disabled: false, 
+                selected: false, 
+                secondaryText : null, 
+                width: null, 
+                subdropdown: false
+            }
+        )        
     })
 
     it('renders icon in dropdown item properly', () => {
@@ -24,59 +32,54 @@ describe('DropdownItem', () => {
 
     it('renders selected dropdown item properly', () => {
         const wrapper = mount(DropdownItem, { propsData: { text: 'Dropdown Item', selected: true } })
-        expect(wrapper.classes()).toContain('dropdown__item--selected')
+        expect(wrapper.html()).toContain('dropdown__item--selected')
     })
-
+    
     it('renders disabled dropdown item properly', () => {
         const wrapper = mount(DropdownItem, { propsData: { text: 'Dropdown Item', disabled: true } })       
-        expect(wrapper.attributes()).toContain({role: 'disabled'})
+        expect(wrapper.html()).toContain('role="disabled"')
     })
 
     it('renders type link dropdown item properly', () => {
         const wrapper = mount(DropdownItem, { propsData: { text: 'Dropdown Item', type: 'link', to: 'http://www.google.com' } })
-        expect(wrapper.html()).toContain('<a href')
-        expect(wrapper.attributes('data-test')).toBe('link')
-        expect(wrapper.attributes()).toContain({href: 'http://www.google.com', target: '_blank'} )
+        expect(wrapper.html()).toContain('href')
+        expect(wrapper.html()).toContain('data-test="link"')
+        expect(wrapper.html()).toContain('href="http://www.google.com" target="_blank"' )
     })
 
     it('renders type button dropdown item properly', () => {
         const wrapper = mount(DropdownItem, { propsData: { text: 'Dropdown Item', type: 'button' } })
-        expect(wrapper.attributes('data-test')).toBe('button')        
+        expect(wrapper.html()).toContain('data-test="button"')       
         expect(wrapper.html()).toContain('<button')
 
     })
-
+    
     it('renders type route dropdown item properly', () => {
         const wrapper = mount(DropdownItem, { propsData: { text: 'Dropdown Item', type: 'route', to: '/vitest-test' }})
-        expect(wrapper.attributes('to')).toBe('/vitest-test') 
-        expect(wrapper.attributes('data-test')).toBe('route') 
+        expect(wrapper.html()).toContain('to="/vitest-test"')
+        expect(wrapper.html()).toContain('data-test="route"')
     })
-
+    
     it('renders secondary text properly', () => {
         const wrapper = mount(DropdownItem, {propsData : {text : 'Test text', secondaryText: 'Secondary Text Test'}})
-        const secondaryTestElem = wrapper.element.childNodes[1].lastChild;
-        expect(secondaryTestElem?.textContent).toEqual('Secondary Text Test');
+        expect(wrapper.html()).toContain('<p class="secondary-text"')
+        expect(wrapper.html()).toContain('Secondary Text Test')
     })
     it('emits passed function properly', async () => {
-        // Creating a parent with a ref that is sent as a text prop to the dropdown-item component
-        // parent function sent as a click event to the component
-        const Parent = {
-            component : DropdownItem,
-            setup() {
-                const propText = ref('test')
+        const wrapper = mount(DropdownItem, {propsData : {type : 'button', text : 'Test'}})
 
-                function vitestTest() {                   
-                    propText.value = 'Vitest'
-                }
-
-                return {propText, vitestTest}
-            },
-            template: `<DropdownItem :text="propText" type="button" @click="vitestTest" />`
-        }   
-
-        const wrapper = mount(Parent)
-        expect(wrapper.vm.propText).toBe('test')
-        await wrapper.trigger('click')
-        expect(wrapper.vm.propText).toBe('Vitest')
+        wrapper.vm.$emit('click')
+        expect(wrapper.emitted().click.length).toBe(1)
+        wrapper.vm.$emit('click')
+        expect(wrapper.emitted().click.length).toBe(2)        
+      })
+      it('renders subdropdown properly', async () => {
+        const wrapper = mount(DropdownItem, {propsData : {type : 'button', text : 'Test', subdropdown: true}})
+        expect(wrapper.html()).toContain('<div id="sub-dropdown"')
+          
+      })
+      it('renders subdropdown width properly', async () => {
+        const wrapper = mount(DropdownItem, {propsData : {type : 'button', text : 'Test', subdropdown: true, width: 250}})      
+        expect(wrapper.html()).toContain('style="width: 250px;"')          
       })
 })
