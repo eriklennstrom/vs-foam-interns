@@ -38,6 +38,7 @@ watch(() => userInput.value, (newVal) => {
   Array.from(dropdownElems).forEach(function (element) {  
     element.textContent?.toLowerCase().includes(inputLowerCase) ? element.classList.remove('removed') : element.classList.add('removed')
   });
+  
   const removedElems = document.querySelectorAll(`#${dropdownId.value} .removed`)
   const dropdownElem = document.querySelector(`.${dropdownId.value}`)
   if(dropdownElems.length == removedElems.length) {
@@ -45,8 +46,6 @@ watch(() => userInput.value, (newVal) => {
   } else {
     dropdownElem?.classList.remove('empty-dropdown')
   }
-  
-    
 });
 
 const popperInstance = computed(() => {

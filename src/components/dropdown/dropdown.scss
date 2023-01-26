@@ -310,6 +310,9 @@ body.dark {
                 }
                 #dropdown__input--input {
                     color: #fff;
+                    &::placeholder {
+                        color: colors.$dropdown-border-color-light;
+                    }
                 }
             }
         }

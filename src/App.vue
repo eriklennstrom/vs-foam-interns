@@ -295,6 +295,18 @@ const darkMode: () => void = () => {
     </FoamDropdownInput>
   </article>
   <article>
+    <FoamDropdownButton text="Item Test" align="end" :width="250">
+      <FoamDropdownItem text="Google" to="https://www.google.se" type="link" />
+      <FoamDropdownItem text="Aftonbladet" to="https://www.aftonbladet.se" type="link" />
+      <FoamDropdownItem text="Wowhead" to="https://www.wowhead.com" type="link" />
+    </FoamDropdownButton>
+    <FoamDropdownButton text="Item Test" align="start" :width="250">
+      <FoamDropdownItem text="Google" to="https://www.google.se" type="link" />
+      <FoamDropdownItem text="Aftonbladet" to="https://www.aftonbladet.se" type="link" />
+      <FoamDropdownItem text="Wowhead" to="https://www.wowhead.com" type="link" />
+    </FoamDropdownButton>
+  </article>
+  <article>
     <div style="height: 100vh" />
   </article>
 </template>

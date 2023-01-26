@@ -34,8 +34,9 @@ onMounted(() => {
     return
   } else {
     dropdownAlign.value = 'end'
-  }
+  }  
 })
+
 const popperInstance = computed(() => {
   const buttonElem = document.querySelector(`#${buttonId.value}`) as HTMLElement
   const dropdownElem = document.querySelector(`.${dropdownId.value}`) as HTMLElement
