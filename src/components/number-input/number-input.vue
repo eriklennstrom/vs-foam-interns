@@ -8,7 +8,6 @@ import {
   onBeforeMount
 } from 'vue';
 
-
 type InputProps = {
   label?: string
   validationText?: string
