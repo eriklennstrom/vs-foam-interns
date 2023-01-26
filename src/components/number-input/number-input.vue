@@ -41,10 +41,8 @@ function emitInput(e: any) {
 }
 
 
-
 function increment() {
   const updatedValue = props.modelValue +1
-  console.log(updatedValue.toString.length)
   if(updatedValue.toString().length == props.maxLength)
   emit('update:modelValue', props.modelValue + 1)
 }
@@ -78,7 +76,7 @@ const AsyncIcon = computed(() => {
     props.isValid == false ? 'invalid' : '',
     props.disabled ? 'disabled' : '',
   ]">
-    <div class="decrementDiv" role="button" @click="decrement" />
+    <div class="decrementDiv indicator" role="button" @click="decrement" > - </div>
 
     <input ref="inputElem" autocomplete="off" type="number" :placeholder="props.placeholder"
       :disabled="props.disabled" :value="props.modelValue" @input="emitInput($event.target)">
@@ -86,7 +84,8 @@ const AsyncIcon = computed(() => {
     <AsyncIcon v-if="props.isValid == false" class="warningIcon" icon="warning" variant="danger" />
     <AsyncIcon v-if="props.isValid == true" class="successIcon" icon="check" variant="success" />
 
-    <div class="incrementDiv" role="button" @click="increment" />
+    <div class="incrementDiv indicator" role="button" @click="increment" > + </div>
+   
   </div>
   <div class="userInstructions">
     <p :class="[
