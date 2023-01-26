@@ -7,7 +7,6 @@ const darkMode: () => void = () => {
   body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body? body.style.backgroundColor = '#F6F8FA' : null
 
 }
-
 </script>
 
 

@@ -2,11 +2,8 @@
 import {
   defineEmits,
   defineAsyncComponent,
-  ref,
   computed,
-  type Ref,
 } from 'vue';
-
 
 type InputProps = {
   text: string
@@ -14,11 +11,11 @@ type InputProps = {
   isValid?: boolean | null
   placeholder?: string | undefined
   disabled?: boolean
-  modelValue?: number | null
+  modelValue?: number
   helpertext?: string
   defaultvalue?: number
+  maxLength?: number
 };
-
 
 const emit = defineEmits(['change', 'update:modelValue']);
 
@@ -29,28 +26,32 @@ const props = withDefaults(defineProps<InputProps>(), {
   text: 'Label',
   disabled: false,
   helpertext: '',
-  modelValue: null,
+  modelValue: 0,
   defaultvalue: 0,
+  maxLength: 1
 });
 
-const numberRef: Ref = ref<number | null>(props.modelValue);
-// const emitValue: Ref = ref<number | null>(props.modelValue);
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function emitInput(e: any) {
-  const targetVal = e.value.slice(0,5)
-  emit('update:modelValue', targetVal);
-  numberRef.value= targetVal
-  console.log(numberRef.value , 'emitted value')
-  console.log(props.modelValue, 'modelvalue.value')
+  if (e.value == '') {
+    e.value = 0
+  }
+  e.value = e.value.slice(0, props.maxLength)
+  const emitValue = parseInt(e.value.slice(0, props.maxLength))
+  emit('update:modelValue', emitValue);
 }
 
+
+
 function increment() {
-    numberRef.value = numberRef.value++;
+  const updatedValue = props.modelValue +1
+  console.log(updatedValue.toString.length)
+  if(updatedValue.toString().length == props.maxLength)
+  emit('update:modelValue', props.modelValue + 1)
 }
 
 function decrement() {
-    numberRef.value = numberRef.value--;
+  if(props.modelValue > 0 )
+  emit('update:modelValue', props.modelValue - 1)
 }
 
 // dynamic component import
@@ -71,56 +72,27 @@ const AsyncIcon = computed(() => {
     </h2>
   </div>
 
-  <div
-    :disabled="props.disabled"
-    :class="[
-      'inputWrapper',
-      props.isValid ? 'valid' : '',
-      props.isValid == false ? 'invalid' : '',
-      props.disabled ? 'disabled' : '',
-    ]"
-  >
-    <div
-      class="decrementDiv"
-  
-      @click="decrement"
-    />
+  <div :disabled="props.disabled" :class="[
+    'inputWrapper',
+    props.isValid ? 'valid' : '',
+    props.isValid == false ? 'invalid' : '',
+    props.disabled ? 'disabled' : '',
+  ]">
+    <div class="decrementDiv" role="button" @click="decrement" />
 
-    <input
-      maxlength="5"
-      autocomplete="off"
-      type="number"
-      :placeholder="props.placeholder"
-      :disabled="props.disabled"
-      :value="props.modelValue"
-      @input="emitInput($event.target)"
-    >
+    <input ref="inputElem" autocomplete="off" type="number" :placeholder="props.placeholder"
+      :disabled="props.disabled" :value="props.modelValue" @input="emitInput($event.target)">
 
-    <AsyncIcon
-      v-if="props.isValid == false"
-      class="warningIcon"
-      icon="warning"
-      variant="danger"
-    />
-    <AsyncIcon
-      v-if="props.isValid == true"
-      class="successIcon"
-      icon="check"
-      variant="success"
-    />
+    <AsyncIcon v-if="props.isValid == false" class="warningIcon" icon="warning" variant="danger" />
+    <AsyncIcon v-if="props.isValid == true" class="successIcon" icon="check" variant="success" />
 
-    <div
-      class="incrementDiv" 
-      @click="increment"
-    />
+    <div class="incrementDiv" role="button" @click="increment" />
   </div>
   <div class="userInstructions">
-    <p
-      :class="[
-        props.isValid == true ? 'successMessageText' : '',
-        props.isValid == false ? 'errorMessageText' : '',
-      ]"
-    >
+    <p :class="[
+      props.isValid == true ? 'successMessageText' : '',
+      props.isValid == false ? 'errorMessageText' : '',
+    ]">
       {{ props.validationText }}
     </p>
     <p class="helperMessageText">
