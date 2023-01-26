@@ -6,18 +6,11 @@ import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent'
 
 type DropdownProps = {
-    variant?: string
     text?: string
-    icon?: string | null
-    disabled?: boolean
 };
 
 const props = withDefaults(defineProps<DropdownProps>(), {
-    variant: 'secondary',
-    text: 'Foam Dropdown',
-    icon: null,
-    width: null,
-    disabled: false
+    text: '',
 });
 
 const showDropdown: Ref = ref<boolean>(false);
@@ -25,32 +18,18 @@ const dropdownId = ref<string>('dropdown-filter-' + uuidv4())
 const buttonId = ref<string>('btn-' + uuidv4())
 const dropdownFilter: Ref = ref()
 const userInput = ref<string>('')
-const optionsSelected = ref<number>(0)
 
 // Maybe use watch to check input?
 watch(() => userInput.value, (newVal) => { 
   const dropdownElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__filter`)
-  console.log(dropdownElems);
-  
   dropdownFilter.value.setAttribute('data-show', '')
   const inputLowerCase = newVal.toLowerCase()
-  optionsSelected.value = 0
-  Array.from(dropdownElems).forEach(function (element) {
-    element.getAttribute('checked') == 'true' ? optionsSelected.value = optionsSelected.value + 1 : null   
+  Array.from(dropdownElems).forEach(function (element) {  
     element.textContent?.toLowerCase().includes(inputLowerCase) ? element.classList.remove('removed') : element.classList.add('removed')
   });
     
 });
 
-onMounted(() => {
-  const dropdownElems = document.querySelectorAll(dropdownId.value + '.checkbox__item')
-
-  optionsSelected.value = 0
-  Array.from(dropdownElems).forEach(function (element) {
-    element.getAttribute('checked') == 'true' ? optionsSelected.value = optionsSelected.value + 1 : null   
-
-  });
-})
 const popperInstance = computed(() => {
   const buttonElem = document.querySelector(`#${buttonId.value}`) as HTMLElement
   const dropdownElem = document.querySelector(`.${dropdownId.value}`) as HTMLElement
@@ -108,7 +87,6 @@ useDetectOutsideClick(componentRef, () => {
     <div :id="buttonId" class="dropdown__input--container">
       <label class="dropdown__input--label" for="dropdown-input">{{ props.text }}</label>
       <div class="input-container">
-        <span class="amount-selected">{{ optionsSelected }}</span>
         <input
           id="dropdown__input--input"
           v-model="userInput"

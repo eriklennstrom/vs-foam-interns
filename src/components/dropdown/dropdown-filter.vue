@@ -69,7 +69,7 @@ function handleEmit(e: MouseEvent) {
     </div>
     <div v-else :class="[filterType + '__item']">
       <div v-if="filterType == 'color'" :style="{'background-color': props.color ? props.color: 'red'}" />
-      <span>
+      <span v-if="props.text">
         {{ props.text }}
       </span>
     </div>

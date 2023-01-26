@@ -51,7 +51,6 @@ describe('DropdownItem', () => {
         const wrapper = mount(DropdownItem, { propsData: { text: 'Dropdown Item', type: 'button' } })
         expect(wrapper.html()).toContain('data-test="button"')       
         expect(wrapper.html()).toContain('<button')
-
     })
     
     it('renders type route dropdown item properly', () => {

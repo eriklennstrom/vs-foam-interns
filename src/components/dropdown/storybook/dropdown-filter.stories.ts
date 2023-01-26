@@ -2,7 +2,7 @@ import FoamDropdownFilter from '@/components/dropdown/dropdown-filter.vue';
 import FoamDropdownButton from '@/components/dropdown/dropdown-button.vue';
 import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
-import readme from '@/components/dropdown/storybook/dropdown-item.md?raw';
+import readme from '@/components/dropdown/storybook/dropdown-filter.md?raw';
 import { useArgs } from '@storybook/client-api';
 
 export default {
@@ -18,7 +18,7 @@ export default {
     argTypes: {
         type: {
           control: { type: 'select' },
-          options: ['button', 'link', 'route'],
+          options: ['checkbox', 'container', 'color'],
           description: 'Property to render chosen type',
         },
         text: {
@@ -61,9 +61,9 @@ export default {
       template: `
       <div>
           <foam-dropdown-button variant="primary" >
-              <foam-dropdown-filter text="Dropdown Filter 1" v-bind="args" />
-              <foam-dropdown-divider />
-              <foam-dropdown-filter text="Dropdown Filter 1" v-bind="args" />
+              <foam-dropdown-filter text="Filter" v-bind="args" />
+              <foam-dropdown-filter text="Filter" v-bind="args" />
+              <foam-dropdown-filter text="Filter" v-bind="args" />
           </foam-dropdown-button>
       </div>
       `
@@ -80,19 +80,19 @@ export default {
     template: `
         <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
             <foam-dropdown-button variant="primary" text="Checkbox Dropdown" >
-                <foam-dropdown-item v-bind="args" text="Checkbox 1" type="checkbox" />
-                <foam-dropdown-item v-bind="args" text="Checkbox 2" type="checkbox" selected />
-                <foam-dropdown-item v-bind="args" text="Checkbox 3" type="checkbox" />
+                <foam-dropdown-filter v-bind="args" text="Checkbox 1" type="checkbox" />
+                <foam-dropdown-filter v-bind="args" text="Checkbox 2" type="checkbox" selected />
+                <foam-dropdown-filter v-bind="args" text="Checkbox 3" type="checkbox" />
             </foam-dropdown-button>
             <foam-dropdown-button variant="primary" text="Filter Sizes" >
-                <foam-dropdown-item v-bind="args" text="S" type="container" />
-                <foam-dropdown-item v-bind="args" text="M" type="container" selected />
-                <foam-dropdown-item v-bind="args" text="L" type="container" />
+                <foam-dropdown-filter v-bind="args" text="S" type="container" />
+                <foam-dropdown-filter v-bind="args" text="M" type="container" selected />
+                <foam-dropdown-filter v-bind="args" text="L" type="container" />
             </foam-dropdown-button>
             <foam-dropdown-button variant="primary" text="Color Dropdown" >
-                <foam-dropdown-item v-bind="args" text="Blue" type="color" color="steelblue" />
-                <foam-dropdown-item v-bind="args" text="Pink" type="color" color="hotpink" selected />
-                <foam-dropdown-item v-bind="args" text="Green" type="color" color="green" />
+                <foam-dropdown-filter v-bind="args" text="Blue" type="color" color="steelblue" />
+                <foam-dropdown-filter v-bind="args" text="Pink" type="color" color="hotpink" selected />
+                <foam-dropdown-filter v-bind="args" text="Green" type="color" color="green" />
             </foam-dropdown-button>
         </div>
   `,
@@ -163,6 +163,11 @@ export default {
       table: {
         disable: true
       }
+    },
+    color: {
+      table: {
+        disable: true
+      }
     }
   };
 
@@ -206,4 +211,52 @@ export default {
         disable: true
       }
     },
+    color: {
+      table: {
+        disable: true
+      }
+    },
+    selected: {
+      table: {
+        disable: true
+      }
+    },
+  };
+
+  export const Color: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownFilter },
+    setup() {
+      const iconTypes = ['warning', 'arrow-down', 'circle-down', 'xmark']
+      return { args, argTypes, iconTypes };
+    },
+    template: `
+      <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
+        <foam-dropdown-button variant="primary" >
+          <foam-dropdown-filter v-bind="args" type="color" />
+        </foam-dropdown-button>
+      </div>
+    `,
+  }); 
+
+  Color.argTypes = {
+    type: {
+        table: {
+            disable: true,
+        },
+    },
+    icon: {
+        table: {
+            disable: true,
+        },
+    },  
+    disabled: {
+      table: {
+        disable: true
+      }
+    },
+    selected: {
+      table: {
+        disable: true
+      }
+    }
   };

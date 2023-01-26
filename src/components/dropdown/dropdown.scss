@@ -94,6 +94,13 @@
     .dropdown__filter {
         color: colors.$dropdown-item-text-light;
         background-color: colors.$dropdown-item-bg-light;
+        &[role=disabled] {
+            pointer-events: none;
+            opacity: 0.6;
+            &:focus-visible {
+                background-color: none;
+            }
+        }
         .dropdown__filter--checkbox {
             width: 10px;
             height: 10px;
@@ -149,6 +156,10 @@
         }
     }
 }
+#dropdown:has(.container__item) {
+    padding: 4px;
+}
+
 #dropdown:has(.container__item), #dropdown:has(.color__item) {
     &[data-show] {
         flex-direction: row;
@@ -185,6 +196,7 @@
         display: flex;
         flex-direction: column;
         .dropdown__input--label {
+            color: colors.$primary;
             font-size: 12px;
         }
         .input-container {
@@ -196,15 +208,6 @@
             transition: all 0.15s;
             &:focus-within {
                 border-color: colors.$primary;
-            }
-
-            .amount-selected {
-                font-size: 12px;
-                padding: 4px 8px;
-                margin-left: 4px;
-                background-color: #000;
-                color: #fff;
-                border-radius: 50%;
             }
             #dropdown__input--input {
                 all: unset;
@@ -272,6 +275,25 @@ body.dark {
         // Dropdown Divider
         .divider {
             background-color: colors.$dropdown-divider-dark;
+        }
+    }
+    .dropdown__filter--container {
+        .dropdown__input--container {
+            .dropdown__input--label {
+                color: colors.$secondary;
+            }
+            svg {
+                color: colors.$secondary-900;
+            }
+            .input-container {
+                border-color: colors.$secondary-900;
+                &:focus-within {
+                    border-color: colors.$secondary-900;
+                }
+                #dropdown__input--input {
+                    color: #fff;
+                }
+            }
         }
     }
 }

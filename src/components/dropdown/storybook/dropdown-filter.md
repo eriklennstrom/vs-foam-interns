@@ -31,7 +31,7 @@ The ``container`` value will be rendered as smaller container lined ``3`` per ro
 
 If the ``selected`` property is true, the checkbox will be a checkmark.
 
-```jsx
+```html
 <!-- good -->
 <foam-dropdown-filter type="checkbox" text="$100 - $1000" @click="handleCheckbox" :selected="selectValue" />
 <foam-dropdown-filter type="color" text="Blue" color="blue" @click="handleColor" :selected="selectValue" />
