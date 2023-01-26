@@ -22,10 +22,10 @@ describe('DropdownFilter', () => {
     it('toggles dropdown on click', async () => {
         const wrapper = mount(DropdownInput)
         // WIP - Function inside the component will focus on the input - gives errors in vitest
-        // await wrapper.trigger('click')
-        // expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(true)
-        // await wrapper.trigger('click')
-        // expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(false)
+        await wrapper.trigger('click')
+        expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(true)
+        await wrapper.trigger('click')
+        expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(false)
     })
 
     it('renders components correctly when added into the slot', () => {

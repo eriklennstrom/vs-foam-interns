@@ -1,6 +1,8 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
-
+.empty-dropdown {
+    border: none !important;
+}
 #dropdown, #sub-dropdown {
     background-color: colors.$dropdown-item-bg-light;
     border: 1px solid colors.$dropdown-border-color-light;
@@ -106,7 +108,7 @@
             height: 10px;
             background-color: colors.$dropdown-item-bg-light;
             border-radius: 4px;
-            border: 1px solid black;
+            border: 1px solid colors.$primary;
         }
         svg {
             color: inherit;
@@ -138,8 +140,11 @@
         }
         .color__item, .container__item, .checkbox__item {
             cursor: pointer;
-            &:hover, :active {
+            &:hover {
                 background-color: colors.$dropdown-item-selected-light;
+            }
+            &:active {
+                background-color: colors.$dropdown-item-active-light;
             }
             &:focus-visible {
                 outline: 1px solid colors.$primary;
@@ -157,7 +162,7 @@
     }
 }
 #dropdown:has(.container__item) {
-    padding: 4px;
+    padding: 4px 0;
 }
 
 #dropdown:has(.container__item), #dropdown:has(.color__item) {
@@ -168,7 +173,7 @@
         color: rgba(255, 0, 0, 0.4);
     }
     .dropdown__filter {
-        flex: 0 1 30%;
+        flex: 0 1 calc(33.33% - 5px);
         display: flex;
         justify-content: center;
         .container__item {
@@ -183,6 +188,9 @@
             display: flex;
             gap: 8px;
             padding: 12px;
+        }
+        .container__item, .color__item {
+            margin-left: 4px;
         }
     }
 }
@@ -249,28 +257,38 @@ body.dark {
         .dropdown__item, .dropdown__filter {
             color: colors.$dropdown-item-text-dark;
             background-color: colors.$dropdown-item-bg-dark;
-            &:hover {
-                background-color: colors.$dropdown-hover-bg-dark;
-            }
 
-            &:active {
-                background-color: colors.$dropdown-active-bg-dark;
-            }
             &:focus-visible {
                 outline: 1px solid colors.$secondary;
             }
+            .color__item, .container__item, .checkbox__item {
+                cursor: pointer;
+                &:hover {
+                    background-color: colors.$dropdown-item-selected-dark;
+                }
+                &:active {
+                    background-color: colors.$dropdown-item-active-dark;
+                }
+                &:focus-visible {
+                    outline: 1px solid colors.$primary;
+                    outline-offset: -1px;
+                }
+            }
+        }
+        .dropdown__filter--selected {
+            .checkbox__item, .color__item, .container__item {
+                background-color: colors.$dropdown-item-selected-dark;
+            }
+        }
+        .container__item {
+            border-color: colors.$secondary-900;
         }
         .color__item {
             div {
                 border-color: colors.$dropdown-item-selected-light;
             }
         }
-        .dropdown__item--selected, .dropdown__filter--selected {
-            background-color: colors.$dropdown-item-selected-dark;
-            &:hover, &:focus-visible, &:active {
-                background-color: colors.$dropdown-item-selected-dark;
-            }
-        }
+
         
         // Dropdown Divider
         .divider {

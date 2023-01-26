@@ -38,6 +38,14 @@ watch(() => userInput.value, (newVal) => {
   Array.from(dropdownElems).forEach(function (element) {  
     element.textContent?.toLowerCase().includes(inputLowerCase) ? element.classList.remove('removed') : element.classList.add('removed')
   });
+  const removedElems = document.querySelectorAll(`#${dropdownId.value} .removed`)
+  const dropdownElem = document.querySelector(`.${dropdownId.value}`)
+  if(dropdownElems.length == removedElems.length) {
+    dropdownElem?.classList.add('empty-dropdown')
+  } else {
+    dropdownElem?.classList.remove('empty-dropdown')
+  }
+  
     
 });
 
@@ -66,9 +74,12 @@ const popperInstance = computed(() => {
 
 const handleShowDropdown: () => void = () => {
   showDropdown.value = !showDropdown.value
+
   if(showDropdown.value) {
-    const inputElem = document.querySelector(`#${dropdownId.value} #dropdown__input--input`) as HTMLElement    
-    inputElem.focus()
+    const inputElem = document.querySelector(`#${dropdownId.value} #dropdown__input--input`) as HTMLElement  
+    if(inputElem) { // Only for Vitest
+      inputElem.focus()
+    }  
     popperInstance.value.update()
     dropdownFilter.value.setAttribute('data-show', '')
   } else {   
