@@ -288,6 +288,11 @@ const darkMode: () => void = () => {
       <FoamDropdownItem text="test 6" />
       <FoamDropdownItem text="test 7" />
     </FoamDropdownButton>
+    <FoamDropdownInput text="Item Test">
+      <FoamDropdownItem text="Google" to="https://www.google.se" type="link" />
+      <FoamDropdownItem text="Aftonbladet" to="https://www.aftonbladet.se" type="link" />
+      <FoamDropdownItem text="Wowhead" to="https://www.wowhead.com" type="link" />
+    </FoamDropdownInput>
   </article>
   <article>
     <div style="height: 100vh" />

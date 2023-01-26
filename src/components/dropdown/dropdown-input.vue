@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Icon from '@/components/icons/icons.vue';
-import { computed, onMounted, ref, watch, type Ref } from 'vue';
+import { computed, ref, watch, type Ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent'
@@ -19,11 +19,20 @@ const buttonId = ref<string>('btn-' + uuidv4())
 const dropdownFilter: Ref = ref()
 const userInput = ref<string>('')
 
-// Maybe use watch to check input?
 watch(() => userInput.value, (newVal) => { 
-  const dropdownElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__filter`)
+  const filterElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__filter`)
+  const itemElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__item`)
+  let dropdownElems;
+
+  if(filterElems.length > 0) {
+    dropdownElems = filterElems
+  } else {
+    dropdownElems = itemElems
+  }
+
   dropdownFilter.value.setAttribute('data-show', '')
   const inputLowerCase = newVal.toLowerCase()
+
   Array.from(dropdownElems).forEach(function (element) {  
     element.textContent?.toLowerCase().includes(inputLowerCase) ? element.classList.remove('removed') : element.classList.add('removed')
   });
