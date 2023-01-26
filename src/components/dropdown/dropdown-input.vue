@@ -7,10 +7,12 @@ import useDetectOutsideClick from '@/composables/clickOutsideComponent'
 
 type DropdownProps = {
     text?: string
+    placeholder?: string
 };
 
 const props = withDefaults(defineProps<DropdownProps>(), {
     text: '',
+    placeholder: 'Search'
 });
 
 const showDropdown: Ref = ref<boolean>(false);
@@ -101,7 +103,7 @@ useDetectOutsideClick(componentRef, () => {
           v-model="userInput"
           type="text"
           name="dropdown-input"
-          placeholder="Search"
+          :placeholder="props.placeholder"
         >
         <Icon
           v-if="userInput.length > 0"

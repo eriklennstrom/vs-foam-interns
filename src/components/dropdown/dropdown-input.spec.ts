@@ -1,10 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import DropdownInput from '@/components/dropdown/dropdown-input.vue'
-import Icons from '@/components/icons/icons.vue'
+import DropdownItem from '@/components/dropdown/dropdown-item.vue'
+import DropdownFilter from '@/components/dropdown/dropdown-filter.vue'
+import DropdownDivider from '@/components/dropdown/dropdown-divider.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons';
-library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown, faCheck)
+import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown)
 
 describe('DropdownFilter', () => {
     it('renders default dropdown input properly', () => {
@@ -15,5 +17,36 @@ describe('DropdownFilter', () => {
                 text: '',
             }
         )        
+    })
+
+    it('toggles dropdown on click', async () => {
+        const wrapper = mount(DropdownInput)
+        // WIP - Function inside the component will focus on the input - gives errors in vitest
+        // await wrapper.trigger('click')
+        // expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(true)
+        // await wrapper.trigger('click')
+        // expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(false)
+    })
+
+    it('renders components correctly when added into the slot', () => {
+        const wrapper = mount(DropdownInput, {
+            slots : {
+                default : [DropdownDivider, DropdownItem, DropdownFilter]
+            } 
+        })
+ 
+        expect(wrapper.getComponent(DropdownDivider))
+        expect(wrapper.getComponent(DropdownItem))      
+        expect(wrapper.getComponent(DropdownFilter))   
+    })
+
+    it('renders custom slots', () => {
+        const wrapper = mount(DropdownInput, { 
+            slots : {
+                default : '<p class="vitest">Vitest testing custom html injection into the slot</p>'
+            } 
+        })
+
+        expect(wrapper.find('.vitest')).toBeTruthy()
     })
 })

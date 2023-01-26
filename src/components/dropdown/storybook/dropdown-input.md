@@ -8,7 +8,9 @@ The dropdown input also works as a search function - where the dropdown input ch
 
 ## Usage
 
-The ``text`` property is the text content that will be rendered inside the dropdown button.
+The ``text`` property is the text content that will be rendered inside the dropdown input.
+
+The ``placeholder`` property is the text content rendered as a placeholder inside the input field. Default is 'Search'
 
 > Note - The dropdown component is using the ``popperjs`` positioning engine for the dropdown positioning. Read more at https://popper.js.org/
 
@@ -19,7 +21,7 @@ The ``text`` property is the text content that will be rendered inside the dropd
     <foam-dropdown-filter type="checkbox" text="Finland" />
 </foam-dropdown-input>
 
-<foam-dropdown-input text="Navigation" >
+<foam-dropdown-input text="Navigation"  >
     <foam-dropdown-item type="route" text="About Us" to="/about" />
     <foam-dropdown-item type="route" text="Menu" to="/menu" />
     <foam-dropdown-item type="route" text="Home" to="/home" />

@@ -28,8 +28,12 @@ export default {
         },
         text: {
           control: { type: 'text' },
-          description: 'Property for text content inside the dropdown button',
+          description: 'Property for label text content in the dropdown input',
         },
+        placeholder: {
+            control: { type: 'text' },
+            description: 'Property for placeholder text content inside the dropdown input field',
+          },
       },
   } as Meta<typeof FoamDropdownInput>;
   
