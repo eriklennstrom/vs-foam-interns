@@ -7,14 +7,20 @@ import Numberinput from '@/components/number-input/number-input.vue'
 
 const test:Ref<number>= ref(0)
 
+  const test2:Ref<number>= ref(0)
+
 </script>
 
 
 <template>
-  <section>
+
     <h1>{{ test }}</h1>
     <Numberinput v-model="test" text="Numbers time!" />
-  </section>
+
+
+    <h1>{{ test2 }}</h1>
+    <Numberinput v-model="test2" text="Numbers time!" />
+
 </template>
 
 <style scoped lang="scss">
