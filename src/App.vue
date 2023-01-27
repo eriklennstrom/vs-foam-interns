@@ -1,11 +1,9 @@
 <script setup lang="ts">
 // import Icons from '@/components/icons/icons.vue'
 // import Badge from '@/components/badge/badge.vue'
-import Buttonvue from '@/components/button/button.vue'
+
 import { ref } from 'vue';
 import '@/components/typography/font-system.scss'
-
-
 
 const buttonIcon1 = ref(false)
 const iconflip: () => void = () => {
@@ -24,6 +22,7 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
+  <fontsPreviewVue  />
   <div class="h1">
     H1
   </div>
