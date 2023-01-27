@@ -1,8 +1,26 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
+
 .empty-dropdown {
     border: none !important;
 }
+
+#dropdown > :first-child, #sub-dropdown > :first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+#dropdown > :last-child, #sub-dropdown > :last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+#dropdown:has(.checkbox__item), #dropdown:has(.dropdown__item), #sub-dropdown:has(.checkbox__item), #sub-dropdown:has(.dropdown__item) {
+    &[data-show] {
+        width: fit-content;
+    }
+}
+
 #dropdown, #sub-dropdown {
     background-color: colors.$dropdown-item-bg-light;
     border: 1px solid colors.$dropdown-border-color-light;
@@ -252,12 +270,18 @@ body.dark {
     #dropdown {
         background-color: colors.$dropdown-item-bg-dark;
         border-color: colors.$dropdown-border-color-dark;
-
+     
         // Dropdown Item
         .dropdown__item, .dropdown__filter {
             color: colors.$dropdown-item-text-dark;
             background-color: colors.$dropdown-item-bg-dark;
-
+            cursor: pointer;
+            &:hover {
+                background-color: colors.$dropdown-item-selected-dark;
+            }
+            &:active {
+                background-color: colors.$dropdown-item-active-dark;
+            }
             &:focus-visible {
                 outline: 1px solid colors.$secondary;
             }
