@@ -35,8 +35,8 @@ const props = withDefaults(defineProps<InputProps>(), {
   defaultvalue: 0,
   maxLength: 6,
   maxValue: 999999,
-  direction: 'horizontal',
-  increment:10
+  direction: 'vertical',
+  increment:1
 });
 
 function emitInput(e: any) {
@@ -82,6 +82,14 @@ const AsyncIcon = computed(() => {
       {{ props.text }}
     </h2>
   </div>
+  <div
+      v-if="props.direction=='vertical'"
+      class="vertical__decrementDiv indicator"
+      role="button"
+      @click="increment"
+    >
+      +
+    </div>
 
   <div
     :disabled="props.disabled"
@@ -129,23 +137,30 @@ const AsyncIcon = computed(() => {
       class="incrementDiv indicator"
       role="button"
       @click="increment"
-    >
-      +
+    >+
+      <div class="userInstructions">
+        <p
+          :class="[
+            props.isValid == true ? 'successMessageText' : '',
+            props.isValid == false ? 'errorMessageText' : '',
+          ]"
+        >
+          {{ props.validationText }}
+        </p>
+        <p class="helperMessageText">
+          {{ props.helpertext }}
+        </p>
+      </div>
     </div>
   </div>
-  <div class="userInstructions">
-    <p
-      :class="[
-        props.isValid == true ? 'successMessageText' : '',
-        props.isValid == false ? 'errorMessageText' : '',
-      ]"
+  <div
+      v-if="props.direction=='vertical'"
+      class="vertical__decrementDiv indicator"
+      role="button"
+      @click="decrement"
     >
-      {{ props.validationText }}
-    </p>
-    <p class="helperMessageText">
-      {{ props.helpertext }}
-    </p>
-  </div>
+      -
+    </div>
 </template>
 
 <style lang="scss" scoped>
