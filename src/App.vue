@@ -13,13 +13,8 @@ const test:Ref<number>= ref(0)
 
 
 <template>
-
-    <h1>{{ test }}</h1>
-    <Numberinput v-model="test" text="Numbers time!" />
-
-
-    <h1>{{ test2 }}</h1>
-    <Numberinput v-model="test2" text="Numbers time!" />
+  <h1>{{ test }}</h1>
+  <Numberinput v-model="test" text="Numbers time!" />
 
 </template>
 

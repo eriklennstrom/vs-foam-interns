@@ -8,6 +8,7 @@ import {
   onBeforeMount
 } from 'vue';
 
+
 type InputProps = {
   label?: string
   validationText?: string
@@ -59,6 +60,7 @@ function emitInput(e: any) {
   if (emitValue !== props.modelValue) {
     emit('update:modelValue', emitValue);
   }
+}
 }
 
 const verticalAlignment = props.direction == 'vertical' ? 'verticalStyle' : ''
