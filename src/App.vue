@@ -111,41 +111,22 @@ const darkMode: () => void = () => {
       <FoamDropdownItem
         icon="warning"
         type="button"
-        text=""
         @click="testFunctionOne('Test dropdown item 1')"
       />
       <FoamDropdownDivider />
       <FoamDropdownItem
         icon="circle-down"
         type="route"
-        text=""
         to="/test"
         @click="testFunctionTwo('Test dropdown item 2')"
       />
+      <FoamDropdownDivider />
       <FoamDropdownItem
         icon="circle-down"
         type="route"
-        text=""
         to="/test"
         :selected="true"
         @click="testFunctionTwo('Test dropdown item 2')"
-      />
-      <FoamDropdownDivider />
-      <FoamDropdownItem
-        text=""
-        type="link"
-        to="http://www.google.se"
-        secondary-text="Link to Göggle"
-        @click="testFunctionThree('Test dropdown item 3')"
-      />
-      <FoamDropdownDivider />
-      <FoamDropdownItem
-        text=""
-        type="link"
-        to="http://www.google.se"
-        disabled
-        secondary-text="Secondary Text"
-        @click="testFunctionThree('Test dropdown item 3')"
       />
     </FoamDropdownButton>
   </article>
@@ -155,6 +136,7 @@ const darkMode: () => void = () => {
   </button>
 
   <article>
+    <FoamDropdownButton />
     <FoamDropdownButton :width="200" variant="danger">
       <FoamDropdownFilter type="color" color="red" text="Color" />
       <FoamDropdownFilter
@@ -298,12 +280,29 @@ const darkMode: () => void = () => {
     <FoamDropdownButton text="Item Test" align="end" :width="250">
       <FoamDropdownItem text="Google" to="https://www.google.se" type="link" />
       <FoamDropdownItem text="Aftonbladet" to="https://www.aftonbladet.se" type="link" />
-      <FoamDropdownItem text="Wowhead" to="https://www.wowhead.com" type="link" />
+      <FoamDropdownItem text="Varnish Software" to="https://varnish-software.teamtailor.com/#jobs" type="link" />
     </FoamDropdownButton>
-    <FoamDropdownButton text="Item Test" align="start" :width="250">
+    <FoamDropdownButton text="Find Jobs" align="start" variant="primary">
       <FoamDropdownItem text="Google" to="https://www.google.se" type="link" />
-      <FoamDropdownItem text="Aftonbladet" to="https://www.aftonbladet.se" type="link" />
-      <FoamDropdownItem text="Wowhead" to="https://www.wowhead.com" type="link" />
+      <FoamDropdownItem text="Arbetsförmedlingen" to="https://arbetsformedlingen.se/" type="link" />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        text="Varnish Software"
+        to="https://varnish-software.teamtailor.com/#jobs"
+        type="link"
+        disabled
+      />
+    </FoamDropdownButton>
+    <FoamDropdownButton text="Find Jobs" align="end" variant="danger-outline">
+      <FoamDropdownItem text="Google" to="https://www.google.se" />
+      <FoamDropdownItem text="Arbetsförmedlingen" to="https://arbetsformedlingen.se/" type="link" />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        text="Varnish Software"
+        to="https://varnish-software.teamtailor.com/#jobs"
+        type="link"
+        disabled
+      />
     </FoamDropdownButton>
   </article>
   <article>

@@ -29,7 +29,9 @@ export function useTabTrap (e: KeyboardEvent) {
   if(e.key != 'Enter') {
     e.preventDefault()
     const currentElem = document.activeElement as HTMLElement
-    const parentElement = currentElem.parentElement as HTMLElement
+    let parentElement = currentElem.parentElement as HTMLElement
+    parentElement.id == 'sub-dropdown' ? parentElement = currentElem.parentElement?.parentElement as HTMLElement : null
+    
     const elements = getKeyBoardFocusableElements(parentElement)
     if(elements.elements.value.length <= 1) {
       return
