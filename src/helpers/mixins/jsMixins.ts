@@ -24,7 +24,8 @@ export const validIconNames = [
   'circle-down',
   'user-secret',
   'arrow-down',
-  'arrow-alt-circle-down'
+  'arrow-alt-circle-down',
+  'check'
 ];
 
 export const defaultVariantMixin = (variants: string[]) => ({
