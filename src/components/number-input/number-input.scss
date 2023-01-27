@@ -21,8 +21,16 @@
   }
 }
 
+.horizontal{
+  display: flex;
+  flex-direction: column;
+}
 
-
+.vertical__decrementDiv{
+  width:50px;
+  margin: auto;
+  background-color: bisque;
+}
 
 .inputWrapper {
   width: fit-content;
