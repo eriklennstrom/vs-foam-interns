@@ -25,7 +25,11 @@ export const validIconNames = [
   'user-secret',
   'arrow-down',
   'arrow-alt-circle-down',
-  'check'
+  'check',
+  'chevron-up',
+  'chevron-down',
+  'chevron-right',
+  'chevron-left',
 ];
 
 export const defaultVariantMixin = (variants: string[]) => ({
