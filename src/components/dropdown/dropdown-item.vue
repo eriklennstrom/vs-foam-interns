@@ -128,6 +128,16 @@ const handleCloseSubDropdown: (e:KeyboardEvent) => void = (e) => {
   subDropdown.value.removeAttribute('data-show')
 }
 
+function handleLeaveSubdropdown(e: FocusEvent) {
+  const currentElem = e.target
+  const lastElem = document.querySelector(`.${subDropdownId.value}`)?.lastElementChild as HTMLElement
+  
+  if(currentElem == lastElem) {
+    showSubDropdown.value = false 
+    subDropdown.value.removeAttribute('data-show')
+  }
+}
+
 const subDropdownRef = ref()
 // Close dropdown on click outside the component
 useDetectOutsideClick(subDropdownRef, () => { 
@@ -189,6 +199,7 @@ useDetectOutsideClick(subDropdownRef, () => {
     ref="subDropdown"
     :class="subDropdownId"
     :style="{ width: props.width ? props.width + 'px' : 'fit-content' }"
+    @focusout="handleLeaveSubdropdown($event)"
     @keyup.escape="handleCloseSubDropdown($event)"
     @mouseleave="handleShowSubDropdown()"
   >
