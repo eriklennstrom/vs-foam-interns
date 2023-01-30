@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import DropdownButton from '@/components/dropdown/dropdown-button.vue'
-import DropdownItem from '@/components/dropdown/dropdown-item.vue'
-import DropdownDivider from '@/components/dropdown/dropdown-divider.vue'
+import DropdownButton from '@/components/dropdown/Dropdown Button/dropdown-button.vue'
+import DropdownItem from '@/components/dropdown/Dropdown Item/dropdown-item.vue'
+import DropdownDivider from '@/components/dropdown/Dropdown Divider/dropdown-divider.vue'
 import Button from '@/components/button/button.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown } from '@fortawesome/free-solid-svg-icons';

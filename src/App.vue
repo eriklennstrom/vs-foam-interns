@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import FoamDropdownButton from '@/components/dropdown/dropdown-button.vue';
-import FoamDropdownItem from '@/components/dropdown/dropdown-item.vue';
-import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
-import FoamDropdownInput from '@/components/dropdown/dropdown-input.vue';
-import FoamDropdownFilter from '@/components/dropdown/dropdown-filter.vue';
+import FoamDropdownButton from '@/components/dropdown/Dropdown Button/dropdown-button.vue';
+import FoamDropdownItem from '@/components/dropdown/Dropdown Item/dropdown-item.vue';
+import FoamDropdownDivider from '@/components/dropdown/Dropdown Divider/dropdown-divider.vue';
+import FoamDropdownInput from '@/components/dropdown/Dropdown Input/dropdown-input.vue';
+import FoamDropdownFilter from '@/components/dropdown/Dropdown Filter/dropdown-filter.vue';
+import FoamDropdown from '@/components/dropdown/dropdown.vue'
 import { ref } from 'vue';
 
 const testFunctionOne: (param:string) => void = (param) => {
@@ -304,6 +305,48 @@ const darkMode: () => void = () => {
         disabled
       />
     </FoamDropdownButton>
+    <FoamDropdownItem w />
+  </article>
+  <article>
+    <p>TEST</p>
+    <FoamDropdown text="Test Default">
+      <FoamDropdownItem text="Google" to="https://www.google.se" />
+      <FoamDropdownItem text="Arbetsförmedlingen" to="https://arbetsformedlingen.se/" type="link" />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        text="Varnish Software"
+        to="https://varnish-software.teamtailor.com/#jobs"
+        type="link"
+        disabled
+      />
+    </FoamDropdown>
+    <FoamDropdown text="Test Button" role="button" variant="danger">
+      <FoamDropdownItem text="Google" to="https://www.google.se" />
+      <FoamDropdownItem text="Arbetsförmedlingen" to="https://arbetsformedlingen.se/" type="link" />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        text="Varnish Software"
+        to="https://varnish-software.teamtailor.com/#jobs"
+        type="link"
+        disabled
+      />
+    </FoamDropdown>
+    <FoamDropdown
+      text="Test Input"
+      role="asd"
+      variant="danger"
+      placeholder="Test test test"
+    >
+      <FoamDropdownItem text="Google" to="https://www.google.se" />
+      <FoamDropdownItem text="Arbetsförmedlingen" to="https://arbetsformedlingen.se/" type="link" />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        text="Varnish Software"
+        to="https://varnish-software.teamtailor.com/#jobs"
+        type="link"
+        disabled
+      />
+    </FoamDropdown>
   </article>
   <article>
     <div style="height: 100vh" />

@@ -12,6 +12,8 @@ The ``text`` property is the text content that will be rendered inside the dropd
 
 The ``placeholder`` property is the text content rendered as a placeholder inside the input field. Default is 'Search'
 
+> Note - This component is not meant to be used independently but as a child component in the ``FoamDropdown`` component.
+
 > Note - The dropdown component is using the ``popperjs`` positioning engine for the dropdown positioning. Read more at https://popper.js.org/
 
 ```jsx

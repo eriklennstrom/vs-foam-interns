@@ -1,8 +1,8 @@
-import FoamDropdownFilter from '@/components/dropdown/dropdown-filter.vue';
-import FoamDropdownButton from '@/components/dropdown/dropdown-button.vue';
-import FoamDropdownDivider from '@/components/dropdown/dropdown-divider.vue';
+import FoamDropdownFilter from '@/components/dropdown/Dropdown Filter/dropdown-filter.vue';
+import FoamDropdownButton from '@/components/dropdown/Dropdown Button/dropdown-button.vue';
+import FoamDropdownDivider from '@/components/dropdown/Dropdown Divider/dropdown-divider.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
-import readme from '@/components/dropdown/storybook/dropdown-filter.md?raw';
+import readme from '@/components/dropdown/dropdown-filter.md?raw';
 import { useArgs } from '@storybook/client-api';
 
 export default {

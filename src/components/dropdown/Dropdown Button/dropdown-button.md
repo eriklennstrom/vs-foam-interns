@@ -21,6 +21,8 @@ The ``disabled`` property is a boolean that decides if the dropdown button is ac
 
 For more info about button component - see ``Button``
 
+> Note - This component is not meant to be used independently but as a child component in the ``FoamDropdown`` component.
+
 > Note - The dropdown component is using the ``popperjs`` positioning engine for the dropdown positioning. Read more at https://popper.js.org/
 
 
