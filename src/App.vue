@@ -12,21 +12,49 @@ const test:Ref<number>= ref(0)
 
 
 <template>
+
   <h1>{{ test }}</h1>
-  <Numberinput v-model="test" text="Numbers time!" helpertext="Yep" />
+
+  <section>
+  <Numberinput  :maxLength=5
+  validationText="validation text"
+   :is-valid=true v-model="test" text="helpertext super duper lång helpertextlol" helpertext="helpertext" />
+  
+   <Numberinput  :maxLength=5
+   validationText="validation text"
+   :is-valid=false v-model="test" text="Label" helpertext="helpertext" />
+ 
+   <Numberinput
+    v-model="test"
+    text="Label that is longer"
+    direction="vertical"
+    :maxLength=5
+    :maxValue=6999
+    :is-valid=true
+    validationText="validation text"
+    helpertext="helpertext super duper lång helpertextlol"
+  />
+
+  <Numberinput
+  v-model="test"
+  text="Label that is the longest youve ever seen"
+  direction="vertical"
+  :maxLength=5
+  :maxValue=6999
+  :is-valid=false
+  validationText="validation text"
+  helpertext="helpertext"
+/>
+
   <Numberinput
     v-model="test"
-    text="Numbers time!"
-    helpertext="Yep" 
+    text="Label"
+    helpertext="helpertext" 
     direction="vertical"
+    :max-length=5
+    disabled
   />
-  <Numberinput
-    v-model="test"
-    text="Numbers time!"
-    helpertext="Yep" 
-    direction="vertical"
-    :isValid=true
-  />
+</section>
 </template>
 
 <style scoped lang="scss">
