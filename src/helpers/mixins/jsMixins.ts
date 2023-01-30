@@ -29,7 +29,11 @@ export const validIconNames = [
   'arrow-down',
   'arrow-alt-circle-down',
   'check',
-  'xmark'
+  'xmark',
+  'chevron-up',
+  'chevron-down',
+  'chevron-right',
+  'chevron-left',
 ];
 
 export const defaultVariantMixin = (variants: string[]) => ({

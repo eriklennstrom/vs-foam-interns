@@ -35,10 +35,11 @@ const props = withDefaults(defineProps<InputProps>(), {
   defaultvalue: 0,
   maxLength: 6,
   maxValue: 999999,
-  direction: 'vertical',
+  direction: 'horizontal',
   increment:1
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function emitInput(e: any) {
   console.log(e.value, 'evalue')
   if (e.value == '') {
@@ -53,6 +54,7 @@ function emitInput(e: any) {
 }
 }
 
+const verticalAlignment = props.direction=='vertical'? 'verticalStyle' : ''
 
 function increment() {
   const updatedValue = props.modelValue +props.increment
@@ -74,6 +76,7 @@ const AsyncIcon = computed(() => {
     return Icon;
   }
 });
+
 </script>
 
 <template>
@@ -83,18 +86,20 @@ const AsyncIcon = computed(() => {
     </h2>
   </div>
   <div
-      v-if="props.direction=='vertical'"
-      class="vertical__decrementDiv indicator"
-      role="button"
-      @click="increment"
-    >
-      +
-    </div>
+    v-if="props.direction=='vertical'"
+    class="vertical__decrementDiv indicator"
+    role="button"
+    @click="increment"
+  >
+    <AsyncIcon
+      icon="chevron-up"
+    />
+  </div>
 
   <div
     :disabled="props.disabled"
     :class="[
-      'inputWrapper',
+       'inputWrapper', verticalAlignment,
       props.isValid ? 'valid' : '',
       props.isValid == false ? 'invalid' : '',
       props.disabled ? 'disabled' : '',
@@ -102,11 +107,13 @@ const AsyncIcon = computed(() => {
   >
     <div
       v-if="props.direction=='horizontal'"
-      class="decrementDiv indicator"
+      class="horizontal__decrementDiv indicator"
       role="button"
       @click="decrement"
     >
-      -
+      <AsyncIcon
+        icon="chevron-left"
+      />
     </div>
 
     <input
@@ -134,33 +141,39 @@ const AsyncIcon = computed(() => {
 
     <div
       v-if="props.direction=='horizontal'"
-      class="incrementDiv indicator"
+      class="horizontal__incrementDiv indicator"
       role="button"
       @click="increment"
-    >+
-      <div class="userInstructions">
-        <p
-          :class="[
-            props.isValid == true ? 'successMessageText' : '',
-            props.isValid == false ? 'errorMessageText' : '',
-          ]"
-        >
-          {{ props.validationText }}
-        </p>
-        <p class="helperMessageText">
-          {{ props.helpertext }}
-        </p>
-      </div>
+    >
+      <AsyncIcon
+        icon="chevron-right"
+      />
     </div>
   </div>
+  
   <div
-      v-if="props.direction=='vertical'"
-      class="vertical__decrementDiv indicator"
-      role="button"
-      @click="decrement"
+    v-if="props.direction=='vertical'"
+    class="vertical__decrementDiv indicator"
+    role="button"
+    @click="decrement"
+  >
+    <AsyncIcon
+      icon="chevron-down"
+    />
+  </div>
+  <div class="userInstructions">
+    <p
+      :class="[
+        props.isValid == true ? 'successMessageText' : '',
+        props.isValid == false ? 'errorMessageText' : '',
+      ]"
     >
-      -
-    </div>
+      {{ props.validationText }}
+    </p>
+    <p class="helperMessageText">
+      {{ props.helpertext }}
+    </p>
+  </div>
 </template>
 
 <style lang="scss" scoped>
