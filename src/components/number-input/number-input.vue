@@ -3,6 +3,8 @@ import {
   defineEmits,
   defineAsyncComponent,
   computed,
+ref,
+type Ref,
 } from 'vue';
 
 
@@ -33,7 +35,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   helpertext: '',
   modelValue: 0,
   defaultvalue: 0,
-  maxLength: 6,
+  maxLength: 1,
   maxValue: 999999,
   direction: 'horizontal',
   increment:1
@@ -41,7 +43,7 @@ const props = withDefaults(defineProps<InputProps>(), {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function emitInput(e: any) {
-  console.log(e.value, 'evalue')
+
   if (e.value == '') {
     e.value = 0
   }
@@ -49,7 +51,6 @@ function emitInput(e: any) {
   const emitValue = parseInt(e.value.slice(0, props.maxLength))
 
   if(emitValue !== props.modelValue)  {
-  console.log(emitValue, 'emitvalue')
   emit('update:modelValue', emitValue);
 }
 }
@@ -67,6 +68,12 @@ function decrement() {
   emit('update:modelValue', props.modelValue - props.increment)
 }
 
+const horizontalWidthCalculation = (props.maxLength *12)
+const verticalWidthCalculation = (props.maxLength *15)
+
+
+
+
 // dynamic component import
 const AsyncIcon = computed(() => {
   {
@@ -80,14 +87,17 @@ const AsyncIcon = computed(() => {
 </script>
 
 <template>
+  <div class="numbers-input__div">
   <div :class="['topWrapper', props.disabled ? 'disabled' : '']">
     <h2>
       {{ props.text }}
     </h2>
   </div>
   <div
+  v-bind:style="{ width: props.direction === 'vertical' ? verticalWidthCalculation + 'px' : ''}"
     v-if="props.direction=='vertical'"
-    class="vertical__decrementDiv indicator"
+    :class="['vertical__incrementDiv', 'indicator',
+    props.disabled ? 'disabled' : '']"
     role="button"
     @click="increment"
   >
@@ -117,27 +127,16 @@ const AsyncIcon = computed(() => {
     </div>
 
     <input
-      ref="inputElem"
+      v-bind:style="{ width: props.direction === 'horizontal' ? horizontalWidthCalculation + 'px' : verticalWidthCalculation + 'px' }"
       autocomplete="off"
       type="number"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :value="props.modelValue"
       @input="emitInput($event.target)"
+   
     >
 
-    <AsyncIcon
-      v-if="props.isValid == false"
-      class="warningIcon"
-      icon="warning"
-      variant="danger"
-    />
-    <AsyncIcon
-      v-if="props.isValid == true"
-      class="successIcon"
-      icon="check"
-      variant="success"
-    />
 
     <div
       v-if="props.direction=='horizontal'"
@@ -152,9 +151,10 @@ const AsyncIcon = computed(() => {
   </div>
   
   <div
-    v-if="props.direction=='vertical'"
-    class="vertical__decrementDiv indicator"
-    role="button"
+  v-if="props.direction=='vertical'"
+  :class="['vertical__decrementDiv', 'indicator',
+  props.disabled ? 'disabled' : '']"
+  role="button"
     @click="decrement"
   >
     <AsyncIcon
@@ -162,18 +162,32 @@ const AsyncIcon = computed(() => {
     />
   </div>
   <div class="userInstructions">
+
     <p
       :class="[
         props.isValid == true ? 'successMessageText' : '',
         props.isValid == false ? 'errorMessageText' : '',
       ]"
     >
+    <AsyncIcon
+    v-if="props.isValid == false"
+    class="warningIcon"
+    icon="warning"
+    variant="danger"
+  />
+  <AsyncIcon
+    v-if="props.isValid == true"
+    class="successIcon"
+    icon="check"
+    variant="success"
+  />
       {{ props.validationText }}
     </p>
     <p class="helperMessageText">
       {{ props.helpertext }}
     </p>
   </div>
+</div>
 </template>
 
 <style lang="scss" scoped>

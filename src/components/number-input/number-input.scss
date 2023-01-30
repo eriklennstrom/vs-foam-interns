@@ -2,104 +2,114 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
 
-
 * {
   margin: 0;
 }
 
-.topWrapper {
-  margin-top: 10px;
+.numbers-input__div {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+
   
-  h2 {
-    display: flex;
-    font-family: variables.$primaryFontFamily;
-    font-weight: 400;
+  .topWrapper {
+    margin-top: 10px;
     align-items: flex-start;
-    font-size: 21px;
-    color: map-get(colors.$input-text-colors, light);
-    user-select: none;
-    
+
+    h2 {
+      display: flex;
+      font-family: variables.$primaryFontFamily;
+      font-weight: 400;
+      align-items: flex-start;
+      font-size: 21px;
+      color: map-get(colors.$input-text-colors, light);
+      user-select: none;
+
+    }
   }
+
+
+
+  .inputWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2px;
+    border: 1px solid map-get(colors.$input-colors, light);
+    border-radius: 8px;
+    position: relative;
+    border: none;
+
+    &.verticalStyle{
+
+     
+    }
+    
+    input {
+      text-align: center;
+    }
+  }
+
+  .vertical__incrementDiv {}
+
+  .vertical__decrementDiv {}
+
 }
 
-.horizontal{
+
+
+.horizontal {
   display: flex;
   flex-direction: column;
 }
 
 
-.vertical__decrementDiv{
-  width:50px;
-  margin: auto;
-  background-color: bisque;
-}
 
-.inputWrapper {
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  border: 1px solid map-get(colors.$input-colors, light);
-  border-radius: 8px;
- 
-
-  .warningIcon {
-    padding-right: 10px;
-    user-select: none;
-  }
-
-  .successIcon {
-    padding-right: 10px;
-    margin: 0 auto;
-    user-select: none;
-  }
-}
-
-.verticalStyle{
+.verticalStyle {
   border: none;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.dark .inputWrapper{
+.dark .inputWrapper {
   border-color: map-get(colors.$dark-input-colors, light);
 }
 
-.indicator{
+.indicator {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 900;
+  gap:2px;
 }
 
-.horizontal__incrementDiv{
-    background-color: red;
-    width:70px;
-    height:40px;
-    border-radius: 0 6px 6px 0;
+
+.horizontal__incrementDiv {
+  height: 40px;
+
 }
 
-.horizontal__decrementDiv{
-    background-color:map-get(colors.$input-colors, light) ;
-    height:40px;;
-    width:60px;
-    border-radius: 6px 0 0 6px;
+.horizontal__decrementDiv {
+
+  height: 40px;
 }
 
 .valid {
   border-color: map-get(colors.$input-colors, success);
   user-select: none;
-  svg{
-    color:map-get(colors.$input-colors, success);
+
+  svg {
+    color: map-get(colors.$input-colors, success);
   }
 }
+
 .dark .valid {
   border-color: map-get(colors.$dark-input-colors, success);
   user-select: none;
-  svg{
-    color:map-get(colors.$dark-input-colors, success);
+
+  svg {
+    color: map-get(colors.$dark-input-colors, success);
   }
 }
 
@@ -107,16 +117,18 @@ align-items: center;
 .invalid {
   user-select: none;
   border-color: map-get(colors.$input-colors, danger);
-  svg{
-    color:map-get(colors.$input-colors, danger);
+
+  svg {
+    color: map-get(colors.$input-colors, danger);
   }
 }
 
 .dark .invalid {
   user-select: none;
   border-color: map-get(colors.$dark-input-colors, danger);
-  svg{
-    color:map-get(colors.$dark-input-colors, danger);
+
+  svg {
+    color: map-get(colors.$dark-input-colors, danger);
   }
 }
 
@@ -125,10 +137,20 @@ align-items: center;
   font-size: 12px;
   padding: 1px;
   margin-right: 10px;
-  max-width: 100%;
-  word-wrap: break-word;
+  
+  .warningIcon {
+    padding: 0 4px 0 0;
+  }
+
+  .successIcon {
+    padding: 0 4px 0 0;
+    user-select: none;
+  }
 
   .successMessageText {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     color: map-get(colors.$input-text-colors, success);
   }
 
@@ -159,7 +181,7 @@ input {
   outline: 0;
   background: transparent;
   font-size: 1rem;
-  padding: 10px;
+  padding: 8px;
 }
 
 
