@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import FoamDropdownButton from '@/components/dropdown/Dropdown Button/dropdown-button.vue';
-import FoamDropdownItem from '@/components/dropdown/Dropdown Item/dropdown-item.vue';
-import FoamDropdownDivider from '@/components/dropdown/Dropdown Divider/dropdown-divider.vue';
-import FoamDropdownInput from '@/components/dropdown/Dropdown Input/dropdown-input.vue';
-import FoamDropdownFilter from '@/components/dropdown/Dropdown Filter/dropdown-filter.vue';
+import FoamDropdownButton from '@/components/dropdown/dropdownButton/dropdown-button.vue';
+import FoamDropdownItem from '@/components/dropdown/dropdownItem/dropdown-item.vue';
+import FoamDropdownDivider from '@/components/dropdown/dropdownDivider/dropdown-divider.vue';
+import FoamDropdownInput from '@/components/dropdown/dropdownInput/dropdown-input.vue';
+import FoamDropdownFilter from '@/components/dropdown/dropdownFilter/dropdown-filter.vue';
 import FoamDropdown from '@/components/dropdown/dropdown.vue'
 import { ref } from 'vue';
 

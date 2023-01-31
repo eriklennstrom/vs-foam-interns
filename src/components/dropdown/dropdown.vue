@@ -36,7 +36,7 @@ defaultTypeMixin(dropdownRoles).verifyType(props.role)
 const DropdownButton = computed(() => {
   if (dropdownRole.value == 'button') {
     const Icon = defineAsyncComponent(
-      () => import('@/components/dropdown/Dropdown Button/dropdown-button.vue')
+      () => import('@/components/dropdown/dropdownButton/dropdown-button.vue')
     );
     return Icon;
   } 
@@ -46,7 +46,7 @@ const DropdownButton = computed(() => {
 const DropdownInput = computed(() => {
   if (dropdownRole.value == 'input') {
     const Icon = defineAsyncComponent(
-      () => import('@/components/dropdown/Dropdown Input/dropdown-input.vue')
+      () => import('@/components/dropdown/dropdownInput/dropdown-input.vue')
     );
     return Icon;
   } 
