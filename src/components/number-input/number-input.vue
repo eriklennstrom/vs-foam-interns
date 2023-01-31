@@ -200,7 +200,6 @@ const AsyncIcon = computed(() => {
       </p>
     </div>
   </div>
-</div>
 </template>
 
 <style lang="scss" scoped>
