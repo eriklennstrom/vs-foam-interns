@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+const test:Ref<number>= ref(0)
+
 
 const darkMode: () => void = () => {
   const body = document.querySelector('body')
@@ -25,7 +27,7 @@ section {
 
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   margin-bottom: 4em;
 }
