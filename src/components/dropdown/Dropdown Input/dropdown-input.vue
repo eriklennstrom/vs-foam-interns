@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Icon from '@/components/icons/icons.vue';
-import { computed, onMounted, ref, watch, type Ref } from 'vue';
+import { computed, ref, useSlots, watch, watchEffect, type Ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent'
@@ -31,26 +31,17 @@ const amountChecked = ref<number>(0)
   : (labelPosition.value = 'inside');
 
 
+const slots = useSlots()
 
-  const dropdownElem = document.querySelectorAll(`#${dropdownId.value}`)
-  const dropdownSlot: Ref = ref()
-  watch(() => dropdownSlot, (newVal) => { 
-    console.log('hej');
-    
-  //     const filterElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__filter`)
-  // const itemElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__item`)
-  // let dropdownElems;
+watchEffect(() => {
+  amountChecked.value = 0
+  if(slots.default)
+  Array.from(slots.default()).forEach(function (element) {  
+    element?.props?.selected == true ? amountChecked.value = amountChecked.value + 1 : ''   
+  });
 
-  // if(filterElems.length > 0) {
-  //   dropdownElems = filterElems
-  // } else {
-  //   dropdownElems = itemElems
-  // }
-  // amountChecked.value = 0
-  // Array.from(dropdownElems).forEach(function (element) {  
-  //   element.classList.contains('dropdown__filter--selected') ? amountChecked.value++ : ''
-  // });
-});
+})
+
 watch(() => userInput.value, (newVal) => { 
   const filterElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__filter`)
   const itemElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__item`)
@@ -152,9 +143,9 @@ useDetectOutsideClick(componentRef, () => {
           for="dropdown-input"
           :data-active="[showDropdown && labelPosition == 'inside' ? true : false]"
         >
-          <span>{{ amountChecked }}</span>
           {{ props.text }}
         </label>
+        <span v-if="amountChecked > 0" class="amount-selected">{{ amountChecked }}</span>
         <Icon
           v-if="userInput.length > 0"
           class="remove-input"
@@ -177,7 +168,7 @@ useDetectOutsideClick(componentRef, () => {
       class="dropdown--input"
       :class="dropdownId"
     >
-      <slot ref="dropdownSlot" />
+      <slot />
     </div>
   </section>
 </template>

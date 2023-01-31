@@ -232,11 +232,33 @@
         display: flex;
         flex-direction: column;
         .dropdown__input--label {
+            cursor: pointer;
             position: absolute;
             color: colors.$primary;
             font-size: 12px;
             top: -14px;
             left: 0;
+            max-width : 75%;
+            overflow:hidden;
+            display:inline-block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+        }
+        .amount-selected {
+            position: absolute;
+            right: -6px;
+            top: -6px;
+            color: #fff;
+            font-size: 12px;
+            background-color: colors.$primary;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 16px;
+            height: 16px;
+            text-align: center;
+            border-radius: 50%;
         }
         .label-inside {
             top: calc(50% - 7px);
@@ -245,7 +267,7 @@
             transition: all 150ms;
             &[data-active="true"] {
                 font-size: 12px;
-                padding: 4px;
+                padding: 4px 4px 0 4px;
                 background-color: #FFF;
                 top: -10px;
                 z-index: 1;
@@ -253,7 +275,7 @@
         }
         #dropdown__input--input:not(:placeholder-shown) ~ .label-inside {
             font-size: 12px;
-            padding: 4px;
+            padding: 4px 4px 0 4px;
             background-color: #FFF;
             top: -10px;
             z-index: 1;
