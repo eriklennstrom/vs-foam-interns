@@ -33,6 +33,10 @@ const elementType = ref(props.type)
 const itemId = ref(uuidv4)
 const secondaryText = ref<string | null>(props.secondaryText)
 const selectedItem = ref<boolean | undefined>(props.selected)
+const dropdownId = ref<string>('dropdown-' + uuidv4())
+const showSubDropdown: Ref = ref<boolean>(false);
+const subDropdownId = ref<string>('sub-dropdown-' + uuidv4())
+const subDropdown: Ref = ref()
 
 onMounted(() => {
   elementType.value != 'button' ? selectedItem.value = false : null
@@ -80,9 +84,6 @@ const goToRoute: (e:KeyboardEvent) => void = (e) => {
     router.push({ path: props.to });
   }
 }
-const showSubDropdown: Ref = ref<boolean>(false);
-const subDropdownId = ref<string>('sub-dropdown-' + uuidv4())
-const subDropdown: Ref = ref()
 
 const popperInstance = computed(() => {
   const buttonElem = document.querySelector(`#${subDropdownId.value}`) as HTMLElement
@@ -152,7 +153,7 @@ useDetectOutsideClick(subDropdownRef, () => {
 <template>
   <component
     :is="elementType == 'link' ? 'a' : elementType == 'route' ? 'router-link' : 'button'"
-    :id="subDropdownId"
+    :id="props.subdropdown ? subDropdownId : dropdownId"
     ref="subDropdownRef"
     :role="props.disabled ? 'disabled' : null" 
     :href="elementType == 'link' ? props.to : null"

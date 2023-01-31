@@ -7,13 +7,13 @@ import useDetectOutsideClick from '@/composables/clickOutsideComponent'
 import { defaultTypeMixin, dropdownInputPosition} from '@/helpers/mixins/jsMixins';
 
 type DropdownProps = {
-    text: string
+    text?: string
     placeholder?: string
     position?: string
 };
 
 const props = withDefaults(defineProps<DropdownProps>(), {
-    ext: 'Search',
+    text: 'Label',
     position: 'inside',
     placeholder: ''
 });

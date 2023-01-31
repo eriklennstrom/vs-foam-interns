@@ -247,9 +247,10 @@
         }
         .amount-selected {
             position: absolute;
+            font-weight: 700;
             right: -6px;
             top: -6px;
-            color: #fff;
+            color: colors.$surface;
             font-size: 12px;
             background-color: colors.$primary;
             display: flex;
@@ -268,7 +269,7 @@
             &[data-active="true"] {
                 font-size: 12px;
                 padding: 4px 4px 0 4px;
-                background-color: #FFF;
+                background-color: colors.$surface;
                 top: -10px;
                 z-index: 1;
             }
@@ -276,7 +277,7 @@
         #dropdown__input--input:not(:placeholder-shown) ~ .label-inside {
             font-size: 12px;
             padding: 4px 4px 0 4px;
-            background-color: #FFF;
+            background-color: colors.$surface;
             top: -10px;
             z-index: 1;
         }
@@ -382,6 +383,10 @@ body.dark {
                     background-color: #1F252F;
                 }
             }
+            .amount-selected {
+                background-color: colors.$secondary-hover;
+                color: colors.$primary;
+            }
             svg {
                 color: colors.$secondary-900;
             }
@@ -391,11 +396,12 @@ body.dark {
                     border-color: colors.$secondary-900;
                 }
                 #dropdown__input--input {
-                    color: #fff;
+                    color: colors.$surface;
                     &::placeholder {
                         color: colors.$dropdown-border-color-light;
                     }
                 }
+
             }
         }
     }

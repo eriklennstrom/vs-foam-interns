@@ -37,16 +37,18 @@ export function useTabTrap (e: KeyboardEvent) {
       return
     }
     
+    if(e.key === 'Shift') {
+      keysPressed[e.key] = true
+    }
+
+    console.log(elements);
+    
     let index = 0;
     const firstElem = elements.elements.value[0] as HTMLElement
     const lastElem = elements.elements.value[elements.elements.value.length - 1] as HTMLElement
 
     getPrevActiveElem(currentElem)
-
-
-    if(e.key === 'Shift') {
-      keysPressed[e.key] = true
-    }
+    
     
     if (keysPressed.Shift && e.key === 'Tab' || e.key === 'ArrowUp') {
       keysPressed[e.key] = true
