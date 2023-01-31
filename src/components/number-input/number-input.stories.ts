@@ -1,5 +1,6 @@
 import FoamNumbers from '@/components/number-input/number-input.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
+import { ref, type Ref } from 'vue';
 import numberInputDocs from './number-input.md?raw';
 
 export default {
@@ -79,40 +80,51 @@ export default {
         defaultValue: 999999,
       }
     },
-
+    validationText: {
+      control: { type: 'text' },
+      table: {
+        defaultValue: 'validation text',
+      }
+    },
     
   }
 } as Meta<typeof FoamNumbers>;
 
-const Template: StoryFn<typeof FoamNumbers> = (args) => ({
+ const Template: StoryFn<typeof FoamNumbers> = (args) => ({
   components: { FoamNumbers },
   setup() {
-    return { args };
+    const test:Ref= ref(0)
+    return { args, test };
+
   },
-  template: '<foam-numbers v-bind="args"  />'
-});
+  template: '<foam-numbers v-bind="args" v-model="test" />'
+}); 
+
+
+
+
 
 export const Default = Template.bind({});
 Default.args = {
+  text: 'Label'
   
  };
 
 export const Variants: StoryFn<typeof FoamNumbers> = (args, { argTypes }) => ({
   components: { FoamNumbers },
   setup() {
-    return { args, argTypes };
+    const test:Ref= ref(0)
+    return { args, argTypes, test };
   },
   template: `
     <div style="display: flex; gap:1em">
-      <foam-numbers v-for="direction in argTypes.direction.options" v-bind="args" :direction="direction" />
+      <foam-numbers v-for="direction in argTypes.direction.options"  v-bind="args" :direction="direction" v-model="test" />
     </div>`
 });
 
 Variants.argTypes = {
   text: {
-    table: {
-      disable: true
-    }
+    text: 'Label'
   },
 
   direction: {
@@ -125,22 +137,34 @@ Variants.argTypes = {
 export const ErrorHandle: StoryFn<typeof FoamNumbers> = (args, { argTypes }) => ({
   components: { FoamNumbers },
   setup() {
-    return { args, argTypes };
+    const test:Ref= ref(0)
+    return { args, argTypes, test };
   },
   template: `
     <div style="display: flex; gap: 1em; flex-wrap: wrap">
-      <foam-numbers v-for="options in argTypes.isValid.options" v-bind="args" :isValid=options validationText ="validationText"  />
+      <foam-numbers v-for="options in argTypes.isValid.options" v-bind="args" :isValid=options v-model="test" />
     </div>
     <div style="display: flex; gap: 1em; flex-wrap: wrap">
-    <foam-numbers v-for="options in argTypes.isValid.options" v-bind="args" :isValid=options validationText ="validationText" direction="vertical" />
+    <foam-numbers v-for="options in argTypes.isValid.options" v-bind="args" :isValid=options  direction="vertical" v-model="test" />
   </div>`
 });
 
 ErrorHandle.argTypes = {
+
+  text: {
+    text: 'Label'
+  },
+  validationText: {
+    validationText: 'validationText'
+  },
   variant: {
     table: {
       disable: true
     }
   },
 };
+
+function useArgs(): [any, any] {
+  throw new Error('Function not implemented.');
+}
 
