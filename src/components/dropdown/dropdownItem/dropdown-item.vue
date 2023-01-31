@@ -100,7 +100,7 @@ const popperInstance = computed(() => {
       {
         name: 'offset',
         options: {
-          offset: [0, 0],
+          offset: [0, 2],
         }
       }
     ],
