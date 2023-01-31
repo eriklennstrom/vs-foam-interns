@@ -333,9 +333,24 @@ const darkMode: () => void = () => {
     </FoamDropdown>
     <FoamDropdown
       text="Test Input"
-      role="asd"
-      variant="danger"
-      placeholder="Test test test"
+      role="input"
+      label="Test Label"
+    >
+      <FoamDropdownItem text="Google" to="https://www.google.se" />
+      <FoamDropdownItem text="Arbetsförmedlingen" to="https://arbetsformedlingen.se/" type="link" />
+      <FoamDropdownDivider />
+      <FoamDropdownItem
+        text="Varnish Software"
+        to="https://varnish-software.teamtailor.com/#jobs"
+        type="link"
+        disabled
+      />
+    </FoamDropdown>
+    <FoamDropdown
+      role="input"
+      label="Test TOP"
+      position="top"
+      placeholer="Test ph"
     >
       <FoamDropdownItem text="Google" to="https://www.google.se" />
       <FoamDropdownItem text="Arbetsförmedlingen" to="https://arbetsformedlingen.se/" type="link" />

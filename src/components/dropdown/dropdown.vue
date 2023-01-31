@@ -10,6 +10,7 @@ type DropdownProps = {
     width?: number | null
     align?: string
     disabled?: boolean
+    position?: string
     placeholder?: string
 };
 
@@ -21,7 +22,8 @@ const props = withDefaults(defineProps<DropdownProps>(), {
     align: 'end',
     disabled: false,
     role: 'button',
-    placeholder: 'Search'
+    position: '',
+    placeholder: ''
 });
 
 const dropdownRole: Ref = ref<string>(props.role)
@@ -66,7 +68,12 @@ const DropdownInput = computed(() => {
     >
       <slot />
     </DropdownButton>
-    <DropdownInput v-else :placeholder="props.placeholder" :text="props.text">
+    <DropdownInput
+      v-else
+      :text="props.text"
+      :position="props.position"
+      :placeholder="props.placeholder"
+    >
       <slot />
     </DropdownInput>
   </section>

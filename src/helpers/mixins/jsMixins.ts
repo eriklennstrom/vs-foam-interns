@@ -22,6 +22,7 @@ export const chipVariants = ['input', 'filter'];
 export const dropdownItemTypes = ['button', 'route', 'link']
 export const dropdownFilterTypes = ['checkbox', 'color', 'container']
 export const dropdownRoles = ['button', 'input']
+export const dropdownInputPosition = ['top', 'inside']
 
 // icon names
 

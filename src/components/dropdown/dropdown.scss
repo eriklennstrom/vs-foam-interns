@@ -106,6 +106,7 @@
 
     // Dropdown Filter
     .dropdown__filter {
+        cursor: pointer;
         color: colors.$dropdown-item-text-light;
         background-color: colors.$dropdown-item-bg-light;
         &[role=disabled] {
@@ -126,10 +127,14 @@
             color: inherit;
         }
         .checkbox__item {
+            pointer-events: none;
             display: flex;
             align-items: center;
             gap: 10px;
             padding: 0 12px;
+            div, svg {
+                pointer-events: none;
+            }
         }
         
         .color__item, .container__item {
@@ -222,13 +227,38 @@
 }
 
 .dropdown__filter--container {
+    position: relative;
     .dropdown__input--container {
         display: flex;
         flex-direction: column;
         .dropdown__input--label {
+            position: absolute;
             color: colors.$primary;
             font-size: 12px;
+            top: -14px;
+            left: 0;
         }
+        .label-inside {
+            top: calc(50% - 7px);
+            left: 10px;
+            font-size: 14px;
+            transition: all 150ms;
+            &[data-active="true"] {
+                font-size: 12px;
+                padding: 4px;
+                background-color: #FFF;
+                top: -10px;
+                z-index: 1;
+            }
+        }
+        #dropdown__input--input:not(:placeholder-shown) ~ .label-inside {
+            font-size: 12px;
+            padding: 4px;
+            background-color: #FFF;
+            top: -10px;
+            z-index: 1;
+        }
+
         .input-container {
             position: relative;
             display: flex;
@@ -326,6 +356,9 @@ body.dark {
         .dropdown__input--container {
             .dropdown__input--label {
                 color: colors.$secondary;
+                &[data-active="true"] {
+                    background-color: #1F252F;
+                }
             }
             svg {
                 color: colors.$secondary-900;

@@ -10,7 +10,9 @@ The dropdown input also works as a search function - where the dropdown input ch
 
 The ``text`` property is the text content that will be rendered inside the dropdown input.
 
-The ``placeholder`` property is the text content rendered as a placeholder inside the input field. Default is 'Search'
+The ``placeholder`` property is the text content rendered as a placeholder inside the input field.
+
+The ``position`` property decides if the label should be inside or top of the input container.
 
 > Note - This component is not meant to be used independently but as a child component in the ``FoamDropdown`` component.
 
@@ -18,9 +20,9 @@ The ``placeholder`` property is the text content rendered as a placeholder insid
 
 ```jsx
 <foam-dropdown-input text="Countries" >
-    <foam-dropdown-filter type="checkbox" text="Sweden" />
-    <foam-dropdown-filter type="checkbox" text="Norway" />
-    <foam-dropdown-filter type="checkbox" text="Finland" />
+    <foam-dropdown-filter type="checkbox" label="Sweden" />
+    <foam-dropdown-filter type="checkbox" label="Norway" />
+    <foam-dropdown-filter type="checkbox" label="Finland" />
 </foam-dropdown-input>
 
 <foam-dropdown-input text="Navigation"  >

@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import Icon from '@/components/icons/icons.vue';
-import { computed, ref, watch, type Ref } from 'vue';
+import { computed, onMounted, ref, watch, type Ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent'
+import { defaultTypeMixin, dropdownInputPosition} from '@/helpers/mixins/jsMixins';
 
 type DropdownProps = {
-    text?: string
+    text: string
     placeholder?: string
+    position?: string
 };
 
 const props = withDefaults(defineProps<DropdownProps>(), {
-    text: '',
-    placeholder: 'Search'
+    ext: 'Search',
+    position: 'inside',
+    placeholder: ''
 });
 
 const showDropdown: Ref = ref<boolean>(false);
@@ -20,7 +23,34 @@ const dropdownId = ref<string>('dropdown-filter-' + uuidv4())
 const buttonId = ref<string>('btn-' + uuidv4())
 const dropdownFilter: Ref = ref()
 const userInput = ref<string>('')
+const labelPosition = ref<string>(props.position)
+const amountChecked = ref<number>(0)
 
+  defaultTypeMixin(dropdownInputPosition).verifyType(props.position)
+  ? ''
+  : (labelPosition.value = 'inside');
+
+
+
+  const dropdownElem = document.querySelectorAll(`#${dropdownId.value}`)
+  const dropdownSlot: Ref = ref()
+  watch(() => dropdownSlot, (newVal) => { 
+    console.log('hej');
+    
+  //     const filterElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__filter`)
+  // const itemElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__item`)
+  // let dropdownElems;
+
+  // if(filterElems.length > 0) {
+  //   dropdownElems = filterElems
+  // } else {
+  //   dropdownElems = itemElems
+  // }
+  // amountChecked.value = 0
+  // Array.from(dropdownElems).forEach(function (element) {  
+  //   element.classList.contains('dropdown__filter--selected') ? amountChecked.value++ : ''
+  // });
+});
 watch(() => userInput.value, (newVal) => { 
   const filterElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__filter`)
   const itemElems = document.querySelectorAll(`#${dropdownId.value} .dropdown__item`)
@@ -34,6 +64,7 @@ watch(() => userInput.value, (newVal) => {
 
   dropdownFilter.value.setAttribute('data-show', '')
   const inputLowerCase = newVal.toLowerCase()
+
 
   Array.from(dropdownElems).forEach(function (element) {  
     element.textContent?.toLowerCase().includes(inputLowerCase) ? element.classList.remove('removed') : element.classList.add('removed')
@@ -63,7 +94,7 @@ const popperInstance = computed(() => {
       {
         name: 'offset',
         options: {
-          offset: [0, 2],
+          offset: [0, 6],
         }
       }
     ],
@@ -73,7 +104,7 @@ const popperInstance = computed(() => {
 
 const handleShowDropdown: () => void = () => {
   showDropdown.value = !showDropdown.value
-
+  
   if(showDropdown.value) {
     const inputElem = document.querySelector(`#${dropdownId.value} #dropdown__input--input`) as HTMLElement  
     if(inputElem) { // Only for Vitest
@@ -96,6 +127,7 @@ useDetectOutsideClick(componentRef, () => {
   showDropdown.value = false
   dropdownFilter.value.removeAttribute('data-show')
 })
+
 </script>
 
 <template>
@@ -106,15 +138,23 @@ useDetectOutsideClick(componentRef, () => {
     @click="handleShowDropdown"
   >
     <div :id="buttonId" class="dropdown__input--container">
-      <label class="dropdown__input--label" for="dropdown-input">{{ props.text }}</label>
       <div class="input-container">
         <input
           id="dropdown__input--input"
           v-model="userInput"
           type="text"
           name="dropdown-input"
-          :placeholder="props.placeholder"
+          :placeholder="labelPosition == 'inside' ? ' ' : props.placeholder"
         >
+        <label
+          class="dropdown__input--label"
+          :class="[`label-${labelPosition}`]"
+          for="dropdown-input"
+          :data-active="[showDropdown && labelPosition == 'inside' ? true : false]"
+        >
+          <span>{{ amountChecked }}</span>
+          {{ props.text }}
+        </label>
         <Icon
           v-if="userInput.length > 0"
           class="remove-input"
@@ -137,7 +177,7 @@ useDetectOutsideClick(componentRef, () => {
       class="dropdown--input"
       :class="dropdownId"
     >
-      <slot />
+      <slot ref="dropdownSlot" />
     </div>
   </section>
 </template>

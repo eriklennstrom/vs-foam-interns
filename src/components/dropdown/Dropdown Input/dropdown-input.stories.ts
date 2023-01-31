@@ -31,9 +31,14 @@ export default {
           description: 'Property for label text content in the dropdown input',
         },
         placeholder: {
-            control: { type: 'text' },
-            description: 'Property for placeholder text content inside the dropdown input field',
-          },
+          control: { type: 'text' },
+          description: 'Property for placeholder text content inside the dropdown input field',
+        },
+        position: {
+          control: { type: 'select' },
+          options: ['top', 'inside'],
+          description: 'Property for label position to the input container',
+        },
       },
   } as Meta<typeof FoamDropdownInput>;
   
