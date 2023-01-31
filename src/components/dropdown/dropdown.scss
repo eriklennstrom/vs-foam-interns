@@ -170,11 +170,13 @@
         }
         .color__item, .container__item {
             width: 100%;
+            
         }
     }
     .dropdown__filter--selected {
         .checkbox__item, .color__item, .container__item {
             background-color: colors.$dropdown-item-selected-light;
+          
         }
     }
 }
@@ -198,11 +200,13 @@
         flex-wrap: wrap;
         gap: 5px;
         color: rgba(255, 0, 0, 0.4);
+        padding:8px;
     }
     .dropdown__filter {
-        flex: 0 1 calc(33.33% - 5px);
+        flex: 0 1 calc(33.33% - 4px);
         display: flex;
         justify-content: center;
+        
         .container__item {
             flex-wrap: wrap;
             padding: 0;
@@ -215,9 +219,6 @@
             display: flex;
             gap: 8px;
             padding: 12px;
-        }
-        .container__item, .color__item {
-            margin-left: 4px;
         }
     }
 }
