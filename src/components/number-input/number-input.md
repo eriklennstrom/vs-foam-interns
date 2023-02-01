@@ -3,66 +3,96 @@ Number inputs are small inputs that can be changed using arrows or manually typi
 The number is then emitted up to parent directory.
 ## Usage
 
-
-
-
-`warning`, `circle-down`, `user-secret`, `arrow-down`, `arrow-alt-circle-down`
-
-If the icon property does not have the correct spelling and / or an icon that is not included, it will default to the `warning` icon.
+Add the <foam-number/> element and use the props to manage state of the input and bind it to a function that is emitted.
 
 ```html
 <!-- good -->
-<foam-icon icon="circle-down" />
+<foam-number v-model="emitFunction" />
 ```
 
 ```html
 <!-- bad -->
-<foam-icon icon="warning-icon" />
+<foam-number />
 ```
 
-> Note: The icons being used in this component are imported from Font Awesome.
+## Label
 
-## Size
+The prop `label` is an optional Label above the input to inform the user as of what is wanted.
 
-The size property is a number value to decide the font size of the icon in pixels.
-
-If a size property is not included, the icon size will default to 100% of the parents font size.
-
-Example : 
-
-```html
-<h2> Headline
-    <foam-icon icon="circle-down" />
-</h2>
-```
-
-The font size of the icon will follow the font size of the `<h2>` element.
 
 ```html
 <!-- good -->
-<foam-icon icon="circle-down" size="12" />
-<foam-icon icon="circle-down" />
+<foam-number label="Age" v-model="emitFunction" />
 ```
 
-```html
-<!-- bad -->
-<foam-icon icon="circle-down" size="12px" />
-```
 
-## Variant
+## Validation
 
-The variant property decides what variant will be used. Default is `primary`.
+To indicate to the user that something is Valid/Invalid use `isValid`= boolean - and `validationText` to add context.
 
-Variants that are available : `primary`, `secondary`, `danger`, `success`
 
 ```html
 <!-- good -->
-<foam-icon icon="circle-down" variant="success" />
+<foam-number isValid=true validationText="Success!" v-model="emitFunction"/>
 ```
+
+## Direction
+
+The direction prop defines the layout of the input.
+`horizontal` lays out the user controls on left and right of the input, this is the default layout if not provided.
+`vertical` lays out the user controls above and below the input.
 
 ```html
-<!-- bad -->
-<foam-icon icon="circle-down" variant="green" />
+<!-- good -->
+<foam-number direction='horizontal' v-model="emitFunction" />
+<foam-number direction='vertical' v-model="emitFunction" />
 ```
 
-The variant property `green`does not exist, and will default to `secondary`
+
+## Increment
+
+`increment` defines the value of the user control click to incriment or decrement the value. default is 1
+
+```html
+<!-- good -->
+<foam-number increment=10 v-model="emitFunction" />
+```
+
+
+
+
+## Disabled
+
+Using the `disabled` prop will disable the entire element and make it uninteractible and phasing it out
+
+```html
+<!-- good -->
+<foam-number disabled v-model="emitFunction" />
+```
+
+
+
+## Helpertext
+
+`helpertext` is a string prop that tells the user additional information as what the input needs or if label is not enough to inform the user
+
+```html
+<!-- good -->
+<foam-number helpertext="input atleast 5 numbers" v-model="emitFunction" />
+```
+
+
+## User restrictions
+
+To help guiding the user what the program needs you can restrict the user from entering an invalid input
+
+`maxLength` restricts the user to a specific length of the input ie. 2 = 99 default is `3` that is `999`.
+`maxValue` restricts the user to a specific number ie. `20` default is `999`
+
+```html
+<!-- good -->
+<foam-number maxLength= 10 v-model="emitFunction" />
+<foam-number maxValue= 1415 v-model="emitFunction" />
+```
+
+

@@ -11,7 +11,6 @@ const darkMode: () => void = () => {
 }
 </script>
 
-
 <template>
   <button @click="darkMode">
     DARK MODE!
@@ -24,7 +23,6 @@ body {
   background-color: #F6F8FA;
 }
 section {
-
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

@@ -14,10 +14,10 @@ export default {
     }
   },
   argTypes: {
-    text: {
+    label: {
       control: { type: 'text'},
       table: {
-        defaultValue: 'Label'
+        default: 'Label'
       }
     },
     isValid: {
@@ -86,7 +86,17 @@ export default {
         defaultValue: 'validation text',
       }
     },
+    change: {
+      table: {
+        disable: true,
+      }
+    },
     
+    'update:modelValue': {
+      table: {
+        disable: true,
+      }
+    },
   }
 } as Meta<typeof FoamNumbers>;
 
@@ -101,14 +111,10 @@ export default {
 }); 
 
 
-
-
-
 export const Default = Template.bind({});
 Default.args = {
-  text: 'Label'
-  
  };
+
 
 export const Variants: StoryFn<typeof FoamNumbers> = (args, { argTypes }) => ({
   components: { FoamNumbers },
@@ -123,8 +129,8 @@ export const Variants: StoryFn<typeof FoamNumbers> = (args, { argTypes }) => ({
 });
 
 Variants.argTypes = {
-  text: {
-    text: 'Label'
+  label: {
+    label: 'Label'
   },
 
   direction: {
@@ -134,7 +140,9 @@ Variants.argTypes = {
   }
 };
 
-export const ErrorHandle: StoryFn<typeof FoamNumbers> = (args, { argTypes }) => ({
+
+
+export const Validation: StoryFn<typeof FoamNumbers> = (args, { argTypes }) => ({
   components: { FoamNumbers },
   setup() {
     const test:Ref= ref(0)
@@ -149,10 +157,10 @@ export const ErrorHandle: StoryFn<typeof FoamNumbers> = (args, { argTypes }) => 
   </div>`
 });
 
-ErrorHandle.argTypes = {
+Validation.argTypes = {
 
-  text: {
-    text: 'Label'
+  label: {
+    label: 'Label'
   },
   validationText: {
     validationText: 'validationText'
@@ -164,7 +172,65 @@ ErrorHandle.argTypes = {
   },
 };
 
-function useArgs(): [any, any] {
-  throw new Error('Function not implemented.');
-}
+export const Helper: StoryFn<typeof FoamNumbers> = (args, { argTypes }) => ({
+  components: { FoamNumbers },
+  setup() {
+    const test:Ref= ref(0)
+    return { args, argTypes, test };
+  },
+  template: `
+      <foam-numbers v-bind="args" helpertext="Helpertext" v-model="test" />`
+});
 
+Helper.argTypes = {
+
+  label: {
+    label: 'Label'
+  },
+  validationText: {
+    validationText: 'validationText'
+  },
+  variant: {
+    table: {
+      disable: true
+    }
+  },
+};
+
+export const Disabled: StoryFn<typeof FoamNumbers> = (args, { argTypes }) => ({
+  components: { FoamNumbers },
+  setup() {
+    const test:Ref= ref(0)
+    return { args, argTypes, test };
+  },
+  template: `
+      <foam-numbers v-bind="args" disabled v-model="test" />`
+});
+
+Disabled.argTypes = {
+
+  label: {
+    label: 'Label'
+  },
+  validationText: {
+    validationText: 'validationText'
+  },
+  variant: {
+    table: {
+      disable: true
+    }
+  },
+};
+
+
+
+
+
+
+Variants.args = {
+  label: 'Label'
+ };
+
+ Validation.args = {
+  label: 'Label'
+ };
