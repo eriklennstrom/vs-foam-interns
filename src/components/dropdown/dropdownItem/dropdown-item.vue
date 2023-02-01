@@ -109,8 +109,9 @@ const popperInstance = computed(() => {
 })
 
 const handleShowSubDropdown: () => void = () => {
-  showSubDropdown.value = !showSubDropdown.value
   
+  showSubDropdown.value = !showSubDropdown.value
+
   if(showSubDropdown.value) {
     subDropdown.value.setAttribute('data-show', '')
     popperInstance.value.update()
@@ -124,19 +125,10 @@ const handleShowSubDropdown: () => void = () => {
 const handleCloseSubDropdown: (e:KeyboardEvent) => void = (e) => {
   e.stopPropagation()
   e.preventDefault()
+  showSubDropdown.value = !showSubDropdown.value
   const buttonElem = document.querySelector(`#${subDropdownId.value}`) as HTMLElement
   buttonElem.focus()
   subDropdown.value.removeAttribute('data-show')
-}
-
-function handleLeaveSubdropdown(e: FocusEvent) {
-  const currentElem = e.target
-  const lastElem = document.querySelector(`.${subDropdownId.value}`)?.lastElementChild as HTMLElement
-  
-  if(currentElem == lastElem) {
-    showSubDropdown.value = false 
-    subDropdown.value.removeAttribute('data-show')
-  }
 }
 
 const subDropdownRef = ref()
@@ -148,6 +140,19 @@ useDetectOutsideClick(subDropdownRef, () => {
   }
 })
 
+onMounted(() => {
+  const dropdownElem = document.querySelectorAll(`#sub-dropdown`)
+  
+  const elements = ref()
+   dropdownElem.forEach(el => { 
+    elements.value = el.querySelectorAll('a, button') 
+    elements.value.forEach((el: Element) => {
+      el.classList.add('sub-dropdown__item')
+    })
+   })
+}
+
+)
 </script>
 
 <template>
@@ -164,11 +169,10 @@ useDetectOutsideClick(subDropdownRef, () => {
     tabindex="0"
     :disabled="props.disabled ? disabled : null"
     :data-test="elementType"
-    @keydown.enter="elementType == 'route' ? goToRoute($event) : null"
-    @keydown="props.subdropdown ? handleShowSubDropdown() : useTabTrap($event)"
+    @keyup.enter="elementType == 'route' ? goToRoute($event) : props.subdropdown ? handleShowSubDropdown() : null"
+    @keydown="useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"
     @click="elementType == 'button' && !props.subdropdown ? emit('click') : props.subdropdown ? handleShowSubDropdown() : null"
-    @mouseenter="props.subdropdown ? handleShowSubDropdown() : null"
   >
     <AsyncSelectedIcon
       v-if="props.selected"
@@ -200,7 +204,7 @@ useDetectOutsideClick(subDropdownRef, () => {
     ref="subDropdown"
     :class="subDropdownId"
     :style="{ width: props.width ? props.width + 'px' : 'fit-content' }"
-    @focusout="handleLeaveSubdropdown($event)"
+
     @keyup.escape="handleCloseSubDropdown($event)"
     @mouseleave="handleShowSubDropdown()"
   >
