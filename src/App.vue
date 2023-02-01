@@ -10,8 +10,7 @@ const darkMode: () => void = () => {
 }
 </script>
 
-
-<template>  
+<template>
   <button @click="darkMode">
     DARK MODE!
   </button>
@@ -20,7 +19,10 @@ const darkMode: () => void = () => {
 
 <style scoped lang="scss">
 
-article {
+body {
+  background-color: #F6F8FA;
+}
+section {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
