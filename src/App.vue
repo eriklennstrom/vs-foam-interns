@@ -3,18 +3,22 @@
 import { ref, type Ref } from 'vue';
 // import Icons from '@/components/icons/icons.vue'
 // import Badge from '@/components/badge/badge.vue'
-import Numberinput from '@/components/number-input/number-input.vue'
+import Numberinput from '@/components/number-input/number-input.vue';
 
-const test: Ref<number> = ref(0)
+const test: Ref<number> = ref(0);
+
+const test2: Ref<number> = ref(0);
 
 const darkMode: () => void = () => {
-  const body = document.querySelector('body')
-  body?.classList.toggle('dark')
-  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body ? body.style.backgroundColor = '#F6F8FA' : null
-}
-
+  const body = document.querySelector('body');
+  body?.classList.toggle('dark');
+  body?.classList.contains('dark')
+    ? (body.style.backgroundColor = '#1F252F')
+    : body
+    ? (body.style.backgroundColor = '#F6F8FA')
+    : null;
+};
 </script>
-
 
 <template>
   <button @click="darkMode">
@@ -24,28 +28,28 @@ const darkMode: () => void = () => {
 
   <section>
     <Numberinput
-      v-model="test"
+      v-model="test2"
       :max-length="5"
       validation-text="validation text"
       :is-valid="true"
-      text="helpertext super duper lång helpertextlol"
+      label="helpertext super duper lång helpertextlol"
       helpertext="helpertext"
     />
 
     <Numberinput
       v-model="test"
-      :max-length="5"
+      :max-length="1"
       validation-text="validation text"
       :is-valid="false"
-      text="Label"
+      label="Label"
       helpertext="helpertext"
     />
 
     <Numberinput
       v-model="test"
-      text="Label that is longer"
+      label="Label that is longer"
       direction="vertical"
-      :max-length="5"
+      :max-length="3"
       :max-value="6999"
       :is-valid="true"
       validation-text="validation text"
@@ -54,10 +58,9 @@ const darkMode: () => void = () => {
 
     <Numberinput
       v-model="test"
-      text="Label that is the longest youve ever seen"
+      label="Label that is the longest youve ever seen"
       direction="vertical"
       :max-length="5"
-      :max-value="6999"
       :is-valid="false"
       validation-text="validation text"
       helpertext="helpertext"
@@ -65,12 +68,18 @@ const darkMode: () => void = () => {
 
     <Numberinput
       v-model="test"
-      text="Label"
+      label="Label"
       helpertext="helpertext"
       direction="vertical"
       :max-length="5"
       disabled
     />
+  </section>
+
+  <section class="lol">
+    <Numberinput label="Hours" :max-length="1" />
+    <Numberinput label="Minutes" :max-length="1" />
+    <Numberinput label="Seconds" :max-length="1" />
   </section>
 </template>
 
@@ -81,6 +90,7 @@ body {
 }
 section {
 
+section {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
