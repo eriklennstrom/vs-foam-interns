@@ -13,12 +13,24 @@ elements.value = [
     )
   ].filter(el => !el.hasAttribute('disabled'))
   
-if(
+  if(
     !currentElem.nextElementSibling?.hasAttribute('data-show') 
     && !currentElem.nextElementSibling?.classList.contains('sub-dropdown__item')
     && !currentElem.previousElementSibling?.classList.contains('sub-dropdown__item')
-  ) {     
-    elements.value = elements.value.filter(el => !el.classList.contains('sub-dropdown__item'))
+    && !currentElem.className.includes('sub__item')
+    ) {    
+      elements.value = elements.value.filter(el => !el.classList.contains('sub-dropdown__item'))
+}
+
+for(let i = 0; i < 5; i++) {
+  if(currentElem.classList.contains(`sub__item--${i}`)) {    
+    if(currentElem.nextElementSibling?.hasAttribute('data-show')) {
+        elements.value = elements.value.filter(el => el.classList.contains(`sub__item--${i + 1}`))
+    } else {
+
+      elements.value = elements.value.filter(el => el.classList.contains(`sub__item--${i}`))
+    }
+  }
 }
   return { elements }
 }
@@ -42,7 +54,7 @@ export function useTabTrap (e: KeyboardEvent) {
     if(currentElem.id.includes('sub-dropdown') && currentElem.nextElementSibling?.hasAttribute('data-show')) {
 
       parentElement = currentElem.nextElementSibling as HTMLElement      
-    } 
+    }
     
     currentElem.classList.contains('sub-dropdown__item') ? parentElement = currentElem.parentElement as HTMLElement : null
 

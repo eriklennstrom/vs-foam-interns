@@ -88,7 +88,7 @@ useDetectOutsideClick(componentRef, () => {
   >
     <FoamButton
       :id="buttonId"
-      class="button"
+      class="dropdown-button"
       dropdown
       :text="props.text"
       :variant="props.variant"

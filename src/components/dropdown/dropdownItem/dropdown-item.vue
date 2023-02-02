@@ -108,8 +108,9 @@ const popperInstance = computed(() => {
   });
 })
 
-const handleShowSubDropdown: () => void = () => {
-  
+const handleShowSubDropdown: (e: KeyboardEvent) => void = (e) => {
+  e.stopPropagation()
+  e.preventDefault()
   showSubDropdown.value = !showSubDropdown.value
 
   if(showSubDropdown.value) {
@@ -150,6 +151,20 @@ onMounted(() => {
       el.classList.add('sub-dropdown__item')
     })
    })
+   
+   const subdropdownEl = document.querySelector(`.${subDropdownId.value}`) as HTMLElement
+   for(let i = 0; i < 5; i++) {
+    if(subdropdownEl) {
+      let currentParent = subdropdownEl
+      for(let j = 0; j < i; j++) {
+        currentParent = currentParent.parentElement as HTMLElement
+      }
+      if(currentParent.id === 'dropdown') {
+        const childElems = subdropdownEl.children
+        Array.from(childElems).forEach(el => el.classList.add(`sub__item--${i}`))
+      }
+    }
+  }
 }
 
 )
@@ -169,10 +184,11 @@ onMounted(() => {
     tabindex="0"
     :disabled="props.disabled ? disabled : null"
     :data-test="elementType"
-    @keyup.enter="elementType == 'route' ? goToRoute($event) : props.subdropdown ? handleShowSubDropdown() : null"
+    @click="elementType == 'button' && !props.subdropdown ? emit('click') : props.subdropdown ? handleShowSubDropdown($event) : null"
+    @keyup.arrow-right="handleShowSubDropdown($event)"
+    @keyup.enter="elementType == 'route' ? goToRoute($event) : null"
     @keydown="useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"
-    @click="elementType == 'button' && !props.subdropdown ? emit('click') : props.subdropdown ? handleShowSubDropdown() : null"
   >
     <AsyncSelectedIcon
       v-if="props.selected"
@@ -204,9 +220,8 @@ onMounted(() => {
     ref="subDropdown"
     :class="subDropdownId"
     :style="{ width: props.width ? props.width + 'px' : '100%' }"
-
+    @keyup.arrow-left="handleCloseSubDropdown($event)"
     @keyup.escape="handleCloseSubDropdown($event)"
-    @mouseleave="handleShowSubDropdown()"
   >
     <slot />
   </div>

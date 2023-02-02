@@ -286,18 +286,21 @@ const darkMode: () => void = () => {
     </FoamDropdownInput> -->
   </article>
   <article>
-    <FoamDropdownButton>
+    <FoamDropdownButton :width="170">
       <FoamDropdownItem text="1" />
-      <FoamDropdownItem text="test 2" />
-      <FoamDropdownItem text="test 3" />
-      <FoamDropdownItem text="SUB DROP" icon="arrow-down" subdropdown>
-        <FoamDropdownItem text="test inuti 1" />
-        <FoamDropdownItem text="test inuti 2" />
+      <FoamDropdownItem text="First sub dropdown" icon="arrow-down" subdropdown>
+        <FoamDropdownItem text="First" />
+        <FoamDropdownItem text="Second sub dropdown" subdropdown>
+          <FoamDropdownItem text="second" />
+          <FoamDropdownItem text="second" />
+          <FoamDropdownItem text="Second sub dropdown" subdropdown>
+          <FoamDropdownItem text="second" />
+          <FoamDropdownItem text="second" />
+        </FoamDropdownItem>
+        </FoamDropdownItem>
+        <FoamDropdownItem text="first" />
       </FoamDropdownItem>
-      <FoamDropdownItem text="test 4" />
-      <FoamDropdownItem text="test 5" />
-      <FoamDropdownItem text="test 6" />
-      <FoamDropdownItem text="test 7" />
+      <FoamDropdownItem text="1" />
     </FoamDropdownButton>
     <FoamDropdownInput text="Links" placeholder="Search links...">
       <FoamDropdownItem text="Google" to="https://www.google.se" type="link" />
