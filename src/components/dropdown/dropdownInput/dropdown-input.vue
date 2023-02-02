@@ -63,10 +63,13 @@ watch(() => userInput.value, (newVal) => {
   
   const removedElems = document.querySelectorAll(`#${dropdownId.value} .removed`)
   const dropdownElem = document.querySelector(`.${dropdownId.value}`)
+  const dividerEls = document.querySelectorAll(`.${dropdownId.value} .divider`)
   if(dropdownElems.length == removedElems.length) {
     dropdownElem?.classList.add('empty-dropdown')
+    dividerEls.forEach(el => el.classList.add('empty-dropdown'))
   } else {
     dropdownElem?.classList.remove('empty-dropdown')
+    dividerEls.forEach(el => el.classList.remove('empty-dropdown'))
   }
 });
 
@@ -160,15 +163,15 @@ useDetectOutsideClick(componentRef, () => {
             :size="16"
           />
         </button>
+        <div
+          id="dropdown"
+          ref="dropdownFilter"
+          class="dropdown--input"
+          :class="dropdownId"
+        >
+          <slot />
+        </div>
       </div>
-    </div>
-    <div
-      id="dropdown"
-      ref="dropdownFilter"
-      class="dropdown--input"
-      :class="dropdownId"
-    >
-      <slot />
     </div>
   </section>
 </template>

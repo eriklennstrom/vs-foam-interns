@@ -1,8 +1,13 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
 
+.dropdown-container {
+    position: relative;
+}
+
 .empty-dropdown {
     border: none !important;
+    background-color: transparent !important;
 }
 
 #dropdown > :first-child, #sub-dropdown > :first-child {
@@ -26,6 +31,7 @@
     &[data-show] {
         display: flex;
         flex-direction: column;
+        width: 100%;
         min-width: min-content;
         max-height: fit-content;
     }
@@ -178,15 +184,6 @@
             background-color: colors.$dropdown-item-selected-light;
           
         }
-    }
-}
-
-#dropdown:has(.checkbox__item), 
-#dropdown:has(.dropdown__item), 
-#sub-dropdown:has(.checkbox__item), 
-#sub-dropdown:has(.dropdown__item) {
-    &[data-show] {
-        width: fit-content;
     }
 }
 

@@ -203,7 +203,7 @@ onMounted(() => {
     id="sub-dropdown"
     ref="subDropdown"
     :class="subDropdownId"
-    :style="{ width: props.width ? props.width + 'px' : 'fit-content' }"
+    :style="{ width: props.width ? props.width + 'px' : '100%' }"
 
     @keyup.escape="handleCloseSubDropdown($event)"
     @mouseleave="handleShowSubDropdown()"

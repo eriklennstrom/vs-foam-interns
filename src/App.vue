@@ -42,13 +42,12 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
-  <article class="dropdown-test">
+  <!-- <article class="dropdown-test">
     <FoamDropdownButton
       icon="circle-aaaaaaaaa"
       variant="danger"
       text="Test Dropdown"
       align="start"
-      :width="200"
     >
       <FoamDropdownItem
         icon="warning"
@@ -140,15 +139,15 @@ const darkMode: () => void = () => {
         @click="testFunctionTwo('Test dropdown item 2')"
       />
     </FoamDropdownButton>
-  </article>
+  </article> -->
 
   <button @click="darkMode">
     DARK MODE!
   </button>
 
-  <article>
+  <!-- <article>
     <FoamDropdownButton />
-    <FoamDropdownButton :width="200" variant="danger">
+    <FoamDropdownButton variant="danger">
       <FoamDropdownFilter type="color" color="red" text="Color" />
       <FoamDropdownFilter
         type="color"
@@ -180,7 +179,7 @@ const darkMode: () => void = () => {
       <FoamDropdownFilter type="color" color="black" text="Color" />
       <FoamDropdownFilter type="color" color="hotpink" text="Color" />
     </FoamDropdownButton>
-    <FoamDropdownButton :width="50" variant="primary">
+    <FoamDropdownButton variant="primary">
       <FoamDropdownFilter type="container" text="1jsakdjksajd adjksalj dsak" />
       <FoamDropdownFilter type="container" text="2" />
       <FoamDropdownFilter type="container" text="3" />
@@ -192,7 +191,7 @@ const darkMode: () => void = () => {
       <FoamDropdownFilter type="container" text="9" />
       <FoamDropdownFilter type="container" text="10" />
     </FoamDropdownButton>
-    <FoamDropdownButton :width="120" variant="danger-outline">
+    <FoamDropdownButton variant="danger-outline">
       <FoamDropdownFilter type="container" text="1" :selected="true" />
       <FoamDropdownFilter type="container" text="2" />
       <FoamDropdownFilter
@@ -238,9 +237,9 @@ const darkMode: () => void = () => {
         <FoamDropdownItem text="test inuti 2" />
       </FoamDropdownItem>
     </FoamDropdownButton>
-  </article>
+  </article> -->
   <article>
-    <FoamDropdownInput text="Test Checkbox Function Extra long text">
+    <!-- <FoamDropdownInput text="Test Checkbox Function Extra long text">
       <FoamDropdownFilter type="checkbox" text="Checkbox 1" />
       <FoamDropdownFilter
         type="checkbox"
@@ -284,7 +283,7 @@ const darkMode: () => void = () => {
       <FoamDropdownFilter type="container" text="9" />
       <FoamDropdownFilter type="container" text="10" />
       <FoamDropdownFilter type="container" text="10" />
-    </FoamDropdownInput>
+    </FoamDropdownInput> -->
   </article>
   <article>
     <FoamDropdownButton>
@@ -307,7 +306,7 @@ const darkMode: () => void = () => {
     </FoamDropdownInput>
   </article>
   <article>
-    <FoamDropdownButton text="Item Test" align="end" :width="250">
+    <!-- <FoamDropdownButton text="Item Test" align="end">
       <FoamDropdownItem text="Google" to="https://www.google.se" type="link" />
       <FoamDropdownItem text="Aftonbladet" to="https://www.aftonbladet.se" type="link" />
       <FoamDropdownItem text="Varnish Software" to="https://varnish-software.teamtailor.com/#jobs" type="link" />
@@ -390,7 +389,7 @@ const darkMode: () => void = () => {
         type="link"
         disabled
       />
-    </FoamDropdown>
+    </FoamDropdown> -->
   </article>
   <article>
     <div style="height: 100vh" />
