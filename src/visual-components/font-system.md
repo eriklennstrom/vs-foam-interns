@@ -6,7 +6,7 @@ Adding classes to desired element overrides current fontsize and font-family to 
 
 The class decides what typography will be used. Default is 1rem (16px).
 
-classes available : `.h1` , `.h2` , `.h3` , `.h4` , `.h5`, `.body1`, `.subtitle1`, `.body2`, `.subtitle2`, `.small`
+classes available : `.h1` , `.h2` , `.h3` , `.h4` , `.h5`, `.body1`, `.subtitle1`, `.body2`, `.subtitle2`, `.small` `.overline`
 
 ```html
 <!-- good -->
@@ -37,13 +37,13 @@ To Embellish information given add the following classes to any element:
 
 all variables are found in a list in the css if you want to use the sizes for other use in your scss:
 
-valid font sizes are: `h1` , `h2` , `h3` , `h4` , `h5`, `body1`, `subtitle1`, `body2`, `subtitle2`, `small`
+valid font sizes are: `h1` , `h2` , `h3` , `h4` , `h5`, `body1`, `subtitle1`, `body2`, `subtitle2`, `small`, `.overline`
 
 replace FONT-SIZE with any of these variables
 
 
 
-```css
+```html
 font-size: map-get(font-system.$font-size, <FONT-SIZE>)
 ```
 
