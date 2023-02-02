@@ -45,6 +45,6 @@ describe('Input', () => {
   it('limits the max length of input value to 3 characters', async () => {
     const input = wrapper.find('input')
     input.setValue(1000)
-    await expect(input.element.value).toBe('100')
+    await expect(input.element.value).toBe('999')
   })
 })

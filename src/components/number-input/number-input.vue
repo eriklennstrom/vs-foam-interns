@@ -50,6 +50,9 @@ onBeforeMount(() => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function emitInput(e: any) {
+  if (e.value > props.maxValue) {
+  e.value = props.maxValue
+}
   if (e.value == '') {
     e.value = 0
   }
@@ -65,13 +68,22 @@ const verticalAlignment = props.direction == 'vertical' ? 'verticalStyle' : ''
 
 function increment() {
   const updatedValue = props.modelValue + props.increment
+  if (updatedValue > props.maxValue) {
+    emit('update:modelValue', props.maxValue)
+  }
   if (updatedValue.toString().length <= maxLengthRef.value && updatedValue <= props.maxValue)
     emit('update:modelValue', props.modelValue + props.increment)
 }
 
 function decrement() {
-  if (props.modelValue > 0)
+  const updatedValue = props.modelValue - props.increment
+  if (updatedValue < 0) {
+    emit('update:modelValue', 0)
+  }
+  else if (props.modelValue > 0)
     emit('update:modelValue', props.modelValue - props.increment)
+
+
 }
 
 const horizontalWidthCalculation = (maxLengthRef.value *12).toString()
@@ -161,12 +173,12 @@ const AsyncIcon = computed(() => {
       </div>
     </div>
     <div
-      :class="['userInstructions',
-               props.direction==='horizontal' ? 'horizontal__helperoffset' : '']"
+      :class="['userInstructions',]"
     >
       <p
         v-if="props.isValid != null"
         :class="[
+          props.disabled ? 'disabled' : '',
           props.isValid == true ? 'successMessageText' : '',
           props.isValid == false ? 'errorMessageText' : '',
         ]"
