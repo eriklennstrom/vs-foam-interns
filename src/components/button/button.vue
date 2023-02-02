@@ -59,11 +59,7 @@ const AsyncDropdownIcon = computed(() => {
 </script>
 
 <template>
-  <button
-    :class="[buttonClass, props.disabled ? 'disabled' : '']"
-    :tabindex="[props.disabled ? '-1' : null]"
-    @click="emit('click')"
-  >
+  <button :class="[buttonClass, props.disabled ? 'disabled' : '']" :disabled="props.disabled" @click="emit('click')">
     <AsyncIcon v-if="props.icon" :icon="props.icon" />
     {{ props.text }}
     <AsyncDropdownIcon
