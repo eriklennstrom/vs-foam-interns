@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faUserSecret,
@@ -18,7 +18,6 @@ const wrapper = mount(Input, {propsData: {
   disabled: false,
   modelValue: 0,
   helpertext: 'Test Helper Text',
-  defaultvalue: 0,
   maxLength: 3,
   maxValue: 999,
   direction: 'horizontal',
