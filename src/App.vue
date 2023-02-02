@@ -3,7 +3,10 @@
 import Icons from '@/components/icons/icons.vue'
 import Badge from '@/components/badge/badge.vue'
 import Buttonvue from '@/components/button/button.vue'
+import Chip from '@/components/chip/chip.vue'
 import { ref } from 'vue';
+
+
 
 
 
@@ -13,20 +16,32 @@ const darkMode: () => void = () => {
   body?.classList.toggle('dark')
 
   body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body ? body.style.backgroundColor = '#F6F8FA' : null
+
+
+
+// DARK MODE
+
+const darkMode: () => void = () => {
+  const body = document.querySelector('body')
+  body?.classList.toggle('dark')
+  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body? body.style.backgroundColor = '#F6F8FA' : null
+
 }
 
 </script>
 
 <template>
-  <Badge variant="primary" text="yep" icon="circle-down" />
-  
-
   <button @click="darkMode">
     DARK MODE!
   </button>
+
 </template>
 
 <style scoped lang="scss">
+
+body {
+  background-color: #F6F8FA;
+}
 section {
   display: flex;
   flex-wrap: wrap;
