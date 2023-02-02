@@ -3,9 +3,9 @@ import {
   defineEmits,
   defineAsyncComponent,
   computed,
-ref,
-type Ref,
-onBeforeMount
+  ref,
+  type Ref,
+  onBeforeMount
 } from 'vue';
 
 
@@ -17,7 +17,6 @@ type InputProps = {
   disabled?: boolean
   modelValue?: number
   helpertext?: string
-  defaultvalue?: number
   maxLength?: number
   maxValue?: number
   direction?: 'horizontal' | 'vertical'
@@ -35,24 +34,23 @@ const props = withDefaults(defineProps<InputProps>(), {
   disabled: false,
   helpertext: '',
   modelValue: 0,
-  defaultvalue: 0,
   maxLength: 3,
   maxValue: 999,
   direction: 'horizontal',
   increment: 1
 });
 
-const maxLengthRef:Ref = ref(props.maxLength)
+const maxLengthRef: Ref = ref(props.maxLength)
 onBeforeMount(() => {
- if(maxLengthRef.value >14) 
- maxLengthRef.value = 14
+  if (maxLengthRef.value > 14)
+    maxLengthRef.value = 14
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function emitInput(e: any) {
   if (e.value > props.maxValue) {
-  e.value = props.maxValue
-}
+    e.value = props.maxValue
+  }
   if (e.value == '') {
     e.value = 0
   }
@@ -86,9 +84,9 @@ function decrement() {
 
 }
 
-const horizontalWidthCalculation = (maxLengthRef.value *12).toString()
+const horizontalWidthCalculation = (maxLengthRef.value * 12).toString()
 const verticalWidthCalculation = (maxLengthRef.value * 9).toString()
-const verticalWidthCalculationAlignment = (verticalWidthCalculation  +40).toString()
+const verticalWidthCalculationAlignment = (verticalWidthCalculation + 40).toString()
 
 
 // dynamic component import
@@ -112,7 +110,7 @@ const AsyncIcon = computed(() => {
     </div>
     <div
       class="alignment__container"
-      :style="{ width: props.direction == 'vertical' ? verticalWidthCalculationAlignment + ' px' : ''}"
+      :style="{ width: props.direction == 'vertical' ? verticalWidthCalculationAlignment + ' px' : '' }"
     >
       <div
         v-if="props.direction == 'vertical'"
@@ -172,9 +170,7 @@ const AsyncIcon = computed(() => {
         <AsyncIcon icon="chevron-down" />
       </div>
     </div>
-    <div
-      :class="['userInstructions',]"
-    >
+    <div :class="['userInstructions',]">
       <p
         v-if="props.isValid != null"
         :class="[
@@ -195,7 +191,7 @@ const AsyncIcon = computed(() => {
           icon="check"
           variant="success"
         />
-        
+
         {{ props.validationText }}
       </p>
       <p class="helperMessageText">
