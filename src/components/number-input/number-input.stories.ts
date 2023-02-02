@@ -56,7 +56,7 @@ export default {
       }
     },
     maxLength: {
-      control: { type: 'number' },
+      control: { type: 'range', min:1, max:14 },
       table: {
         defaultValue: '',
       }
@@ -97,6 +97,11 @@ export default {
         disable: true,
       }
     },
+    modelValue:{
+      table: {
+        disable: true,
+      }
+    }
   }
 } as Meta<typeof FoamNumbers>;
 
