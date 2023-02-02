@@ -8,38 +8,35 @@ library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown)
 
 describe('Input', () => {
 
-  const textVariable = 'Varnish'
-
-
-  it.todo, ()=>{
+/*   it.todo, ()=>{
     // Emits correct value (click)
     // Check that all colors (classes) is present, primary, danger when setting variant
     // What happens if you set a variant that doesn't exist?
     // What happens if you don't set any text?
     // What happens if you don't select any icons?
-  }
+  } */
 
-
-  it('renders button properly', () => {
-    const wrapper = mount(Input, { propsData: { variant: 'danger', text: textVariable } })
-    expect(wrapper.classes()).toContain('button--danger')
-  })
-
-  it('renders text correctly', () => {
-
-    const wrapper = mount(Input, { propsData: { variant: 'danger', text: textVariable } })
-    expect(wrapper.vm.text).toBe(textVariable)
-  })
-
-  it('renders correct color', () => {
-    const wrapper = mount(Input, { propsData: { variant: 'primary', text: textVariable } })
-    console.log(wrapper.classes())
-    expect(wrapper.classes()).toContain('Input--primary');
+  describe('Input', () => {
+    const wrapper = mount(Input, { propsData: {
+      size: 'L',
+      variant: 'text',
+      isValid: true,
+      disabled: false,
+      text:'Test'
+    }});
+    
+    it('displays the label', () => {
+      const label = wrapper.find('h2')
+      expect(label.text()).toBe('Test')
+    })
   })
 
 
-  it('render icon properly', () => {
-    const wrapper = mount(Input, { propsData: { isValid=true  } })
-    expect(wrapper.findComponent(Icons))
-  })
+
+
+
+
 })
+
+
+
