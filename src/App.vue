@@ -7,12 +7,6 @@ import { ref } from 'vue';
 
 
 
-const buttonIcon1 = ref(false)
-const iconflip: () => void = () => {
-  buttonIcon1.value = !buttonIcon1.value
-}
-
-
 const darkMode: () => void = () => {
   const body = document.querySelector('body')
 
@@ -24,10 +18,8 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
-
-  <Badge variant="primary" text="yep" icon="circle-down"/>
+  <Badge variant="primary" text="yep" icon="circle-down" />
   
-
 
   <button @click="darkMode">
     DARK MODE!
