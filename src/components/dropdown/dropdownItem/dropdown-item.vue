@@ -1,4 +1,4 @@
-<script setup lang="ts">import { computed, defineAsyncComponent, onMounted, ref, type Ref} from 'vue';
+<script setup lang="ts">import { computed, defineAsyncComponent, onMounted, ref, useSlots, type Ref} from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { defaultTypeMixin, dropdownItemTypes } from '@/helpers/mixins/jsMixins';
 import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap'
@@ -18,13 +18,18 @@ type DropdownPropsItem = {
     subdropdown?: boolean
 };
 
+type SlotName = {
+    __name : string
+   }
+
 const props = withDefaults(defineProps<DropdownPropsItem>(), {
     text: '',
     icon: null,
     type: 'button',
     to: '/',
     secondaryText: null,
-    width: null
+    width: null,
+    subdropdown: false
 });
 
 const emit = defineEmits(['click']);
@@ -37,6 +42,7 @@ const dropdownId = ref<string>('dropdown-' + uuidv4())
 const showSubDropdown: Ref = ref<boolean>(false);
 const subDropdownId = ref<string>('sub-dropdown-' + uuidv4())
 const subDropdown: Ref = ref()
+const displaySubdropdown = ref<boolean>(props.subdropdown)
 
 onMounted(() => {
   elementType.value != 'button' ? selectedItem.value = false : null
@@ -151,16 +157,29 @@ onMounted(() => {
       el.classList.add('sub-dropdown__item')
     })
    })
+
+   const slots = useSlots()
+   if(slots.default)
+    Array.from(slots.default()).forEach(function (element) {  
+      const slotElems = element.type as SlotName         
+      slotElems.__name != 'dropdown-item' ? displaySubdropdown.value = false : null     
+  });
    
    const subdropdownEl = document.querySelector(`.${subDropdownId.value}`) as HTMLElement
    for(let i = 0; i < 5; i++) {
-    if(subdropdownEl) {
-      let currentParent = subdropdownEl
-      for(let j = 0; j < i; j++) {
-        currentParent = currentParent.parentElement as HTMLElement
-      }
-      if(currentParent.id === 'dropdown') {
-        const childElems = subdropdownEl.children
+     if(subdropdownEl) {
+       const childElems = subdropdownEl.children
+     
+       let currentParent = subdropdownEl
+       for(let j = 0; j < i; j++) {
+         currentParent = currentParent.parentElement as HTMLElement
+        }
+        if(currentParent.id === 'dropdown') {
+          // Max sub dropdown layers set to 2
+          if(i > 2) { 
+            displaySubdropdown.value = false; 
+            return
+          }
         Array.from(childElems).forEach(el => el.classList.add(`sub__item--${i}`))
       }
     }
@@ -173,7 +192,7 @@ onMounted(() => {
 <template>
   <component
     :is="elementType == 'link' ? 'a' : elementType == 'route' ? 'router-link' : 'button'"
-    :id="props.subdropdown ? subDropdownId : dropdownId"
+    :id="displaySubdropdown ? subDropdownId : dropdownId"
     ref="subDropdownRef"
     :role="props.disabled ? 'disabled' : null" 
     :href="elementType == 'link' ? props.to : null"
@@ -184,7 +203,7 @@ onMounted(() => {
     tabindex="0"
     :disabled="props.disabled ? disabled : null"
     :data-test="elementType"
-    @click="elementType == 'button' && !props.subdropdown ? emit('click') : props.subdropdown ? handleShowSubDropdown($event) : null"
+    @click="elementType == 'button' && !displaySubdropdown ? emit('click') : displaySubdropdown ? handleShowSubDropdown($event) : null"
     @keyup.arrow-right="handleShowSubDropdown($event)"
     @keyup.enter="elementType == 'route' ? goToRoute($event) : null"
     @keydown="useTabTrap($event)"
@@ -204,18 +223,18 @@ onMounted(() => {
         {{ secondaryText }}
       </p>
     </div>
-    <AsyncIcon v-if="props.icon && !props.subdropdown" :size="10" :icon="props.icon" />
+    <AsyncIcon v-if="props.icon && !displaySubdropdown" :size="10" :icon="props.icon" />
     <AsyncSubdropdownIcon
-      v-if="props.subdropdown"
+      v-if="displaySubdropdown"
       class="subdropdown-icon"
       :dropdown-open="[showSubDropdown]"
       :size="10"
       icon="caret-down"
     />
-    <p v-if="props.subdropdown" />
+    <p v-if="displaySubdropdown" />
   </component>
   <div
-    v-if="elementType == 'button' && props.subdropdown"
+    v-if="elementType == 'button' && displaySubdropdown"
     id="sub-dropdown"
     ref="subDropdown"
     :class="subDropdownId"

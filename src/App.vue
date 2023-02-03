@@ -291,12 +291,12 @@ const darkMode: () => void = () => {
       <FoamDropdownItem text="First sub dropdown" icon="arrow-down" subdropdown>
         <FoamDropdownItem text="First" />
         <FoamDropdownItem text="Second sub dropdown" subdropdown>
-          <FoamDropdownItem text="second" />
+          <FoamDropdownItem text="Filter" />
           <FoamDropdownItem text="second" />
           <FoamDropdownItem text="Second sub dropdown" subdropdown>
-          <FoamDropdownItem text="second" />
-          <FoamDropdownItem text="second" />
-        </FoamDropdownItem>
+            <FoamDropdownItem text="second" />
+            <FoamDropdownItem text="second" />
+          </FoamDropdownItem>
         </FoamDropdownItem>
         <FoamDropdownItem text="first" />
       </FoamDropdownItem>

@@ -148,7 +148,7 @@ The ``subdropdown`` property marks a dropdown item with the type ``button`` to b
 
 The content that should be included in the subdropdown is in a ``<slot>`` element and should be used in the same way as dropdown-button.
 
-> Note - ``subdropdown`` only works with type ``button``
+> Note - ``subdropdown`` only works with the component ``FoamDropdownItem />`` type ``button`` and max layers are 3.
 >> Note - While the ``subdropdown`` property is added and ``true``, emits are disabled.
 
 ```html
