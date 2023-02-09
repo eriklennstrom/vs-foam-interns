@@ -15,7 +15,6 @@ import {
 } from '@/helpers/mixins/jsMixins';
 import('@/components/button/button.vue');
 
-
 type InputProps = {
   text: string
   variant?: string
