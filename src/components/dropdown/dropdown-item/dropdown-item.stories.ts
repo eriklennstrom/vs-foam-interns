@@ -57,6 +57,11 @@ export default {
           control: { type: 'number' },
           description: 'Property for subdropdown container width',
         },
+        iconAlign: {
+          control: { type: 'seclect'},
+          options: ['right', 'left'],
+          description : 'Property to place the chosen icon to the right or left of the text'
+        },
         click: {
           table: {
             disable: true,
@@ -121,6 +126,11 @@ export default {
             disable: true,
         },
     },  
+    iconAlign: {
+      table: {
+          disable: true,
+      },
+    },  
     width: {
         table: {
             disable: true,
@@ -174,6 +184,80 @@ export default {
         table: {
             disable: true,
         },
+    },  
+    iconAlign: {
+      table: {
+          disable: true,
+      },
+    },  
+    width: {
+        table: {
+            disable: true,
+        },
+    },
+    subdropdown: {
+        table: {
+            disable: true,
+        },
+    },
+    secondaryText: {
+      table: {
+        disable: true
+      }
+    },
+    to: {
+      table: {
+        disable: true
+      }
+    },
+  };
+
+  export const IconsAlign: StoryFn<typeof FoamDropdownButton> = (args, { argTypes }) => ({
+    components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
+    setup() {
+      const iconTypes = ['warning', 'arrow-down', 'circle-down', 'xmark']
+      return { args, argTypes, iconTypes };
+    },
+    template: `
+      <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
+        <div>
+          <p>Icons aligned right</p>
+          <foam-dropdown-button variant="primary" text="Icon Right" >
+            <foam-dropdown-item v-bind="args"  v-for="icon in iconTypes" :key="type" :icon="icon" :text="icon" />
+          </foam-dropdown-button>
+        </div>
+        <div>
+          <p>Icons aligned left</p>
+          <foam-dropdown-button variant="primary" text="Icon left" >
+            <foam-dropdown-item v-bind="args" v-for="icon in iconTypes" :key="type" :icon="icon" :text="icon"  iconAlign="left" />
+          </foam-dropdown-button>
+        </div>
+      </div>
+    `,
+  }); 
+
+ 
+
+  IconsAlign.argTypes = {
+    type: {
+        table: {
+            disable: true,
+        },
+    },
+    text: {
+        table: {
+            disable: true,
+        },
+    },
+    icon: {
+        table: {
+            disable: true,
+        },
+    },  
+    iconAlign: {
+      table: {
+          disable: true,
+      },
     },  
     width: {
         table: {
@@ -229,6 +313,11 @@ export default {
         table: {
             disable: true,
         },
+    },  
+    iconAlign: {
+      table: {
+          disable: true,
+      },
     },  
     width: {
         table: {
@@ -302,6 +391,11 @@ export default {
             disable: true,
         },
     },  
+    iconAlign: {
+      table: {
+          disable: true,
+      },
+    },  
     width: {
         table: {
             disable: true,
@@ -363,6 +457,11 @@ export default {
         table: {
             disable: true,
         },
+    },  
+    iconAlign: {
+      table: {
+          disable: true,
+      },
     },  
     subdropdown: {
         table: {

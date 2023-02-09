@@ -31,9 +31,12 @@
     &[data-show] {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: fit-content;
         min-width: min-content;
         max-height: fit-content;
+        &:has( p) {
+            width: 100% !important;
+        }
     }
     .removed {
         display: none !important;
@@ -41,10 +44,18 @@
     // Dropdown Item
     .dropdown__item {
         all: unset;
+        width: max-content;
         padding: 12px;
         cursor: pointer;
         color: colors.$dropdown-item-text-light;
         background-color: colors.$dropdown-item-bg-light;
+        &:has(p) {
+            min-width: fit-content;
+            width: calc(100% - 24px);
+            p {
+                white-space: nowrap;
+            }
+        }
         &:hover {
             background-color: colors.$dropdown-hover-bg-light;
         }
@@ -216,7 +227,7 @@
         .color__item {
             display: flex;
             gap: 8px;
-            padding: 12px;
+            padding: 10%;
         }
     }
 }
@@ -400,7 +411,6 @@ body.dark {
                         color: colors.$dropdown-border-color-light;
                     }
                 }
-
             }
         }
     }

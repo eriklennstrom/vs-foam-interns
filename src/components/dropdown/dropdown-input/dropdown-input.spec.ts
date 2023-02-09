@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import DropdownInput from '@/components/dropdown/dropdownInput/dropdown-input.vue'
-import DropdownItem from '@/components/dropdown/dropdownItem/dropdown-item.vue'
-import DropdownFilter from '@/components/dropdown/dropdownFilter/dropdown-filter.vue'
-import DropdownDivider from '@/components/dropdown/dropdownDivider/dropdown-divider.vue'
+import DropdownInput from '@/components/dropdown/dropdown-input/dropdown-input.vue'
+import DropdownItem from '@/components/dropdown/dropdown-item/dropdown-item.vue'
+import DropdownFilter from '@/components/dropdown/dropdown-filter/dropdown-filter.vue'
+import DropdownDivider from '@/components/dropdown/dropdown-divider/dropdown-divider.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 library.add(faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown)
@@ -14,7 +14,7 @@ describe('DropdownFilter', () => {
         expect(wrapper.classes()).toContain('dropdown__filter--container')
         expect(wrapper.vm.$props).toContain(
             {
-                text: '',
+                text: 'Label',
             }
         )        
     })
@@ -22,9 +22,9 @@ describe('DropdownFilter', () => {
     it('toggles dropdown on click', async () => {
         const wrapper = mount(DropdownInput)
         await wrapper.trigger('click')
-        expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(true)
+        expect(wrapper.html()).toContain('data-active="true"')
         await wrapper.trigger('click')
-        expect(wrapper.element.children[1].hasAttribute('data-show')).toBe(false)
+        expect(wrapper.html()).toContain('data-active="false"')
     })
 
     it('renders components correctly when added into the slot', () => {

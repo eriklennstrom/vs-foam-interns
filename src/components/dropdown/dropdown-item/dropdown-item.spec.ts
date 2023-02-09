@@ -19,7 +19,8 @@ describe('DropdownItem', () => {
                 selected: false, 
                 secondaryText : null, 
                 width: null, 
-                subdropdown: false
+                subdropdown: false,
+                iconAlign: 'right'
             }
         )        
     })
@@ -81,4 +82,9 @@ describe('DropdownItem', () => {
         const wrapper = mount(DropdownItem, {propsData : {type : 'button', text : 'Test', subdropdown: true, width: 250}})      
         expect(wrapper.html()).toContain('style="width: 250px;"')          
       })
+
+      it('renders the icon on the correct position properly', async () => {
+        const wrapper = mount(DropdownItem, {propsData : {type : 'button', text : 'Test', iconAlign: 'left'}})      
+        expect(wrapper.vm.$props).toContain({ iconAlign: 'left' })        
+    })       
 })

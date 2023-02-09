@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import FoamDropdownButton from '@/components/dropdown/dropdownButton/dropdown-button.vue';
-import FoamDropdownItem from '@/components/dropdown/dropdownItem/dropdown-item.vue';
-import FoamDropdownDivider from '@/components/dropdown/dropdownDivider/dropdown-divider.vue';
-import FoamDropdownInput from '@/components/dropdown/dropdownInput/dropdown-input.vue';
-import FoamDropdownFilter from '@/components/dropdown/dropdownFilter/dropdown-filter.vue';
+import FoamDropdownButton from '@/components/dropdown/dropdown-button/dropdown-button.vue';
+import FoamDropdownItem from '@/components/dropdown/dropdown-item/dropdown-item.vue';
+import FoamDropdownDivider from '@/components/dropdown/dropdown-divider/dropdown-divider.vue';
+import FoamDropdownInput from '@/components/dropdown/dropdown-input/dropdown-input.vue';
+import FoamDropdownFilter from '@/components/dropdown/dropdown-filter/dropdown-filter.vue';
 import FoamDropdown from '@/components/dropdown/dropdown.vue'
 import { ref } from 'vue';
 
@@ -287,9 +287,15 @@ const darkMode: () => void = () => {
   </article>
   <article>
     <FoamDropdown role="button" variant="primary" text="Position">
-      <FoamDropdownItem text="Icon Left" icon="warning" icon-align="left" />
+      <FoamDropdownItem
+        text="Icon Left"
+        secondary-text="Testar"
+        icon="warning"
+        icon-align="left"
+      />
       <FoamDropdownItem text="Icon Right" icon="warning" icon-align="right" />
     </FoamDropdown>
+    <FoamDropdown role="input" />
     <!-- <FoamDropdownButton :width="170">
       <FoamDropdownItem text="Icon Left" icon="warning" iconposition="left" />
       <FoamDropdownItem text="Icon Right" icon="warning" iconposition="left" />

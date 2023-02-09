@@ -18,6 +18,9 @@ The ``selected`` property is a boolean that decides if the dropdown item is sele
 The ``to`` property is a string that decides the url link. 
 > Note - Only usable with type values ``link`` and ``route`` 
 
+The ``iconAlign`` property is to position the chosen icon on the ``right`` or ``left`` of the text inside the DropdownItem
+> Default is ``right`` 
+
 The ``subdropdown``propertyp is a boolean that can be used with type ``button`` to create a secondary dropdown inside the dropdown item.
 
 ## Type
@@ -141,6 +144,21 @@ If the icon property does not have the correct spelling and / or an icon that is
 ```
 
 > Note: The icons being used in this component are imported from Font Awesome.
+
+## Icon Align
+
+Property that decides the position of the icon, if added, compared to the text
+
+Acceptable values are ``right`` and ``left``
+
+> Note - default value is ``right``
+
+```html
+<!-- good -->
+    <foam-dropdown-item text="Icon Left" icon="warning" iconAlign="left" />
+    <foam-dropdown-item text="Icon Right" icon="warning" iconAlign="right" />
+    <foam-dropdown-item text="Icon Right" icon="warning" />
+```
 
 ## Subdropdown
 
