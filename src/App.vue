@@ -34,7 +34,7 @@ const test= ref('')
   <h1>{{ test }}</h1>
   
   <Inputvue
-    size="S"
+    size="sm"
     v-model="test"
     validation-text="Validation-text"
     variant="number"
@@ -55,7 +55,7 @@ const test= ref('')
   />
   <Inputvue
     v-model="test"
-    size="S"
+    size="sm"
     :is-valid="false"
     validation-text="Validation-text"
     variant="text"
@@ -67,7 +67,7 @@ const test= ref('')
 
   <Inputvue
     v-model="test"
-    size="M"
+    size="lg"
     variant="text"
     text="Neutral"
     placeholder="placeholder"
@@ -85,6 +85,7 @@ const test= ref('')
     variant="number"
     text="Disabled"
     placeholder="placeholder"
+    disabled
   />
   <Inputvue
     v-model="test"
