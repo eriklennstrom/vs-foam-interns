@@ -1,6 +1,6 @@
 <script setup lang="ts">import { computed, defineAsyncComponent, onMounted, ref, useSlots, type Ref} from 'vue';
 import { v4 as uuidv4 } from 'uuid';
-import { defaultTypeMixin, dropdownItemTypes } from '@/helpers/mixins/jsMixins';
+import { defaultTypeMixin, dropdownItemTypes, dropdownIconPos } from '@/helpers/mixins/jsMixins';
 import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap'
 import { useRouter } from 'vue-router'
 import { createPopper } from '@popperjs/core';
@@ -16,6 +16,7 @@ type DropdownPropsItem = {
     secondaryText?: string | null
     width?: number | null
     subdropdown?: boolean
+    iconAlign?: string
 };
 
 type SlotName = {
@@ -29,7 +30,8 @@ const props = withDefaults(defineProps<DropdownPropsItem>(), {
     to: '/',
     secondaryText: null,
     width: null,
-    subdropdown: false
+    subdropdown: false,
+    iconAlign : 'right'
 });
 
 const emit = defineEmits(['click']);
@@ -43,8 +45,10 @@ const showSubDropdown: Ref = ref<boolean>(false);
 const subDropdownId = ref<string>('sub-dropdown-' + uuidv4())
 const subDropdown: Ref = ref()
 const displaySubdropdown = ref<boolean>(props.subdropdown)
+const iconPos = ref<string>(props.iconAlign)
 
 onMounted(() => {
+  
   elementType.value != 'button' ? selectedItem.value = false : null
   !props.text ? secondaryText.value = null : null
 })
@@ -52,6 +56,12 @@ onMounted(() => {
 defaultTypeMixin(dropdownItemTypes).verifyType(props.type)
   ? ''
   : (elementType.value = 'button');
+
+
+defaultTypeMixin(dropdownIconPos).verifyType(iconPos.value)
+  ? ''
+  : (iconPos.value = 'right');
+
 
 // dynamic component import
 const AsyncIcon = computed(() => {
@@ -187,6 +197,7 @@ onMounted(() => {
 }
 
 )
+
 </script>
 
 <template>
@@ -215,6 +226,7 @@ onMounted(() => {
       :size="8"
       variant="primary"
     />
+    <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'left'" :size="10" :icon="props.icon" />
     <div v-if="props.text" class="text-container">
       <p>
         {{ props.text }}
@@ -223,7 +235,7 @@ onMounted(() => {
         {{ secondaryText }}
       </p>
     </div>
-    <AsyncIcon v-if="props.icon && !displaySubdropdown" :size="10" :icon="props.icon" />
+    <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'right'" :size="10" :icon="props.icon" />
     <AsyncSubdropdownIcon
       v-if="displaySubdropdown"
       class="subdropdown-icon"

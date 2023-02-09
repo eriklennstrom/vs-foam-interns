@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import DropdownItem from '@/components/dropdown/dropdownItem/dropdown-item.vue'
+import DropdownItem from '@/components/dropdown/dropdown-item/dropdown-item.vue'
 import Icons from '@/components/icons/icons.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons';

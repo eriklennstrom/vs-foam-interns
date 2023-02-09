@@ -286,12 +286,17 @@ const darkMode: () => void = () => {
     </FoamDropdownInput> -->
   </article>
   <article>
-    <FoamDropdownButton :width="170">
-      <FoamDropdownItem text="1" />
+    <FoamDropdown role="button" variant="primary" text="Position">
+      <FoamDropdownItem text="Icon Left" icon="warning" icon-align="left" />
+      <FoamDropdownItem text="Icon Right" icon="warning" icon-align="right" />
+    </FoamDropdown>
+    <!-- <FoamDropdownButton :width="170">
+      <FoamDropdownItem text="Icon Left" icon="warning" iconposition="left" />
+      <FoamDropdownItem text="Icon Right" icon="warning" iconposition="left" />
       <FoamDropdownItem text="First sub dropdown" icon="arrow-down" subdropdown>
         <FoamDropdownItem text="First" />
         <FoamDropdownItem text="Second sub dropdown" subdropdown>
-          <FoamDropdownItem text="Filter" />
+          <FoamDropdownItem text="Filter" icon="warning" />
           <FoamDropdownItem text="second" />
           <FoamDropdownItem text="Second sub dropdown" subdropdown>
             <FoamDropdownItem text="second" />
@@ -306,7 +311,7 @@ const darkMode: () => void = () => {
       <FoamDropdownItem text="Google" to="https://www.google.se" type="link" />
       <FoamDropdownItem text="Aftonbladet" to="https://www.aftonbladet.se" type="link" />
       <FoamDropdownItem text="Varnish Software" to="https://varnish-software.teamtailor.com/#jobs" type="link" />
-    </FoamDropdownInput>
+    </FoamDropdownInput> -->
   </article>
   <article>
     <!-- <FoamDropdownButton text="Item Test" align="end">
@@ -395,6 +400,21 @@ const darkMode: () => void = () => {
     </FoamDropdown> -->
   </article>
   <article>
+    <!-- <FoamDropdownInput text="Filter colors">
+      <FoamDropdownFilter type="color" text="Blue" color="blue" />
+      <FoamDropdownFilter
+        type="color"
+        text="Red"
+        color="red"
+        :selected="selectTest1"
+        @click="testSelect1"
+      />
+      <FoamDropdownFilter type="color" text="Green" color="green" />
+      <FoamDropdownFilter type="color" text="Pink" color="hotpink" />
+      <FoamDropdownFilter type="color" text="Yellow" color="yellow" />
+      <FoamDropdownFilter type="color" text="Purple" color="purple" />
+      <FoamDropdownFilter type="color" text="Brown" color="brown" />
+    </FoamDropdownInput> -->
     <div style="height: 100vh" />
   </article>
 </template>
