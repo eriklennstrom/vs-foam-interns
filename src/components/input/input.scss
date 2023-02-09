@@ -99,6 +99,9 @@
 
 .dark .inputWrapper{
   border-color: map-get(colors.$dark-input-colors, light);
+  input{
+    color: map-get(colors.$text-colors,light-dark);
+  }
 }
 
 
@@ -182,21 +185,21 @@ input {
   
 }
 
-.S{
+.sm{
   input{
     font-size: 0.9rem;
-    padding:4px;
+    padding:4px 10px ;
   }
   }
 
-.M{
+.md{
   input{
     font-size: 1rem;
-    padding:8px;
+    padding:8px 10px;
   }
 }
 
-.L{
+.lg{
   input{
     font-size: 1.1rem;
   }

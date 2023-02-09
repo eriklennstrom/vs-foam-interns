@@ -8,9 +8,9 @@ export const badgeVariant = [
 ];
 
 export const inputSize = [
-  'S',
-  'M',
-  'L',
+  'sm',
+  'ms',
+  'lg',
 ];
 
 export const buttonVariant = [

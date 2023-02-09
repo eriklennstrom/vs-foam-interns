@@ -15,7 +15,6 @@ import {
 } from '@/helpers/mixins/jsMixins';
 import('@/components/button/button.vue');
 
-
 type InputProps = {
   text: string
   variant?: string
@@ -28,7 +27,7 @@ type InputProps = {
   size?: string
 };
 
-const slots = useSlots()
+const slots = useSlots();
 
 const emit = defineEmits(['change', 'update:modelValue']);
 
@@ -44,30 +43,30 @@ const props = withDefaults(defineProps<InputProps>(), {
   size: 'L',
 });
 
-
-const accordianRef: Ref = ref<boolean>(false)
-slots.sentContent? accordianRef.value= true : accordianRef.value= false
+const accordianRef: Ref = ref<boolean>(false);
+slots.sentContent ? (accordianRef.value = true) : (accordianRef.value = false);
 const size: Ref = ref<string>(props.size);
 const variantMiddleware: Ref = ref<string>(props.variant);
 const showPassword: Ref = ref<boolean>(false);
 const type: Ref = ref<string>(props.variant);
 const accordianSwitch: Ref = ref<boolean>(false);
 
-
 defaultVariantMixin(inputSize).verifyVariant(size.value)
   ? ''
-  : (size.value = 'M');
+  : (size.value = 'md');
 
 defaultVariantMixin(inputVariant).verifyVariant(props.variant)
   ? ''
   : (type.value = 'text');
 
-const inputClass = ref('input--' + type.value);
+const inputClass: Ref = ref('input--' + type.value);
 
-if(props.variant == 'low-number'){
-  size.value = 'S'
-  ///Lägg till klass som ger pilar
+if (props.variant == 'low-number') {
+  size.value = 'S';
 }
+
+
+// TA BORT PILAR I MOZILLA
 
 watch(
   () => showPassword.value,
@@ -80,7 +79,7 @@ watch(
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function emitInput(e: any) {
-  const targetVal = e.value;
+  const targetVal: string = e.value;
   emit('update:modelValue', targetVal);
 }
 
@@ -118,8 +117,7 @@ const AsyncIcon = computed(() => {
         <AsyncIcon
           v-if="accordianRef"
           class="dropdown"
-          :class="[accordianSwitch ? 'toggledAccordian' : '',
-          ]"
+          :class="[accordianSwitch ? 'toggledAccordian' : '']"
           icon="caret-down"
           @click="toggleAccordian"
         />
@@ -144,12 +142,13 @@ const AsyncIcon = computed(() => {
 
   <div
     :disabled="props.disabled"
-    :class="[size,
-             'inputWrapper',
-             inputClass,
-             props.isValid ? 'valid' : '',
-             props.isValid == false ? 'invalid' : '',
-             props.disabled ? 'disabled' : '',
+    :class="[
+      size,
+      'inputWrapper',
+      inputClass,
+      props.isValid ? 'valid' : '',
+      props.isValid == false ? 'invalid' : '',
+      props.disabled ? 'disabled' : '',
     ]"
   >
     <input
@@ -161,7 +160,10 @@ const AsyncIcon = computed(() => {
       @input="emitInput($event.target)"
     >
 
-    <div v-if="variantMiddleware == 'password' || props.variant == 'password' " class="passwordControls">
+    <div
+      v-if="variantMiddleware == 'password' || props.variant == 'password'"
+      class="passwordControls"
+    >
       <AsyncIcon
         v-if="showPassword == false"
         class="passwordIcon"
