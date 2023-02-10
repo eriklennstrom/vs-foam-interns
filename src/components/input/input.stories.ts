@@ -79,6 +79,20 @@ export default {
       },
     },
 
+    change:{
+      table: {
+        disable: true,
+      },
+    },
+
+    'update:modelValue' :{
+      table: {
+        disable: true,
+      },
+    },
+
+
+
 
   },
 } as Meta<typeof FoamInput>;

@@ -7,17 +7,7 @@ const darkMode: () => void = () => {
   body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body? body.style.backgroundColor = '#F6F8FA' : null
 
 }
-
 const test= ref('')
-//add height props
-// sm md lg
-
-
-//new input-number
-// horizontal + vertical
-//prop negative numbers????
-
-
 
 </script>
 
@@ -25,8 +15,8 @@ const test= ref('')
   <h1>{{ test }}</h1>
   
   <Inputvue
-    size="sm"
     v-model="test"
+    size="sm"
     validation-text="Validation-text"
     variant="number"
     text="Valid"
