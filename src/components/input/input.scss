@@ -2,7 +2,6 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
 
-
 * {
   margin: 0;
 }
@@ -22,7 +21,6 @@
       background-color: transparent;
     }
   }
-
   .iconWrapper {
     margin-left: 10px;
     align-self: center;
@@ -60,13 +58,22 @@
     height: 0 !important;
     opacity: 0;
   }
+
+  .slot-enter-active,
+  .slot-leave-active {
+    will-change: height, opacity;
+    transition: height 0.25s ease, opacity 0.25s ease;
+    overflow: hidden;
+  }
+
+  .slot-enter,
+  .slot-leave-to {
+    height: 0 !important;
+    opacity: 0;
+  }
 }
 
-
-
-
 .inputWrapper {
-
   width: fit-content;
   display: flex;
   align-items: center;
