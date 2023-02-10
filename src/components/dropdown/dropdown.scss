@@ -35,7 +35,7 @@
         min-width: min-content;
         max-height: fit-content;
         &:has( p) {
-            width: 100% !important;
+            width: 100%;
         }
     }
     .removed {
@@ -66,11 +66,16 @@
         &:has(svg) {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            svg {
-                color: inherit;
-            }
+            // justify-content: flex-end;
+            // .info-container {
+            //     display: flex;
+            //     align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                svg {
+                    color: inherit;
+                }
+            // }
         }
         &:has(p) {
             gap: 12px;  
@@ -78,18 +83,21 @@
         &:active {
             background-color: colors.$dropdown-active-bg-light;
         }
-        .text-container {
-            display: flex;
-            flex-direction: column;
-            p {
-                pointer-events: none;
-                font-size: 12px;
-                margin: 0;
-                margin-right: auto;
-                user-select: none;
-            }
-            .secondary-text {
-                font-size: 10px;
+        .info-container {
+            
+            .text-container {
+                display: flex;
+                flex-direction: column;
+                p {
+                    pointer-events: none;
+                    font-size: 12px;
+                    margin: 0;
+                    margin-right: auto;
+                    user-select: none;
+                }
+                .secondary-text {
+                    font-size: 10px;
+                }
             }
         }
         &[role=disabled] {
@@ -109,6 +117,7 @@
         }
     }
     .dropdown__item--selected {
+        // justify-content: space-between !important;
         background-color: colors.$dropdown-item-selected-light;
         &:hover &:active {
             background-color: colors.$dropdown-item-selected-light;

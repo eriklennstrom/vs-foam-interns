@@ -286,7 +286,18 @@ const darkMode: () => void = () => {
     </FoamDropdownInput> -->
   </article>
   <article>
-    <FoamDropdown role="button" variant="primary" text="Position">
+    <FoamDropdown
+      role="button"
+      variant="primary"
+      text="Position"
+      :width="250"
+    >
+      <FoamDropdownItem
+        text="Icon Left"
+        secondary-text="Testar"
+        icon="warning"
+        icon-align="left"
+      />
       <FoamDropdownItem
         text="Icon Left"
         secondary-text="Testar"
@@ -294,8 +305,37 @@ const darkMode: () => void = () => {
         icon-align="left"
       />
       <FoamDropdownItem text="Icon Right" icon="warning" icon-align="right" />
+      <FoamDropdownItem
+        text="Icon Left"
+        secondary-text="Testar"
+        icon="warning"
+        icon-align="left"
+        :selected="true"
+        subdropdown
+      >
+      <FoamDropdownItem
+        text="Icon Left"
+        secondary-text="Testar"
+        icon="warning"
+        icon-align="left"
+      />
+      <FoamDropdownItem
+        text="Icon Left"
+        secondary-text="Testar"
+        icon="warning"
+        icon-align="left"
+      />
+      <FoamDropdownItem text="Icon Right" icon="warning" icon-align="right" />
+      </FoamDropdownItem>
+      <FoamDropdownItem
+        text="Icon Right"
+        icon="warning"
+        icon-align="right"
+        :selected="true"
+      />
     </FoamDropdown>
-    <FoamDropdown role="input" />
+
+    <FoamDropdown role="input" variant="primary" text="Position" />
     <!-- <FoamDropdownButton :width="170">
       <FoamDropdownItem text="Icon Left" icon="warning" iconposition="left" />
       <FoamDropdownItem text="Icon Right" icon="warning" iconposition="left" />

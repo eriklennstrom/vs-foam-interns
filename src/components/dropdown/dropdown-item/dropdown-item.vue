@@ -221,21 +221,24 @@ onMounted(() => {
     @keyup="useRemoveRecordedStroke($event)"
   >
     <AsyncSelectedIcon
-      v-if="props.selected"
+      v-if="props.selected && !displaySubdropdown"
       icon="check"
       :size="8"
       variant="primary"
     />
-    <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'left'" :size="10" :icon="props.icon" />
-    <div v-if="props.text" class="text-container">
-      <p>
-        {{ props.text }}
-      </p>
-      <p v-if="secondaryText" class="secondary-text">
-        {{ secondaryText }}
-      </p>
-    </div>
-    <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'right'" :size="10" :icon="props.icon" />
+    
+    <!-- <div class="info-container"> -->
+      <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'left' && !selected" :size="10" :icon="props.icon" />
+      <div v-if="props.text" class="text-container">
+        <p>
+          {{ props.text }}
+        </p>
+        <p v-if="secondaryText" class="secondary-text">
+          {{ secondaryText }}
+        </p>
+      </div>
+      <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'right' && !selected" :size="10" :icon="props.icon" />
+    <!-- </div> -->
     <AsyncSubdropdownIcon
       v-if="displaySubdropdown"
       class="subdropdown-icon"
@@ -243,7 +246,6 @@ onMounted(() => {
       :size="10"
       icon="caret-down"
     />
-    <p v-if="displaySubdropdown" />
   </component>
   <div
     v-if="elementType == 'button' && displaySubdropdown"
