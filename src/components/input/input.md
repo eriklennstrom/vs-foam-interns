@@ -13,12 +13,12 @@ Variants available : `text`, `number`, `email`, `password`
 
 ```html
 <!-- good -->
-<foam-input variant="password" text="enter your password" />
+<foam-input variant="password" text="enter your password" v-model="value"/>
 ```
 
 ```html
 <!-- bad -->
-<foam-input variant="primary" text="enter your password" />
+<foam-input variant="primary" text="enter your password" v-model="value" />
 ```
 
 Primary variant does not exist - will give the default input "text".
@@ -33,15 +33,15 @@ This is handled by adding placeholder to the html allong with desired string val
 
 ```html
 <!-- good -->
-<foam-input placeholder="Please enter password" text="Password" />
+<foam-input placeholder="Please enter password" text="Password" v-model="value" />
 ```
 
 ```html
 <!-- bad -->
-<foam-input "placeholder = Please enter password" text="Password" />
+<foam-input "placeholder = Please enter password" text="Password" v-model="value" />
 ```
 
-##Disabled
+## Disabled
 
 Disabled attribute is a boolean value that can be used to indicate to the user that you cannot interact with the element.
 
@@ -50,17 +50,17 @@ This is handled by adding disabled to the html
 
 ```html
 <!-- good -->
-<foam-input disabled text="Password" />
+<foam-input disabled text="Password" v-model="value" />
 ```
 
 ```html
 <!-- bad -->
-<foam-input "disabled" text="Password" />
+<foam-input "disabled" text="Password" v-model="value" />
 ```
 
 
 
-##Slots
+## Slots
 
 Within the component there are slots for content with embedded functionality that adds a button to the label.
 Clicking the button will drop down your slotted content and clicking it again will hide it.
@@ -68,7 +68,7 @@ Clicking the button will drop down your slotted content and clicking it again wi
 
 ```html
 <!-- good -->
-<foam-input >     
+<foam-input v-model="value" >     
     <template #sentContent>
       Slot items
     </template>   
@@ -77,5 +77,23 @@ Clicking the button will drop down your slotted content and clicking it again wi
 
 ```html
 <!-- bad -->
-<foam-input accordian slot= /> 
+<foam-input accordian slot /> 
+```
+
+
+## Size
+
+The thickness of the input-wrapper can be controlled with the size prop that takes a string value.
+Valid sizes are: `sm`, `md`, `lg` (default is `md`)
+
+
+```html
+<!-- good -->
+<foam-input size='lg' v-model="value" />     
+
+```
+
+```html
+<!-- bad -->
+<foam-input lg v-model="value"/> 
 ```
