@@ -40,7 +40,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   disabled: false,
   helpertext: '',
   modelValue: '',
-  size: 'L',
+  size: 'md',
 });
 
 const accordianRef: Ref = ref<boolean>(false);
@@ -61,13 +61,7 @@ defaultVariantMixin(inputVariant).verifyVariant(props.variant)
 
 const inputClass: Ref = ref('input--' + type.value);
 
-if (props.variant == 'low-number') {
-  size.value = 'S';
-}
-
-
-// TA BORT PILAR I MOZILLA
-
+// Watch for Password-show
 watch(
   () => showPassword.value,
   (newVal) => {
@@ -78,7 +72,7 @@ watch(
 );
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function emitInput(e: any) {
+function emitInput(e:any) {
   const targetVal: string = e.value;
   emit('update:modelValue', targetVal);
 }
@@ -107,6 +101,9 @@ const AsyncIcon = computed(() => {
     return Icon;
   }
 });
+
+//USE sentContent class for styling in parent
+
 </script>
 
 <template>
@@ -166,13 +163,11 @@ const AsyncIcon = computed(() => {
     >
       <AsyncIcon
         v-if="showPassword == false"
-        class="passwordIcon"
         icon="eye"
         @click="changePasswordVisibility"
       />
       <AsyncIcon
         v-if="showPassword == true"
-        class="passwordIcon"
         icon="eye-slash"
         @click="changePasswordVisibility"
       />
@@ -191,8 +186,10 @@ const AsyncIcon = computed(() => {
     />
   </div>
   <div class="userInstructions">
-    <p
+    <p 
+      v-if="props.isValid != null"
       :class="[
+        props.disabled ? 'disabled' : '',
         props.isValid == true ? 'successMessageText' : '',
         props.isValid == false ? 'errorMessageText' : '',
       ]"
