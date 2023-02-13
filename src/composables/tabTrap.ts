@@ -50,12 +50,12 @@ export function useTabTrap (e: KeyboardEvent) {
     e.preventDefault()
     const currentElem = document.activeElement as HTMLElement
     let parentElement = currentElem.parentElement as HTMLElement
-
-    if(currentElem.id.includes('sub-dropdown') && currentElem.nextElementSibling?.hasAttribute('data-show')) {
-
-      parentElement = currentElem.nextElementSibling as HTMLElement      
-    }
     
+    if(currentElem.id.includes('sub-dropdown') && currentElem.nextElementSibling?.hasAttribute('data-show')) {
+      parentElement = currentElem.nextElementSibling as HTMLElement
+    } else if(currentElem.parentElement?.id === 'dropdown') {
+      parentElement = parentElement.parentElement as HTMLElement      
+    }    
     currentElem.classList.contains('sub-dropdown__item') ? parentElement = currentElem.parentElement as HTMLElement : null
 
     const elements = getKeyBoardFocusableElements(parentElement)
@@ -68,19 +68,18 @@ export function useTabTrap (e: KeyboardEvent) {
     const lastElem = elements.elements.value[elements.elements.value.length - 1] as HTMLElement
 
     getPrevActiveElem(currentElem)
-   
     if(e.key === 'Shift') {
       keysPressed[e.key] = true
-    }
+    }   
     
-    if (keysPressed.Shift && e.key === 'Tab' || e.key === 'ArrowUp') {
+    if ((keysPressed.Shift && e.key === 'Tab') || e.key === 'ArrowUp') {
       keysPressed[e.key] = true
       if (currentElem === firstElem) {
         index = elements.elements.value.findIndex(elem => { return lastElem === elem })
       } else if(prevActiveElem === firstElem) {
-        
         index = elements.elements.value.findIndex(elem => { return firstElem === elem }) 
       } else {
+        
         index = elements.elements.value.findIndex(elem => { return e.target === elem }) - 1
       }
 
@@ -98,6 +97,7 @@ export function useTabTrap (e: KeyboardEvent) {
         index = elements.elements.value.findIndex(elem => { return firstElem === elem }) 
       } else  {
         index = elements.elements.value.findIndex(elem => { return e.target === elem }) + 1
+        
       } 
       
       if(currentElem.id.includes('sub-dropdown') && currentElem.nextElementSibling?.hasAttribute('data-show')) {

@@ -47,9 +47,8 @@ const subDropdown: Ref = ref()
 const displaySubdropdown = ref<boolean>(props.subdropdown)
 const iconPos = ref<string>(props.iconAlign)
 
-onMounted(() => {
-  
-  elementType.value != 'button' ? selectedItem.value = false : null
+onMounted(() => {  
+  elementType.value != 'button' ? selectedItem.value = undefined : null
   !props.text ? secondaryText.value = null : null
 })
 
@@ -66,16 +65,6 @@ defaultTypeMixin(dropdownIconPos).verifyType(iconPos.value)
 // dynamic component import
 const AsyncIcon = computed(() => {
   if (props.icon) {
-    const Icon = defineAsyncComponent(
-      () => import('@/components/icons/icons.vue')
-    );
-    return Icon;
-  } 
-  return null;
-});
-
-const AsyncSelectedIcon = computed(() => {
-  if (selectedItem.value) {
     const Icon = defineAsyncComponent(
       () => import('@/components/icons/icons.vue')
     );
@@ -205,11 +194,12 @@ onMounted(() => {
     :is="elementType == 'link' ? 'a' : elementType == 'route' ? 'router-link' : 'button'"
     :id="displaySubdropdown ? subDropdownId : dropdownId"
     ref="subDropdownRef"
-    :role="props.disabled ? 'disabled' : null" 
+    :key="dropdownId" 
+    :role="props.disabled ? 'disabled' : null"
     :href="elementType == 'link' ? props.to : null"
     :target="elementType == 'link' ? '_blank' : null"
     :to="elementType == 'route' ? props.to : null"
-    :class="[itemId, selectedItem ? 'dropdown__item--selected' : null]"
+    :class="[itemId, props.selected && !displaySubdropdown ? 'dropdown__item--selected' : null]"
     class="dropdown__item"
     tabindex="0"
     :disabled="props.disabled ? disabled : null"
@@ -220,25 +210,16 @@ onMounted(() => {
     @keydown="useTabTrap($event)"
     @keyup="useRemoveRecordedStroke($event)"
   >
-    <AsyncSelectedIcon
-      v-if="props.selected && !displaySubdropdown"
-      icon="check"
-      :size="8"
-      variant="primary"
-    />
-    
-    <!-- <div class="info-container"> -->
-      <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'left' && !selected" :size="10" :icon="props.icon" />
-      <div v-if="props.text" class="text-container">
-        <p>
-          {{ props.text }}
-        </p>
-        <p v-if="secondaryText" class="secondary-text">
-          {{ secondaryText }}
-        </p>
-      </div>
-      <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'right' && !selected" :size="10" :icon="props.icon" />
-    <!-- </div> -->
+    <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'left'" :size="10" :icon="props.icon" />
+    <div v-if="props.text" class="text-container">
+      <p>
+        {{ props.text }}
+      </p>
+      <p v-if="secondaryText" class="secondary-text">
+        {{ secondaryText }}
+      </p>
+    </div>
+    <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'right'" :size="10" :icon="props.icon" />
     <AsyncSubdropdownIcon
       v-if="displaySubdropdown"
       class="subdropdown-icon"

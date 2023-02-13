@@ -3,6 +3,7 @@ import { computed, onMounted, ref, type Ref } from 'vue';
 import FoamButton from '@/components/button/button.vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
+import { useRemoveRecordedStroke } from '@/composables/tabTrap'
 import useDetectOutsideClick from '@/composables/clickOutsideComponent'
 
 type DropdownProps = {
@@ -96,6 +97,7 @@ useDetectOutsideClick(componentRef, () => {
       :icon="props.icon"
       :disabled="props.disabled"
       @click="handleShowDropdown"
+      @keyup="useRemoveRecordedStroke($event)"
     />
     <div
       id="dropdown"
