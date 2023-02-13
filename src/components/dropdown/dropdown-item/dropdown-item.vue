@@ -199,7 +199,7 @@ onMounted(() => {
     :href="elementType == 'link' ? props.to : null"
     :target="elementType == 'link' ? '_blank' : null"
     :to="elementType == 'route' ? props.to : null"
-    :class="[itemId, props.selected && !displaySubdropdown ? 'dropdown__item--selected' : null]"
+    :class="[itemId, props.selected && !displaySubdropdown ? 'dropdown__item--selected' : null, displaySubdropdown ? 'dropdown__item--subdropdown' : null]"
     class="dropdown__item"
     tabindex="0"
     :disabled="props.disabled ? disabled : null"

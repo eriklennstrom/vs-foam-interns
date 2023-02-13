@@ -108,6 +108,9 @@
             transform: rotate(90deg);
         }
     }
+    .dropdown__item--subdropdown {
+        justify-content: space-between;
+    }
     .dropdown__item--selected {
         background-color: colors.$dropdown-item-selected-light;
         &:hover &:active {
