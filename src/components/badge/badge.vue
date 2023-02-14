@@ -6,7 +6,7 @@ type BadgeProps = {
   variant: string
   outline?: boolean
   text?: string
-  icon?: string| null
+  icon?: string | null
 };
 const props = withDefaults(defineProps<BadgeProps>(), {
   variant: 'secondary',
@@ -19,10 +19,7 @@ const type: Ref = ref<string>(props.variant);
 
 defaultVariantMixin(badgeVariant).verifyVariant(props.variant)
   ? ''
-  : (console.error(
-      'Variant value is incorrect or not included. Value set to default "secondary"'
-    ),
-    (type.value = 'secondary'));
+  : (type.value = 'secondary');
 
 const badgeClass = ref('badge--' + type.value);
 
@@ -40,7 +37,7 @@ const AsyncIcon = computed(() => {
 
 <template>
   <div :class="[badgeClass, props.outline ? badgeClass + '__outline' : null]">
-    <AsyncIcon v-if="props.icon" :size="10" :variant="props.icon" />
+    <AsyncIcon v-if="props.icon" :size="10" :icon="props.icon" />
     {{ props.text }}
   </div>
 </template>
