@@ -15,7 +15,7 @@ classes available : `.h1` , `.h2` , `.h3` , `.h4` , `.h5`, `.body1`, `.subtitle1
 
 ```html
 <!-- bad -->
-<any-element .h1 />
+<h3 .h1 ><h3/>
 ```
 .h1 props does not exits - will generate an error.
 
@@ -39,6 +39,9 @@ all variables are found in a list in the css if you want to use the sizes for ot
 
 valid font sizes are: `h1` , `h2` , `h3` , `h4` , `h5`, `body1`, `subtitle1`, `body2`, `subtitle2`, `small`, `.overline`
 
+`.uppercase` changes all input to uppercase letters
+`.lowercase` changes all input to lowercase letters
+
 replace FONT-SIZE with any of these variables
 
 
@@ -46,5 +49,4 @@ replace FONT-SIZE with any of these variables
 ```html
 font-size: map-get(font-system.$font-size, <FONT-SIZE>)
 ```
-
 
