@@ -105,9 +105,9 @@ const AsyncIcon = computed(() => {
 <template>
   <div class="numbers-input__div">
     <div :class="['topWrapper', props.disabled ? 'disabled' : '']">
-      <h2>
+      <h1 class="h3">
         {{ props.label }}
-      </h2>
+      </h1>
     </div>
     <div
       class="alignment__container"
@@ -147,6 +147,7 @@ const AsyncIcon = computed(() => {
           :placeholder="props.placeholder"
           :disabled="props.disabled"
           :value="props.modelValue"
+          class="h5"
           @input="emitInput($event.target)"
         >
 

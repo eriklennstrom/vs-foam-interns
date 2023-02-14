@@ -88,7 +88,6 @@ const darkMode: () => void = () => {
 body {
   background-color: #F6F8FA;
 }
-section {
 
 section {
   display: flex;
