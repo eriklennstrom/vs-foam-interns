@@ -47,15 +47,15 @@ p {
   font-weight: 900;
 }
 
-.h1, .text-xl {
+.h1, .text-xxl {
   font-size: 3.052rem;
 }
 
-.h2 {
+.h2, .text-xl {
   font-size: 2.441rem;
 }
 
-.h3 {
+.h3 ,.text-lg {
   font-size: 1.953rem;
 }
 
@@ -72,11 +72,11 @@ p {
   font-size: 0.8rem;
 }
 
-.body1 {
+.body1 ,.text-md{
   font-size: 1rem;
 };
 
-.body2 {
+.body2 ,.text-sm {
   font-size: 0.8rem
 };
 
@@ -89,7 +89,7 @@ p {
   font-size: 0.8rem;
 };
 
-.overline {
+ .overline ,.text-xs {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-size: 0.625rem;

@@ -10,12 +10,12 @@ classes available : `.h1` , `.h2` , `.h3` , `.h4` , `.h5`, `.body1`, `.subtitle1
 
 ```html
 <!-- good -->
-<any-element class="h1" />
+<h1 class="h3"></h1>
 ```
 
 ```html
 <!-- bad -->
-<h3 .h1 ><h3/>
+<h3></h3>
 ```
 .h1 props does not exits - will generate an error.
 
