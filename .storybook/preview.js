@@ -1,8 +1,9 @@
 import './assets/theming.scss'
 import './assets/fonts.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCheck, faXmark} from  '@fortawesome/free-solid-svg-icons';
-library.add( faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCheck, faXmark)
+import {faChevronLeft ,faChevronRight, faChevronUp, faChevronDown ,faCheck ,faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faPlusCircle, faCheck, faXmark} from  '@fortawesome/free-solid-svg-icons';
+library.add( faChevronLeft, faChevronRight, faChevronUp, faChevronDown ,faPlusCircle, faCheck ,faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCheck, faXmark)
+
 import { themes } from '@storybook/theming';
 import logoLight from './varnish-software-logo-dark-text.svg'
 import logoDark from './varnish-software-logo-light-text.svg'

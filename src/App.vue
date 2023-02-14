@@ -1,8 +1,5 @@
 <script setup lang="ts">
 
-const test:Ref<number>= ref(0)
-
-
 const darkMode: () => void = () => {
   const body = document.querySelector('body')
   body?.classList.toggle('dark')
