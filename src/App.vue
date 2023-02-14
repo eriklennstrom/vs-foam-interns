@@ -1,13 +1,5 @@
 <script setup lang="ts">
-/* import ButtonVue from './components/button/button.vue';
-import Icons from '@/components/icons/icons.vue'
-import Badge from '@/components/badge/badge.vue'
-import Chip from '@/components/chip/chip.vue'
-import { ref } from 'vue';
 
- */
-
-// DARK MODE
 
 const darkMode: () => void = () => {
   const body = document.querySelector('body')
@@ -19,6 +11,7 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
+
   <button @click="darkMode">
     DARK MODE!
   </button>
