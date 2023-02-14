@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { ref, type Ref } from 'vue';
+import NumberInput from './components/number-input/number-input.vue';
+
 
 const darkMode: () => void = () => {
   const body = document.querySelector('body')
@@ -6,12 +9,23 @@ const darkMode: () => void = () => {
   body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body? body.style.backgroundColor = '#F6F8FA' : null
 
 }
+const test:Ref =ref()
+
 </script>
 
 <template>
   <button @click="darkMode">
     DARK MODE!
   </button>
+
+
+  <NumberInput
+    v-model="test"
+    direction="vertical"
+    label="lol" 
+    helpertext="lol"
+    :is-valid="true"
+  />
 </template>
 
 <style scoped lang="scss">
@@ -20,6 +34,7 @@ body {
   background-color: #F6F8FA;
 }
 section {
+  
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
