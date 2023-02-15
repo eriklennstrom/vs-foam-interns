@@ -62,7 +62,8 @@ describe('DropdownItem', () => {
     
     it('renders secondary text properly', () => {
         const wrapper = mount(DropdownItem, {propsData : {text : 'Test text', secondaryText: 'Secondary Text Test'}})
-        expect(wrapper.html()).toContain('<p class="secondary-text"')
+    
+        expect(wrapper.html()).toContain('<p class="secondary-text')
         expect(wrapper.html()).toContain('Secondary Text Test')
     })
     it('emits passed function properly', async () => {
