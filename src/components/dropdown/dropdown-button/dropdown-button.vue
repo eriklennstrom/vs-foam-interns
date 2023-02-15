@@ -103,7 +103,8 @@ useDetectOutsideClick(componentRef, () => {
       id="dropdown"
       ref="dropdown"
       :class="dropdownId"
-      :style="{ width: props.width ? props.width + 'px' : 'fit-content' }"
+      class="subtitle2"
+      :style="{ width: props.width ? props.width + 'px !important' : 'fit-content' }"
       @keyup.escape="handleShowDropdown"
     >
       <slot />

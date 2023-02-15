@@ -1,5 +1,6 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
+@use "@/styles/font-system.scss";
 
 .dropdown-container {
     position: relative;
@@ -24,7 +25,6 @@
     background-color: colors.$dropdown-item-bg-light;
     border: 1px solid colors.$dropdown-border-color-light;
     border-radius: 4px;
-    font-size: 12px;
     display: none;
     max-height: 0;
     z-index: 1;
@@ -48,6 +48,8 @@
         width: max-content;
         padding: 12px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
         color: colors.$dropdown-item-text-light;
         background-color: colors.$dropdown-item-bg-light;
         &:has(p) {
@@ -65,8 +67,6 @@
             outline-offset: -1px;
         }
         &:has(svg) {
-            display: flex;
-            align-items: center;
             gap: 8px;
             svg {
                 color: inherit;
@@ -82,13 +82,9 @@
             display: flex;
             flex-direction: column;
             p {
-                font-size: 12px;
                 margin: 0;
                 margin-right: auto;
                 user-select: none;
-            }
-            .secondary-text {
-                font-size: 10px;
             }
         }
 
@@ -248,7 +244,6 @@
             cursor: pointer;
             position: absolute;
             color: colors.$primary;
-            font-size: 12px;
             top: -14px;
             left: 0;
             max-width : 75%;
@@ -264,7 +259,6 @@
             right: -6px;
             top: -6px;
             color: colors.$surface;
-            font-size: 12px;
             background-color: colors.$primary;
             display: flex;
             justify-content: center;
@@ -280,7 +274,7 @@
             font-size: 14px;
             transition: all 150ms;
             &[data-active="true"] {
-                font-size: 12px;
+                font-size: map-get(font-system.$font-size, small);
                 padding: 4px 4px 0 4px;
                 background-color: colors.$surface;
                 top: -10px;
@@ -288,7 +282,6 @@
             }
         }
         #dropdown__input--input:not(:placeholder-shown) ~ .label-inside {
-            font-size: 12px;
             padding: 4px 4px 0 4px;
             background-color: colors.$surface;
             top: -10px;
@@ -310,7 +303,6 @@
                 width: 70%;
                 border-radius: 4px;
                 padding: 8px 12px;
-                font-size: 12px;
             }
             .dropdown__input--button {
                 all: unset;

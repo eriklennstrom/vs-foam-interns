@@ -137,18 +137,19 @@ useDetectOutsideClick(componentRef, () => {
           id="dropdown__input--input"
           v-model="userInput"
           type="text"
+          class="subtitle2"
           name="dropdown-input"
           :placeholder="labelPosition == 'inside' ? ' ' : props.placeholder"
         >
         <label
-          class="dropdown__input--label"
+          class="dropdown__input--label subtitle2"
           :class="[`label-${labelPosition}`]"
           for="dropdown-input"
           :data-active="[showDropdown && labelPosition == 'inside' ? true : false]"
         >
           {{ props.text }}
         </label>
-        <span v-if="amountChecked > 0" class="amount-selected">{{ amountChecked }}</span>
+        <span v-if="amountChecked > 0" class="amount-selected subtitle2">{{ amountChecked }}</span>
         <Icon
           v-if="userInput.length > 0"
           class="remove-input"

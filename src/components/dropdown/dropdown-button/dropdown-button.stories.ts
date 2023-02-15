@@ -64,7 +64,7 @@ export default {
     components: { FoamDropdownButton, FoamDropdownDivider, FoamDropdownItem },
 
     template: `
-    <div>
+    <div style="display: flex; justify-content: center;" >
         <foam-dropdown-button v-bind="args">
             <foam-dropdown-item text="Dropdown Item" />
             <foam-dropdown-divider />
@@ -239,7 +239,7 @@ export default {
           return { args, argTypes };
         },
         template: `
-        <div>
+        <div style="display: flex; justify-content: center;">
             <foam-dropdown-button v-bind="args" >
                 <foam-dropdown-item text="Dropdown Item" />
                 <foam-dropdown-divider />

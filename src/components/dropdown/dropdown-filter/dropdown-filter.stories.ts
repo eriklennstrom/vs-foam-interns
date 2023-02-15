@@ -59,7 +59,7 @@ export default {
         return { args };
       },
       template: `
-      <div>
+      <div style="display: flex; justify-content: center;" >
           <foam-dropdown-button variant="primary" >
               <foam-dropdown-filter text="Filter" v-bind="args" />
               <foam-dropdown-filter text="Filter" v-bind="args" />

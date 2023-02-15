@@ -212,10 +212,10 @@ onMounted(() => {
   >
     <AsyncIcon v-if="props.icon && !displaySubdropdown && iconPos == 'left'" :size="10" :icon="props.icon" />
     <div v-if="props.text" class="text-container">
-      <p>
+      <p class="subtitle2">
         {{ props.text }}
       </p>
-      <p v-if="secondaryText" class="secondary-text">
+      <p v-if="secondaryText" class="secondary-text subtitle3">
         {{ secondaryText }}
       </p>
     </div>
@@ -232,8 +232,9 @@ onMounted(() => {
     v-if="elementType == 'button' && displaySubdropdown"
     id="sub-dropdown"
     ref="subDropdown"
+    class="subtitle2"
     :class="subDropdownId"
-    :style="{ width: props.width ? props.width + 'px' : '100%' }"
+    :style="{ width: props.width ? props.width + 'px !important' : '100%' }"
     @keyup.arrow-left="handleCloseSubDropdown($event)"
     @keyup.escape="handleCloseSubDropdown($event)"
   >

@@ -82,7 +82,7 @@ export default {
         return { args };
       },
       template: `
-      <div>
+      <div style="display: flex; justify-content: center;" >
           <foam-dropdown-button variant="primary" >
               <foam-dropdown-item text="Dropdown Item 1" v-bind="args" />
               <foam-dropdown-divider />
@@ -366,7 +366,7 @@ export default {
       template: `
         <div style="display: flex; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
           <foam-dropdown-button variant="primary" >
-            <foam-dropdown-item text="Selected" />
+            <foam-dropdown-item text="Selected" selected />
             <foam-dropdown-divider />
             <foam-dropdown-item v-bind="args" text="Click me" @click="handleClick" />
           </foam-dropdown-button>
@@ -429,7 +429,7 @@ export default {
       return { args, argTypes };
     },
     template: `
-      <div style="display: flex; gap: 24px; flex-direction: column; 1em; flex-wrap: wrap">
+      <div style="display: flex; gap: 24px; align-items: center; flex-direction: column; 1em; flex-wrap: wrap">
       <p>The width prop changes the width of the subdropdown</p>
         <foam-dropdown-button variant="primary" text="Subdropdown" >
           <foam-dropdown-item v-bind="args" text="List of links" subdropdown >
