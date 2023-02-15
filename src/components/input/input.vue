@@ -108,18 +108,18 @@ const AsyncIcon = computed(() => {
 
 <template>
   <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
-    <h2>
+    <h1>
       {{ props.text }}
       <div v-if="accordianRef" class="iconWrapper">
         <AsyncIcon
           v-if="accordianRef"
-          class="dropdown"
+          class="dropdown h2"
           :class="[accordianSwitch ? 'toggledAccordian' : '']"
           icon="caret-down"
           @click="toggleAccordian"
         />
       </div>
-    </h2>
+    </h1>
 
     <transition
       name="slot"
@@ -185,7 +185,7 @@ const AsyncIcon = computed(() => {
       variant="success"
     />
   </div>
-  <div class="userInstructions">
+  <div class="userInstructions text-sm">
     <p 
       v-if="props.isValid != null"
       :class="[
@@ -196,7 +196,7 @@ const AsyncIcon = computed(() => {
     >
       {{ props.validationText }}
     </p>
-    <p class="helperMessageText">
+    <p class="helperMessageText text-sm">
       {{ props.helpertext }}
     </p>
   </div>
