@@ -80,9 +80,9 @@ const AsyncRemoveIcon = computed(() => {
     ref="foamChip"
     :role="role"
     :class="[
-      'chip', chipOutline ? 'chip__outline' : null, 
+      'chip text-sm', chipOutline ? 'chip__outline' : null, 
       props.selected ? 'chip--selected' : null, 
-      props.variant == 'filter' ? 'chip--filter' : 'chip--input'
+      props.variant == 'filter' ? 'chip--filter' : 'chip--input',
     ]"
     :action="props.variant"
     :data-test="chipRemove ? 'remove-icon' : 'no-remove'"

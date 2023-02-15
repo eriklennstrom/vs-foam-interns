@@ -1,6 +1,6 @@
 <script setup lang="ts">
-
-
+import chip from './components/chip/chip.vue';
+import buttonvue from './components/button/button.vue';
 const darkMode: () => void = () => {
   const body = document.querySelector('body')
   body?.classList.toggle('dark')
@@ -11,7 +11,6 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
-
   <button @click="darkMode">
     DARK MODE!
   </button>
