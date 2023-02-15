@@ -26,7 +26,7 @@ const wrapper = mount(Input, {propsData: {
 
 describe('Input', () => {
   it('displays the label', () => {
-    const label = wrapper.find('h2')
+    const label = wrapper.find('h1')
     expect(label.text()).toBe('Test Label')
   })
 
