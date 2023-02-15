@@ -271,7 +271,6 @@
         .label-inside {
             top: calc(50% - 7px);
             left: 10px;
-            font-size: 14px;
             transition: all 150ms;
             &[data-active="true"] {
                 font-size: map-get(font-system.$font-size, small);
