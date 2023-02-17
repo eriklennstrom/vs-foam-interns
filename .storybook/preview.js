@@ -15,7 +15,7 @@ export const parameters = {
     },
   },
   backgrounds: { 
-    disable: false
+    disable: true
   } 
   ,
   darkMode: {
@@ -38,7 +38,7 @@ export const parameters = {
       ...themes.normal,
       brandImage: logoLight,
       appBg: '#F6F8FA',
-      appContentBg: '#F6F8FA',
+      appContentBg: '#ffffff',
       textColor: '#1F252F'
     }
   }
