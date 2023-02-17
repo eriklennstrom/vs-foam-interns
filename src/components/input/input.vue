@@ -16,7 +16,7 @@ import {
 import('@/components/button/button.vue');
 
 type InputProps = {
-  text: string
+  label: string
   variant?: string
   validationText?: string
   isValid?: boolean | null
@@ -49,7 +49,7 @@ const size: Ref = ref<string>(props.size);
 const variantMiddleware: Ref = ref<string>(props.variant);
 const showPassword: Ref = ref<boolean>(false);
 const type: Ref = ref<string>(props.variant);
-const accordianSwitch: Ref = ref<boolean>(false);
+const accordianSwitch= ref<boolean>(false);
 
 defaultVariantMixin(inputSize).verifyVariant(size.value)
   ? ''
@@ -71,10 +71,12 @@ watch(
   }
 );
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function emitInput(e: any) {
-  const targetVal: string = e.value;
-  emit('update:modelValue', targetVal);
+
+function emitInput(e: EventTarget | null) {
+  if (e && 'value' in e) {
+    emit('update:modelValue', e.value)
+  }
+  return
 }
 
 function changePasswordVisibility() {
@@ -116,18 +118,19 @@ function toggleAccordian() {
 <template>
   <div class="inputBody">
     <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
-      <h1>
+      <label for="input" class="h3">
         {{ props.text }}
         <div v-if="accordianRef" class="iconWrapper">
           <AsyncIcon
             v-if="accordianRef"
+            id="input"
             class="dropdown h2"
             :class="[accordianSwitch ? 'toggledAccordian' : '']"
             icon="caret-down"
             @click="toggleAccordian"
           />
         </div>
-      </h1>
+      </label>
 
       <transition
         name="slot"
