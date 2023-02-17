@@ -257,7 +257,6 @@ $input-text-colors:(
   success: #55c284,
 );
 
-
 $input-colors:(
   light: #668592,
   danger: #dc3545,
@@ -271,3 +270,24 @@ $dark-input-colors:(
   warning: #faa05a,
   success: #55c284,
 );
+
+ // Select
+  // Light
+  $select-border-color-light: $secondary-hover;
+  $select-item-bg-light: #FFFFFF;
+  $select-item-text-light: map-get($text-colors, strong-dark);
+  $select-hover-bg-light: #ECECEC;
+  $select-active-bg-light: #D8D8D8;
+  $select-divider-light: $secondary-hover;
+  $select-item-selected-light : #0033491a;
+  $select-item-active-light : #06222e49;
+  
+  // Dark
+  $select-border-color-dark: $primary-dark-disabled;
+  $select-item-bg-dark: #1F252F;
+  $select-item-text-dark: map-get($text-colors, strong-light);
+  $select-hover-bg-dark: #303A49;
+  $select-active-bg-dark: #485262;
+  $select-divider-dark: $primary-dark-disabled;
+  $select-item-selected-dark : #373C43;
+  $select-item-active-dark : rgb(68, 74, 85);
