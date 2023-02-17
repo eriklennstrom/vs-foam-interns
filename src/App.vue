@@ -17,89 +17,91 @@ const test= ref('')
 </script>
 
 <template>
-  <h1>{{ test }}</h1>
+  <section>
+    <h1>{{ test }}</h1>
   
-  <Inputvue
-    v-model="test"
-    size="sm"
-    validation-text="Validation-text"
-    variant="number"
-    text="Valid"
-    placeholder="placeholder"
-    helpertext="Helper text"
-  />
+    <Inputvue
+      v-model="test"
+      size="sm"
+      validation-text="Validation-text"
+      variant="number"
+      text="Valid"
+      placeholder="placeholder"
+      helpertext="Helper text"
+    />
 
-  <Inputvue
+    <Inputvue
 
-    v-model="test"
-    :is-valid="true"
-    validation-text="Validation-text"
-    variant="email"
-    text="Valid"
-    placeholder="placeholder"
-    helpertext="Helper text"
-  />
-  <Inputvue
-    v-model="test"
-    size="sm"
-    :is-valid="false"
-    validation-text="Validation-text"
-    variant="text"
-    text="Not valid"
-    placeholder="placeholder"
-    helpertext="Helper text"
-  />
+      v-model="test"
+      :is-valid="true"
+      validation-text="Validation-text"
+      variant="email"
+      text="Valid"
+      placeholder="placeholder"
+      helpertext="Helper text"
+    />
+    <Inputvue
+      v-model="test"
+      size="sm"
+      :is-valid="false"
+      validation-text="Validation-text"
+      variant="text"
+      text="Not valid"
+      placeholder="placeholder"
+      helpertext="Helper text"
+    />
 
 
-  <Inputvue
-    v-model="test"
-    size="lg"
-    variant="text"
-    text="Neutral"
-    placeholder="placeholder"
-    helpertext="Helper text"
-  >
-    <template #sentContent>
-      <div>
-        <p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p>
-      </div>
-    </template>
-  </Inputvue>
+    <Inputvue
+      v-model="test"
+      size="lg"
+      variant="text"
+      text="Neutral"
+      placeholder="placeholder"
+      helpertext="Helper text"
+    >
+      <template #sentContent>
+        <div>
+          <p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p>
+        </div>
+      </template>
+    </Inputvue>
 
-  <Inputvue
-    v-model="test"
-    variant="number"
-    text="Disabled"
-    placeholder="placeholder"
-    disabled
-  />
-  <Inputvue
-    v-model="test"
-    :is-valid="false"
-    validation-text="validation-text"
-    variant="password"
-    text="Password"
-    placeholder="placeholder"
-  />
+    <Inputvue
+      v-model="test"
+      variant="number"
+      text="Disabled"
+      placeholder="placeholder"
+      disabled
+    />
+    <Inputvue
+      v-model="test"
+      :is-valid="false"
+      validation-text="validation-text"
+      variant="password"
+      text="Password"
+      placeholder="placeholder"
+    />
   
 
-  <Inputvue
-    v-model="test"
-    :is-valid="true"
-    validation-text="validation-text"
-    variant="password"
-    text="Password"
-    placeholder="placeholder"
-  >
-    <template #helperMessageText>
-      Helper text
-    </template>
-  </Inputvue>
+    <Inputvue
+      v-model="test"
+      :is-valid="true"
+      validation-text="validation-text"
+      variant="password"
+      text="Password"
+      placeholder="placeholder"
+    >
+      <template #helperMessageText>
+        Helper text
+      </template>
+    </Inputvue>
 
 
-  <button @click="darkMode">
-    DARK MODE!
-  </button>
+    <button @click="darkMode">
+      DARK MODE!
+    </button>
+  </section>
 </template>
 
 <style scoped lang="scss">
@@ -108,10 +110,6 @@ body {
   background-color: #F6F8FA;
 }
 section {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
   margin-bottom: 4em;
   margin-top: 4em;
 }
