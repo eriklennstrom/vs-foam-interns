@@ -14,7 +14,7 @@
   .topWrapper {
     margin-top: 10px;
 
-    h1 {
+    label {
       display: flex;
       font-family: variables.$primaryFontFamily;
       font-weight: 400;
@@ -153,7 +153,6 @@
 }
 
 .userInstructions {
-  user-select: none;
   padding: 1px;
   margin-right: 10px;
   max-width: 100%;
