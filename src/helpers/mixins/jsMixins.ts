@@ -19,6 +19,12 @@ export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
 
 export const chipVariants = ['input', 'filter'];
 
+export const dropdownItemTypes = ['button', 'route', 'link']
+export const dropdownFilterTypes = ['checkbox', 'color', 'container']
+export const dropdownRoles = ['button', 'input']
+export const dropdownInputPosition = ['top', 'inside']
+export const dropdownIconPos = ['right', 'left']
+
 // icon names
 
 export const validIconNames = [
@@ -31,6 +37,13 @@ export const validIconNames = [
   'check',
   'xmark'
 ];
+
+export const defaultTypeMixin = (types: string[]) => ({
+  type: types,
+  verifyType(probablyType: string) {
+    return this.type.includes(probablyType);
+  }
+});
 
 export const defaultVariantMixin = (variants: string[]) => ({
   variant: variants,
