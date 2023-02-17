@@ -13,6 +13,7 @@ const config: StorybookViteConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
+    "@storybook/addon-actions",
     "storybook-dark-mode"
   ],
   framework: "@storybook/vue3",
@@ -26,6 +27,7 @@ const config: StorybookViteConfig = {
     );
     return mergeConfig(config, {
       ...userConfig,
+      
       // manually specify plugins to avoid conflict
       plugins: [],
       optimizeDeps: {

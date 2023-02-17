@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
+@use "@/styles/font-system.scss";
 
 * {
   margin: 0;
@@ -8,11 +9,10 @@
 
 .topWrapper {
   margin-top: 10px;
-  h2 {
+  h1 {
     display: flex;
     font-family: variables.$primaryFontFamily;
     font-weight: 400;
-    font-size: 21px;
     color: map-get(colors.$input-text-colors, light);
     user-select: none;
 
@@ -89,7 +89,6 @@
     border: 0;
     outline: 0;
     background: transparent;
-    font-size: 1rem;
     padding: 10px;
   }
 
@@ -150,7 +149,6 @@
 
 .userInstructions {
   user-select: none;
-  font-size: 12px;
   padding: 1px;
   margin-right: 10px;
   max-width: 100%;
@@ -186,21 +184,21 @@
 
 .sm {
   input {
-    font-size: 0.9rem;
+    font-size:map-get(font-system.$font-size, small );
     padding: 4px 10px;
   }
 }
 
 .md {
   input {
-    font-size: 1rem;
+    font-size: map-get(font-system.$font-size, body1 );
     padding: 8px 10px;
   }
 }
 
 .lg {
   input {
-    font-size: 1.1rem;
+    font-size: map-get(font-system.$font-size, h5 );
   }
 }
 

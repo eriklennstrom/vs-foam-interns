@@ -1,0 +1,141 @@
+@use "@/styles/colors.scss";
+@use "@/styles/variables.scss";
+
+.chip, body.dark .chip {
+  height: 100%;
+  user-select: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: variables.$primaryFontFamily;
+  width: fit-content;
+  transition: background-color 100ms;
+  outline-width: 1px;
+  outline-style: solid;
+  outline-offset: -1px;
+  &:has(svg) {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    svg {
+      color: inherit;
+    }
+  }
+  &:hover, &:active {
+    outline-width: 1px;
+    outline-style: solid;
+    outline-offset: -1px;
+  }
+}
+
+.chip[role=button] {
+  cursor: pointer;
+}
+
+.chip[role=disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.chip--dropdown {
+  position: relative;
+}
+
+body { 
+  .chip {
+    background-color: colors.$chip-default-bg-light;
+    color: colors.$chip-text-light;
+  }
+  
+  .chip--input {
+    outline: none;
+    &:hover {
+      background: colors.$chip-default-hover-light;
+      outline-color: colors.$chip-default-border-light;
+    }
+    &:active {
+      background: colors.$chip-default-active-light;
+      outline-color: colors.$chip-default-border-light;
+    }
+  }
+
+  .chip--filter {
+    background-color: colors.$chip-filter-bg-light;
+    outline-color: colors.$chip-filter-border-light;
+    &:hover {
+      background-color: colors.$chip-filter-hover-light;
+    }
+    &:active {
+      background-color: colors.$chip-filter-active-light;
+    }
+  }
+
+  .chip__outline {
+    outline-width: 1px;
+    outline-style: solid;
+    outline-offset: -1px;
+    background-color: colors.$chip-outline-bg-light;
+    outline-color: colors.$chip-outline-border-light;
+    &:hover{
+      background-color: colors.$chip-outline-hover-light;
+      outline-color: colors.$chip-outline-border-light;
+    }
+    &:active {
+      background-color: colors.$chip-outline-active-light;
+      outline-color: colors.$chip-outline-border-light;
+    }
+  }
+
+  .chip--selected {
+    background-color: colors.$chip-selected-light;
+    outline: none;
+  }
+}
+
+body.dark {
+  .chip {
+    background-color: colors.$chip-default-bg-dark;
+    color: colors.$chip-text-dark;
+  }
+
+  .chip--input {
+    outline: none;
+    &:hover {
+      background-color: colors.$chip-default-hover-dark;
+      outline-color: colors.$chip-default-border-dark;
+    }
+    &:active {
+      background-color: colors.$chip-default-active-dark;
+      outline-color: colors.$chip-default-border-dark;
+    }
+  }
+  
+  .chip--filter {
+    background-color: colors.$chip-filter-bg-dark;
+    outline-color: colors.$chip-filter-border-dark;
+    &:hover {
+      background-color: colors.$chip-filter-hover-dark;
+      outline-color: colors.$chip-filter-hover-border-dark;
+    }
+    &:active {
+      background-color: colors.$chip-filter-active-dark;
+      outline-color: colors.$chip-filter-active-border-dark;
+    }
+  }
+
+  .chip__outline {
+    outline-width: 1px;
+    outline-style: solid;
+    outline-offset: -1px;
+    background-color: colors.$chip-outline-bg-dark;
+    outline-color: colors.$chip-outline-border-dark;
+  }
+  
+
+  .chip--selected {
+    background-color: colors.$chip-selected-dark;
+    outline: none;
+  }
+}

@@ -31,6 +31,8 @@ export const inputVariant = [
 
 export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
 
+export const chipVariants = ['input', 'filter'];
+
 // icon names
 
 export const validIconNames = [
@@ -41,6 +43,8 @@ export const validIconNames = [
   'user-secret',
   'arrow-down',
   'arrow-alt-circle-down',
+  'check',
+  'xmark',
   'eye-slash',
   'eye'
 

@@ -103,6 +103,10 @@ const test= ref('')
 </template>
 
 <style scoped lang="scss">
+
+body {
+  background-color: #F6F8FA;
+}
 section {
   display: flex;
   flex-wrap: wrap;

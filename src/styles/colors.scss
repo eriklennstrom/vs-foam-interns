@@ -8,8 +8,6 @@ $danger: #dc3545;
 $warning: #faa05a;
 $success: #55c284;
 
-
-
 $primary-100: #E6EBED;
 $primary-300: #668592;
 $primary-400: #003349;
@@ -42,12 +40,58 @@ $primary-dark-disabled: #ffffff61;
 $primary-text-disabled: #A9A9A9;
 $primary-text-dark-disabled: #ffffff61;
 
+// Body colors
+$primary-bg-light: #F6F8FA;
+$primary-bg-dark: #1F252F;
 
+// Chip
+// Light
+// Input
+$chip-text-light: #003349;
+$chip-default-bg-light: #E6EBED;
+$chip-default-hover-light: #D0D9DD;
+$chip-default-active-light: #D0D9DD;
+$chip-default-border-light: #0000001a;
 
+$chip-outline-bg-light: transparent;
+$chip-outline-hover-light: #EBEFF1;
+$chip-outline-active-light: #cacfd1;
+$chip-outline-border-light: #003349;
 
+$chip-selected-light: #0033491a;
 
+// Filter
+$chip-filter-bg-light: transparent;
+$chip-filter-hover-light: #E6EBED;
+$chip-filter-active-light: #D0D9DD;
+$chip-filter-border-light: #003349;
 
+// ---- WIP not in figma ---
+// $chip-filter-hover-border-light: rgba(255, 255, 255, 0.38);
+// $chip-filter-active-border-light: rgba(255, 255, 255, 0.38);
 
+// Dark
+// Input 
+$chip-text-dark: #ffffffde;
+$chip-default-bg-dark: #373C43;
+$chip-default-hover-dark: #40464E;
+$chip-default-active-dark: #40464E;
+$chip-default-border-dark: #ffffff61;
+
+$chip-outline-bg-dark: transparent;
+$chip-outline-hover-dark: #EBEFF1;
+$chip-outline-active-dark: #4B525B;
+$chip-outline-border-dark: #ffffff61;;
+
+// Filter
+$chip-filter-bg-dark: transparent;
+$chip-filter-hover-dark: #373C43;
+$chip-filter-active-dark: #4B525B;
+$chip-filter-border-dark: #ffffff33;
+$chip-filter-hover-border-dark: #ffffff61;
+$chip-filter-active-border-dark: #ffffff61;
+
+$chip-selected-dark: #373C43;
 
 //bg colors
 $bg-colors: (
