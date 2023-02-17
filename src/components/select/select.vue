@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Icon from '@/components/icons/icons.vue';
-import { computed, ref, useSlots, watch, watchEffect, type Ref } from 'vue';
+import { computed, ref, watch, type Ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
-import useDetectOutsideClick from '@/composables/clickOutsideComponent'
+// import useDetectOutsideClick from '@/composables/clickOutsideComponent'
 
 type SelectProps = {
     text?: string
@@ -96,10 +96,10 @@ const componentRef = ref()
 // ---- REBASE MAIN - ADD TAB TRAP REMOVE COMPOSABLE FOLDER ----
 
 // Close dropdown on click outside the component
-useDetectOutsideClick(componentRef, () => { 
-    showOptions.value = false
-    selectRef.value.removeAttribute('data-show')
-})
+// useDetectOutsideClick(componentRef, () => { 
+//     showOptions.value = false
+//     selectRef.value.removeAttribute('data-show')
+// })
 
 </script>
 
