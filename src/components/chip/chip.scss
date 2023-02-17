@@ -1,11 +1,11 @@
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
+@use "@/styles/font-system.scss";
 
 .chip, body.dark .chip {
   height: 100%;
   user-select: none;
   font-weight: 400;
-  font-size: 12px;
   line-height: 16px;
   border-radius: 8px;
   padding: 8px 16px;

@@ -7,6 +7,7 @@ const darkMode: () => void = () => {
 }
 </script>
 
+
 <template>  
   <button @click="darkMode">
     DARK MODE!
