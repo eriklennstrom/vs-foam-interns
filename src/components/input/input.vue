@@ -72,7 +72,7 @@ watch(
 );
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function emitInput(e:any) {
+function emitInput(e: any) {
   const targetVal: string = e.value;
   emit('update:modelValue', targetVal);
 }
@@ -103,7 +103,6 @@ const AsyncIcon = computed(() => {
 });
 
 //USE sentContent class for styling in parent
-
 </script>
 
 <template>
@@ -187,7 +186,7 @@ const AsyncIcon = computed(() => {
       />
     </div>
     <div class="userInstructions text-sm">
-      <p 
+      <p
         v-if="props.isValid != null"
         :class="[
           props.disabled ? 'disabled' : '',

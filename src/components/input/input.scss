@@ -6,138 +6,137 @@
 * {
   margin: 0;
 }
-.inputBody{
+.inputBody {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
   justify-self: flex-start;
-.topWrapper {
+  .topWrapper {
+    margin-top: 10px;
 
-  margin-top: 10px;
+    h1 {
+      display: flex;
+      font-family: variables.$primaryFontFamily;
+      font-weight: 400;
+      color: map-get(colors.$input-text-colors, light);
+      user-select: none;
 
-  h1 {
-    display: flex;
-    font-family: variables.$primaryFontFamily;
-    font-weight: 400;
-    color: map-get(colors.$input-text-colors, light);
-    user-select: none;
-
-    svg {
-      color: white;
-      background-color: transparent;
+      svg {
+        color: white;
+        background-color: transparent;
+      }
     }
-  }
-  .iconWrapper {
-    margin-left: 10px;
-    align-self: center;
-    background-color: map-get(colors.$input-colors, light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 14px;
-    width: 14px;
-
-    .dropdown {
-      transition: all 0.15s ease-in-out;
-      rotate: 180deg;
+    .iconWrapper {
+      margin-left: 10px;
+      align-self: center;
+      background-color: map-get(colors.$input-colors, light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 14px;
       width: 14px;
-      align-self: center;
-      justify-self: center;
+
+      .dropdown {
+        transition: all 0.15s ease-in-out;
+        rotate: 180deg;
+        height: 14px;
+        width: 14px;
+        align-self: center;
+        justify-self: center;
+      }
+      .toggledAccordian {
+        transform: rotate(180deg);
+        transition: transform;
+        overflow: hidden;
+      }
     }
-    .toggledAccordian {
-      transform: rotate(180deg);
-      transition: transform;
+
+    .slot-enter-active,
+    .slot-leave-active {
+      will-change: height, opacity;
+      transition: height 0.25s ease, opacity 0.25s ease;
       overflow: hidden;
     }
+
+    .slot-enter,
+    .slot-leave-to {
+      height: 0 !important;
+      opacity: 0;
+    }
   }
 
-  .slot-enter-active,
-  .slot-leave-active {
-    will-change: height, opacity;
-    transition: height 0.25s ease, opacity 0.25s ease;
-    overflow: hidden;
-  }
-
-  .slot-enter,
-  .slot-leave-to {
-    height: 0 !important;
-    opacity: 0;
-  }
-}
-
-.inputWrapper {
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  border: 1px solid map-get(colors.$input-colors, light);
-  border-radius: 8px;
-  width: 100%;
-
-  input::placeholder {
-    opacity: 0.3;
-  }
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  
-  input[type="number"] {
-    appearance:inherit;
-    -moz-appearance: textfield;
-  }
-  
-  input {
-    width: 100%;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    padding: 10px;
-  }
-
-  .warningIcon {
-    padding-right: 10px;
-    user-select: none;
-  }
-
-  .successIcon {
-    padding-right: 10px;
-    margin: 0 auto;
-    user-select: none;
-  }
-  .passwordControls {
-    padding-right: 10px;
-    width: 25px;
+  .inputWrapper {
+    width: fit-content;
     display: flex;
-    justify-content: center;
     align-items: center;
-  }
-  &.valid {
-    border-color: map-get(colors.$input-colors, success);
-    user-select: none;
-    svg {
-      color: map-get(colors.$input-colors, success);
+    justify-content: center;
+    gap: 2px;
+    border: 1px solid map-get(colors.$input-colors, light);
+    border-radius: 8px;
+    width: 100%;
+
+    input::placeholder {
+      opacity: 0.3;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      appearance: inherit;
+      -moz-appearance: textfield;
+    }
+
+    input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      padding: 10px;
+    }
+
+    .warningIcon {
+      padding-right: 10px;
+      user-select: none;
+    }
+
+    .successIcon {
+      padding-right: 10px;
+      margin: 0 auto;
+      user-select: none;
+    }
+    .passwordControls {
+      padding-right: 10px;
+      width: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &.valid {
+      border-color: map-get(colors.$input-colors, success);
+      user-select: none;
+      svg {
+        color: map-get(colors.$input-colors, success);
+      }
+    }
+
+    &.invalid {
+      user-select: none;
+      border-color: map-get(colors.$input-colors, danger);
+      svg {
+        color: map-get(colors.$input-colors, danger);
+      }
     }
   }
-  
-  &.invalid {
-    user-select: none;
-    border-color: map-get(colors.$input-colors, danger);
-    svg {
-      color: map-get(colors.$input-colors, danger);
-    }
-  }
-}
 }
 .dark .inputWrapper {
   border-color: map-get(colors.$dark-input-colors, light);
   input {
     color: map-get(colors.$text-colors, light-dark);
   }
-   &.valid {
+  &.valid {
     border-color: map-get(colors.$dark-input-colors, success);
     user-select: none;
     svg {
@@ -179,7 +178,6 @@
   }
 }
 
-
 /// Universal rules:
 
 .disabled {
@@ -190,22 +188,20 @@
 
 .sm {
   input {
-    font-size:map-get(font-system.$font-size, small );
+    font-size: map-get(font-system.$font-size, small);
     padding: 4px 10px;
   }
 }
 
 .md {
   input {
-    font-size: map-get(font-system.$font-size, body1 );
+    font-size: map-get(font-system.$font-size, body1);
     padding: 8px 10px;
   }
 }
 
 .lg {
   input {
-    font-size: map-get(font-system.$font-size, h5 );
+    font-size: map-get(font-system.$font-size, h5);
   }
 }
-
-
