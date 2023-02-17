@@ -6,9 +6,15 @@
 * {
   margin: 0;
 }
-
+.inputBody{
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-self: flex-start;
 .topWrapper {
+
   margin-top: 10px;
+
   h1 {
     display: flex;
     font-family: variables.$primaryFontFamily;
@@ -139,7 +145,7 @@
     }
   
 }
-
+}
 .dark .inputWrapper {
   border-color: map-get(colors.$dark-input-colors, light);
   input {

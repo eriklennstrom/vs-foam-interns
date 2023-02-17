@@ -114,69 +114,83 @@ function toggleAccordian() {
 </script>
 
 <template>
-  <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
-    <h1>
-      {{ props.text }}
-      <div v-if="accordianRef" class="iconWrapper">
-        <AsyncIcon
-          v-if="accordianRef"
-          class="dropdown h2"
-          :class="[accordianSwitch ? 'toggledAccordian' : '']"
-          icon="caret-down"
-          @click="toggleAccordian"
+  <div class="inputBody">
+    <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
+      <h1>
+        {{ props.text }}
+        <div v-if="accordianRef" class="iconWrapper">
+          <AsyncIcon
+            v-if="accordianRef"
+            class="dropdown h2"
+            :class="[accordianSwitch ? 'toggledAccordian' : '']"
+            icon="caret-down"
+            @click="toggleAccordian"
+          />
+        </div>
+      </h1>
+
+      <transition
+        name="slot"
+        @enter="start"
+        @after-enter="end"
+        @before-leave="start"
+        @after-leave="end"
+      >
+        <slot
+          v-if="accordianSwitch"
+          name="sentContent"
+          class="sentContent"
+          appear
         />
-      </div>
-    </h1>
-
-    <transition
-      name="slot"
-      @enter="start"
-      @after-enter="end"
-      @before-leave="start"
-      @after-leave="end"
-    >
-      <slot
-        v-if="accordianSwitch"
-        name="sentContent"
-        class="sentContent"
-        appear
-      />
-    </transition>
-  </div>
-
-  <div
-    :disabled="props.disabled"
-    :class="[
-      size,
-      'inputWrapper',
-      inputClass,
-      props.isValid ? 'valid' : '',
-      props.isValid == false ? 'invalid' : '',
-      props.disabled ? 'disabled' : '',
-    ]"
-  >
-    <input
-      autocomplete="off"
-      :type="variantMiddleware"
-      :placeholder="props.placeholder"
-      :disabled="props.disabled"
-      :value="props.modelValue"
-      @input="emitInput($event.target)"
-    >
+      </transition>
+    </div>
 
     <div
-      v-if="variantMiddleware == 'password' || props.variant == 'password'"
-      class="passwordControls"
+      :disabled="props.disabled"
+      :class="[
+        size,
+        'inputWrapper',
+        inputClass,
+        props.isValid ? 'valid' : '',
+        props.isValid == false ? 'invalid' : '',
+        props.disabled ? 'disabled' : '',
+      ]"
     >
+      <input
+        autocomplete="off"
+        :type="variantMiddleware"
+        :placeholder="props.placeholder"
+        :disabled="props.disabled"
+        :value="props.modelValue"
+        @input="emitInput($event.target)"
+      >
+
+      <div
+        v-if="variantMiddleware == 'password' || props.variant == 'password'"
+        class="passwordControls"
+      >
+        <AsyncIcon
+          v-if="showPassword == false"
+          icon="eye"
+          @click="changePasswordVisibility"
+        />
+        <AsyncIcon
+          v-if="showPassword == true"
+          icon="eye-slash"
+          @click="changePasswordVisibility"
+        />
+      </div>
       <AsyncIcon
-        v-if="showPassword == false"
-        icon="eye"
-        @click="changePasswordVisibility"
+        v-if="props.isValid == false"
+        class="warningIcon"
+        icon="warning"
+        variant="danger"
       />
       <AsyncIcon
-        v-if="showPassword == true"
-        icon="eye-slash"
-        @click="changePasswordVisibility"
+        v-if="props.isValid == true"
+        class="successIcon"
+        icon="check"
+        variant="success"
       />
     </div>
     <AsyncIcon
