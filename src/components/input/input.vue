@@ -72,7 +72,7 @@ watch(
 );
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function emitInput(e:any) {
+function emitInput(e: any) {
   const targetVal: string = e.value;
   emit('update:modelValue', targetVal);
 }
