@@ -5,9 +5,8 @@ import {
   computed,
   ref,
   type Ref,
-  onBeforeMount
+  onBeforeMount,
 } from 'vue';
-
 
 type InputProps = {
   label?: string
@@ -21,7 +20,6 @@ type InputProps = {
   maxValue?: number
   direction?: 'horizontal' | 'vertical'
   increment?: number
-
 };
 
 const emit = defineEmits(['change', 'update:modelValue']);
@@ -37,25 +35,24 @@ const props = withDefaults(defineProps<InputProps>(), {
   maxLength: 3,
   maxValue: 999,
   direction: 'horizontal',
-  increment: 1
+  increment: 1,
 });
 
-const maxLengthRef: Ref = ref(props.maxLength)
+const maxLengthRef: Ref = ref(props.maxLength);
 onBeforeMount(() => {
-  if (maxLengthRef.value > 14)
-    maxLengthRef.value = 14
+  if (maxLengthRef.value > 14) maxLengthRef.value = 14;
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function emitInput(e: any) {
   if (e.value > props.maxValue) {
-    e.value = props.maxValue
+    e.value = props.maxValue;
   }
   if (e.value == '') {
-    e.value = 0
+    e.value = 0;
   }
-  e.value = e.value.slice(0, maxLengthRef.value)
-  const emitValue = parseInt(e.value.slice(0, maxLengthRef.value))
+  e.value = e.value.slice(0, maxLengthRef.value);
+  const emitValue = parseInt(e.value.slice(0, maxLengthRef.value));
 
   if (emitValue !== props.modelValue) {
     emit('update:modelValue', emitValue);
@@ -63,32 +60,33 @@ function emitInput(e: any) {
 }
 }
 
-const verticalAlignment = props.direction == 'vertical' ? 'verticalStyle' : ''
+const verticalAlignment = props.direction == 'vertical' ? 'verticalStyle' : '';
 
 function increment() {
-  const updatedValue = props.modelValue + props.increment
+  const updatedValue = props.modelValue + props.increment;
   if (updatedValue > props.maxValue) {
-    emit('update:modelValue', props.maxValue)
+    emit('update:modelValue', props.maxValue);
   }
-  if (updatedValue.toString().length <= maxLengthRef.value && updatedValue <= props.maxValue)
-    emit('update:modelValue', props.modelValue + props.increment)
+  if (
+    updatedValue.toString().length <= maxLengthRef.value &&
+    updatedValue <= props.maxValue
+  )
+    emit('update:modelValue', props.modelValue + props.increment);
 }
 
 function decrement() {
-  const updatedValue = props.modelValue - props.increment
+  const updatedValue = props.modelValue - props.increment;
   if (updatedValue < 0) {
-    emit('update:modelValue', 0)
-  }
-  else if (props.modelValue > 0)
-    emit('update:modelValue', props.modelValue - props.increment)
-
-
+    emit('update:modelValue', 0);
+  } else if (props.modelValue > 0)
+    emit('update:modelValue', props.modelValue - props.increment);
 }
 
-const horizontalWidthCalculation = (maxLengthRef.value * 12).toString()
-const verticalWidthCalculation = (maxLengthRef.value * 9).toString()
-const verticalWidthCalculationAlignment = (verticalWidthCalculation + 40).toString()
-
+const horizontalWidthCalculation = (maxLengthRef.value * 12).toString();
+const verticalWidthCalculation = (maxLengthRef.value * 9).toString();
+const verticalWidthCalculationAlignment = (
+  verticalWidthCalculation + 40
+).toString();
 
 // dynamic component import
 const AsyncIcon = computed(() => {
@@ -99,7 +97,6 @@ const AsyncIcon = computed(() => {
     return Icon;
   }
 });
-
 </script>
 
 <template>
@@ -111,13 +108,26 @@ const AsyncIcon = computed(() => {
     </div>
     <div
       class="alignment__container"
-      :style="{ width: props.direction == 'vertical' ? verticalWidthCalculationAlignment + ' px' : '' }"
+      :style="{
+        width:
+          props.direction == 'vertical'
+            ? verticalWidthCalculationAlignment + ' px'
+            : '',
+      }"
     >
       <div
         v-if="props.direction == 'vertical'"
-        :style="{ width: props.direction === 'vertical' ? verticalWidthCalculation + 'px' : '' }"
-        :class="['vertical__incrementDiv', 'indicator',
-                 props.disabled ? 'disabled' : '']"
+        :style="{
+          width:
+            props.direction === 'vertical'
+              ? verticalWidthCalculation + 'px'
+              : '',
+        }"
+        :class="[
+          'vertical__incrementDiv',
+          'indicator',
+          props.disabled ? 'disabled' : '',
+        ]"
         role="button"
         @click="increment"
       >
@@ -127,7 +137,8 @@ const AsyncIcon = computed(() => {
       <div
         :disabled="props.disabled"
         :class="[
-          'inputWrapper', verticalAlignment,
+          'inputWrapper',
+          verticalAlignment,
           props.disabled ? 'disabled' : '',
         ]"
       >
@@ -141,7 +152,12 @@ const AsyncIcon = computed(() => {
         </div>
 
         <input
-          :style="{ width: props.direction === 'horizontal' ? horizontalWidthCalculation + 'px' : verticalWidthCalculation + 'px' }"
+          :style="{
+            width:
+              props.direction === 'horizontal'
+                ? horizontalWidthCalculation + 'px'
+                : verticalWidthCalculation + 'px',
+          }"
           autocomplete="off"
           type="number"
           :placeholder="props.placeholder"
@@ -164,15 +180,18 @@ const AsyncIcon = computed(() => {
       <div
         v-if="props.direction == 'vertical'"
         :style="{ width: verticalWidthCalculation + 'px' }"
-        :class="['vertical__decrementDiv', 'indicator',
-                 props.disabled ? 'disabled' : '']"
+        :class="[
+          'vertical__decrementDiv',
+          'indicator',
+          props.disabled ? 'disabled' : '',
+        ]"
         role="button"
         @click="decrement"
       >
         <AsyncIcon icon="chevron-down" />
       </div>
     </div>
-    <div :class="['userInstructions',]">
+    <div :class="['userInstructions']">
       <p
         v-if="props.isValid != null"
         :class="[
