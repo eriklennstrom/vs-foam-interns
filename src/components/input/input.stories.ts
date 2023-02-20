@@ -13,7 +13,7 @@ export default {
     },
   },
   argTypes: {
-    text: {
+    label: {
       control: { type: 'text' },
       description: 'Property for Label',
     },
@@ -100,14 +100,14 @@ export default {
 const Template: StoryFn<typeof FoamInput> = () => {
   return {
     components: { FoamInput },
-    template: '<foam-input  v-bind="args" placeholder="placeholder"/>',
+    template: '<foam-input label="Label"  v-bind="args" placeholder="placeholder"/>',
   };
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: 'text',
-  placeholder: 'placeholder'
+  label: 'label',
+  placeholder: 'placeholder',
 };
 
 export const Variants: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
@@ -117,7 +117,7 @@ export const Variants: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
   },
   template: `
   <div style="display: flex; flex-direction:column; flex-wrap: wrap;">
-    <foam-input v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" placeholder ="placeholder" />
+    <foam-input v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :label="variant" :variant="variant" placeholder ="placeholder" />
   </div>
 `,
 });
@@ -155,7 +155,7 @@ export const Sizes: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
   },
   template: `
   <div style="display: flex; flex-direction:column; flex-wrap: wrap;">
-    <foam-input v-bind="args" v-for="size in argTypes.size.options" :key="size" :text="size" :size="size" placeholder ="placeholder" />
+    <foam-input v-bind="args" v-for="size in argTypes.size.options" :key="size" :label="size" :size="size" placeholder ="placeholder" />
   </div>
 `,
 });
@@ -181,7 +181,7 @@ Sizes.argTypes = {
       disable: true,
     },
   },
-  text: {
+  label: {
     description: 'Property for text content inside the input',
   },
 };
@@ -196,8 +196,8 @@ export const Validation: StoryFn<typeof FoamInput> = (args, { argTypes }) => {
     },
     template: `
     <div style="display: flex; flex-direction: column;">
-    <foam-input variant="text" helpertext="helpertext" validationText="validationText" :isValid=false v-bind="args"  />
-    <foam-input variant="text" 
+    <foam-input label="Label" variant="text" helpertext="helpertext" validationText="validationText" :isValid=false v-bind="args"  />
+    <foam-input  variant="text"  label="Label"
     helpertext="helpertext"  validationText="validationText"  :isValid=true v-bind="args"  />
     </div>
   `,
@@ -209,7 +209,7 @@ export const Accordian: StoryFn<typeof FoamInput> = () => {
     components: { FoamInput },
     template: `
     <div style="display: flex; flex-direction: column;">
-      <foam-input variant="text" v-bind="args" accordian placeholder="placeholder"  >
+      <foam-input label="Label" variant="label" v-bind="args" accordian placeholder="placeholder"  >
       <template #sentContent>
       Slot content
     </template>
@@ -226,7 +226,7 @@ Accordian.argTypes = {
     },
   },
 
-  text: {
+  label: {
     description: 'Property for text content inside the input',
   },
 };
@@ -239,10 +239,6 @@ Validation.argTypes = {
       disable: true,
     },
   },
-
-  text: {
-    description: 'Property for text content inside the input',
-  },
 };
 
 export const Disabled: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
@@ -252,7 +248,7 @@ export const Disabled: StoryFn<typeof FoamInput> = (args, { argTypes }) => ({
   },
   template: `
   <div style="display: flex; flex-direction: column; flex-wrap: wrap">
-    <foam-input disabled v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :text="variant" :variant="variant" />
+    <foam-input disabled v-bind="args" v-for="variant in argTypes.variant.options" :key="variant" :label="variant" :variant="variant" />
   </div>
 `,
 });
@@ -273,7 +269,7 @@ Disabled.argTypes = {
       disable: true,
     },
   },
-  text: {
+  label: {
     description: 'Property for text content inside the input',
   },
 };
