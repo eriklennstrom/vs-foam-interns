@@ -7,7 +7,7 @@ describe('Input', () => {
   it('Input', () => {
     it('has default values for props', () => {
       const wrapper = mount(Input);
-      expect(wrapper.props().text).toBe('Label');
+      expect(wrapper.props().label).toBe('Label');
       expect(wrapper.props().variant).toBe('text');
       expect(wrapper.props().validationText).toBe('');
       expect(wrapper.props().isValid).toBe(null);
@@ -52,7 +52,7 @@ describe('Input', () => {
         variant: 'text',
         isValid: true,
         disabled: false,
-        text: 'Test'
+        label: 'Test'
       }
     });
   it('displays the label', () => {
