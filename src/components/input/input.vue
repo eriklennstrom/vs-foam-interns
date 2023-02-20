@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   isValid: null,
   placeholder: undefined,
   variant: 'text',
-  text: 'Label',
+  label: 'Label',
   disabled: false,
   helpertext: '',
   modelValue: '',

@@ -5,7 +5,7 @@ To indicate the diffrent states of an input, it will either provide colors and/o
 
 ## Usage
 
-The text property is the text content that will be rendered as a label. Default text is 'Label'.
+The label property is the text content that will be rendered as a label. Default label is 'Label'.
 
 The variant property decides what variant will be used. Default is `text`.
 
@@ -13,12 +13,12 @@ Variants available : `text`, `number`, `email`, `password`
 
 ```html
 <!-- good -->
-<foam-input variant="password" text="enter your password" v-model="value"/>
+<foam-input variant="password" label="enter your password" v-model="value"/>
 ```
 
 ```html
 <!-- bad -->
-<foam-input variant="primary" text="enter your password" v-model="value" />
+<foam-input variant="primary" label="enter your password" v-model="value" />
 ```
 
 Primary variant does not exist - will give the default input "text".
@@ -33,12 +33,12 @@ This is handled by adding placeholder to the html allong with desired string val
 
 ```html
 <!-- good -->
-<foam-input placeholder="Please enter password" text="Password" v-model="value" />
+<foam-input placeholder="Please enter password" label="Password" v-model="value" />
 ```
 
 ```html
 <!-- bad -->
-<foam-input "placeholder = Please enter password" text="Password" v-model="value" />
+<foam-input "placeholder = Please enter password" label="Password" v-model="value" />
 ```
 
 ## Disabled
@@ -50,12 +50,12 @@ This is handled by adding disabled to the html
 
 ```html
 <!-- good -->
-<foam-input disabled text="Password" v-model="value" />
+<foam-input disabled label="Password" v-model="value" />
 ```
 
 ```html
 <!-- bad -->
-<foam-input "disabled" text="Password" v-model="value" />
+<foam-input "disabled" label="Password" v-model="value" />
 ```
 
 
