@@ -25,7 +25,7 @@ const test= ref('')
       size="sm"
       validation-text="Validation-text"
       variant="number"
-      text="Valid"
+      label="Valid"
       placeholder="placeholder"
       helpertext="Helper text"
     />
@@ -36,7 +36,7 @@ const test= ref('')
       :is-valid="true"
       validation-text="Validation-text"
       variant="email"
-      text="Valid"
+      label="Valid"
       placeholder="placeholder"
       helpertext="Helper text"
     />
@@ -46,7 +46,7 @@ const test= ref('')
       :is-valid="false"
       validation-text="Validation-text"
       variant="text"
-      text="Not valid"
+      label="Not valid"
       placeholder="placeholder"
       helpertext="Helper text"
     />
@@ -56,7 +56,7 @@ const test= ref('')
       v-model="test"
       size="lg"
       variant="text"
-      text="Neutral"
+      label="Neutral"
       placeholder="placeholder"
       helpertext="Helper text"
     >
@@ -70,7 +70,7 @@ const test= ref('')
     <Inputvue
       v-model="test"
       variant="number"
-      text="Disabled"
+      label="Disabled"
       placeholder="placeholder"
       disabled
     />
@@ -79,7 +79,7 @@ const test= ref('')
       :is-valid="false"
       validation-text="validation-text"
       variant="password"
-      text="Password"
+      label="Password"
       placeholder="placeholder"
     />
   
@@ -89,7 +89,7 @@ const test= ref('')
       :is-valid="true"
       validation-text="validation-text"
       variant="password"
-      text="Password"
+      label="Password"
       placeholder="placeholder"
     >
       <template #helperMessageText>

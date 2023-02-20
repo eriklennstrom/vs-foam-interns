@@ -5,15 +5,17 @@ import {
   ref,
   computed,
   watch,
-  useSlots,
-  type Ref,
+  useSlots
 } from 'vue';
+import { v4 as uuidv4 } from 'uuid';
 import {
   inputSize,
   defaultVariantMixin,
   inputVariant,
 } from '@/helpers/mixins/jsMixins';
 import('@/components/button/button.vue');
+
+
 
 type InputProps = {
   label: string
@@ -27,7 +29,10 @@ type InputProps = {
   size?: string
 };
 
+
+
 const slots = useSlots();
+
 
 const emit = defineEmits(['change', 'update:modelValue']);
 
@@ -42,14 +47,14 @@ const props = withDefaults(defineProps<InputProps>(), {
   modelValue: '',
   size: 'md',
 });
-
-const accordianRef: Ref = ref<boolean>(false);
+const accordianRef = ref<boolean>(false);
 slots.sentContent ? (accordianRef.value = true) : (accordianRef.value = false);
-const size: Ref = ref<string>(props.size);
-const variantMiddleware: Ref = ref<string>(props.variant);
-const showPassword: Ref = ref<boolean>(false);
-const type: Ref = ref<string>(props.variant);
+const size = ref<string>(props.size);
+const variantMiddleware = ref<string>(props.variant);
+const showPassword= ref<boolean>(false);
+const type= ref<string>(props.variant);
 const accordianSwitch= ref<boolean>(false);
+const labelRef = ref<string>(props.label +'-'+ uuidv4().substring(0, 5));
 
 defaultVariantMixin(inputSize).verifyVariant(size.value)
   ? ''
@@ -59,7 +64,7 @@ defaultVariantMixin(inputVariant).verifyVariant(props.variant)
   ? ''
   : (type.value = 'text');
 
-const inputClass: Ref = ref('input--' + type.value);
+const inputClass= ref('input--' + type.value);
 
 // Watch for Password-show
 watch(
@@ -105,20 +110,18 @@ const AsyncIcon = computed(() => {
 });
 
 //USE sentContent class for styling in parent
-//// make label name dynamic maybe trimmed labelprop?
-/// forced name?
 
 </script>
 
 <template>
   <div class="inputBody">
     <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
-      <label for="input" class="h3">
-        {{ props.text }}
+      <label :for="labelRef" class="h3">
+        {{ props.label }}
         <div v-if="accordianRef" class="iconWrapper">
           <AsyncIcon
             v-if="accordianRef"
-            id="input"
+           
             class="dropdown h2"
             :class="[accordianSwitch ? 'toggledAccordian' : '']"
             icon="caret-down"
@@ -155,6 +158,7 @@ const AsyncIcon = computed(() => {
       ]"
     >
       <input
+        :id="labelRef"
         autocomplete="off"
         :type="variantMiddleware"
         :placeholder="props.placeholder"
