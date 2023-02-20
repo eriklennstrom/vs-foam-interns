@@ -12,24 +12,101 @@ const changeFunc: (item: string) => void = (item) => {
   console.log(item);  
 }
 
+const testOptions = [
+  {
+    id: 123,
+    text: 'Testar',
+    value: 'test'
+  },
+  {
+    id: 123,
+    text: 'Kakor',
+    value: 'kakor'
+  },
+  {
+    id: 123,
+    text: 'Kaffe',
+    value: 'kaffe'
+  },
+  {
+    id: 123,
+    text: 'Test Igen',
+    value: 'igen'
+  }
+]
+
+const testOptions2 = [
+  {
+    id: 123,
+    text: 'Testar',
+    value: 'test'
+  },
+  {
+    id: 123,
+    text: 'Kakor',
+    value: 'kakor'
+  },
+  {
+    id: 123,
+    text: 'Kaffe',
+    value: 'kaffe'
+  },
+  {
+    id: 123,
+    text: 'Test Igen',
+    value: 'igen'
+  }
+]
+
+const testOptions3 = [
+  {
+    id: 123,
+    text: 'Testar',
+    value: 'test'
+  },
+  {
+    id: 123,
+    text: 'Kakor',
+    value: 'kakor'
+  },
+  {
+    id: 123,
+    text: 'Kaffe',
+    value: 'kaffe'
+  },
+  {
+    id: 123,
+    text: 'Test Igen',
+    value: 'igen'
+  }
+]
+
 </script>
 
 <template>
   <div class="wrapper">
-    <FoamSelect 
-      text="To Do" 
-      :options="['kaka', 'dator', 'test', 'kaffe']" 
+    <!-- <FoamSelect 
+      text="Cool Label" 
+      :options="testOptions" 
+      defaultoption="Something?"
       @change="changeFunc"
     />
     
     <FoamSelect
-      text="To Do"
-      :options="['kaka', 'dator', 'test', 'kaffe']"
+      text="LabelText"
+      :options="testOptions2"
+      position="top"
+      sort
+      @change="changeFunc"
+    />-->
+    <FoamSelect
+      text="LabelText"
+      :options="testOptions3"
       position="top"
       @change="changeFunc"
-    />
-    
-    <FoamButton text="Dark Mode" variant="primary" @click="darkMode" />
+    /> 
+    <FoamSelect />
+    <!-- <FoamButton text="Dark Mode" variant="primary" @click="darkMode" /> -->
   </div>
 </template>
 

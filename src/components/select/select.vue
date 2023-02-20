@@ -1,162 +1,233 @@
 <script setup lang="ts">
 import Icon from '@/components/icons/icons.vue';
-import { computed, ref, watch, type Ref } from 'vue';
+import { computed, onMounted, ref, type Ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
-// import useDetectOutsideClick from '@/composables/clickOutsideComponent'
+import useDetectOutsideClick from '@/composables/clickOutsideComponent';
+import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap';
+
+type OptionsProp = {
+  id: number
+  text: string
+  value: string
+};
 
 type SelectProps = {
-    text?: string
-    placeholder?: string
-    position?: string
-    options?: string[] | null
+  label?: string
+  position?: string
+  options?: OptionsProp[] | []
+  defaultoption?: string | null
+  sort?: boolean
 };
+
 const props = withDefaults(defineProps<SelectProps>(), {
-    text: 'Label',
-    position: 'inside',
-    placeholder: '',
-    options : null
+  label: 'Label',
+  position: 'inside',
+  defaultoption: null,
+  sort: false,
+  options: () => [],
 });
 
 const emit = defineEmits(['change']);
 
 const showOptions: Ref = ref<boolean>(false);
-const selectId = ref<string>('select-' + uuidv4())
-const buttonId = ref<string>('btn-' + uuidv4())
-const selectRef: Ref = ref()
-const userInput = ref<string>('')
-const labelPosition = ref<string>(props.position)
-const selectedOption = ref<string>('')
+const selectId = ref<string>('select-' + uuidv4());
+const selectContainerId = ref<string>('select-container-' + uuidv4());
+const selectRef: Ref = ref();
+const labelPosition = ref<string>(props.position);
+const selectedOption = ref<string>('');
+const componentRef = ref();
+const optionsList = ref<OptionsProp[]>([...props.options]);
+const searchRef = ref<string>('');
 
+onMounted(() => {
+  // If sort prop is true, sort list before default option is added to the array
+  props.sort
+    ? optionsList.value.sort((a, b) =>
+        a.text > b.text ? 1 : b.text > a.text ? -1 : 0
+      )
+    : null;
 
-watch(() => userInput.value, (newVal) => { 
-  const optionElems = document.querySelectorAll(`#${selectId.value} .option`)
-
-
-  selectRef.value.setAttribute('data-show', '')
-  const inputLowerCase = newVal.toLowerCase()
-  Array.from(optionElems).forEach(function (element) {  
-    element.textContent?.toLowerCase().includes(inputLowerCase) ? element.classList.remove('removed') : element.classList.add('removed')
-  });
-  
-
+  const defaultSelect: OptionsProp = {
+    id: 0,
+    value: props.defaultoption ? props.defaultoption : '-- Choose an option --',
+    text: props.defaultoption ? props.defaultoption : '-- Choose an option --',
+  };
+  optionsList.value.unshift(defaultSelect);
 });
+
 const popperInstance = computed(() => {
-  const buttonElem = document.querySelector(`#${buttonId.value}`) as HTMLElement
-  const dropdownElem = document.querySelector(`.${selectId.value}`) as HTMLElement
-  return createPopper(buttonElem, dropdownElem, {
+  const wrapperElem = document.querySelector(`#${selectId.value}`) as HTMLElement;
+  const selectElem = document.querySelector(`.${selectId.value}`) as HTMLElement;
+  
+  return createPopper(wrapperElem, selectElem, {
     placement: 'auto-start',
     modifiers: [
       {
         name: 'flip',
         options: {
-          allowedAutoPlacements: [`bottom-end`, `top-end`]
+          allowedAutoPlacements: [`bottom-end`, `top-end`],
         },
       },
       {
         name: 'offset',
         options: {
-          offset: [0, props?.position == 'top' ? 12 : 6],
-        }
-      }
+          offset: [0, props?.position == 'top' ? 12 : 2],
+        },
+      },
     ],
-    strategy: 'absolute'
+    strategy: 'absolute',
   });
-})
+});
+
 const handleShowOptions: () => void = () => {
-  showOptions.value = !showOptions.value
-  
-  if(showOptions.value) {
-    const inputElem = document.querySelector(`#${selectId.value} #dropdown__input--input`) as HTMLElement  
-    if(inputElem) { // Only for Vitest
-      inputElem.focus()
-    }  
-    popperInstance.value.update()
-    selectRef.value.setAttribute('data-show', '')
-  } else {   
-    selectRef.value.removeAttribute('data-show')
+  showOptions.value = !showOptions.value;
+  if (showOptions.value) {
+    const selectElem = document.getElementById(
+      selectContainerId.value
+    ) as HTMLElement;
+    if (selectElem) {
+      // Only for Vitest
+      selectElem.focus();
+    }
+
+    popperInstance.value.update();
+    selectRef.value.setAttribute('data-show', '');
+  } else {
+    selectRef.value.removeAttribute('data-show');
   }
-}
-const handleFocusOut: () => void = () => {
-  userInput.value = selectedOption.value
-}
+};
 
-const handleClearInput: () => void = () => {
-  userInput.value = ''
-}
+const handleEnterShow: () => void = () => {
+  handleShowOptions();
+};
 
-const handleSelectOption: (option: string) => void = (option) => {
-    selectedOption.value == option ? selectedOption.value = '' : selectedOption.value = option
-    userInput.value = option
-    emit('change', selectedOption.value)
-}
+let searchTimer: ReturnType<typeof setTimeout> | null = null;
+const handleSearch: (e: KeyboardEvent) => void = (e) => {
+  if (
+    document.querySelector(`.${selectId.value}`)?.hasAttribute('data-show') &&
+    e.key != 'Enter' &&
+    e.key != 'Alt' &&
+    e.key != 'Tab'
+  ) {
+    if(e.key == 'Space') {
+      searchRef.value = searchRef.value + ' ';
+    } else {
+      searchRef.value = searchRef.value + e.key;
+    }
+    
+    const filteredOption = props.options.find(option => option.text.includes(searchRef.value))
+    
+    console.log(filteredOption);
+    
+    
+    
+    const optionsElem = document.querySelectorAll('.option');
 
-const componentRef = ref()
+    
+    optionsElem.forEach((el) => {
+      if (el.innerHTML.toLowerCase().includes(searchRef.value)) {
+        const focusElem = el as HTMLElement;
+        focusElem.focus();
+        return;
+      }
+    });
 
-// ---- REBASE MAIN - ADD TAB TRAP REMOVE COMPOSABLE FOLDER ----
+    if (searchTimer) {
+      return;
+    }
 
-// Close dropdown on click outside the component
-// useDetectOutsideClick(componentRef, () => { 
-//     showOptions.value = false
-//     selectRef.value.removeAttribute('data-show')
-// })
+    searchTimer = setTimeout(() => {
+      searchRef.value = '';
+      searchTimer = null;
+    }, 2000);
+  }
+};
 
+const handleSelectOption: (option: string, value: string) => void = (option, value) => {
+  selectedOption.value = option;
+  showOptions.value = false;
+  document.getElementById(selectContainerId.value)?.focus();  
+
+  selectRef.value.removeAttribute('data-show');
+  emit('change', value);
+};
+
+const handleEnterSelect: (option: string, value: string, e: KeyboardEvent) => void = ( option, value, e) => {
+  e.stopPropagation();
+  selectRef.value.removeAttribute('data-show');
+  handleSelectOption(option, value);
+};
+
+// Close option list on click outside the component
+useDetectOutsideClick(componentRef, () => {
+  showOptions.value = false;
+  selectRef.value.removeAttribute('data-show');
+});
 </script>
 
 <template>
   <section
     :id="selectId"
     ref="componentRef"
+    :tabindex="-1"
     class="select"
-    @click="handleShowOptions"
+    :focusable="false"
   >
-    <div :id="buttonId" class="select--container">
-      <div class="input-container">
-        <input
-          id="select--input"
-          v-model="userInput"
-          type="text"
-          class="subtitle2"
-          name="select-input"
-          :placeholder="labelPosition == 'inside' ? ' ' : props.placeholder"
-          @focus="handleClearInput"
-          @focusout="handleFocusOut"
-        >
-        <label
-          class="select--label subtitle2"
-          :class="[`label-${labelPosition}`]"
-          for="select-input"
-          :data-active="[showOptions && labelPosition == 'inside' ? true : false]"
-        >
-          {{ props.text }}
-        </label>
-        <button class="select--button">
-          <Icon
-            :class="[showOptions ? 'options-active' : null]"
-            icon="caret-down"
-            :size="16"
-          />
-        </button>
-        <div
-          id="option__container"
-          ref="selectRef"
-          :class="selectId"
-        >
-          <div
-            v-for="option in props.options"
-            :key="option"
-            :class="selectedOption == option ? 'option--selected option' : 'option'"
-            @click="handleSelectOption(option)"
-            @keyup.enter="handleSelectOption(option)"
-          >
-            {{ option }}
-          </div>
-        </div>
+    <div
+      :id="selectContainerId"
+      class="select-container"
+      :tabindex="0"
+      @click="handleShowOptions"
+      @keydown.enter="handleEnterShow"
+      @keydown="handleSearch($event)"
+    >
+      <p v-if="selectedOption.length > 0" class="active--option subtitle2">
+        {{ selectedOption }}
+      </p>
+      <label
+        class="select--label subtitle2"
+        :class="[`label-${labelPosition}`]"
+        for="select-input"
+        :data-active="[showOptions && labelPosition == 'inside' ? true : false]"
+        :tabindex="-1"
+      >
+        {{ props.label }}
+      </label>
+      <div class="select--button">
+        <Icon
+          :class="[showOptions ? 'options-active' : null]"
+          icon="caret-down"
+          :size="16"
+        />
+      </div>
+    </div>
+    <div
+      id="option__container"
+      ref="selectRef"
+      :class="selectId"
+      @keydown="handleSearch($event)"
+    >
+      <div
+        v-for="(option, index) in optionsList"
+        :ref="option.id.toString()"
+        :key="index"
+        :class="
+          selectedOption == option.text ? 'option--selected option' : 'option'
+        "
+        tabindex="0"
+        @click="handleSelectOption(option.text, option.value)"
+        @keydown.enter="handleEnterSelect(option.text, option.value, $event)"
+        @keyup.escape="handleShowOptions"
+        @keydown.tab="useTabTrap($event)"
+        @keyup="useRemoveRecordedStroke($event)"
+      >
+        {{ option.text }}
       </div>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-    @import "@/components/select/select.scss";
+@import "@/components/select/select.scss";
 </style>

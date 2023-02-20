@@ -9,9 +9,9 @@ export function getKeyBoardFocusableElements (element : HTMLElement) {
 
   elements.value = [
     ...element.querySelectorAll(
-      'a, button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])'
+      'a, button, .option, input, textarea, select, details,[tabindex]:not([tabindex="-1"])'
     )
-  ].filter(el => !el.hasAttribute('disabled'));
+  ].filter(el => !el.hasAttribute('disabled') && !el.classList.contains('removed'));
   
   if(
       !currentElem.nextElementSibling?.hasAttribute('data-show') 
@@ -20,7 +20,7 @@ export function getKeyBoardFocusableElements (element : HTMLElement) {
       && !currentElem.className.includes('sub__item')
     ) {    
     elements.value = elements.value.filter(el => !el.classList.contains('sub-dropdown__item'));
-  }
+  }  
 
   for(let i = 0; i < 5; i++) {
     if(currentElem.classList.contains(`sub__item--${i}`)) {    
@@ -46,7 +46,7 @@ function getPrevActiveElem(el: HTMLElement) {
   prevActiveElem = el;
 }
 
-export function useTabTrap (e: KeyboardEvent) {
+export function useTabTrap (e: KeyboardEvent) { 
   if(e.key != 'Enter') {
     e.preventDefault();
     const currentElem = document.activeElement as HTMLElement;
@@ -56,12 +56,14 @@ export function useTabTrap (e: KeyboardEvent) {
       parentElement = currentElem.nextElementSibling as HTMLElement;
     } else if(currentElem.parentElement?.id === 'dropdown') {
       parentElement = parentElement.parentElement as HTMLElement;
+    } else if(!parentElement.lastElementChild?.hasAttribute('data-show')) {
+      parentElement = parentElement.parentElement as HTMLElement; 
     }
-
+    
     currentElem.classList.contains('sub-dropdown__item') ? parentElement = currentElem.parentElement as HTMLElement : null;
 
     const elements = getKeyBoardFocusableElements(parentElement);
-
+    
     if(elements.elements.value.length <= 1) {
       return;
     }
