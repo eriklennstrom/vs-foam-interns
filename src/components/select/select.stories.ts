@@ -27,8 +27,8 @@ export default {
           description: 'Array property for the options',
         },
         defaultoption: {
-          control: { type: 'array' },   
-          description: 'Array property for the first default choice in the options list',
+          control: { type: 'text' },   
+          description: 'String property for the first default choice in the options list',
         },
         sort: {
           control: { type: 'boolean' },
@@ -69,11 +69,37 @@ export default {
     },
     template: `
       <div style="display: flex; justify-content: center; gap: 24px; flex-direction: row; 1em; flex-wrap: wrap">
-            <foam-select label="Top Label" position="top" />
-            <foam-select label="Inside Label" />
+            <foam-select label="Top Label" position="top" v-bind="args" sort />
+            <foam-select label="Inside Label" v-bind="args" sort />
       </div>
     `,
   }); 
+
+  Position.args = {
+    options: [
+      {
+          id: 1,
+          text: 'C Option 3',
+          value: 'option-3'
+      },
+      {
+          id: 2,
+          text: 'D Option 4',
+          value: 'option-4'
+      },
+      {
+          id: 3,
+          text: ' A Option 1',
+          value: 'option-1'
+      },
+      {
+          id: 4,
+          text: 'B Option 2',
+          value: 'option-2'
+      }
+    ]
+  }
+
   Position.argTypes = {
     label: {
         table: {
@@ -115,6 +141,31 @@ export default {
     `,
   }); 
 
+  Sort.args = {
+    options: [
+      {
+          id: 1,
+          text: 'C Option 3',
+          value: 'option-3'
+      },
+      {
+          id: 2,
+          text: 'D Option 4',
+          value: 'option-4'
+      },
+      {
+          id: 3,
+          text: ' A Option 1',
+          value: 'option-1'
+      },
+      {
+          id: 4,
+          text: 'B Option 2',
+          value: 'option-2'
+      }
+    ]
+  }
+
   Sort.argTypes = {
     label: {
         table: {
@@ -122,35 +173,6 @@ export default {
         },
     },
     position: {
-        table: {
-            disable: true,
-        },
-    },
-    options: {
-        defaultValue: [
-            {
-                id: 1,
-                text: 'C Option 3',
-                value: 'option-3'
-            },
-            {
-                id: 2,
-                text: 'D Option 4',
-                value: 'option-4'
-            },
-            {
-                id: 3,
-                text: ' A Option 1',
-                value: 'option-1'
-            },
-            {
-                id: 4,
-                text: 'B Option 2',
-                value: 'option-2'
-            }
-        ]
-    },
-    defaultoption: {
         table: {
             disable: true,
         },

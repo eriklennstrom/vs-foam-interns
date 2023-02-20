@@ -50,7 +50,7 @@ onMounted(() => {
 
   const defaultSelect: OptionsProp = {
     id: 0,
-    value: props.defaultoption ? props.defaultoption : '-- Choose an option --',
+    value: props.defaultoption ? props.defaultoption : '',
     text: props.defaultoption ? props.defaultoption : '-- Choose an option --',
   };
   optionsList.value.unshift(defaultSelect);
@@ -117,13 +117,10 @@ const handleSearch: (e: KeyboardEvent) => void = (e) => {
     }
     
     const filteredOption = props.options.find(option => option.text.includes(searchRef.value))
-    
-    console.log(filteredOption);
-    
-    
+  
+    document.getElementById(`option-${filteredOption?.id}`)?.focus()  
     
     const optionsElem = document.querySelectorAll('.option');
-
     
     optionsElem.forEach((el) => {
       if (el.innerHTML.toLowerCase().includes(searchRef.value)) {
@@ -210,7 +207,7 @@ useDetectOutsideClick(componentRef, () => {
     >
       <div
         v-for="(option, index) in optionsList"
-        :ref="option.id.toString()"
+        :id="`option-${option.id}`"
         :key="index"
         :class="
           selectedOption == option.text ? 'option--selected option' : 'option'
