@@ -14,22 +14,22 @@ const changeFunc: (item: string) => void = (item) => {
 
 const testOptions = [
   {
-    id: 123,
+    id: '123',
     text: 'Testar',
     value: 'test'
   },
   {
-    id: 123,
+    id: '123',
     text: 'Kakor',
     value: 'kakor'
   },
   {
-    id: 123,
+    id: '123',
     text: 'Kaffe',
     value: 'kaffe'
   },
   {
-    id: 123,
+    id: '123',
     text: 'Test Igen',
     value: 'igen'
   }
@@ -37,22 +37,22 @@ const testOptions = [
 
 const testOptions2 = [
   {
-    id: 123,
+    id: '123',
     text: 'Testar',
     value: 'test'
   },
   {
-    id: 123,
+    id: '123',
     text: 'Kakor',
     value: 'kakor'
   },
   {
-    id: 123,
+    id: '123',
     text: 'Kaffe',
     value: 'kaffe'
   },
   {
-    id: 123,
+    id: '123',
     text: 'Test Igen',
     value: 'igen'
   }
@@ -60,22 +60,22 @@ const testOptions2 = [
 
 const testOptions3 = [
   {
-    id: 123,
+    id: '1',
     text: 'Testar',
     value: 'test'
   },
   {
-    id: 123,
+    id: '2',
     text: 'Kakor',
     value: 'kakor'
   },
   {
-    id: 123,
+    id: '3',
     text: 'Kaffe',
     value: 'kaffe'
   },
   {
-    id: 123,
+    id: '4',
     text: 'Test Igen',
     value: 'igen'
   }

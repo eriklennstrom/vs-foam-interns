@@ -11,11 +11,11 @@ The ``position`` property decides if the label should be inside or top of the in
 
 The ``options`` property is the options that will be rendered in the options dropdown.
 > Note - The property should be passed down as an array with option objects. 
-> Option type is { id : number, text: string, value : string}
+> Option type is { id : string, text: string, value : string}
 
 Example -
 ```
-    [{ud: 1, text : 'Text', value : 'value'}]
+    [{ud: 'id-1', text : 'Text', value : 'value'}]
 ```
 
 The ``sort`` property is a boolean that, if true, sorts the options list alphabetically.

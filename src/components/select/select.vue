@@ -7,7 +7,7 @@ import useDetectOutsideClick from '@/composables/clickOutsideComponent';
 import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap';
 
 type OptionsProp = {
-  id: number
+  id: string
   text: string
   value: string
 };
@@ -39,6 +39,8 @@ const selectedOption = ref<string>('');
 const componentRef = ref();
 const optionsList = ref<OptionsProp[]>([...props.options]);
 const searchRef = ref<string>('');
+const optionRef = ref([])
+const optionRefs = { optionRef }
 
 onMounted(() => {
   // If sort prop is true, sort list before default option is added to the array
@@ -49,7 +51,7 @@ onMounted(() => {
     : null;
 
   const defaultSelect: OptionsProp = {
-    id: 0,
+    id: '0',
     value: props.defaultoption ? props.defaultoption : '',
     text: props.defaultoption ? props.defaultoption : '-- Choose an option --',
   };
@@ -117,9 +119,11 @@ const handleSearch: (e: KeyboardEvent) => void = (e) => {
     }
     
     const filteredOption = props.options.find(option => option.text.includes(searchRef.value))
-  
-    document.getElementById(`option-${filteredOption?.id}`)?.focus()  
     
+    // document.getElementById(`option-${filteredOption?.id}`)?.focus()  
+    const foundOption = optionRef.value.find((el: HTMLElement) => el.id == filteredOption?.id) as never as HTMLElement
+    foundOption?.focus()
+
     const optionsElem = document.querySelectorAll('.option');
     
     optionsElem.forEach((el) => {
@@ -208,6 +212,7 @@ useDetectOutsideClick(componentRef, () => {
       <div
         v-for="(option, index) in optionsList"
         :id="`option-${option.id}`"
+        :ref="optionRefs.optionRef"
         :key="index"
         :class="
           selectedOption == option.text ? 'option--selected option' : 'option'
