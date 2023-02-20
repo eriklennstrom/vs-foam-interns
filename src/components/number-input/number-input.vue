@@ -7,6 +7,8 @@ import {
   type Ref,
   onBeforeMount,
 } from 'vue';
+import { v4 as uuidv4 } from 'uuid';
+
 
 type InputProps = {
   label?: string
@@ -16,8 +18,8 @@ type InputProps = {
   disabled?: boolean
   modelValue?: number
   helpertext?: string
-  maxLength?: number
-  maxValue?: number
+  maxlength?: number
+  maxvalue?: number
   direction?: 'horizontal' | 'vertical'
   increment?: number
 };
@@ -32,24 +34,26 @@ const props = withDefaults(defineProps<InputProps>(), {
   disabled: false,
   helpertext: '',
   modelValue: 0,
-  maxLength: 3,
-  maxValue: 999,
+  maxlength: 3,
+  maxvalue: 999,
   direction: 'horizontal',
   increment: 1,
 });
 
-const maxLengthRef: Ref = ref(props.maxLength);
+const maxLengthRef: Ref = ref(props.maxlength);
 onBeforeMount(() => {
   if (maxLengthRef.value > 14) maxLengthRef.value = 14;
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function emitInput(e: any) {
-  if (e.value > props.maxValue) {
-    e.value = props.maxValue;
+
+function emitInput(e: HTMLInputElement)  {
+  if (e) {
+ const comparevalue = parseInt(e.value)
+  if ( comparevalue > props.maxvalue) {
+    e.value = props.maxvalue.toString();
   }
-  if (e.value == '') {
-    e.value = 0;
+  if (e.value == '' ) {
+    e.value = '0';
   }
   e.value = e.value.slice(0, maxLengthRef.value);
   const emitValue = parseInt(e.value.slice(0, maxLengthRef.value));
@@ -61,15 +65,17 @@ function emitInput(e: any) {
 }
 
 const verticalAlignment = props.direction == 'vertical' ? 'verticalStyle' : '';
+const labelRef = ref(props.label+ ' '+ uuidv4());
+
 
 function increment() {
   const updatedValue = props.modelValue + props.increment;
-  if (updatedValue > props.maxValue) {
-    emit('update:modelValue', props.maxValue);
+  if (updatedValue > props.maxvalue) {
+    emit('update:modelValue', props.maxvalue);
   }
   if (
     updatedValue.toString().length <= maxLengthRef.value &&
-    updatedValue <= props.maxValue
+    updatedValue <= props.maxvalue
   )
     emit('update:modelValue', props.modelValue + props.increment);
 }
@@ -83,7 +89,7 @@ function decrement() {
 }
 
 const horizontalWidthCalculation = (maxLengthRef.value * 12).toString();
-const verticalWidthCalculation = (maxLengthRef.value * 9).toString();
+const verticalWidthCalculation = (maxLengthRef.value * 12).toString();
 const verticalWidthCalculationAlignment = (
   verticalWidthCalculation + 40
 ).toString();
@@ -102,9 +108,9 @@ const AsyncIcon = computed(() => {
 <template>
   <div class="numbers-input__div">
     <div :class="['topWrapper', props.disabled ? 'disabled' : '']">
-      <h1 class="h3">
+      <label :for="labelRef" class="h3">
         {{ props.label }}
-      </h1>
+      </label>
     </div>
     <div
       class="alignment__container"
@@ -129,7 +135,10 @@ const AsyncIcon = computed(() => {
           props.disabled ? 'disabled' : '',
         ]"
         role="button"
+        tabindex="0"
         @click="increment"
+        @keydown.space="increment"
+        @keydown.enter="increment"
       >
         <AsyncIcon icon="chevron-up" />
       </div>
@@ -146,12 +155,16 @@ const AsyncIcon = computed(() => {
           v-if="props.direction == 'horizontal'"
           class="horizontal__decrementDiv indicator"
           role="button"
+          tabindex="0"
           @click="decrement"
+          @keydown.space="decrement"
+          @keydown.enter="decrement"
         >
           <AsyncIcon icon="chevron-left" />
         </div>
 
         <input
+          :id="labelRef"
           :style="{
             width:
               props.direction === 'horizontal'
@@ -164,14 +177,18 @@ const AsyncIcon = computed(() => {
           :disabled="props.disabled"
           :value="props.modelValue"
           class="h5"
-          @input="emitInput($event.target)"
+          tabindex="0"
+          @input=" emitInput($event.target as HTMLInputElement)"
         >
 
         <div
           v-if="props.direction == 'horizontal'"
           :class="['horizontal__incrementDiv indicator']"
           role="button"
+          tabindex="0"
           @click="increment"
+          @keydown.space="increment"
+          @keydown.enter="increment"
         >
           <AsyncIcon icon="chevron-right" />
         </div>
@@ -186,7 +203,10 @@ const AsyncIcon = computed(() => {
           props.disabled ? 'disabled' : '',
         ]"
         role="button"
+        tabindex="0"
         @click="decrement"
+        @keydown.space="decrement"
+        @keydown.enter="decrement"
       >
         <AsyncIcon icon="chevron-down" />
       </div>
