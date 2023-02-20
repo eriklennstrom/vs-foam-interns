@@ -25,6 +25,18 @@ const test:Ref =ref()
     label="lol" 
     helpertext="lol"
     :is-valid="true"
+    :maxlength="5"
+    :maxvalue="99999"
+  />
+
+  <NumberInput
+    v-model="test"
+    direction="horizontal"
+    label="lol" 
+    helpertext="lol"
+    :is-valid="true"
+    :maxlength="5"
+    :maxvalue="99999"
   />
 </template>
 

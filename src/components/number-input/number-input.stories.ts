@@ -55,7 +55,7 @@ export default {
         defaultValue: '',
       }
     },
-    maxLength: {
+    maxlength: {
       control: { type: 'range', min:1, max:14 },
       table: {
         defaultValue: '',
@@ -74,7 +74,7 @@ export default {
         defaultValue: 1,
       }
     },
-    maxValue: {
+    maxvalue: {
       control: { type: 'number' },
       table: {
         defaultValue: 999999,

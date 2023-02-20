@@ -18,8 +18,8 @@ const wrapper = mount(Input, {propsData: {
   disabled: false,
   modelValue: 0,
   helpertext: 'Test Helper Text',
-  maxLength: 3,
-  maxValue: 999,
+  maxlength: 3,
+  maxvalue: 999,
   direction: 'horizontal',
   increment: 1
 }})
