@@ -220,8 +220,9 @@ useDetectOutsideClick(componentRef, () => {
         :id="`option-${option.id}`"
         :ref="(el) => { optionRefs[index] = el as HTMLElement }"
         :key="index"
+        class="subtitle2 option"
         :class="
-          selectedOption == option.text ? 'option--selected option subtitle2' : 'option subtitle2'
+          selectedOption == option.text ? 'option--selected' : ''
         "
         tabindex="0"
         @click="handleSelectOption(option.text, option.value)"
