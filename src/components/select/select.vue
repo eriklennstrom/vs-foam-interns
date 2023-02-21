@@ -55,6 +55,9 @@ onMounted(() => {
     text: props.defaultoption ? props.defaultoption : '-- Choose an option --',
   };
   optionsList.value.unshift(defaultSelect);
+
+  // If the label position is top - add default option as selected so select container isnt empty
+  labelPosition.value == 'top' ? selectedOption.value = optionsList.value[0].text : null
 });
 
 const popperInstance = computed(() => {
@@ -118,7 +121,9 @@ const handleSearch: (e: KeyboardEvent) => void = (e) => {
     }
   
     const index = optionsList.value.findIndex(option => option.text.toLowerCase().includes(searchRef.value))
-    optionRefs.value[index].focus()
+    if(index !== -1) {
+      optionRefs.value[index].focus()
+    }
 
     if (searchTimer) {
       return;
