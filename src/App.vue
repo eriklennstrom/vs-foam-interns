@@ -21,6 +21,7 @@ const darkMode: () => void = () => {
 </script>
 
 <template>
+  <p>{{ test }}</p>
   <button @click="darkMode">
     DARK MODE!
   </button>
@@ -92,7 +93,7 @@ body {
 section {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 4em;
 }
