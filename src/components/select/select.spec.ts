@@ -10,7 +10,6 @@ library.add( faUserSecret, faWarning, faArrowDown, faArrowAltCircleDown, faCheck
 describe('Select', () => {
     it('renders default select component properly', () => {
         const wrapper = mount(Select, { propsData: {  } })
-        console.log(wrapper.vm.$props.options);
         expect(wrapper.vm.$props).toStrictEqual(
             {
                 label: 'Label',

@@ -116,8 +116,7 @@ const handleSearch: (e: KeyboardEvent) => void = (e) => {
     } else {
       searchRef.value = searchRef.value + e.key;
     }
-    console.log(optionRefs);
-    
+  
     const index = optionsList.value.findIndex(option => option.text.toLowerCase().includes(searchRef.value))
     optionRefs.value[index].focus()
 
