@@ -121,16 +121,16 @@ function toggleAccordian() {
 </script>
 
 <template>
-  <div class="inputBody">
-    <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
-      <label :for="labelRef" class="h3">
+  <div class="input-body">
+    <div :class="[size, 'input-body__top-wrapper', props.disabled ? 'disabled' : '']">
+      <label :for="labelRef" class="body1">
         {{ props.label }}
-        <div v-if="accordianRef" class="iconWrapper">
+        <div v-if="accordianRef" class="icon-wrapper">
           <AsyncIcon
             v-if="accordianRef"
            
-            class="dropdown h2"
-            :class="[accordianSwitch ? 'toggledAccordian' : '']"
+            class="dropdown"
+            :class="[accordianSwitch ? 'accordian__toggled' : '']"
             icon="caret-down"
             @click="toggleAccordian"
           />
@@ -147,7 +147,7 @@ function toggleAccordian() {
         <slot
           v-if="accordianSwitch"
           name="sentContent"
-          class="sentContent"
+          class="sent-content"
           appear
         />
       </transition>
@@ -157,7 +157,7 @@ function toggleAccordian() {
       :disabled="props.disabled"
       :class="[
         size,
-        'inputWrapper',
+        'input-wrapper',
         inputClass,
         props.isValid ? 'valid' : '',
         props.isValid == false ? 'invalid' : '',
@@ -176,7 +176,7 @@ function toggleAccordian() {
 
       <div
         v-if="variantMiddleware == 'password' || props.variant == 'password'"
-        class="passwordControls"
+        class="password-controls"
       >
         <AsyncIcon
           v-if="showPassword == false"
@@ -191,13 +191,13 @@ function toggleAccordian() {
       </div>
       <AsyncIcon
         v-if="props.isValid == false"
-        class="warningIcon"
+        class="warning-icon"
         icon="warning"
         variant="danger"
       />
       <AsyncIcon
         v-if="props.isValid == true"
-        class="successIcon"
+        class="success-icon"
         icon="check"
         variant="success"
       />
