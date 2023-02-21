@@ -23,6 +23,7 @@ The ``sort`` property is a boolean that, if true, sorts the options list alphabe
 The ``defaultoption`` is a property that will be the first choice in the option dropdown. Default is ``-- Choose an option --``
 
 > While the options dropdown is open. Typing on the keyboard will search the options list and focus on an option that matches the search string.
+> Note - The search value will reset efter 2.5 seconds.
 
 In order to access the values a user chooses, a ``change`` event should be passed to the Select component.
 

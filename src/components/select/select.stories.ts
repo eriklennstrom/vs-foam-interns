@@ -62,6 +62,31 @@ export default {
 
   export const Default = Template.bind({});
 
+  Default.args = {
+    options: [
+      {
+          id: 1,
+          text: 'C Option 3',
+          value: 'option-3'
+      },
+      {
+          id: 2,
+          text: 'D Option 4',
+          value: 'option-4'
+      },
+      {
+          id: 3,
+          text: ' A Option 1',
+          value: 'option-1'
+      },
+      {
+          id: 4,
+          text: 'B Option 2',
+          value: 'option-2'
+      }
+    ]
+  }
+
   export const Position: StoryFn<typeof FoamSelect> = (args, { argTypes }) => ({
     components: { FoamSelect },
     setup() {

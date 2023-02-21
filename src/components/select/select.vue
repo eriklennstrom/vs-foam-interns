@@ -39,8 +39,7 @@ const selectedOption = ref<string>('');
 const componentRef = ref();
 const optionsList = ref<OptionsProp[]>([...props.options]);
 const searchRef = ref<string>('');
-const optionRef = ref([])
-const optionRefs = { optionRef }
+const optionRefs = ref<HTMLElement[]>([]);
 
 onMounted(() => {
   // If sort prop is true, sort list before default option is added to the array
@@ -117,22 +116,10 @@ const handleSearch: (e: KeyboardEvent) => void = (e) => {
     } else {
       searchRef.value = searchRef.value + e.key;
     }
+    console.log(optionRefs);
     
-    const filteredOption = props.options.find(option => option.text.includes(searchRef.value))
-    
-    // document.getElementById(`option-${filteredOption?.id}`)?.focus()  
-    const foundOption = optionRef.value.find((el: HTMLElement) => el.id == filteredOption?.id) as never as HTMLElement
-    foundOption?.focus()
-
-    const optionsElem = document.querySelectorAll('.option');
-    
-    optionsElem.forEach((el) => {
-      if (el.innerHTML.toLowerCase().includes(searchRef.value)) {
-        const focusElem = el as HTMLElement;
-        focusElem.focus();
-        return;
-      }
-    });
+    const index = optionsList.value.findIndex(option => option.text.toLowerCase().includes(searchRef.value))
+    optionRefs.value[index].focus()
 
     if (searchTimer) {
       return;
@@ -141,7 +128,7 @@ const handleSearch: (e: KeyboardEvent) => void = (e) => {
     searchTimer = setTimeout(() => {
       searchRef.value = '';
       searchTimer = null;
-    }, 2000);
+    }, 2500);
   }
 };
 
@@ -212,7 +199,7 @@ useDetectOutsideClick(componentRef, () => {
       <div
         v-for="(option, index) in optionsList"
         :id="`option-${option.id}`"
-        :ref="optionRefs.optionRef"
+        :ref="(el) => { optionRefs[index] = el as HTMLElement }"
         :key="index"
         :class="
           selectedOption == option.text ? 'option--selected option' : 'option'
