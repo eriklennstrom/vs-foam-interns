@@ -1,13 +1,8 @@
 <script setup lang="ts">
-// import ButtonVue from './components/Button/Button.vue';
 import { ref, type Ref } from 'vue';
-// import Icons from '@/components/icons/icons.vue'
-// import Badge from '@/components/badge/badge.vue'
-import Numberinput from '@/components/number-input/number-input.vue';
+import NumberInput from './components/number-input/number-input.vue';
 
 const test: Ref<number> = ref(0);
-
-const test2: Ref<number> = ref(0);
 
 const darkMode: () => void = () => {
   const body = document.querySelector('body');
@@ -25,6 +20,27 @@ const darkMode: () => void = () => {
   <button @click="darkMode">
     DARK MODE!
   </button>
+
+  <section>
+    <NumberInput
+      v-model="test"
+      direction="vertical"
+      label="Label" 
+      helpertext="Helpertext"
+      :is-valid="true"
+      :maxlength="3"
+    />
+
+    <NumberInput
+      v-model="test"
+      direction="horizontal"
+      label="Label" 
+      helpertext="Helpertext"
+      :is-valid="true"
+      :maxlength="5"
+      :maxvalue="99999"
+    />
+  </section>
 </template>
 
 <style scoped lang="scss">
@@ -34,6 +50,7 @@ body {
 }
 
 section {
+  
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
