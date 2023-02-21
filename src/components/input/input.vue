@@ -127,11 +127,14 @@ function toggleAccordian() {
         {{ props.label }}
         <div v-if="accordianRef" class="icon-wrapper">
           <AsyncIcon
-            v-if="accordianRef"
            
             class="dropdown"
             :class="[accordianSwitch ? 'accordian__toggled' : '']"
             icon="caret-down"
+            tabindex="0"
+            style="cursor: pointer;"
+            @keydown.enter="toggleAccordian"
+            @keydown.space="toggleAccordian"
             @click="toggleAccordian"
           />
         </div>
@@ -171,6 +174,7 @@ function toggleAccordian() {
         :placeholder="props.placeholder"
         :disabled="props.disabled"
         :value="props.modelValue"
+        tabindex="0"
         @input="emitInput($event.target)"
       >
 
@@ -181,11 +185,19 @@ function toggleAccordian() {
         <AsyncIcon
           v-if="showPassword == false"
           icon="eye"
+          tabindex="0"
+          style="cursor: pointer;"
+          @keydown.enter="changePasswordVisibility"
+          @keydown.space="changePasswordVisibility"
           @click="changePasswordVisibility"
         />
         <AsyncIcon
           v-if="showPassword == true"
           icon="eye-slash"
+          tabindex="0"
+          style="cursor: pointer;"
+          @keydown.enter="changePasswordVisibility"
+          @keydown.space="changePasswordVisibility"
           @click="changePasswordVisibility"
         />
       </div>
