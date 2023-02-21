@@ -5,7 +5,6 @@
 // import Buttonvue from '@/components/button/button.vue'
 import Inputvue from '@/components/input/input.vue'
 import { ref, type Ref } from 'vue';
-import NumberInput from './components/number-input/number-input.vue';
 
 
 const darkMode: () => void = () => {
@@ -116,11 +115,6 @@ section {
   margin-top: 4em;
 }
 
-.nice{
-  border: 1px solid black;
-  background-color: grey;
-  border-radius: 7px;
-}
 body{
   background-color: #668592;
 ;

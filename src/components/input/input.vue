@@ -124,7 +124,6 @@ const AsyncIcon = computed(() => {
         {{ props.label }}
         <div v-if="accordionRef" class="icon-wrapper">
           <AsyncIcon
-           
             class="dropdown"
             :class="[accordionSwitch ? 'accordion__toggled' : '']"
             icon="caret-down"
@@ -157,7 +156,7 @@ const AsyncIcon = computed(() => {
       :disabled="props.disabled"
       :class="[
         size,
-        'input-wrapper',
+        'input__wrapper',
         inputClass,
         props.isValid ? 'valid' : '',
         props.isValid == false ? 'invalid' : '',
@@ -207,34 +206,22 @@ const AsyncIcon = computed(() => {
         variant="success"
       />
     </div>
-    <AsyncIcon
-      v-if="props.isValid == false"
-      class="warningIcon"
-      icon="warning"
-      variant="danger"
-    />
-    <AsyncIcon
-      v-if="props.isValid == true"
-      class="successIcon"
-      icon="check"
-      variant="success"
-    />
   </div>
-  <div class="userInstructions text-sm">
+  <div class="user-instructions text-sm">
     <p 
       v-if="props.isValid != null"
       :class="[
         props.disabled ? 'disabled' : '',
-        props.isValid == true ? 'successMessageText' : '',
-        props.isValid == false ? 'errorMessageText' : '',
+        props.isValid == true ? 'success-message-text' : '',
+        props.isValid == false ? 'error-message-text' : '',
       ]"
     >
       {{ props.validationText }}
     </p>
-    <p class="helperMessageText text-sm">
+    <p class="helper-message-text text-sm">
       {{ props.helpertext }}
     </p>
-    <slot name="helperMessageText" class="helperMessageText"/> 
+    <slot name="helper-message-text" class="helper-message-text"/> 
   </div>
 </template>
 

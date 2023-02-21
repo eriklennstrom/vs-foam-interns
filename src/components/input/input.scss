@@ -6,7 +6,7 @@
 * {
   margin: 0;
 }
-.input-body{
+.input-body {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
@@ -65,7 +65,7 @@
     }
   }
 
-  .input-wrapper {
+  .input__wrapper {
     width: fit-content;
     display: flex;
     align-items: center;
@@ -84,115 +84,105 @@
       margin: 0;
     }
 
-  .slot-enter-active,
-  .slot-leave-active {
-    will-change: height, opacity;
-    transition: height 0.25s ease, opacity 0.25s ease;
-    overflow: hidden;
+    .slot-enter-active,
+    .slot-leave-active {
+      will-change: height, opacity;
+      transition: height 0.25s ease, opacity 0.25s ease;
+      overflow: hidden;
+    }
+
+    .slot-enter,
+    .slot-leave-to {
+      height: 0 !important;
+      opacity: 0;
+    }
+
+    .slot-enter-active,
+    .slot-leave-active {
+      will-change: height, opacity;
+      transition: height 0.25s ease, opacity 0.25s ease;
+      overflow: hidden;
+    }
+
+    .slot-enter,
+    .slot-leave-to {
+      height: 0 !important;
+      opacity: 0;
+    }
   }
 
-  .slot-enter,
-  .slot-leave-to {
-    height: 0 !important;
-    opacity: 0;
+  .input__wrapper {
+    input::placeholder {
+      opacity: 0.3;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      appearance: inherit;
+      -moz-appearance: textfield;
+    }
+
+    input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      padding: 10px;
+    }
   }
 
-  .slot-enter-active,
-  .slot-leave-active {
-    will-change: height, opacity;
-    transition: height 0.25s ease, opacity 0.25s ease;
-    overflow: hidden;
+  .warning-icon {
+    margin-right: 10px;
+    user-select: none;
   }
 
-  .slot-enter,
-  .slot-leave-to {
-    height: 0 !important;
-    opacity: 0;
+  .success-icon {
+    margin-right: 10px;
+    user-select: none;
+  }
+  .password-controls {
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &.valid {
+    border-color: map-get(colors.$input-colors, success);
+    user-select: none;
+    svg {
+      color: map-get(colors.$input-colors, success);
+    }
+  }
+
+  &.invalid {
+    user-select: none;
+    border-color: map-get(colors.$input-colors, danger);
+    svg {
+      color: map-get(colors.$input-colors, danger);
+    }
   }
 }
-
-.inputWrapper {
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  border: 1px solid map-get(colors.$input-colors, light);
-  border-radius: 8px;
-  width: 100%;
-
-  input::placeholder {
-    opacity: 0.3;
-  }
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  
-  input[type="number"] {
-    appearance:inherit;
-    -moz-appearance: textfield;
-  }
-  
-  input {
-    width: 100%;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    padding: 10px;
-  }
-}
-
-    .warning-icon {
-      margin-right: 10px;
-      user-select: none;
-    }
-
-    .success-icon {
-      margin-right: 10px;
-      user-select: none;
-    }
-    .password-controls {
-      margin-right: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    &.valid {
-      border-color: map-get(colors.$input-colors, success);
-      user-select: none;
-      svg {
-        color: map-get(colors.$input-colors, success);
-      }
-    }
-
-    &.invalid {
-      user-select: none;
-      border-color: map-get(colors.$input-colors, danger);
-      svg {
-        color: map-get(colors.$input-colors, danger);
-      }
-    }
-  
-}
-.dark .input-wrapper {
+.dark .input__wrapper {
   border-color: map-get(colors.$dark-input-colors, light);
+
   input {
     color: map-get(colors.$text-colors, light-dark);
   }
   &.valid {
     border-color: map-get(colors.$dark-input-colors, success);
     user-select: none;
-    svg {
-      color: map-get(colors.$dark-input-colors, success);
-    }
   }
   &.invalid {
     user-select: none;
     border-color: map-get(colors.$input-colors, danger);
-    svg {
-      color: map-get(colors.$input-colors, danger);
+  }
+  .password-controls{
+    svg{
+      color: map-get(colors.$dark-input-colors, light);
     }
   }
 }
@@ -255,6 +245,6 @@ input::-webkit-inner-spin-button {
   }
 }
 
-.sent-content{
+.sent-content {
   padding-bottom: 0.5rem;
 }
