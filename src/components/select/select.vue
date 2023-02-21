@@ -6,6 +6,7 @@ import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent';
 import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap';
 import { selectSortTypes, defaultTypeMixin } from '@/helpers/mixins/jsMixins';
+import debounce from 'lodash/debounce'
 
 type OptionsProp = {
   id: string
@@ -120,7 +121,6 @@ const handleEnterShow: () => void = () => {
   handleShowOptions();
 };
 
-let searchTimer: ReturnType<typeof setTimeout> | null = null;
 const handleSearch: (e: KeyboardEvent) => void = (e) => {
   if (
     document.querySelector(`.${selectId.value}`)?.hasAttribute('data-show') &&
@@ -138,17 +138,15 @@ const handleSearch: (e: KeyboardEvent) => void = (e) => {
     if(index !== -1) {
       optionRefs.value[index].focus()
     }
-
-    if (searchTimer) {
-      return;
-    }
-
-    searchTimer = setTimeout(() => {
-      searchRef.value = '';
-      searchTimer = null;
-    }, 1000);
+    
+    clearValue();
   }
 };
+
+// If a key event happens, the query string clear will be delayed by 500ms
+const clearValue = debounce(() => {
+      searchRef.value = '';
+    }, 500);
 
 const handleSelectOption: (option: string, value: string) => void = (option, value) => {
   selectedOption.value = option;
@@ -158,6 +156,7 @@ const handleSelectOption: (option: string, value: string) => void = (option, val
   selectRef.value.removeAttribute('data-show');
   emit('change', value);
 };
+
 
 const handleEnterSelect: (option: string, value: string, e: KeyboardEvent) => void = ( option, value, e) => {
   e.stopPropagation();
@@ -214,7 +213,7 @@ useDetectOutsideClick(componentRef, () => {
       id="option__container"
       ref="selectRef"
       :class="selectId"
-      @keydown.enter="handleSearch($event)"
+      @keydown="handleSearch($event)"
     >
       <div
         v-for="(option, index) in optionsList"
