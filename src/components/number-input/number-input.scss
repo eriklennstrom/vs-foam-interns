@@ -7,11 +7,11 @@
   margin: 0;
 }
 
-.numbers-input__div {
+.number-input {
   width: fit-content;
   display: flex;
   flex-direction: column;
-  .topwrapper {
+  .number-input__top {
     margin-top: 15px;
     align-items: flex-start;
 
@@ -24,7 +24,7 @@
     }
   }
 
-  .inputWrapper {
+  .input__wrapper {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -54,20 +54,20 @@
     }
   }
 
-  .alignment__container {
+  .number-input__alignment {
     justify-content: center;
     align-items: flex-start;
     display: flex;
     flex-direction: column;
   }
 
-  .vertical__incrementDiv,
-  .vertical__decrementDiv {
+  .increment-div__vertical,
+  .decrement-div__vertical {
     margin-left: 8px;
   }
 
-  .horizontal__incrementDiv,
-  .horizontal__decrementDiv {
+  .increment-div__horizontal,
+  .decrement-div__horizontal{
     width: 25px;
   }
 
@@ -98,16 +98,16 @@
     }
   }
 
-  .userInstructions {
+  .user-instructions {
     user-select: none;
     font-size: inherit;
     padding: 1px;
 
-    .warningIcon {
+    .warning-icon {
       padding: 0 4px 0 0;
     }
 
-    .successIcon {
+    .success-icon {
       padding: 0 4px 0 0;
       user-select: none;
     }
@@ -123,7 +123,7 @@
       color: map-get(colors.$input-text-colors, danger);
     }
 
-    .helperMessageText {
+    .helper-message-text {
       opacity: 0.5;
     }
   }
@@ -135,7 +135,7 @@
 }
 
 .dark {
-  .helperMessageText {
+  .helper-message-text {
     color: rgba(255, 251, 245, 0.958);
     opacity: 1;
   }
@@ -158,7 +158,7 @@
     }
   }
 
-  .inputWrapper {
+  .input__wrapper {
     border-color: map-get(colors.$dark-input-colors, light);
   }
 
