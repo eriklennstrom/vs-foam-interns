@@ -25,63 +25,6 @@ const darkMode: () => void = () => {
   <button @click="darkMode">
     DARK MODE!
   </button>
-  <h1>{{ test }}</h1>
-
-  <section>
-    <Numberinput
-      v-model="test2"
-      :max-length="5"
-      validation-text="validation text"
-      :is-valid="true"
-      label="helpertext super duper lång helpertextlol"
-      helpertext="helpertext"
-    />
-
-    <Numberinput
-      v-model="test"
-      :max-length="1"
-      validation-text="validation text"
-      :is-valid="false"
-      label="Label"
-      helpertext="helpertext"
-    />
-
-    <Numberinput
-      v-model="test"
-      label="Label that is longer"
-      direction="vertical"
-      :max-length="3"
-      :max-value="6999"
-      :is-valid="true"
-      validation-text="validation text"
-      helpertext="helpertext super duper lång helpertextlol"
-    />
-
-    <Numberinput
-      v-model="test"
-      label="Label that is the longest youve ever seen"
-      direction="vertical"
-      :max-length="5"
-      :is-valid="false"
-      validation-text="validation text"
-      helpertext="helpertext"
-    />
-
-    <Numberinput
-      v-model="test"
-      label="Label"
-      helpertext="helpertext"
-      direction="vertical"
-      :max-length="5"
-      disabled
-    />
-  </section>
-
-  <section class="lol">
-    <Numberinput label="Hours" :max-length="1" />
-    <Numberinput label="Minutes" :max-length="1" />
-    <Numberinput label="Seconds" :max-length="1" />
-  </section>
 </template>
 
 <style scoped lang="scss">
