@@ -34,6 +34,11 @@ export default {
           control: { type: 'boolean' },
           description: 'Property to sort the options list alphabetically',
         },
+        sortorder: {
+          control: { type: 'select' },
+          options: ['descending', 'ascending'],
+          description: 'Property to descide how to sort the options list',
+        },
         change: {
           table: {
             disable: true,
@@ -151,6 +156,11 @@ export default {
             disable: true,
         },
     },
+    sortorder: {
+      table: {
+          disable: true,
+      },
+  },
   };
 
   export const Sort: StoryFn<typeof FoamSelect> = (args, { argTypes }) => ({

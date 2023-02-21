@@ -103,9 +103,25 @@ const testOptions3 = [
       text="LabelText"
       :options="testOptions3"
       position="top"
+      sort
+      sortorder="descending"
       @change="changeFunc"
     /> 
-    <FoamSelect />
+    <FoamSelect
+      text="LabelText"
+      :options="testOptions3"
+      position="top"
+      sort
+      sortorder="ascending"
+      @change="changeFunc"
+    /> 
+    <FoamSelect
+      text="LabelText"
+      :options="testOptions3"
+      position="top"
+      sort
+      @change="changeFunc"
+    /> 
     <!-- <FoamButton text="Dark Mode" variant="primary" @click="darkMode" /> -->
   </div>
 </template>

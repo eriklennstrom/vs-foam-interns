@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { createPopper } from '@popperjs/core';
 import useDetectOutsideClick from '@/composables/clickOutsideComponent';
 import { useTabTrap, useRemoveRecordedStroke } from '@/composables/tabTrap';
+import { selectSortTypes, defaultTypeMixin } from '@/helpers/mixins/jsMixins';
 
 type OptionsProp = {
   id: string
@@ -18,6 +19,7 @@ type SelectProps = {
   options?: OptionsProp[] | []
   defaultoption?: string | null
   sort?: boolean
+  sortorder?: string
 };
 
 const props = withDefaults(defineProps<SelectProps>(), {
@@ -26,6 +28,7 @@ const props = withDefaults(defineProps<SelectProps>(), {
   defaultoption: null,
   sort: false,
   options: () => [],
+  sortorder: 'ascending'
 });
 
 const emit = defineEmits(['change']);
@@ -40,14 +43,25 @@ const componentRef = ref();
 const optionsList = ref<OptionsProp[]>([...props.options]);
 const searchRef = ref<string>('');
 const optionRefs = ref<HTMLElement[]>([]);
+const sortOrder = ref<string>(props.sortorder)
+
+  defaultTypeMixin(selectSortTypes).verifyType(props.sortorder)
+  ? ''
+  : (sortOrder.value = 'ascending');
+
 
 onMounted(() => {
   // If sort prop is true, sort list before default option is added to the array
-  props.sort
-    ? optionsList.value.sort((a, b) =>
-        a.text > b.text ? 1 : b.text > a.text ? -1 : 0
-      )
-    : null;
+  if(props.sort) {
+    sortOrder.value == 'ascending'
+      ? optionsList.value.sort((a, b) =>
+          a.text > b.text ? 1 : b.text > a.text ? -1 : 0
+        )
+      : optionsList.value.sort((a, b) =>
+          a.text < b.text ? 1 : b.text < a.text ? -1 : 0
+        )
+
+  }
 
   const defaultSelect: OptionsProp = {
     id: '0',

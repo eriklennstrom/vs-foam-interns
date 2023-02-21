@@ -20,6 +20,9 @@ Example -
 
 The ``sort`` property is a boolean that, if true, sorts the options list alphabetically.
 
+The ``sortorder`` property decides if the options list will be sorted as descending or ascending
+> Note - Acceptabled values are ``descending`` and ``ascending``. Default is ``ascending``
+
 The ``defaultoption`` is a property that will be the first choice in the option dropdown. Default is ``-- Choose an option --``
 
 > While the options dropdown is open. Typing on the keyboard will search the options list and focus on an option that matches the search string.
