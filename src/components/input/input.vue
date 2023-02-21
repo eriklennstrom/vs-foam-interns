@@ -47,14 +47,15 @@ const props = withDefaults(defineProps<InputProps>(), {
   modelValue: '',
   size: 'md',
 });
-const accordianRef = ref<boolean>(false);
-slots.sentContent ? (accordianRef.value = true) : (accordianRef.value = false);
+const accordionRef = ref<boolean>(false);
+slots.sentContent ? (accordionRef.value = true) : (accordionRef.value = false);
 const size = ref<string>(props.size);
 const variantMiddleware = ref<string>(props.variant);
 const showPassword= ref<boolean>(false);
 const type= ref<string>(props.variant);
-const accordianSwitch= ref<boolean>(false);
-const labelRef = ref<string>(props.label +'-'+ uuidv4().substring(0, 5));
+const accordionSwitch= ref<boolean>(false);
+const labelRef = ref<string>(uuidv4().substring(0, 5));
+
 
 defaultVariantMixin(inputSize).verifyVariant(size.value)
   ? ''
@@ -86,10 +87,11 @@ function emitInput(e: EventTarget | null) {
 
 function changePasswordVisibility() {
   showPassword.value = !showPassword.value;
+
 }
 
-function toggleAccordian() {
-  accordianSwitch.value = !accordianSwitch.value;
+function toggleAccordion() {
+  accordionSwitch.value = !accordionSwitch.value;
 }
 
 function start(el: HTMLElement) {
@@ -125,17 +127,17 @@ function toggleAccordian() {
     <div :class="[size, 'input-body__top-wrapper', props.disabled ? 'disabled' : '']">
       <label :for="labelRef" class="body1">
         {{ props.label }}
-        <div v-if="accordianRef" class="icon-wrapper">
+        <div v-if="accordionRef" class="icon-wrapper">
           <AsyncIcon
            
             class="dropdown"
-            :class="[accordianSwitch ? 'accordian__toggled' : '']"
+            :class="[accordionSwitch ? 'accordion__toggled' : '']"
             icon="caret-down"
             tabindex="0"
             style="cursor: pointer;"
-            @keydown.enter="toggleAccordian"
-            @keydown.space="toggleAccordian"
-            @click="toggleAccordian"
+            @keydown.enter="toggleAccordion"
+            @keydown.space="toggleAccordion"
+            @click="toggleAccordion"
           />
         </div>
       </label>
@@ -148,7 +150,7 @@ function toggleAccordian() {
         @after-leave="end"
       >
         <slot
-          v-if="accordianSwitch"
+          v-if="accordionSwitch"
           name="sentContent"
           class="sent-content"
           appear
@@ -180,25 +182,21 @@ function toggleAccordian() {
 
       <div
         v-if="variantMiddleware == 'password' || props.variant == 'password'"
+        ref="password__controls"
         class="password-controls"
+        tabindex="0"
+        style="cursor: pointer;"
+        @keydown.enter="changePasswordVisibility"
+        @keydown.space="changePasswordVisibility"
+        @click="changePasswordVisibility"
       >
         <AsyncIcon
           v-if="showPassword == false"
           icon="eye"
-          tabindex="0"
-          style="cursor: pointer;"
-          @keydown.enter="changePasswordVisibility"
-          @keydown.space="changePasswordVisibility"
-          @click="changePasswordVisibility"
         />
         <AsyncIcon
           v-if="showPassword == true"
           icon="eye-slash"
-          tabindex="0"
-          style="cursor: pointer;"
-          @keydown.enter="changePasswordVisibility"
-          @keydown.space="changePasswordVisibility"
-          @click="changePasswordVisibility"
         />
       </div>
       <AsyncIcon

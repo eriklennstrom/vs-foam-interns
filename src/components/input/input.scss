@@ -44,7 +44,7 @@
         align-self: center;
         justify-self: center;
       }
-      .accordian__toggled {
+      .accordion__toggled {
         transform: rotate(180deg);
         transition: transform;
         overflow: hidden;
@@ -145,18 +145,16 @@
 }
 
     .warning-icon {
-      padding-right: 10px;
+      margin-right: 10px;
       user-select: none;
     }
 
     .success-icon {
-      padding-right: 10px;
-      margin: 0 auto;
+      margin-right: 10px;
       user-select: none;
     }
     .password-controls {
-      padding-right: 10px;
-      width: 25px;
+      margin-right: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
