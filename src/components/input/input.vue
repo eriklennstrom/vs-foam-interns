@@ -47,14 +47,15 @@ const props = withDefaults(defineProps<InputProps>(), {
   modelValue: '',
   size: 'md',
 });
-const accordianRef = ref<boolean>(false);
-slots.sentContent ? (accordianRef.value = true) : (accordianRef.value = false);
+const accordionRef = ref<boolean>(false);
+slots.sentContent ? (accordionRef.value = true) : (accordionRef.value = false);
 const size = ref<string>(props.size);
 const variantMiddleware = ref<string>(props.variant);
 const showPassword= ref<boolean>(false);
 const type= ref<string>(props.variant);
-const accordianSwitch= ref<boolean>(false);
-const labelRef = ref<string>(props.label +'-'+ uuidv4().substring(0, 5));
+const accordionSwitch= ref<boolean>(false);
+const labelRef = ref<string>(uuidv4().substring(0, 5));
+
 
 defaultVariantMixin(inputSize).verifyVariant(size.value)
   ? ''
@@ -86,10 +87,11 @@ function emitInput(e: EventTarget | null) {
 
 function changePasswordVisibility() {
   showPassword.value = !showPassword.value;
+
 }
 
-function toggleAccordian() {
-  accordianSwitch.value = !accordianSwitch.value;
+function toggleAccordion() {
+  accordionSwitch.value = !accordionSwitch.value;
 }
 
 function start(el: HTMLElement) {
@@ -111,21 +113,26 @@ const AsyncIcon = computed(() => {
 
 //USE sentContent class for styling in parent
 
+
+
 </script>
 
 <template>
-  <div class="inputBody">
-    <div :class="[size, 'topWrapper', props.disabled ? 'disabled' : '']">
-      <label :for="labelRef" class="h3">
+  <div class="input-body">
+    <div :class="[size, 'input-body__top-wrapper', props.disabled ? 'disabled' : '']">
+      <label :for="labelRef" class="body1">
         {{ props.label }}
-        <div v-if="accordianRef" class="iconWrapper">
+        <div v-if="accordionRef" class="icon-wrapper">
           <AsyncIcon
-            v-if="accordianRef"
            
-            class="dropdown h2"
-            :class="[accordianSwitch ? 'toggledAccordian' : '']"
+            class="dropdown"
+            :class="[accordionSwitch ? 'accordion__toggled' : '']"
             icon="caret-down"
-            @click="toggleAccordian"
+            tabindex="0"
+            style="cursor: pointer;"
+            @keydown.enter="toggleAccordion"
+            @keydown.space="toggleAccordion"
+            @click="toggleAccordion"
           />
         </div>
       </label>
@@ -138,9 +145,9 @@ const AsyncIcon = computed(() => {
         @after-leave="end"
       >
         <slot
-          v-if="accordianSwitch"
+          v-if="accordionSwitch"
           name="sentContent"
-          class="sentContent"
+          class="sent-content"
           appear
         />
       </transition>
@@ -150,7 +157,7 @@ const AsyncIcon = computed(() => {
       :disabled="props.disabled"
       :class="[
         size,
-        'inputWrapper',
+        'input-wrapper',
         inputClass,
         props.isValid ? 'valid' : '',
         props.isValid == false ? 'invalid' : '',
@@ -164,52 +171,70 @@ const AsyncIcon = computed(() => {
         :placeholder="props.placeholder"
         :disabled="props.disabled"
         :value="props.modelValue"
+        tabindex="0"
         @input="emitInput($event.target)"
       >
 
       <div
         v-if="variantMiddleware == 'password' || props.variant == 'password'"
-        class="passwordControls"
+        ref="password__controls"
+        class="password-controls"
+        tabindex="0"
+        style="cursor: pointer;"
+        @keydown.enter="changePasswordVisibility"
+        @keydown.space="changePasswordVisibility"
+        @click="changePasswordVisibility"
       >
         <AsyncIcon
           v-if="showPassword == false"
           icon="eye"
-          @click="changePasswordVisibility"
         />
         <AsyncIcon
           v-if="showPassword == true"
           icon="eye-slash"
-          @click="changePasswordVisibility"
         />
       </div>
       <AsyncIcon
         v-if="props.isValid == false"
-        class="warningIcon"
+        class="warning-icon"
         icon="warning"
         variant="danger"
       />
       <AsyncIcon
         v-if="props.isValid == true"
-        class="successIcon"
+        class="success-icon"
         icon="check"
         variant="success"
       />
     </div>
-    <div class="userInstructions text-sm">
-      <p
-        v-if="props.isValid != null"
-        :class="[
-          props.disabled ? 'disabled' : '',
-          props.isValid == true ? 'successMessageText' : '',
-          props.isValid == false ? 'errorMessageText' : '',
-        ]"
-      >
-        {{ props.validationText }}
-      </p>
-      <p class="helperMessageText text-sm">
-        {{ props.helpertext }}
-      </p>
-    </div>
+    <AsyncIcon
+      v-if="props.isValid == false"
+      class="warningIcon"
+      icon="warning"
+      variant="danger"
+    />
+    <AsyncIcon
+      v-if="props.isValid == true"
+      class="successIcon"
+      icon="check"
+      variant="success"
+    />
+  </div>
+  <div class="userInstructions text-sm">
+    <p 
+      v-if="props.isValid != null"
+      :class="[
+        props.disabled ? 'disabled' : '',
+        props.isValid == true ? 'successMessageText' : '',
+        props.isValid == false ? 'errorMessageText' : '',
+      ]"
+    >
+      {{ props.validationText }}
+    </p>
+    <p class="helperMessageText text-sm">
+      {{ props.helpertext }}
+    </p>
+    <slot name="helperMessageText" class="helperMessageText"/> 
   </div>
 </template>
 

@@ -1,3 +1,4 @@
+@use "@/styles/font-system.scss";
 @use "sass:color";
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
@@ -14,7 +15,6 @@
     padding: 8px 16px;
     background-color: $bg;
     border-radius: 28px;
-    font-size: 12px;
 
     &:has(svg) {
       display: flex;

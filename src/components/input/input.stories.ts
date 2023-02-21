@@ -43,7 +43,7 @@ export default {
       options: [true, false, null],
       description: 'Property to add if value is valid',
     },
-    accordian: {
+    accordion: {
       control: { type: 'boolean' },
       options: [true, false],
     },
@@ -193,12 +193,12 @@ export const Validation: StoryFn<typeof FoamInput> = (args, { argTypes }) => {
   };
 };
 
-export const Accordian: StoryFn<typeof FoamInput> = () => {
+export const Accordion: StoryFn<typeof FoamInput> = () => {
   return {
     components: { FoamInput },
     template: `
     <div style="display: flex; flex-direction: column;">
-      <foam-input variant="label" v-bind="args" accordian placeholder="placeholder"  >
+      <foam-input variant="label" v-bind="args" accordion placeholder="placeholder"  >
       <template #sentContent>
       Slot content
     </template>
@@ -208,7 +208,7 @@ export const Accordian: StoryFn<typeof FoamInput> = () => {
   };
 };
 
-Accordian.argTypes = {
+Accordion.argTypes = {
   variant: {
     table: {
       disable: true,

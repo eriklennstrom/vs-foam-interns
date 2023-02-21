@@ -1,0 +1,173 @@
+@use "sass:color";
+@use "@/styles/colors.scss";
+@use "@/styles/variables.scss";
+@use "@/styles/font-system.scss";
+
+* {
+  margin: 0;
+}
+
+.number-input {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  .number-input__top {
+    margin-top: 15px;
+    align-items: flex-start;
+
+    label {
+      display: flex;
+      font-family: variables.$primaryFontFamily;
+      align-items: flex-start;
+      color: map-get(colors.$input-text-colors, light);
+      user-select: none;
+    }
+  }
+
+  .input__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid map-get(colors.$input-colors, light);
+    border-radius: 8px;
+    position: relative;
+    border: none;
+
+    .verticalStyle {
+      border: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input {
+      border: 0;
+      outline: 0;
+      background: transparent;
+      padding: 8px;
+      text-align: center;
+    }
+  }
+
+  .number-input__alignment {
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .increment-div__vertical,
+  .decrement-div__vertical {
+    margin-left: 8px;
+  }
+
+  .increment-div__horizontal,
+  .decrement-div__horizontal{
+    width: 25px;
+  }
+
+  .indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    gap: 2px;
+    font-size: inherit;
+  }
+
+  .valid {
+    border-color: map-get(colors.$input-colors, success);
+    user-select: none;
+
+    svg {
+      color: map-get(colors.$input-colors, success);
+    }
+  }
+
+  .invalid {
+    user-select: none;
+    border-color: map-get(colors.$input-colors, danger);
+
+    svg {
+      color: map-get(colors.$input-colors, danger);
+    }
+  }
+
+  .user-instructions {
+    user-select: none;
+    font-size: inherit;
+    padding: 1px;
+
+    .warning-icon {
+      padding: 0 4px 0 0;
+    }
+
+    .success-icon {
+      padding: 0 4px 0 0;
+      user-select: none;
+    }
+
+    .successMessageText {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      color: map-get(colors.$input-text-colors, success);
+    }
+
+    .errorMessageText {
+      color: map-get(colors.$input-text-colors, danger);
+    }
+
+    .helper-message-text {
+      opacity: 0.5;
+    }
+  }
+  .disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    text-decoration: none;
+  }
+}
+
+.dark {
+  .helper-message-text {
+    color: rgba(255, 251, 245, 0.958);
+    opacity: 1;
+  }
+
+  .valid {
+    border-color: map-get(colors.$dark-input-colors, success);
+    user-select: none;
+
+    svg {
+      color: map-get(colors.$dark-input-colors, success);
+    }
+  }
+
+  .invalid {
+    user-select: none;
+    border-color: map-get(colors.$dark-input-colors, danger);
+
+    svg {
+      color: map-get(colors.$dark-input-colors, danger);
+    }
+  }
+
+  .input__wrapper {
+    border-color: map-get(colors.$dark-input-colors, light);
+  }
+
+  input {
+    color: rgba(255, 251, 245, 0.636);
+  }
+  .indicator {
+    svg {
+      color: rgba(255, 251, 245, 0.636);
+    }
+  }
+}

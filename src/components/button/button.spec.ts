@@ -10,15 +10,35 @@ describe('Button', () => {
 
   const textVariable = 'Varnish'
 
+  it('emits click event when clicked', async () => {
+    const wrapper = mount(Button);
+    await wrapper.trigger('click');
+    expect(wrapper.emitted('click')).toHaveLength(1);
+  });
 
-  it.todo, ()=>{
-    // Emits correct value (click)
-    // Check that all colors (classes) is present, primary, danger when setting variant
-    // What happens if you set a variant that doesn't exist?
-    // What happens if you don't set any text?
-    // What happens if you don't select any icons?
-  }
+  it('sets correct variant class', () => {
+    const wrapper = mount(Button, {
+      props: {
+        variant: 'danger',
+      },
+    });
+    expect(wrapper.classes()).toContain('button--danger');
+    expect(wrapper.classes()).not.toContain('button--primary');
+  });
 
+  it('shows primary and danger variants by default', () => {
+    const wrapper = mount(Button);
+    expect(wrapper.classes()).toContain('button--primary');
+  });
+
+  it('does not show invalid variant', () => {
+    const wrapper = mount(Button, {
+      props: {
+        variant: 'invalid',
+      },
+    });
+    expect(wrapper.classes()).not.toContain('button--invalid');
+  });
 
   it('renders button properly', () => {
     const wrapper = mount(Button, { propsData: { variant: 'danger', text: textVariable } })

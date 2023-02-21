@@ -117,8 +117,28 @@ $text-colors: (
   rest: #00b0d4,
   danger: #dc3545,
   secondary-light: #002737,
-);
+  );
 
+  // Dropdown
+  // Light
+  $dropdown-border-color-light: $secondary-hover;
+  $dropdown-item-bg-light: #FFFFFF;
+  $dropdown-item-text-light: map-get($text-colors, strong-dark);
+  $dropdown-hover-bg-light: #ECECEC;
+  $dropdown-active-bg-light: #D8D8D8;
+  $dropdown-divider-light: $secondary-hover;
+  $dropdown-item-selected-light : #0033491a;
+  $dropdown-item-active-light : #06222e49;
+  
+  // Dark
+  $dropdown-border-color-dark: $primary-dark-disabled;
+  $dropdown-item-bg-dark: #1F252F;
+  $dropdown-item-text-dark: map-get($text-colors, strong-light);
+  $dropdown-hover-bg-dark: #303A49;
+  $dropdown-active-bg-dark: #485262;
+  $dropdown-divider-dark: $primary-dark-disabled;
+  $dropdown-item-selected-dark : #373C43;
+  $dropdown-item-active-dark : rgb(68, 74, 85);
 
 $button-border-colors: (
   danger-outline: $primary-100,
@@ -227,3 +247,27 @@ $dark-input-colors:(
 
 // Icon colors
 $icon-colors: join($bg-colors, $text-colors, auto);
+
+
+
+$input-text-colors:(
+  light: #668592,
+  danger: #dc3545,
+  warning: #faa05a,
+  success: #55c284,
+);
+
+
+$input-colors:(
+  light: #668592,
+  danger: #dc3545,
+  warning: #faa05a,
+  success: #55c284,
+);
+
+$dark-input-colors:(
+  light: #668592,
+  danger: #dc3545,
+  warning: #faa05a,
+  success: #55c284,
+);

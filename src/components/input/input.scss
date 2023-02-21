@@ -6,12 +6,12 @@
 * {
   margin: 0;
 }
-.inputBody {
+.input-body{
   display: flex;
   flex-direction: column;
   align-self: flex-start;
   justify-self: flex-start;
-  .topWrapper {
+  .input-body__top-wrapper {
     margin-top: 10px;
 
     label {
@@ -26,7 +26,7 @@
         background-color: transparent;
       }
     }
-    .iconWrapper {
+    .icon-wrapper {
       margin-left: 10px;
       align-self: center;
       background-color: map-get(colors.$input-colors, light);
@@ -44,7 +44,7 @@
         align-self: center;
         justify-self: center;
       }
-      .toggledAccordian {
+      .accordion__toggled {
         transform: rotate(180deg);
         transition: transform;
         overflow: hidden;
@@ -65,7 +65,7 @@
     }
   }
 
-  .inputWrapper {
+  .input-wrapper {
     width: fit-content;
     display: flex;
     align-items: center;
@@ -84,32 +84,77 @@
       margin: 0;
     }
 
-    input[type="number"] {
-      appearance: inherit;
-      -moz-appearance: textfield;
-    }
+  .slot-enter-active,
+  .slot-leave-active {
+    will-change: height, opacity;
+    transition: height 0.25s ease, opacity 0.25s ease;
+    overflow: hidden;
+  }
 
-    input {
-      width: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      padding: 10px;
-    }
+  .slot-enter,
+  .slot-leave-to {
+    height: 0 !important;
+    opacity: 0;
+  }
 
-    .warningIcon {
-      padding-right: 10px;
+  .slot-enter-active,
+  .slot-leave-active {
+    will-change: height, opacity;
+    transition: height 0.25s ease, opacity 0.25s ease;
+    overflow: hidden;
+  }
+
+  .slot-enter,
+  .slot-leave-to {
+    height: 0 !important;
+    opacity: 0;
+  }
+}
+
+.inputWrapper {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid map-get(colors.$input-colors, light);
+  border-radius: 8px;
+  width: 100%;
+
+  input::placeholder {
+    opacity: 0.3;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type="number"] {
+    appearance:inherit;
+    -moz-appearance: textfield;
+  }
+  
+  input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 10px;
+  }
+}
+
+    .warning-icon {
+      margin-right: 10px;
       user-select: none;
     }
 
-    .successIcon {
-      padding-right: 10px;
-      margin: 0 auto;
+    .success-icon {
+      margin-right: 10px;
       user-select: none;
     }
-    .passwordControls {
-      padding-right: 10px;
-      width: 25px;
+    .password-controls {
+      margin-right: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -129,9 +174,9 @@
         color: map-get(colors.$input-colors, danger);
       }
     }
-  }
+  
 }
-.dark .inputWrapper {
+.dark .input-wrapper {
   border-color: map-get(colors.$dark-input-colors, light);
   input {
     color: map-get(colors.$text-colors, light-dark);
@@ -152,27 +197,27 @@
   }
 }
 
-.userInstructions {
+.user-instructions {
   padding: 1px;
   margin-right: 10px;
   max-width: 100%;
   word-wrap: break-word;
 
-  .successMessageText {
+  .success-message-text {
     color: map-get(colors.$input-text-colors, success);
   }
 
-  .errorMessageText {
+  .error-message-text {
     color: map-get(colors.$input-text-colors, danger);
   }
 
-  .helperMessageText {
+  .helper-message-text {
     opacity: 0.5;
   }
 }
 
-.dark .userInstructions {
-  .helperMessageText {
+.dark .user-instructions {
+  .helper-message-text {
     color: rgba(255, 251, 245, 0.958);
   }
 }
@@ -183,6 +228,11 @@
   opacity: 0.3;
   pointer-events: none;
   text-decoration: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .sm {
@@ -203,4 +253,8 @@
   input {
     font-size: map-get(font-system.$font-size, h5);
   }
+}
+
+.sent-content{
+  padding-bottom: 0.5rem;
 }

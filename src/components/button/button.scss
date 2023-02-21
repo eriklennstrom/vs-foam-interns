@@ -1,3 +1,4 @@
+@use "@/styles/font-system.scss";
 @use "sass:color";
 @use "@/styles/colors.scss";
 @use "@/styles/variables.scss";
@@ -8,7 +9,8 @@
 @each $name,
 $bg in colors.$button-bg-colors {
   .button--#{$name} {
-    all: unset;
+
+    border: unset;
     cursor: pointer;
     user-select: none;
 
@@ -39,7 +41,7 @@ $bg in colors.$button-bg-colors {
     padding: 8px 16px;
     background-color: $bg;
     border-radius: 10px;
-    font-size: 12px;
+
     transition: all 0.15s ease-in-out;
 
     ///Borders
