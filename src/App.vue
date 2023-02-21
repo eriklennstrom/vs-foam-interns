@@ -14,30 +14,31 @@ const test:Ref =ref()
 </script>
 
 <template>
+  <p>{{ test }}</p>
   <button @click="darkMode">
     DARK MODE!
   </button>
 
+  <section>
+    <NumberInput
+      v-model="test"
+      direction="vertical"
+      label="Label" 
+      helpertext="Helpertext"
+      :is-valid="true"
+      :maxlength="3"
+    />
 
-  <NumberInput
-    v-model="test"
-    direction="vertical"
-    label="lol" 
-    helpertext="lol"
-    :is-valid="true"
-    :maxlength="5"
-    :maxvalue="99999"
-  />
-
-  <NumberInput
-    v-model="test"
-    direction="horizontal"
-    label="lol" 
-    helpertext="lol"
-    :is-valid="true"
-    :maxlength="5"
-    :maxvalue="99999"
-  />
+    <NumberInput
+      v-model="test"
+      direction="horizontal"
+      label="Label" 
+      helpertext="Helpertext"
+      :is-valid="true"
+      :maxlength="5"
+      :maxvalue="99999"
+    />
+  </section>
 </template>
 
 <style scoped lang="scss">
@@ -49,7 +50,7 @@ section {
   
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 4em;
 }

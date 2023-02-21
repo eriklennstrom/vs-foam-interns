@@ -1,13 +1,14 @@
 <script setup lang="ts">
+import type maxlengthInterface from '@/helpers/types/interface';
 import {
   defineEmits,
   defineAsyncComponent,
   computed,
   ref,
   type Ref,
-  onBeforeMount,
 } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
+
 
 
 type InputProps = {
@@ -18,11 +19,13 @@ type InputProps = {
   disabled?: boolean
   modelValue?: number
   helpertext?: string
-  maxlength?: number
+  maxlength?: maxlengthInterface['maxlength']
   maxvalue?: number
   direction?: 'horizontal' | 'vertical'
   increment?: number
 };
+
+
 
 const emit = defineEmits(['change', 'update:modelValue']);
 
@@ -41,17 +44,10 @@ const props = withDefaults(defineProps<InputProps>(), {
 });
 
 const maxLengthRef: Ref = ref(props.maxlength);
-onBeforeMount(() => {
-  if (maxLengthRef.value > 14) maxLengthRef.value = 14;
-});
-
 
 function emitInput(e: HTMLInputElement)  {
   if (e) {
- const comparevalue = parseInt(e.value)
-  if ( comparevalue > props.maxvalue) {
-    e.value = props.maxvalue.toString();
-  }
+
   if (e.value == '' ) {
     e.value = '0';
   }
@@ -65,7 +61,7 @@ function emitInput(e: HTMLInputElement)  {
 }
 
 const verticalAlignment = props.direction == 'vertical' ? 'verticalStyle' : '';
-const labelRef = ref(props.label+ ' '+ uuidv4());
+const labelRef = ref(uuidv4());
 
 
 function increment() {
@@ -106,9 +102,9 @@ const AsyncIcon = computed(() => {
 </script>
 
 <template>
-  <div class="numbers-input__div">
-    <div :class="['topWrapper', props.disabled ? 'disabled' : '']">
-      <label :for="labelRef" class="h3">
+  <div class="numbers-input">
+    <div :class="['__topwrapper', props.disabled ? 'disabled' : '']">
+      <label :for="labelRef" class="body1">
         {{ props.label }}
       </label>
     </div>
@@ -214,10 +210,10 @@ const AsyncIcon = computed(() => {
     <div :class="['userInstructions']">
       <p
         v-if="props.isValid != null"
-        :class="[
-          props.disabled ? 'disabled' : '',
-          props.isValid == true ? 'successMessageText' : '',
-          props.isValid == false ? 'errorMessageText' : '',
+        :class="['body2',
+                 props.disabled ? 'disabled' : '',
+                 props.isValid == true ? 'successMessageText' : '',
+                 props.isValid == false ? 'errorMessageText' : '',
         ]"
       >
         <AsyncIcon
@@ -235,7 +231,7 @@ const AsyncIcon = computed(() => {
 
         {{ props.validationText }}
       </p>
-      <p class="helperMessageText">
+      <p class="helperMessageText body2">
         {{ props.helpertext }}
       </p>
     </div>
