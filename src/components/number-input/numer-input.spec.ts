@@ -26,7 +26,7 @@ const wrapper = mount(Input, {propsData: {
 
 describe('Input', () => {
   it('displays the label', () => {
-    const label = wrapper.find('h1')
+    const label = wrapper.find('label')
     expect(label.text()).toBe('Test Label')
   })
 
@@ -44,6 +44,6 @@ describe('Input', () => {
   it('limits the max length of input value to 3 characters', async () => {
     const input = wrapper.find('input')
     input.setValue(1000)
-    await expect(input.element.value).toBe('999')
+    await expect(input.element.value).toBe('100')
   })
 })

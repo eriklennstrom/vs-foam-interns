@@ -102,14 +102,14 @@ const AsyncIcon = computed(() => {
 </script>
 
 <template>
-  <div class="numbers-input">
-    <div :class="['__topwrapper', props.disabled ? 'disabled' : '']">
+  <div class="number-input">
+    <div :class="['number-input__top', props.disabled ? 'disabled' : '']">
       <label :for="labelRef" class="body1">
         {{ props.label }}
       </label>
     </div>
     <div
-      class="alignment__container"
+      class="number-input__alignment"
       :style="{
         width:
           props.direction == 'vertical'
@@ -126,7 +126,7 @@ const AsyncIcon = computed(() => {
               : '',
         }"
         :class="[
-          'vertical__incrementDiv',
+          'increment-div__vertical',
           'indicator',
           props.disabled ? 'disabled' : '',
         ]"
@@ -142,14 +142,14 @@ const AsyncIcon = computed(() => {
       <div
         :disabled="props.disabled"
         :class="[
-          'inputWrapper',
+          'input__wrapper',
           verticalAlignment,
           props.disabled ? 'disabled' : '',
         ]"
       >
         <div
           v-if="props.direction == 'horizontal'"
-          class="horizontal__decrementDiv indicator"
+          class="decrement-div__horizontal indicator"
           role="button"
           tabindex="0"
           @click="decrement"
@@ -179,7 +179,7 @@ const AsyncIcon = computed(() => {
 
         <div
           v-if="props.direction == 'horizontal'"
-          :class="['horizontal__incrementDiv indicator']"
+          :class="['increment-div__horizontal indicator']"
           role="button"
           tabindex="0"
           @click="increment"
@@ -194,7 +194,7 @@ const AsyncIcon = computed(() => {
         v-if="props.direction == 'vertical'"
         :style="{ width: verticalWidthCalculation + 'px' }"
         :class="[
-          'vertical__decrementDiv',
+          'decrement-div__vertical',
           'indicator',
           props.disabled ? 'disabled' : '',
         ]"
@@ -207,7 +207,7 @@ const AsyncIcon = computed(() => {
         <AsyncIcon icon="chevron-down" />
       </div>
     </div>
-    <div :class="['userInstructions']">
+    <div :class="['user-instructions']">
       <p
         v-if="props.isValid != null"
         :class="['body2',
@@ -218,20 +218,20 @@ const AsyncIcon = computed(() => {
       >
         <AsyncIcon
           v-if="props.isValid == false"
-          class="warningIcon"
+          class="warning-icon"
           icon="warning"
           variant="danger"
         />
         <AsyncIcon
           v-if="props.isValid == true"
-          class="successIcon"
+          class="success-icon"
           icon="check"
           variant="success"
         />
 
         {{ props.validationText }}
       </p>
-      <p class="helperMessageText body2">
+      <p class="helper-message-text body2">
         {{ props.helpertext }}
       </p>
     </div>
