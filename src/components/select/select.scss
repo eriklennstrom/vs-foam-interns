@@ -94,11 +94,13 @@
 
         }
         .option {
-            text-align: end;
             padding: 6px;
             color: colors.$primary;
             &:hover {
                 background-color: colors.$select-hover-bg-light;
+            }
+            &:first-child {
+                text-align: center;
             }
         }
 

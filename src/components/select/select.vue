@@ -146,7 +146,7 @@ const handleSearch: (e: KeyboardEvent) => void = (e) => {
     searchTimer = setTimeout(() => {
       searchRef.value = '';
       searchTimer = null;
-    }, 2500);
+    }, 1000);
   }
 };
 
@@ -179,6 +179,8 @@ useDetectOutsideClick(componentRef, () => {
     :tabindex="-1"
     class="select"
     :focusable="false"
+    @keydown="useTabTrap($event)"
+    @keyup="useRemoveRecordedStroke($event)"
   >
     <div
       :id="selectContainerId"
@@ -212,7 +214,7 @@ useDetectOutsideClick(componentRef, () => {
       id="option__container"
       ref="selectRef"
       :class="selectId"
-      @keydown="handleSearch($event)"
+      @keydown.enter="handleSearch($event)"
     >
       <div
         v-for="(option, index) in optionsList"
@@ -220,13 +222,12 @@ useDetectOutsideClick(componentRef, () => {
         :ref="(el) => { optionRefs[index] = el as HTMLElement }"
         :key="index"
         :class="
-          selectedOption == option.text ? 'option--selected option' : 'option'
+          selectedOption == option.text ? 'option--selected option subtitle2' : 'option subtitle2'
         "
         tabindex="0"
         @click="handleSelectOption(option.text, option.value)"
         @keydown.enter="handleEnterSelect(option.text, option.value, $event)"
         @keyup.escape="handleShowOptions"
-        @keydown.tab="useTabTrap($event)"
         @keyup="useRemoveRecordedStroke($event)"
       >
         {{ option.text }}

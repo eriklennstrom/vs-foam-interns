@@ -26,7 +26,7 @@ The ``sortorder`` property decides if the options list will be sorted as descend
 The ``defaultoption`` is a property that will be the first choice in the option dropdown. Default is ``-- Choose an option --``
 
 > While the options dropdown is open. Typing on the keyboard will search the options list and focus on an option that matches the search string.
-> Note - The search value will reset efter 2.5 seconds.
+> Note - The search value will reset efter 1 second.
 
 In order to access the values a user chooses, a ``change`` event should be passed to the Select component.
 

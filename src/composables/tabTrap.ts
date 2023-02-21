@@ -58,11 +58,11 @@ export function useTabTrap (e: KeyboardEvent) {
       parentElement = parentElement.parentElement as HTMLElement;
     } else if(!parentElement.lastElementChild?.hasAttribute('data-show')) {
       parentElement = parentElement.parentElement as HTMLElement; 
-    }
+    }   
     
     currentElem.classList.contains('sub-dropdown__item') ? parentElement = currentElem.parentElement as HTMLElement : null;
-
-    const elements = getKeyBoardFocusableElements(parentElement);
+    
+    const elements = getKeyBoardFocusableElements(parentElement);   
     
     if(elements.elements.value.length <= 1) {
       return;
@@ -85,7 +85,6 @@ export function useTabTrap (e: KeyboardEvent) {
       } else if(prevActiveElem === firstElem) {
         index = elements.elements.value.findIndex(elem => { return firstElem === elem });
       } else {
-        
         index = elements.elements.value.findIndex(elem => { return e.target === elem }) - 1;
       }
 
@@ -106,7 +105,7 @@ export function useTabTrap (e: KeyboardEvent) {
       } 
       
       if(currentElem.id.includes('sub-dropdown') && currentElem.nextElementSibling?.hasAttribute('data-show')) {
-        index = 0;
+        index = 0;        
       }
       
       const previousFocusableElement = elements.elements.value[index] as HTMLElement;
