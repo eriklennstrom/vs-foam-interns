@@ -77,7 +77,7 @@ Clicking the button will drop down your slotted content and clicking it again wi
 
 ```html
 <!-- bad -->
-<foam-input accordian slot /> 
+<foam-input accordion slot /> 
 ```
 
 
