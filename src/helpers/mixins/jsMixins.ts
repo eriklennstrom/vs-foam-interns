@@ -7,12 +7,26 @@ export const badgeVariant = [
   'success'
 ];
 
+export const inputSize = [
+  'sm',
+  'ms',
+  'lg',
+];
+
 export const buttonVariant = [
   'primary',
   'secondary',
   'danger',
   'danger-outline',
   'ghost'
+];
+
+export const inputVariant = [
+  'text',
+  'number',
+  'email',
+  'password',
+  'low-number'
 ];
 
 export const iconVariants = ['success', 'danger', 'secondary', 'primary'];
@@ -28,6 +42,7 @@ export const dropdownIconPos = ['right', 'left']
 // icon names
 
 export const validIconNames = [
+  'check',
   'caret-down',
   'warning',
   'circle-down',
@@ -40,6 +55,10 @@ export const validIconNames = [
   'chevron-down',
   'chevron-right',
   'chevron-left',
+  'eye-slash',
+  'eye'
+
+  
 ];
 
 export const defaultTypeMixin = (types: string[]) => ({
