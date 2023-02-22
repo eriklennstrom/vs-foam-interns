@@ -25,7 +25,7 @@ describe('Select', () => {
     })
     it('render the options correctly', () => {
         const wrapper = mount(Select, { propsData: 
-            { options : [{id: 123, value : 'vitest', text: 'Vitest Test'}, {id: 1234, value : 'vue', text: 'Vue Test'}] }
+            { options : [{id: '123', value : 'vitest', text: 'Vitest Test'}, {id: '1234', value : 'vue', text: 'Vue Test'}] }
         })
         
         const optionsContainer = wrapper.find('#option__container')
@@ -35,7 +35,7 @@ describe('Select', () => {
         expect(optionEls[1].element.innerHTML).toBe('Vue Test')
     })
     it('opens options list on click', () => {
-        const wrapper = mount(Select, { propsData: { options : [{id: 123, value : 'vitest', text: 'Vitest Test'}] }})
+        const wrapper = mount(Select, { propsData: { options : [{id: '123', value : 'vitest', text: 'Vitest Test'}] }})
         const selectComponent = wrapper.find('.select-container')
         const optionsContainer = wrapper.find('#option__container')
         selectComponent.trigger('click')
@@ -49,9 +49,43 @@ describe('Select', () => {
         wrapper.vm.$emit('change')
         expect(wrapper.emitted().change.length).toBe(2)    
     })
+    it('sorts optionslist correctly', async () => {
+        const wrapper = mount(Select, { propsData: 
+            { 
+                options : [
+                    {id: '1234', value : 'lemon', text: 'Lemon'}, 
+                    {id: '123', value : 'Banana', text: 'Banana'}, 
+                    {id: '1234', value : 'pineapple', text: 'Pineapple'} 
+                ],
+                sort : true,
+         }
+        })
+        const selectComponent = wrapper.find('.select-container')
+        const optionsContainer = wrapper.find('#option__container')
+        await selectComponent.trigger('click')
+        expect(optionsContainer.element.children[1].innerHTML).toBe('Banana')
+    })
+    it('sorts descending optionslist correctly', async () => {
+        const wrapper = mount(Select, { propsData: 
+            { 
+                options : [
+                    {id: '1234', value : 'lemon', text: 'Lemon'}, 
+                    {id: '123', value : 'Banana', text: 'Banana'}, 
+                    {id: '1234', value : 'pineapple', text: 'Pineapple'} 
+                ],
+                sort : true,
+                sortorder : 'descending',
+         }
+        })
+
+        const selectComponent = wrapper.find('.select-container')
+        const optionsContainer = wrapper.find('#option__container')
+        await selectComponent.trigger('click')
+        expect(optionsContainer.element.children[1].innerHTML).toBe('Pineapple')
+    })
     it('update chosen option correctly', async () => {
         const wrapper = mount(Select, { propsData: 
-            { options : [{id: 123, value : 'vitest', text: 'Vitest Test'}, {id: 1234, value : 'vue', text: 'Vue Test'}] }
+            { options : [{id: '123', value : 'vitest', text: 'Vitest Test'}, {id: '1234', value : 'vue', text: 'Vue Test'}] }
         })
         const selectComponent = wrapper.find('.select-container')
         
