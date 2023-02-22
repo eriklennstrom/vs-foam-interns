@@ -16,7 +16,8 @@ describe('Select', () => {
                 position: 'inside',
                 options: [],
                 defaultoption: null,
-                sort: false
+                sort: false,
+                sortorder: 'ascending'
             }              
         )   
 
