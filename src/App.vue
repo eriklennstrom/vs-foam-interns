@@ -1,107 +1,129 @@
 <script setup lang="ts">
-// import ButtonVue from './components/Button/Button.vue';
-// import Icons from '@/components/icons/icons.vue'
-// import Badge from '@/components/badge/badge.vue'
-// import Buttonvue from '@/components/button/button.vue'
-import Inputvue from '@/components/input/input.vue'
-import { ref, type Ref } from 'vue';
-
+import FoamSelect from '@/components/select/select.vue'
+import FoamButton from '@/components/button/button.vue'
 
 const darkMode: () => void = () => {
   const body = document.querySelector('body')
   body?.classList.toggle('dark')
-  body?.classList.contains('dark') ? body.style.backgroundColor = '#002737' : body ? body.style.backgroundColor = '#F6F8FA' : null
+  body?.classList.contains('dark') ? body.style.backgroundColor = '#1F252F' : body? body.style.backgroundColor = '#F6F8FA' : null
 }
-const test= ref('')
+
+const changeFunc: (item: string) => void = (item) => { 
+  console.log(item);  
+}
+
+const testOptions = [
+  {
+    id: '123',
+    text: 'Testar',
+    value: 'test'
+  },
+  {
+    id: '123',
+    text: 'Kakor',
+    value: 'kakor'
+  },
+  {
+    id: '123',
+    text: 'Kaffe',
+    value: 'kaffe'
+  },
+  {
+    id: '123',
+    text: 'Test Igen',
+    value: 'igen'
+  }
+]
+
+const testOptions2 = [
+  {
+    id: '123',
+    text: 'Testar',
+    value: 'test'
+  },
+  {
+    id: '123',
+    text: 'Kakor',
+    value: 'kakor'
+  },
+  {
+    id: '123',
+    text: 'Kaffe',
+    value: 'kaffe'
+  },
+  {
+    id: '123',
+    text: 'Test Igen',
+    value: 'igen'
+  }
+]
+
+const testOptions3 = [
+  {
+    id: '1',
+    text: 'Testar',
+    value: 'test'
+  },
+  {
+    id: '2',
+    text: 'Kakor',
+    value: 'kakor'
+  },
+  {
+    id: '3',
+    text: 'Kaffe',
+    value: 'kaffe'
+  },
+  {
+    id: '4',
+    text: 'Test Igen',
+    value: 'igen'
+  }
+]
 
 </script>
 
 <template>
-  <section>
-    <h1>{{ test }}</h1>
-  
-    <Inputvue
-      v-model="test"
-      size="sm"
-      validation-text="Validation-text"
-      variant="number"
-      label="Valid"
-      placeholder="placeholder"
-      helpertext="Helper text"
+  <div class="wrapper">
+    <!-- <FoamSelect 
+      text="Cool Label" 
+      :options="testOptions" 
+      defaultoption="Something?"
+      @change="changeFunc"
     />
-
-    <Inputvue
-
-      v-model="test"
-      :is-valid="true"
-      validation-text="Validation-text"
-      variant="email"
-      label="Valid"
-      placeholder="placeholder"
-      helpertext="Helper text"
-    />
-    <Inputvue
-      v-model="test"
-      size="sm"
-      :is-valid="false"
-      validation-text="Validation-text"
-      variant="text"
-      label="Not valid"
-      placeholder="placeholder"
-      helpertext="Helper text"
-    />
-
-
-    <Inputvue
-      v-model="test"
-      size="lg"
-      variant="text"
-      label="Neutral"
-      placeholder="placeholder"
-      helpertext="Helper text"
-    >
-      <template #sentContent>
-        <div>
-          <p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p><p>Sent content</p>
-        </div>
-      </template>
-    </Inputvue>
-
-    <Inputvue
-      v-model="test"
-      variant="number"
-      label="Disabled"
-      placeholder="placeholder"
-      disabled
-    />
-    <Inputvue
-      v-model="test"
-      :is-valid="false"
-      validation-text="validation-text"
-      variant="password"
-      label="Password"
-      placeholder="placeholder"
-    />
-  
-
-    <Inputvue
-      v-model="test"
-      :is-valid="true"
-      validation-text="validation-text"
-      variant="password"
-      label="Password"
-      placeholder="placeholder"
-    >
-      <template #helperMessageText>
-        Helper text
-      </template>
-    </Inputvue>
-
-
-    <button @click="darkMode">
-      DARK MODE!
-    </button>
-  </section>
+    
+    <FoamSelect
+      text="LabelText"
+      :options="testOptions2"
+      position="top"
+      sort
+      @change="changeFunc"
+    />-->
+    <FoamSelect
+      text="LabelText"
+      :options="testOptions3"
+      position="top"
+      sort
+      sortorder="descending"
+      @change="changeFunc"
+    /> 
+    <FoamSelect
+      text="LabelText"
+      :options="testOptions3"
+      position="top"
+      sort
+      sortorder="ascending"
+      @change="changeFunc"
+    /> 
+    <FoamSelect
+      text="LabelText"
+      :options="testOptions3"
+      position="top"
+      sort
+      @change="changeFunc"
+    /> 
+    <!-- <FoamButton text="Dark Mode" variant="primary" @click="darkMode" /> -->
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -109,15 +131,18 @@ const test= ref('')
 body {
   background-color: #F6F8FA;
 }
-
-section {
-  margin-bottom: 4em;
-  margin-top: 4em;
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2em;
+  margin: 4em;
 }
 
 body{
   background-color: #668592;
-;
+
 }
 
 </style>
